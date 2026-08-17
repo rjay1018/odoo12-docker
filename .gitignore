@@ -1,0 +1,18 @@
+# Ignore Mac system files
+.DS_Store
+
+# Ignore database dumps or large SQL files
+*.sql
+*.dump
+*.tar.gz
+*.zip
+
+# Ignore environment variables/secrets if added later
+.env
+
+# Ignore editor directories
+.vscode/
+.idea/
+
+# Ignore Odoo filestore if accidentally placed here
+filestore/
