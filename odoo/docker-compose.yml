@@ -28,7 +28,7 @@ services:
     image: postgres:12
     container_name: odoo-db
     environment:
-      - POSTGRES_DB=odoo12_prod
+      - POSTGRES_DB=yyy
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
     volumes:
