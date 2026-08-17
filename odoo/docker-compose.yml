@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+  web:
+    image: odoo:12.0
+    container_name: odoo-web
+    depends_on:
+      - db
+    environment:
+      - VIRTUAL_HOST=odoo.example.com
+      - LETSENCRYPT_HOST=odoo.example.com
+      - LETSENCRYPT_EMAIL=admin@example.com
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+    networks:
+      - internal-db
+      - nginx-proxy-network
+    restart: always
+
+  db:
+    image: postgres:12
+    container_name: odoo-db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    networks:
+      - internal-db
+    restart: always
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
+
+networks:
+  internal-db:
+  nginx-proxy-network:
+    external: true
