@@ -11,6 +11,10 @@ git pull
 echo "==> Fixing addon file permissions (UID 101 = odoo user inside container)..."
 sudo chown -R 101:101 ~/odoo12-docker/odoo/addons/
 
+echo "==> Converting f-strings to Python 3.5 compatible syntax..."
+pip3 install f2format -q 2>/dev/null || pip3 install f2format -q --break-system-packages 2>/dev/null || true
+find ~/odoo12-docker/odoo/addons/ -name "*.py" -exec f2format {} + 2>/dev/null || true
+
 echo "==> Restarting Odoo container..."
 docker-compose up -d
 
