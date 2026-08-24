@@ -11,16 +11,24 @@ git pull
 echo "==> Fixing addon file permissions (UID 101 = odoo user inside container)..."
 sudo chown -R 101:101 ~/odoo12-docker/odoo/addons/
 
-echo "==> Converting f-strings to Python 3.5 compatible syntax..."
-pip3 install f2format -q 2>/dev/null || pip3 install f2format -q --break-system-packages 2>/dev/null || true
-find ~/odoo12-docker/odoo/addons/ -name "*.py" -exec f2format {} + 2>/dev/null || true
-
 echo "==> Restarting Odoo container..."
-docker-compose up -d
+# Remove the old container if it exists
+docker rm -f odoo-web 2>/dev/null || true
 
-echo "==> Installing required Python packages inside container..."
-docker exec -u root odoo-web pip3 install -q https://github.com/aeroo/aeroolib/archive/refs/heads/master.zip openpyxl num2words
-docker-compose restart web
+# Run the new container
+docker run -d \
+  --name odoo-web \
+  --network odoo_internal-db \
+  --network nginx-proxy-network \
+  -p 8069:8069 \
+  -e HOST=db \
+  -e USER=odoo \
+  -e PASSWORD=odoo \
+  -v odoo_odoo-web-data:/var/lib/odoo \
+  -v $(pwd)/config:/etc/odoo \
+  -v $(pwd)/addons:/mnt/extra-addons \
+  --restart always \
+  odoo12-py37
 
 echo "==> Waiting for Odoo to start..."
 sleep 5
