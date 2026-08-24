@@ -15,6 +15,7 @@ echo "==> Restarting Odoo container..."
 docker-compose up -d
 
 echo "==> Installing required Python packages inside container..."
+docker exec -u root odoo-web apt-get update -qq
 docker exec -u root odoo-web apt-get install -y git -qq
 docker exec -u root odoo-web pip3 install -q git+https://github.com/aeroo/aeroolib.git openpyxl num2words
 docker-compose restart web
