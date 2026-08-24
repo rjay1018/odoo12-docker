@@ -2,8 +2,7 @@ version: '3.7'
 
 services:
   web:
-    build: .
-    image: odoo12-custom
+    image: odoo:12.0
     container_name: odoo-web
     depends_on:
       - db
