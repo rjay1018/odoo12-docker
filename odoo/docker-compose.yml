@@ -6,7 +6,6 @@ services:
     container_name: odoo-web
     depends_on:
       - db
-    user: root
     ports:
       - "8069:8069"
     environment:
