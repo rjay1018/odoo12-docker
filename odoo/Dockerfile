@@ -52,7 +52,8 @@ RUN pip3 install \
     num2words \
     pandas \
     numpy \
-    plotly
+    plotly \
+    sqlparse
 
 # Setup extra-addons directory
 RUN mkdir -p /mnt/extra-addons \
