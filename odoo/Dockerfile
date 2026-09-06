@@ -49,7 +49,10 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/12.0/nightly/deb/odoo_12.0.lat
 RUN pip3 install \
     https://github.com/aeroo/aeroolib/archive/refs/heads/master.zip \
     openpyxl \
-    num2words
+    num2words \
+    pandas \
+    numpy \
+    plotly
 
 # Setup extra-addons directory
 RUN mkdir -p /mnt/extra-addons \
