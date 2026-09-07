@@ -72,6 +72,7 @@ EXPOSE 8069 8071 8072
 
 ENV ODOO_RC=/etc/odoo/odoo.conf
 
+WORKDIR /var/lib/odoo
 USER odoo
 ENTRYPOINT ["/custom_entrypoint.sh"]
 CMD ["odoo"]
