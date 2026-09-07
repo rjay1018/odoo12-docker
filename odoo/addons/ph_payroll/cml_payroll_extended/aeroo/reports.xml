@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo noupdate="0">
+
+    <record id="payroll_register_bank_rpt" model="ir.actions.report">
+        <field name="name">Bank Report</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="report_name">payroll_register_bank_rpt</field>
+        <field name="report_type">aeroo</field>
+        <field name="aeroo_in_format">ods</field>
+        <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_xls_odt"/>
+        <field name="aeroo_template_source">file</field>
+        <field name="aeroo_lang_eval"></field>
+        <field name="aeroo_company_eval"></field>
+        <field name="aeroo_country_eval"></field>
+        <field name="aeroo_currency_eval"></field>
+        <field name="aeroo_template_path">cml_payroll_extended/aeroo/bank_report.ods</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="binding_model_id" ref="ph_payroll_computation.model_hr_payslip_run"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <delete id="ph_payroll_computation.aeroo_payroll_register_rpt" model="ir.actions.report"/>
+
+    <record id="payroll_reg_extend_rpt" model="ir.actions.report">
+        <field name="name">Payroll Register</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="report_name">payroll_reg_extend_rpt</field>
+        <field name="report_type">aeroo</field>
+        <field name="aeroo_in_format">ods</field>
+        <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_xls_odt"/>
+        <field name="aeroo_template_source">file</field>
+        <field name="aeroo_lang_eval"></field>
+        <field name="aeroo_company_eval"></field>
+        <field name="aeroo_country_eval"></field>
+        <field name="aeroo_currency_eval"></field>
+        <field name="aeroo_template_path">cml_payroll_extended/aeroo/payroll_reg_extend.ods</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="binding_model_id" ref="ph_payroll_computation.model_hr_payslip_run"/>
+        <field name="binding_type">report</field>
+        <field name="aeroo_filename_per_lang" eval="True"/>
+        <field name="aeroo_filename_line_ids"
+            eval="[(0, 0, {'lang_id': ref('base.lang_en'), 'filename': 'Payroll Register - ${o.name}'})]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mod_categ_ph_payroll_loan" model="ir.module.category">
+            <field name="name">PH Payroll Loan</field>
+            <field name="sequence">31</field>
+        </record>
+
+
+        <record id="grp_loan_req_noted_by" model="res.groups">
+            <field name="name">Loan Request: Status - Noted</field>
+            <field name="category_id" ref="mod_categ_ph_payroll_loan"/>
+        </record>
+        <record id="grp_loan_req_for_approval" model="res.groups">
+            <field name="name">Loan Request: Status - For Approval</field>
+            <field name="category_id" ref="mod_categ_ph_payroll_loan"/>
+        </record>
+
+    </data>
+</odoo>

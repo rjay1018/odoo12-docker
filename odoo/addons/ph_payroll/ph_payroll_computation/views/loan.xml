@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- LOAN REQUEST -->
+    <record id="hr_loan_inherit_form" model="ir.ui.view">
+        <field name="name">hr.loan.inherit.form</field>
+        <field name="model">hr.loan</field>
+        <field name="inherit_id" ref="ph_payroll_loan.hr_loan_form_view"/>
+        <field name="arch" type="xml">
+            <field name="payment_start" position="before">
+                <field name="adjustment_id" required="1"
+                    attrs="{'readonly':[('state','in',('approve', 'cancel'))]}"
+                    options="{'no_create': True}"
+                    domain="[('adjustment_type', 'in', ('cashadvance', 'loan')), ('name', 'not like', 'Canteen')]"/>
+            </field>
+            <field name="monthly_payment" position="after">
+                <field name="period_type"
+                    attrs="{'readonly':[('state','in',('approve', 'cancel'))]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_loan_inherit_tree" model="ir.ui.view">
+        <field name="name">hr.loan.inherit.tree</field>
+        <field name="model">hr.loan</field>
+        <field name="inherit_id" ref="ph_payroll_loan.hr_loan_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="after">
+                <field name="adjustment_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_loan_inherit_search" model="ir.ui.view">
+        <field name="name">hr.loan.inherit.search</field>
+        <field name="model">hr.loan</field>
+        <field name="inherit_id" ref="ph_payroll_loan.hr_loan_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="employee_id" position="after">
+                <filter string="Loan Type" name="adjustment_id" context="{'group_by': 'adjustment_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+    <!-- CANTEEN LOAN -->
+    <record id="canteen_loan_inherit_form" model="ir.ui.view">
+        <field name="name">hr.canteen.inherit.form</field>
+        <field name="model">hr.canteen</field>
+        <field name="inherit_id" ref="ph_payroll_loan.canteen_loan_form"/>
+        <field name="arch" type="xml">
+            <field name="loan_amount" position="after">
+                <field name="payroll_period_id" required="1" readonly="1" force_save="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="canteen_loan_inherit_tree" model="ir.ui.view">
+        <field name="name">hr.canteen.inherit.tree</field>
+        <field name="model">hr.canteen</field>
+        <field name="inherit_id" ref="ph_payroll_loan.canteen_loan_tree"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="after">
+                <field name="payroll_period_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="canteen_loan_inherit_search" model="ir.ui.view">
+        <field name="name">hr.canteen.inherit.search</field>
+        <field name="model">hr.canteen</field>
+        <field name="inherit_id" ref="ph_payroll_loan.canteen_loan_search"/>
+        <field name="arch" type="xml">
+            <filter name="employee_id" position="after">
+                <filter string="Payment Period" name="payroll_period_id" context="{'group_by': 'payroll_period_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+
+    <record id="emp_own_loan_inherit_form" model="ir.ui.view">
+        <field name="name">emp.own.loan.inherit.form</field>
+        <field name="model">hr.loan</field>
+        <field name="sequence">50</field>
+        <field name="inherit_id" ref="ph_payroll_loan.hr_loan_form_view"/>
+        <field name="groups_id" eval="[(4, ref('ph_payroll_computation.grp_emp_own_loan'))]"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="payment_start" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="payment_end" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="monthly_payment" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="period_type" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="force_save">1</attribute>
+            </field>
+            <field name="loan_line_ids" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="adjustment_id" position="attributes">
+                <attribute name="widget">selection</attribute>
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <field name="date_request" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <field name="reason" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="ph_payroll_loan.menu_hr_loans_and_advances" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('ph_payroll_computation.grp_emp_own_loan'))]"/>
+    </record>
+
+    <record id="ph_payroll_loan.menu_base_hr_loan_request" model="ir.ui.menu">
+        <field name="groups_id" eval="[(4, ref('ph_payroll_computation.grp_emp_own_loan'))]"/>
+    </record>
+
+</odoo>

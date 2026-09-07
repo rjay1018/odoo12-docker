@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="payroll_custom_header">
+        <div class="header" style="font-size: 12px">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td width="4%" class="ml-0 mr-0 pl-0 pr-0 pb-0">
+                            <img t-if="o.employee_id.company_id.logo" t-att-src="image_data_uri(o.employee_id.company_id.logo)" style="height: 70px;"/>
+                        </td>
+                        <td width="58%" class="ml-0 mr-0 pl-0 pr-0 pb-0">
+                            <span style="font-size: 12pt" t-field="o.employee_id.company_id.name"/><br/>
+                            <span style="font-size: 10pt" t-esc="o.employee_id._get_company_address()"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="employee_dtr_document">
+        <div class="article">
+            <t t-call="ph_payroll_attendance.payroll_custom_header"/>
+            <div class="page">
+                <table class="table table-borderless" style="font-size: 9pt">
+                    <tbody>
+                        <tr>
+                            <td width="40%" class="pb-0">
+                                Employee No. : <strong><span t-field="o.employee_id.identification_id"/></strong><br/>
+                                Employee Name : <strong><span t-field="o.employee_id.name"/></strong>
+                            </td>
+                            <td width="40%" class="pb-0">
+                                Payroll Period : <strong><span t-field="o.payroll_period_id.name"/></strong><br/>
+                                Department : <strong><span t-esc="o.department_id.name"/></strong>
+                            </td>
+                            <td width="20%" class="pb-0">
+                                <span style="font-size: 13pt">DAILY TIME RECORD</span><br/>
+                                <span style="font-size: 8pt" t-esc="context_timestamp(datetime.datetime.now()).strftime('%b. %d, %Y @ %I:%M %p')"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="font-size: 8pt; margin-top:-3mm">
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr valign="top" class="text-center">
+                                <th style="padding: 0px">Date</th>
+                                <th style="padding: 0px">Sched. IN</th>
+                                <th style="padding: 0px">Time IN</th>
+                                <th style="padding: 0px">Sched. OUT</th>
+                                <th style="padding: 0px">Time OUT</th>
+                                <th style="padding: 0px">Late</th>
+                                <th style="padding: 0px">Undertime</th>
+                                <th style="padding: 0px">Half Day</th>
+                                <th style="padding: 0px">Absent</th>
+                                <th style="padding: 0px">ND</th>
+                                <th style="padding: 0px">SL</th>
+                                <th style="padding: 0px">VL</th>
+                                <th style="padding: 0px">DO</th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <t t-foreach="o.dtr_line_ids" t-as="line">
+                                <tr>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.date"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.sched_in" t-options="{'widget': 'float_time'}"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.time_in"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.sched_out" t-options="{'widget': 'float_time'}"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.time_out"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.late" t-options="{'widget': 'float_time'}"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.undertime" t-options="{'widget': 'float_time'}"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.half_day"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.absent"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.nd" t-options="{'widget': 'float_time'}"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.sl"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.vl"/></td>
+                                    <td style="padding: 0px" class="text-center"><span t-field="line.dayoff"/></td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td style="padding: 0px" colspan="5"/>
+                                <td style="padding: 0px" class="text-center"><span t-esc="o._get_total_dtr()['late']" t-options="{'widget': 'float_time'}"/></td>
+                                <td style="padding: 0px" class="text-center"><span t-esc="o._get_total_dtr()['undertime']" t-options="{'widget': 'float_time'}"/></td>
+                                <td style="padding: 0px" colspan="2"/>
+                                <td style="padding: 0px" class="text-center"><span t-esc="o._get_total_dtr()['nd']" t-options="{'widget': 'float_time'}"/></td>
+                                <td style="padding: 0px" colspan="3"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="font-size: 8pt">
+                    <div>
+                        <!-- Overtime -->
+                        <table class="table table-bordered table-sm" style="width: 75%; float: left">
+                            <thead>
+                                <tr valign="top" class="text-center">
+                                    <th style="padding: 0px">From</th>
+                                    <th style="padding: 0px">To</th>
+                                    <th style="padding: 0px">Hours</th>
+                                    <th style="padding: 0px">Computation</th>
+                                    <th style="padding: 0px">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <t t-foreach="o.dtr_ot_ids" t-as="ot">
+                                    <tr>
+                                        <td style="padding: 0px" class="text-center"><span t-field="ot.ot_fr"/></td>
+                                        <td style="padding: 0px" class="text-center"><span t-field="ot.ot_to"/></td>
+                                        <td style="padding: 0px" class="text-center"><span t-field="ot.ot_hours" t-options="{'widget': 'float_time'}"/></td>
+                                        <td style="padding: 0px" class="text-center"><span t-field="ot.computation_id.name"/></td>
+                                        <td style="padding: 0px" class="text-center"><span t-field="ot.notes"/></td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td style="padding: 0px" colspan="2"/>
+                                    <td style="padding: 0px" class="text-center"><span t-esc="o._get_total_ot()" t-options="{'widget': 'float_time'}"/></td>
+                                    <td style="padding: 0px" colspan="2"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <!-- Signatories -->
+                        <table class="table table-borderless table-sm" style="width: 24%; float: right">
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 0px">
+                                        Certified By :<br/>
+                                        <div class="text-center">
+                                            <strong><span t-field="o.employee_id.name"></span></strong>
+                                        </div>
+                                        Date :<br/><br/>
+                                        Noted By :<br/>
+                                        <t t-if="o.employee_id.company_id.partner_name">
+                                            <t t-if="o.employee_id.company_id.partner_signature">
+                                                <img class="mx-auto d-block" t-att-src="'data:image/png;base64,%s' % to_text(o.employee_id.company_id.partner_signature)" style="max-height:2cm; max-width:8cm"/>
+                                            </t>
+                                            <div class="text-center">
+                                                <strong><span t-field="o.employee_id.company_id.partner_name"/></strong>
+                                            </div>
+                                        </t>
+                                        <div style="margin-top:-3mm">
+                                        <hr/>
+                                        </div>
+                                        <div class="text-center" style="margin-top:-3mm"><span>Partner</span><br/><br/></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </template>
+
+    <template id="report_employee_dtr_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="ph_payroll_attendance.employee_dtr_document"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_dtr" model="report.paperformat">
+        <field name="name">Daily Time Record</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        string="Daily Time Record"
+        id="employee_dtr_document_rpt_id"
+        model="hr.employee.dtr"
+        report_type="qweb-pdf"
+        name="ph_payroll_attendance.report_employee_dtr_document"
+        file="ph_payroll_attendance.report_employee_dtr_document"
+        paperformat="ph_payroll_attendance.paperformat_dtr"
+    />
+
+</odoo>

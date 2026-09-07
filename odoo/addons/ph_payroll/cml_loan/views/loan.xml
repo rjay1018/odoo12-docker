@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="cml_loan_inherit_form" model="ir.ui.view">
+        <field name="name">cml.loan.inherit.form</field>
+        <field name="model">hr.loan</field>
+        <field name="inherit_id" ref="ph_payroll_loan.hr_loan_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_submit']" position="after">
+                <button name="action_noted" type="object" string="Noted" states="submit" class="oe_highlight" groups="cml_loan.grp_loan_req_noted_by"/>
+                <button name="action_for_approval" type="object" string="Recommending Approval" states="noted" class="oe_highlight" groups="cml_loan.grp_loan_req_for_approval"/>
+            </xpath>
+            <xpath expr="//button[@name='action_approve']" position="attributes">
+                <attribute name="states">for_approval</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_draft']" position="attributes">
+                <attribute name="states">submit,noted,for_approval,approve,cancel</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="cml_loan_supervisor_inherit_form" model="ir.ui.view">
+        <field name="name">cml.loan.supervisor.inherit.form</field>
+        <field name="model">hr.loan</field>
+        <field name="inherit_id" ref="ph_payroll_loan.hr_loan_form_view"/>
+        <field name="groups_id" eval="[(4, ref('cml_loan.grp_loan_req_noted_by')), (4, ref('cml_loan.grp_loan_req_for_approval')), (4, ref('ph_payroll_computation.grp_emp_own_loan'))]"/>
+        <field name="arch" type="xml">
+            <field name="loan_amount" position="attributes">
+                <attribute name="attrs">{'readonly':[('state','in',('submit', 'noted', 'for_approval', 'approve', 'cancel'))]}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

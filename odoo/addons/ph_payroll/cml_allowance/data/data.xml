@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="adj_personal_allow" model="hr.payroll.adjustment">
+            <field name="adjustment_type">allowance</field>
+            <field name="name">Personal Allowance (Hourly)</field>
+            <field name="sequence" eval="40"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="rice_allow_1" model="hr.rice.allowance.computation">
+            <field name="adjustment_id" ref="adj_rice_allowance"/>
+            <field name="month_fr">6</field>
+            <field name="month_to">47</field>
+            <field name="amount">300</field>
+            <field name="notes">6 months/1 year - 3 years &amp; 11 months</field>
+        </record>
+
+        <record id="rice_allow_2" model="hr.rice.allowance.computation">
+            <field name="adjustment_id" ref="adj_rice_allowance"/>
+            <field name="month_fr">48</field>
+            <field name="month_to">95</field>
+            <field name="amount">400</field>
+            <field name="notes">4 years - 7 years &amp; 11 months</field>
+        </record>
+
+        <record id="rice_allow_3" model="hr.rice.allowance.computation">
+            <field name="adjustment_id" ref="adj_rice_allowance"/>
+            <field name="month_fr">96</field>
+            <field name="month_to">155</field>
+            <field name="amount">450</field>
+            <field name="notes">8 years - 12 years &amp; 11 months</field>
+        </record>
+
+        <record id="rice_allow_4" model="hr.rice.allowance.computation">
+            <field name="adjustment_id" ref="adj_rice_allowance"/>
+            <field name="month_fr">156</field>
+            <field name="month_to">1000</field>
+            <field name="amount">500</field>
+            <field name="notes">13 years Above</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="mod_categ_ph_payroll" model="ir.module.category">
+            <field name="name">PH Payroll</field>
+            <field name="sequence">30</field>
+        </record>
+
+
+        <!-- Employee - Loan Request -->
+        <record id="grp_emp_own_loan" model="res.groups">
+            <field name="name">Employee Loan Request</field>
+            <field name="category_id" ref="mod_categ_ph_payroll"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="late_deduction_table_form" model="ir.ui.view">
+        <field name="name">late.deduction.table.form</field>
+        <field name="model">hr.late.deduction.table</field>
+        <field name="arch" type="xml">
+            <form string="Late Deduction Table">
+                <sheet>
+                    <group>
+                        <group string="Minutes">
+                            <field name="min_fr"/>
+                            <field name="min_to"/>
+                            <field name="late"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="late_deduction_table_tree" model="ir.ui.view">
+        <field name="name">late.deduction.table.tree</field>
+        <field name="model">hr.late.deduction.table</field>
+        <field name="arch" type="xml">
+            <tree string="Late Deduction Table" editable="bottom">
+                <field name="min_fr"/>
+                <field name="min_to"/>
+                <field name="late"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="act_open_late_deduct_table" model="ir.actions.act_window">
+        <field name="name">Late Deduction Table</field>
+        <field name="res_model">hr.late.deduction.table</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_late_deduct_table"
+        parent="hr_attendance.menu_hr_attendance_settings"
+        action="act_open_late_deduct_table"
+        sequence="6"
+        groups="hr.group_hr_manager"/>
+
+
+
+    <record id="premiums_tax_config_inherit_form" model="ir.ui.view">
+        <field name="name">premiums.tax.config.inherit.form</field>
+        <field name="model">hr.premiums.tax.config</field>
+        <field name="inherit_id" ref="ph_payroll_computation.premiums_tax_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="inside">
+                <group string="Consolidate EE Contribution" attrs="{'invisible': [('name', '!=', 'SSS')]}">
+                    <field name="sss_consolidate"/>
+                    <field name="sss_consolidate_period" attrs="{'invisible': [('sss_consolidate', '=', False)], 'required': [('sss_consolidate', '!=', False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

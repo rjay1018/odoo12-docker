@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="payroll_period_form_view" model="ir.ui.view">
+        <field name="name">payroll.period.form.view</field>
+        <field name="model">hr.payroll.period</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Period">
+                <header>
+                    <button name="state_confirm" string="Confirm" type="object" states="draft"
+                        class="btn-primary"/>
+                    <button name="state_draft" string="Set to Draft" type="object" states="confirm"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="payroll_schedule" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                            <field name="period_fr" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                            <field name="period_to" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                        </group>
+                        <group>
+                            <field name="period_type" attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                            <field name="fiscal_year_id" required="1" readonly="0"
+                                attrs="{'readonly': [('state', '=', 'confirm')]}"/>
+                        </group>
+                    </group>
+                    <group string="Dates">
+                        <field name="period_date_ids" nolabel="1" colspan="4">
+                            <tree string="" create="0" edit="1" delete="0" editable="bottom">
+                                <field name="date" readonly="1"/>
+                                <field name="dayofweek" readonly="1"/>
+                                <field name="allow_late"/>
+                                <field name="allow_undertime"/>
+                                <field name="memo"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="payroll_period_tree_view" model="ir.ui.view">
+        <field name="name">payroll.period.tree.view</field>
+        <field name="model">hr.payroll.period</field>
+        <field name="arch" type="xml">
+            <tree string="Payroll Period">
+                <field name="payroll_schedule"/>
+                <field name="period_fr"/>
+                <field name="period_to"/>
+                <field name="period_type"/>
+                <field name="fiscal_year_id"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="payroll_period_search_view" model="ir.ui.view">
+        <field name="name">payroll.period.search.view</field>
+        <field name="model">hr.payroll.period</field>
+        <field name="arch" type="xml">
+            <search string="Payroll Period">
+                <field name="name"/>
+                <filter string="Current Year" name="current_year"
+                    domain="[('period_fr', '&gt;=', context_today().strftime('%Y-01-01')), ('period_fr', '&lt;=', context_today().strftime('%Y-12-31'))]"/>
+                <filter string="Fiscal Year" name="group_fiscal_year" context="{'group_by': 'fiscal_year_id'}"/>
+                <filter string="Payroll Schedule" name="group_payroll_sched" context="{'group_by': 'payroll_schedule'}"/>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_payroll_period" model="ir.actions.act_window">
+        <field name="name">Payroll Periods</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.payroll.period</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_current_year': 1}</field>
+    </record>
+
+    <menuitem id="menu_payroll_period"
+        action="action_payroll_period"
+        parent="hr_payroll.menu_hr_payroll_root"
+        groups="hr.group_hr_manager,hr.group_hr_user"
+        sequence="3"/>
+
+</odoo>

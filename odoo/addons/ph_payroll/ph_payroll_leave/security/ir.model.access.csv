@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_fiscal_year_hr_mgr,account.fiscal.year.hr_mgr,account.model_account_fiscal_year,hr.group_hr_manager,1,1,1,1
+access_hr_leave_date_hr_mgr,hr.leave.date.hr_mgr,model_hr_leave_date,hr.group_hr_manager,1,1,1,1
+
+access_hr_leave_emp_own_,hr_leave_emp_own,hr_holidays.model_hr_leave,grp_emp_own_leave,1,1,1,0
+access_hr_leave_allocation_emp_own_,hr_leave_allocation_emp_own,hr_holidays.model_hr_leave_allocation,grp_emp_own_leave,1,1,0,0
+access_hr_leave_date_emp_own_,hr_leave_date_emp_own,model_hr_leave_date,grp_emp_own_leave,1,1,1,1
+
+access_hr_payroll_period_emp_own_,hr_payroll_period_emp_own,ph_payroll_computation.model_hr_payroll_period,grp_emp_own_leave,1,0,0,0
+access_account_fiscal_year_emp_own_,account_fiscal_year_emp_own,account.model_account_fiscal_year,grp_emp_own_leave,1,0,0,0

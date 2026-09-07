@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<odoo noupdate="0">
+
+    <record id="aeroo_dtr_report" model="ir.actions.report">
+        <field name="name">Daily Time Record</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">hr.employee.dtr</field>
+        <field name="report_name">aeroo_dtr_report</field>
+        <field name="report_type">aeroo</field>
+        <field name="aeroo_in_format">odt</field>
+        <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
+        <field name="aeroo_template_source">file</field>
+        <field name="aeroo_lang_eval">o.employee_id.partner_id.lang</field>
+        <field name="aeroo_company_eval">o.employee_id.partner_id.company_id</field>
+        <field name="aeroo_country_eval">o.employee_id.partner_id.country_id</field>
+        <field name="aeroo_currency_eval">o.employee_id.partner_id.currency_id</field>
+        <field name="aeroo_template_path">ph_payroll_attendance/aeroo/dtr.odt</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="binding_model_id" ref="model_hr_employee_dtr"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

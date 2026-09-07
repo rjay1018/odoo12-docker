@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <menuitem name="Recruitment"
+            id="hr_recruitment.menu_hr_recruitment_root"
+            web_icon="hr_recruitment,static/description/icon.png"
+            groups="hr_recruitment.group_hr_recruitment_user"
+            sequence="4"/>
+
+        <menuitem id="hr_attendance.menu_hr_attendance_root"
+            name="Attendances" sequence="7"
+            groups="hr_attendance.group_hr_attendance"
+            web_icon="hr_attendance,static/description/icon.png"/>
+
+        <menuitem name="Leaves"
+            id="hr_holidays.menu_hr_holidays_root"
+            web_icon="hr_holidays,static/description/icon.png"
+            groups="base.group_user"/>
+
+        <menuitem id="hr_timesheet.timesheet_menu_root"
+            name="Timesheets" sequence="6"
+            groups="base.group_user"
+            web_icon="hr_timesheet,static/description/icon_timesheet.png"/>
+
+        <menuitem id="hr_payroll.menu_hr_payroll_root"
+            name="Payroll" sequence="11"
+            web_icon="hr_payroll,static/description/icon.png"/>
+
+        <menuitem id="hr_expense.menu_hr_expense_root"
+            name="Expenses" sequence="12"
+            web_icon="hr_expense,static/description/icon.png"
+            groups="account.group_account_user"/>
+
+        <menuitem id="hr.menu_view_employee_category_form"
+            action="hr.open_view_categ_form"
+            parent="hr.menu_human_resources_configuration"
+            groups="hr.group_hr_manager"
+            sequence="1"/>
+
+        <record id="calendar.mail_menu_calendar" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('hr.group_hr_manager')])]"/>
+        </record>
+
+        <record id="contacts.menu_contacts" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_partner_manager')])]"/>
+        </record>
+
+        <menuitem id="contacts.res_partner_menu_contacts"
+            name="Contacts"
+            action="contacts.action_contacts"
+            parent="contacts.menu_contacts"
+            sequence="2"
+            groups="base.group_partner_manager"/>
+
+        <menuitem id="hr.menu_open_view_employee_list_my"
+            action="hr.open_view_employee_list_my"
+            parent="hr.menu_hr_root"
+            sequence="3"
+            groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <menuitem id="hr_gamification.menu_hr_gamification"
+            parent="hr.menu_hr_root" name="Challenges"
+            sequence="40"
+            groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <menuitem id="hr_gamification.gamification_badge_menu_hr"
+            parent="hr_gamification.menu_hr_gamification"
+            action="gamification.badge_list_action"
+            groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <menuitem id="hr_gamification.gamification_challenge_menu_hr"
+            parent="hr_gamification.menu_hr_gamification"
+            action="hr_gamification.challenge_list_action2"
+            groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <menuitem id="hr_gamification.gamification_goal_menu_hr"
+            parent="hr_gamification.menu_hr_gamification"
+            action="hr_gamification.goals_menu_groupby_action2"
+            groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <record id="utm.menu_link_tracker_root" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_system')])]"/>
+        </record>
+
+    </data>
+</odoo>

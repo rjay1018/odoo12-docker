@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="nd_pay_rate_reg" model="hr.nd.pay.rate">
+            <field name="name">Regular Work Day</field>
+            <field name="rate">1.1</field>
+        </record>
+        <record id="nd_pay_rate_dayoff" model="hr.nd.pay.rate">
+            <field name="name">Day-Off</field>
+            <field name="rate">1.43</field>
+        </record>
+        <record id="nd_pay_rate_spec_hol" model="hr.nd.pay.rate">
+            <field name="name">Special Holiday</field>
+            <field name="rate">1.43</field>
+        </record>
+        <record id="nd_pay_rate_reg_hol" model="hr.nd.pay.rate">
+            <field name="name">Regular Holiday</field>
+            <field name="rate">2.2</field>
+        </record>
+        <record id="nd_pay_rate_spec_hol_dayoff" model="hr.nd.pay.rate">
+            <field name="name">Special Holiday x Day-Off</field>
+            <field name="rate">1.65</field>
+        </record>
+        <record id="nd_pay_rate_reg_hol_dayoff" model="hr.nd.pay.rate">
+            <field name="name">Regular Holiday x Day-Off</field>
+            <field name="rate">2.86</field>
+        </record>
+        <record id="nd_pay_rate_double_hol" model="hr.nd.pay.rate">
+            <field name="name">Double Holiday</field>
+            <field name="rate">3.3</field>
+        </record>
+        <record id="nd_pay_rate_double_hol_dayoff" model="hr.nd.pay.rate">
+            <field name="name">Double Holiday x Day-Off</field>
+            <field name="rate">4.29</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <template id="assets_backend" name="overtime assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/ph_payroll_overtime/static/src/js/overtime.js"/>
+        </xpath>
+    </template>
+
+    <record model="ir.ui.view" id="hr_overtime_tree">
+        <field name="name">hr.overtime.tree</field>
+        <field name="model">hr.overtime</field>
+        <field name="arch" type="xml">
+            <tree string="Overtime Request">
+                <field name="employee_id"/>
+                <field name="payroll_period_id"/>
+                <field name="computation_ids" widget="many2many_tags"/>
+                <field name="ot_fr"/>
+                <field name="ot_to"/>
+                <field name="ot_hours" widget="float_time" sum="Total"/>
+                <field name="with_break"/>
+                <field name="advance_filing"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_overtime_inherit_tree" model="ir.ui.view">
+        <field name="name">emp.own.ot.inherit.tree</field>
+        <field name="model">hr.overtime</field>
+        <field name="inherit_id" ref="hr_overtime_tree"/>
+        <field name="groups_id" eval="[(4, ref('grp_emp_own_ot'))]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="import">false</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_overtime_search" model="ir.ui.view">
+        <field name="name">hr.overtime.search</field>
+        <field name="model">hr.overtime</field>
+        <field name="arch" type="xml">
+            <search string="Overtime Request">
+                <field name="employee_id"/>
+                <field name="payroll_period_id"/>
+                <filter string="Employee" name="grp_employee" context="{'group_by': 'employee_id'}"/>
+                <filter string="Payroll Period" name="grp_pay_period" context="{'group_by': 'payroll_period_id'}"/>
+                <filter string="State" name="grp_state" context="{'group_by': 'state'}"/>
+                <filter string="Advance Filing" name="advance_filing" domain="[('advance_filing', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_overtime_form">
+        <field name="name">hr.overtime.form</field>
+        <field name="model">hr.overtime</field>
+        <field name="arch" type="xml">
+            <form string="Overtime Request">
+                <header>
+                    <button type="object" name="action_confirm" states="draft" string="Confirm" class="oe_highlight"/>
+                    <button type="object" name="action_pre_approve" states="confirm" string="Pre-approve" class="oe_highlight"/>
+                    <button type="object" name="action_approve" states="confirm,pre_approve" string="Approve" class="oe_highlight"
+                        groups="hr_holidays.group_hr_holidays_manager"/>
+                    <button type="object" name="action_draft" states="confirm,pre_approve,approve" string="Set to Draft"
+                        groups="hr_holidays.group_hr_holidays_manager"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" attrs="{'readonly': [('state', '=', 'approve')]}" domain="[('id', '&gt;', 1)]"/>
+                        </group>
+                        <group>
+                            <field name="contract_id" attrs="{'readonly': [('state', '=', 'approve')]}" 
+                                required="1" readonly="1" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="ot_fr" attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                            <field name="ot_to" attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                            <field name="with_break" attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                            <field name="ot_hours" widget="float_time" readonly="1" force_save="1"/>
+                            <separator colspan="2"/>
+                            <field name="advance_filing" readonly="1" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="computation_ids" readonly="1" force_save="1">
+                                <tree>
+                                    <field name="ot_hours" widget="float_time" sum="Total"/>
+                                    <field name="computation_id"/>
+                                    <field name="rate"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="payroll_period_id" readonly="1" force_save="1"
+                                attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                            <field name="night_diff" readonly="1" force_save="1"/>
+                            <field name="dayoff" readonly="1" force_save="1"/>
+                            <field name="holiday" readonly="1" force_save="1"/>
+                            <field name="holiday_ids" readonly="1" force_save="1" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="wage_type" readonly="1" force_save="1"/>
+                            <field name="resource_calendar_id" readonly="1" force_save="1"/>
+                            <field name="dayofweek" readonly="1" force_save="1"/>
+                            <field name="sched_in" widget="float_time" readonly="1" force_save="1"/>
+                            <field name="sched_out" widget="float_time" readonly="1" force_save="1"/>
+                        </group>
+                        <group colspan="4">
+                            <field name="notes" attrs="{'readonly': [('state', '=', 'approve')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_overtime" model="ir.actions.act_window">
+        <field name="name">Overtime Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.overtime</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_overtime_main"
+        name="Overtime"
+        sequence="96"
+        web_icon="ph_payroll_overtime,static/description/icon.png"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager,hr.group_hr_user,ph_payroll_overtime.grp_emp_own_ot"/>
+
+    <menuitem id="menu_hr_overtime_request"
+        name="Manage Overtime"
+        parent="menu_hr_overtime_main"
+        sequence="1"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager,hr.group_hr_user,ph_payroll_overtime.grp_emp_own_ot"/>    
+
+    <menuitem id="menu_hr_overtime"
+        parent="menu_hr_overtime_request"
+        action="action_overtime"
+        sequence="1"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager,hr.group_hr_user,ph_payroll_overtime.grp_emp_own_ot"/>
+
+    <menuitem id="menu_hr_ot_dayoff"
+        parent="menu_hr_overtime_main"
+        action="ph_payroll_contract.action_dayoff_calendar"
+        sequence="2"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager,hr.group_hr_user"/>
+
+    <menuitem id="menu_hr_ot_holiday"
+        parent="menu_hr_overtime_main"
+        action="ph_payroll_computation.action_holiday"
+        sequence="3"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager,hr.group_hr_user"/>
+
+    <record id="hr_overtime_inherit_form" model="ir.ui.view">
+        <field name="name">emp.own.ot.inherit.form</field>
+        <field name="model">hr.overtime</field>
+        <field name="inherit_id" ref="hr_overtime_form"/>
+        <field name="groups_id" eval="[(4, ref('grp_emp_own_ot'))]"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="hr_overtime_computation_tree">
+        <field name="name">hr.overtime.tree</field>
+        <field name="model">hr.overtime.computation</field>
+        <field name="arch" type="xml">
+            <tree string="Pay Rates" editable="bottom">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="ot_group"/>
+                <field name="ot_type"/>
+                <field name="rate_type" invisible="1"/>
+                <field name="operator" invisible="1"/>
+                <field name="value" invisible="1"/>
+                <field name="rate"/>
+                <field name="ga_debit_account_id"/>
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_overtime_computation_search" model="ir.ui.view">
+        <field name="name">hr.overtime.search</field>
+        <field name="model">hr.overtime.computation</field>
+        <field name="arch" type="xml">
+            <search string="Pay Rates">
+                <field name="name"/>
+                <group string="Group By">
+                    <filter string="Grouping" name="ot_group" context="{'group_by': 'ot_group'}"/>
+                    <filter string="Type of OT" name="ot_type" context="{'group_by': 'ot_type'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hr_overtime_computation_form">
+        <field name="name">hr.overtime.form</field>
+        <field name="model">hr.overtime.computation</field>
+        <field name="arch" type="xml">
+            <form string="Pay Rates">
+                <sheet>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group>
+                            <field name="ot_group"/>
+                            <field name="ot_type"/>
+                            <field name="rate_type" invisible="1"/>
+                            <field name="operator" invisible="1"/>
+                            <field name="value" invisible="1"/>
+                            <field name="rate"/>
+                        </group>
+                        <group>
+                            <field name="ga_debit_account_id"/>
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_overtime_computation" model="ir.actions.act_window">
+        <field name="name">Pay Rates Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.overtime.computation</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_overtime_computation"
+        parent="menu_hr_overtime_main"
+        action="action_overtime_computation"
+        sequence="4"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager,hr.group_hr_user"/>
+
+
+
+    <record model="ir.ui.view" id="overtime_summary_inherit_form">
+        <field name="name">overtime.summary.inherit.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="ph_payroll_computation.hr_payslip_form_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='overtime_summary_ids']/tree/field[@name='ot_hours']" position="before">
+                <field name="computation_id"/>
+                <field name="ot_type"/>
+                <field name="rate"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record model="ir.ui.view" id="hr_advance_overtime_form">
+        <field name="name">hr.advance.overtime.form</field>
+        <field name="model">hr.advance.overtime</field>
+        <field name="arch" type="xml">
+            <form string="Advance Filing">
+                <header>
+                    <button type="object" name="create_advance_ot" string="Create Requests" class="oe_highlight" states="draft"
+                        confirm="This action will create multiple overtime requests from the list. Press Ok to continue."/>
+                    <button type="object" name="state_cancel" string="Cancel" class="oe_highlight" states="pre_approve"
+                        confirm="This action will remove reference overtime request. Press Ok to continue."/>
+                    <button type="object" name="state_draft" string="Set to Draft" states="pre_approve,cancel"
+                        confirm="This action will remove reference overtime request. Press Ok to continue."/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="ot_fr" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="ot_to" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="ot_hours" widget="float_time"/>
+                        </group>
+                        <group>
+                            <field name="notes" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Requests">
+                            <div class="pb-2">
+                                <button type="object" name="select_employees" string="Select Employees" class="oe_highlight pr-3" context="{'default_overtime_id': active_id}"
+                                     attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                                <span class="px-3 oe_inline"/>
+                                <button type="object" name="update_hours" string="Update Hours" class="pl-3 oe_highlight"
+                                     attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                            </div>
+                            <field name="line_ids" nolabel="1" context="{'default_ot_fr': ot_fr, 'default_ot_to': ot_to}"
+                                 attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="contract_id" readonly="1" force_save="1"/>
+                                    <field name="ot_fr" required="1"/>
+                                    <field name="ot_to" required="1"/>
+                                    <field name="ot_hours" widget="float_time" sum="Total"/>
+                                    <field name="payroll_period_id" readonly="1" force_save="1"/>
+                                    <field name="reference_ot_id" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_overtime_computation_tree" model="ir.ui.view">
+        <field name="name">hr.advance.overtime.tree</field>
+        <field name="model">hr.advance.overtime</field>
+        <field name="arch" type="xml">
+            <tree string="Advance Filing"
+                decoration-success="state=='pre_approve'"
+                decoration-warning="state=='cancel'"
+                decoration-muted="state=='draft'">
+                <field name="ot_fr"/>
+                <field name="ot_to"/>
+                <field name="ot_hours"/>
+                <field name="notes"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="act_hr_advance_overtime" model="ir.actions.act_window">
+        <field name="name">Advance Filing</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.advance.overtime</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_hr_advance_overtime"
+        parent="menu_hr_overtime_request"
+        action="act_hr_advance_overtime"
+        sequence="2"
+        groups="hr_holidays.group_hr_holidays_manager,hr.group_hr_manager"/>
+
+
+    <record model="ir.ui.view" id="ot_hr_emp_contract_form">
+        <field name="name">ot.hr.emp.contract.form</field>
+        <field name="model">ot.hr.employee.contract</field>
+        <field name="arch" type="xml">
+            <form string="Employee Contracts">
+                <header>
+                    <button type="object" name="load_contracts" string="Load Contracts" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <field name="overtime_id" invisible="1" colspan="2"/>
+                    <group>
+                        <field name="contract_ids" nolabel="1" options="{'no_create': True}" colspan="4"
+                            domain="[('state', '=', 'open')]">
+                            <tree edit="0">
+                                <field name="name"/>
+                                <field name="employee_id"/>
+                                <field name="department_id"/>
+                                <field name="job_id"/>
+                                <field name="wage_type"/>
+                                <field name="work_shift_fix"/>
+                                <field name="resource_calendar_id"/>
+                                <field name="payroll_schedule"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="overtime_state_form" model="ir.ui.view">
+        <field name="name">overtime.state.form</field>
+        <field name="model">overtime.state</field>
+        <field name="arch" type="xml">
+            <form string="Overtime">
+                <header>
+                    <button type="object" name="change_state" string="Change State" class="oe_highlight"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="state" required="1"/>
+                    </group>
+                </group>
+                <group string="Overtime" colspan="4">
+                    <field name="overtime_ids" nolabel="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_overtime_change_state"
+        name="Draft/Confirm/Pre-approve/Approve Overtime"
+        res_model="overtime.state"
+        src_model="hr.overtime"
+        view_mode="form"
+        multi="True"
+        target="new"
+        key2="client_action_multi"/>
+
+</odoo>

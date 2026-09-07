@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_backend" name="attendance assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/ph_payroll_attendance/static/src/js/attendance.js"/>
+        </xpath>
+    </template>
+
+
+    <record id="hr_attendance.hr_attendance_rule_employee_company" model="ir.rule">
+        <field name="active" eval="False"/>
+    </record>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_settings"
+        name="Configuration"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="hr_attendance.action_hr_attendance_settings"
+        groups="base.group_no_one"
+        sequence="99"/>
+
+
+    <record id="attendance_inherit_form" model="ir.ui.view">
+        <field name="name">hr.attendance.inherit.form</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button type="object" name="state_validate" string="Validate" states="draft" class="oe_highlight"/>
+                    <button type="object" name="state_draft" string="Set to Draft" states="validate"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+            </xpath>
+            <xpath expr="//sheet/group" position="replace">
+                <group>
+                    <group>
+                        <field name="barcode" required="1" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="employee_id" required="1" options="{'no_create': True}" domain="[('id', '&gt;', 1)]"
+                            attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                    </group>
+                    <group>
+                        <field name="contract_id" required="1" readonly="1" force_save="1"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="check_in" required="1" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="check_out" required="1" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="day_period" required="1"
+                            attrs="{'invisible': [('regular_schedule', '=', False)], 'required': [('regular_schedule', '!=', False)], 'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="dayofweek" required="1" force_save="1"/>
+                        <field name="grace_period" widget="float_time" force_save="1"/>
+                        <field name="payroll_period_id" required="1" readonly="0" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="localize_date" required="1" readonly="0" force_save="1" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                    </group>
+                    <group>
+                        <field name="late" widget="float_time" force_save="1"/>
+                        <field name="undertime" widget="float_time" force_save="1"/>
+                        <field name="overtime" widget="float_time" force_save="1"/>
+                        <!-- <field name="night_diff" widget="float_time" force_save="1"/> -->
+                        <field name="total_worked_hours" widget="float_time" force_save="1"/>
+                    </group>
+                    <group string="Work Schedule">
+                        <field name="resource_calendar_id" required="1" force_save="1"
+                            domain="[('state', '=', 'approve')]"
+                            options="{'no_create': True}"
+                            attrs="{'readonly': ['|', ('contract_id', '=', False), ('state', '=', 'validate')]}"/>
+                        <field name="hour_from" widget="float_time" required="1" force_save="1"/>
+                        <field name="hour_to" widget="float_time" required="1" force_save="1"/>
+                        <field name="regular_schedule" readonly="1" force_save="1"/>
+                        <field name="dayoff" readonly="1" force_save="1"/>
+                        <field name="is_holiday" readonly="1" force_save="1"/>
+                        <field name="holiday_type" readonly="1" force_save="1"/>
+                    </group>
+                    <group string="Options">
+                        <field name="allow_late" readonly="0" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="allow_undertime" readonly="0" attrs="{'readonly': [('state', '=', 'validate')]}"/>
+                        <field name="memo" readonly="0" attrs="{'required': ['|', ('allow_late', '!=', False), ('allow_undertime', '!=', False)], 'readonly': [('state', '=', 'validate')]}"/>
+                    </group>
+                    <group string="Night Differential">
+                        <field name="night_diff" widget="float_time" force_save="1"/>
+                        <field name="night_diff_rate_id" force_save="1"/>
+                    </group>
+                    <group string="Holidays">
+                        <field name="holiday_ids" nolabel="1" readonly="1" force_save="1">
+                            <tree>
+                                <field name="date" readonly="1" force_save="1"/>
+                                <field name="holiday_id" readonly="1" force_save="1"/>
+                                <field name="holiday_type" readonly="1" force_save="1"/>
+                                <!-- <field name="holiday_rate" required="1"/>
+                                <field name="holiday_hours" required="1" widget="float_time" sum="Total"/>
+                                <field name="holiday_nd_rate" required="1"/>
+                                <field name="holiday_nd_hours" required="1" widget="float_time" sum="Total"/> -->
+                            </tree>
+                        </field>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="ot_request_multi_form">
+        <field name="name">or.request.multi.form</field>
+        <field name="model">ot.request.multi</field>
+        <field name="arch" type="xml">
+            <form string="Multiple Request">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="payroll_period_id" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Overtime Requests">
+                            <field name="line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="computation_ids"/>
+                                    <field name="ot_fr"/>
+                                    <field name="ot_to"/>
+                                    <field name="ot_hours" widget="float_time"/>
+                                    <field name="with_break"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Attendances">
+                            <field name="attendance_ids" nolabel="1" readonly="1" force_save="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="act_ot_request_multi" model="ir.actions.act_window">
+        <field name="name">Multiple Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ot.request.multi</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="new_attendance_tree" model="ir.ui.view">
+        <field name="name">new.attendance.tree</field>
+        <field name="model">hr.attendance</field>
+        <field name="mode">primary</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Attendances"
+                decoration-success="is_holiday==True"
+                decoration-muted="state=='draft'"
+                js_class="emp_att_tree">
+                <field name="payroll_period_id"/>
+                <field name="barcode"/>
+                <field name="employee_id"/>
+                <field name="resource_calendar_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="dayofweek"/>
+                <field name="total_worked_hours" widget="float_time" sum="Total"/>
+                <field name="late" widget="float_time" sum="Total"/>
+                <field name="undertime" widget="float_time" sum="Total"/>
+                <field name="overtime" widget="float_time" sum="Total"/>
+                <field name="night_diff" widget="float_time" sum="Total"/>
+                <field name="state"/>
+                <field name="is_holiday" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="attendance_inherit_search" model="ir.ui.view">
+        <field name="name">hr.attendance.inherit.search</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_filter"/>
+        <field name="arch" type="xml">
+            <field name="employee_id" position="after">
+                <field name="barcode"/>
+                <field name="payroll_period_id"/>
+            </field>
+            <filter name="employee" position="after">
+                <filter name="badge" string="Badge ID" context="{'group_by': 'barcode'}"/>
+                <filter name="pay_period" string="Payroll Period" context="{'group_by': 'payroll_period_id'}"/>
+                <filter name="state" string="State" context="{'group_by': 'state'}"/>
+            </filter>
+            <filter name="employee" position="after">
+                <filter name="work_sched" string="Work Schedule" context="{'group_by': 'resource_calendar_id'}"/>
+            </filter>
+            <filter name="myattendances" position="after">
+                <filter string="Holidays" name="is_holiday" domain="[('is_holiday', '!=', False)]"/>
+                <filter string="Has Late" name="has_late" domain="[('late', '&gt;', 0)]"/>
+                <filter string="Has Undertime" name="has_undertime" domain="[('undertime', '&gt;', 0)]"/>
+                <filter string="Has Overtime - All" name="has_ot_all" domain="[('overtime', '&gt;', 0)]"/>
+                <filter string="Has Overtime - Validated" name="has_ot_validate" domain="[('overtime', '&gt;', 0), ('state', '=', 'validate')]"/>
+                <filter string="Validated" name="validated" domain="[('state', '=', 'validate')]"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="attendance_tree_new" model="ir.actions.act_window.view">
+        <field name="sequence">1</field>
+        <field name="view_mode">tree</field>
+        <field name="act_window_id" ref="hr_attendance.hr_attendance_action"/>
+        <field name="view_id" ref="new_attendance_tree"/>
+    </record>
+
+
+    <record id="holiday_inherit_form" model="ir.ui.view">
+        <field name="name">holiday.inherit.form</field>
+        <field name="model">hr.holiday</field>
+        <field name="inherit_id" ref="ph_payroll_computation.holiday_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="before">
+                <group string="Attendances">
+                    <field name="attendance_ids" colspan="4" nolabel="1">
+                        <tree editable="bottom" create="0" edit="1">
+                            <field name="payroll_period_id"/>
+                            <field name="employee_id" domain="[('id', '&gt;', 1)]"/>
+                            <field name="resource_calendar_id"/>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <!-- <field name="holiday_hours" required="1" widget="float_time" sum="Total"/> -->
+                            <!-- <field name="holiday_nd_hours" required="1" widget="float_time" sum="Total"/> -->
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="hr_timesheet.hr_employee_view_form_inherit_timesheet" model="ir.ui.view">
+        <field name="name">hr.employee.timesheet.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="active" eval="False"/>
+    </record>
+
+    <record id="employee_inherit_hr_attendance" model="ir.ui.view">
+        <field name="name">hr.employee</field>
+        <field name="model">hr.employee</field>
+        <field name="mode">extension</field>
+        <field name="inherit_id" ref="hr_attendance.view_employee_form_inherit_hr_attendance"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
+        </field>
+    </record>
+
+
+
+    <!-- DAILY TIME RECORD -->
+    <record id="employee_dtr_form" model="ir.ui.view">
+        <field name="name">hr.employee.dtr.form</field>
+        <field name="model">hr.employee.dtr</field>
+        <field name="arch" type="xml">
+            <form string="Daily Time Record">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_create': True}" domain="[('id', '&gt;', 1)]"/>
+                            <field name="payroll_period_id" options="{'no_create': True}"
+                                domain="[('state', '=', 'confirm')]"/>
+                            <label for="employee_id" string=""/>
+                            <button type="object" name="get_dtr" string="Load DTR" class="oe_highlight"/>
+                        </group>
+                        <group>
+                            <field name="barcode"/>
+                            <field name="department_id"/>
+                        </group>
+                    </group>
+                    <group string="Daily Time Record">
+                        <field name="dtr_line_ids" nolabel="1" readonly="1">
+                            <tree decoration-bf="dayoff==True" decoration-primary="half_day==True" decoration-warning="absent==True" decoration-success="nd&gt;0" decoration-info="sl==True or vl==True">
+                                <field name="date"/>
+                                <field name="sched_in" widget="float_time"/>
+                                <field name="time_in"/>
+                                <field name="sched_out" widget="float_time"/>
+                                <field name="time_out"/>
+                                <field name="late" widget="float_time" sum="Total"/>
+                                <field name="undertime" widget="float_time" sum="Total"/>
+                                <field name="half_day"/>
+                                <field name="absent"/>
+                                <field name="nd" widget="float_time" sum="Total"/>
+                                <field name="sl"/>
+                                <field name="vl"/>
+                                <field name="dayoff"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Overtime">
+                        <field name="dtr_ot_ids" nolabel="1" readonly="1">
+                            <tree>
+                                <field name="ot_fr"/>
+                                <field name="ot_to"/>
+                                <field name="ot_hours" widget="float_time" sum="Total"/>
+                                <field name="computation_ids" widget="many2many_tags"/>
+                                <field name="notes"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="employee_dtr_tree" model="ir.ui.view">
+        <field name="name">hr.employee.dtr.tree</field>
+        <field name="model">hr.employee.dtr</field>
+        <field name="arch" type="xml">
+            <tree string="Daily Time Record" js_class="emp_dtr_tree">
+                <field name="employee_id"/>
+                <field name="barcode"/>
+                <field name="department_id"/>
+                <field name="payroll_period_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="employee_dtr_search" model="ir.ui.view">
+        <field name="name">hr.employee.dtr.search</field>
+        <field name="model">hr.employee.dtr</field>
+        <field name="arch" type="xml">
+            <search string="Daily Time Record">
+                <field name="employee_id"/>
+                <field name="barcode"/>
+                <field name="department_id"/>
+                <field name="payroll_period_id"/>
+                <filter name="employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                <filter name="department" string="Department" context="{'group_by': 'department_id'}"/>
+                <filter name="payroll_period" string="Payroll Period" context="{'group_by': 'payroll_period_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_employee_dtr" model="ir.actions.act_window">
+        <field name="name">Daily Time Record</field>
+        <field name="res_model">hr.employee.dtr</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_employee_dtr"
+        parent="hr_attendance.menu_hr_attendance_manage_attendances"
+        action="action_employee_dtr"
+        sequence="11"/>
+
+
+    <menuitem id="menu_holiday_attendance"
+        parent="hr_attendance.menu_hr_attendance_manage_attendances"
+        action="ph_payroll_computation.action_holiday"
+        sequence="14"/>
+
+
+
+    <record id="attendance_state_form" model="ir.ui.view">
+        <field name="name">attendance.state.form</field>
+        <field name="model">attendance.state</field>
+        <field name="arch" type="xml">
+            <form string="Attendances">
+                <header>
+                    <button type="object" name="change_state" string="Change State" class="oe_highlight"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="state" required="1"/>
+                    </group>
+                </group>
+                <group string="Attendances" colspan="4">
+                    <field name="attendance_ids" nolabel="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_attendance_change_state"
+        name="Draft/Validate Attendances"
+        res_model="attendance.state"
+        src_model="hr.attendance"
+        view_mode="form"
+        multi="True"
+        target="new"
+        key2="client_action_multi"/>
+
+
+
+    <!-- Multiple DTR -->
+    <record id="multiple_dtr_form" model="ir.ui.view">
+        <field name="name">multiple.dtr.form</field>
+        <field name="model">multiple.dtr</field>
+        <field name="arch" type="xml">
+            <form string="Daily Time Record">
+                <header>
+                    <button type="object" name="create_dtr" string="Create DTR" class="oe_highlight"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="payroll_period_id"/>
+                    </group>
+                </group>
+                <group string="Employees" colspan="4">
+                    <field name="employee_ids" nolabel="1" domain="[('id', '&gt;', 1)]"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="attendance_pivot" model="ir.ui.view">
+        <field name="name">attendance.pivot</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <pivot string="Attendance">
+                <field name="payroll_period_id"/>
+                <field name="barcode"/>
+                <field name="employee_id"/>
+                <field name="resource_calendar_id"/>
+                <field name="check_in"/>
+                <field name="check_out"/>
+                <field name="dayofweek"/>
+                <field name="grace_period" widget="float_time" type="measure"/>
+                <field name="late" widget="float_time" type="measure"/>
+                <field name="undertime" widget="float_time" type="measure"/>
+                <field name="overtime" widget="float_time" type="measure"/>
+                <field name="night_diff" widget="float_time" type="measure"/>
+                <field name="total_worked_hours" widget="float_time" type="measure"/>
+                <field name="state"/>
+                <field name="worked_hours" invisible="1"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="attendance_graph" model="ir.ui.view">
+        <field name="name">attendance.graph</field>
+        <field name="model">hr.attendance</field>
+        <field name="arch" type="xml">
+            <graph string="Attendance">
+                <field name="employee_id"/>
+                <field name="check_in"/>
+                <field name="total_worked_hours" widget="float_time" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="hr_attendance.hr_attendance_action_graph" model="ir.actions.act_window">
+        <field name="name">Attendance Analysis</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="view_id" ref="attendance_pivot"/>
+    </record>
+
+    <record id="hr_attendance.hr_attendance_action_graph_filtered" model="ir.actions.act_window">
+        <field name="name">Attendance Analysis</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="context">{'search_default_department_id': [active_id], 'default_department_id': active_id}</field>
+        <field name="view_id" ref="attendance_graph"/>
+    </record>
+
+
+    <!-- Multiple Attendance -->
+    <record id="multiple_attendance_form" model="ir.ui.view">
+        <field name="name">multiple.attendance.form</field>
+        <field name="model">multiple.attendance</field>
+        <field name="arch" type="xml">
+            <form string="Attendance">
+                <header>
+                    <button type="object" name="create_attendance" string="Create Attendance" class="oe_highlight"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="check_in"/>
+                    </group>
+                    <group>
+                        <field name="check_out"/>
+                    </group>
+                    <group colspan="4">
+                        <field name="memo"/>
+                    </group>
+                </group>
+                <group string="Employees" colspan="4">
+                    <field name="employee_ids" nolabel="1" domain="[('id', '&gt;', 1)]"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <report id="hr_attendance.hr_employee_print_badge"
+        string="Print Badge"
+        model="hr.employee"
+        report_type="qweb-pdf"
+        name="hr_attendance.print_employee_badge"
+        file="hr_attendance.print_employee_badge"
+        print_report_name="'Print Badge - %s' % (object.name).replace('/', '')"
+        menu="False"/>
+
+
+    <record model="ir.ui.view" id="overtime_attendance_inherit_form">
+        <field name="name">overtime.attendance.inherit.form</field>
+        <field name="model">hr.overtime</field>
+        <field name="inherit_id" ref="ph_payroll_overtime.hr_overtime_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/group" position="after">
+                <group string="Attendance" attrs="{'invisible': [('wage_type', '=', 'monthly')]}">
+                    <field name="attendance_ids" nolabel="1" readonly="1" force_save="1">
+                        <tree>
+                            <field name="attendance_id" invisible="1"/>
+                            <field name="check_in"/>
+                            <field name="check_out"/>
+                            <field name="late" widget="float_time" sum="Total"/>
+                            <field name="undertime" widget="float_time" sum="Total"/>
+                            <field name="overtime" widget="float_time" sum="Total"/>
+                            <field name="state"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <group>
+                                    <field name="attendance_id" readonly="1"/>
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                </group>
+                                <group>
+                                    <field name="late" widget="float_time"/>
+                                    <field name="undertime" widget="float_time"/>
+                                    <field name="overtime" widget="float_time"/>
+                                    <field name="state"/>
+                                </group>
+                            </group>
+                        </form>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="undertime_form" model="ir.ui.view">
+        <field name="name">undertime.form</field>
+        <field name="model">hr.undertime</field>
+        <field name="arch" type="xml">
+            <form string="Undertime Requests">
+                <header>
+                    <button string="Confirm" name="state_confirm" states="draft" type="object"
+                        groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
+                    <button string="For Approval" name="state_for_approval" states="confirm" type="object"
+                        groups="hr_holidays.group_hr_holidays_manager"/>
+                    <button string="Approve" name="state_approve" states="for_approval" type="object"
+                        groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
+                    <button string="Set to Draft" name="state_draft" states="confirm,for_approval,approve,cancel" type="object"
+                        groups="hr_holidays.group_hr_holidays_manager"/>
+                    <button string="Cancel" name="state_cancel" states="approve" type="object"
+                        groups="hr_holidays.group_hr_holidays_manager" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" options="{'no_create': True}" attrs="{'readonly': [('state', 'in', ('approve', 'cancel'))]}"/>
+                            <field name="ut_fr" attrs="{'readonly': [('state', 'in', ('approve', 'cancel'))]}"/>
+                            <field name="ut_to" attrs="{'readonly': [('state', 'in', ('approve', 'cancel'))]}"/>
+                            <field name="ut_hours" widget="float_time" sum="Total"/>
+                        </group>
+                        <group>
+                            <field name="contract_id" readonly="1" force_save="1"/>
+                            <field name="payroll_period_id" readonly="1" force_save="1"/>
+                            <field name="notes" placeholder="Reason for undertime" attrs="{'readonly': [('state', 'in', ('approve', 'cancel'))]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="undertime_tree" model="ir.ui.view">
+        <field name="name">undertime.tree</field>
+        <field name="model">hr.undertime</field>
+        <field name="arch" type="xml">
+            <tree string="Undertime Requests" decoration-muted="state=='draft'"
+                decoration-success="state=='for_approval'"
+                decoration-info="state=='approve'"
+                decoration-warning="state=='cancel'">
+                <field name="employee_id"/>
+                <field name="payroll_period_id"/>
+                <field name="ut_fr"/>
+                <field name="ut_to"/>
+                <field name="ut_hours" widget="float_time" sum="Total"/>
+                <field name="notes"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="undertime_search" model="ir.ui.view">
+        <field name="name">undertime.search</field>
+        <field name="model">hr.undertime</field>
+        <field name="arch" type="xml">
+            <search string="Undertime Requests">
+                <field name="employee_id"/>
+                <field name="payroll_period_id"/>
+                <field name="notes"/>
+                <filter name="grp_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                <filter name="grp_pay_period" string="Payroll Period" context="{'group_by': 'payroll_period_id'}"/>
+                <filter name="grp_state" string="State" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="act_open_undertime" model="ir.actions.act_window">
+        <field name="name">Undertime Requests</field>
+        <field name="res_model">hr.undertime</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_undertime"
+        parent="hr_attendance.menu_hr_attendance_manage_attendances"
+        action="act_open_undertime"
+        sequence="10"
+        groups="hr.group_hr_manager,hr_holidays.group_hr_holidays_manager"/>
+
+</odoo>

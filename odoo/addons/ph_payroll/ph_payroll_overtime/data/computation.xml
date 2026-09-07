@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- REGULAR DAY-->
+        <record id="ot_regular" model="hr.overtime.computation">
+            <field name="name">Regular OT</field>
+            <field name="ot_group">regular</field>
+            <field name="ot_type">regular_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.25</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_night_diff" model="hr.overtime.computation">
+            <field name="name">Regular - ND OT</field>
+            <field name="ot_group">regular</field>
+            <field name="ot_type">regular_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.375</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- DAY-OFF -->
+        <record id="ot_day_off" model="hr.overtime.computation">
+            <field name="name">Day-Off</field>
+            <field name="ot_group">dayoff</field>
+            <field name="ot_type">dayoff</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.3</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_day_off_ot" model="hr.overtime.computation">
+            <field name="name">Day-Off OT</field>
+            <field name="ot_group">dayoff</field>
+            <field name="ot_type">dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.69</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_day_off_ot_nd" model="hr.overtime.computation">
+            <field name="name">Day-Off - ND OT</field>
+            <field name="ot_group">dayoff</field>
+            <field name="ot_type">dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.859</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- SPECIAL HOLIDAY -->
+        <record id="ot_spc_hol" model="hr.overtime.computation">
+            <field name="name">Special Holiday</field>
+            <field name="ot_group">special</field>
+            <field name="ot_type">spc_hol</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.3</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_spc_hol_ot" model="hr.overtime.computation">
+            <field name="name">Special Holiday - OT</field>
+            <field name="ot_group">special</field>
+            <field name="ot_type">spc_hol_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.69</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_spc_hol_ot_nd" model="hr.overtime.computation">
+            <field name="name">Special Holiday - ND OT</field>
+            <field name="ot_group">special</field>
+            <field name="ot_type">spc_hol_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.859</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- REGULAR HOLIDAY -->
+        <record id="ot_leg_hol" model="hr.overtime.computation">
+            <field name="name">Regular Holiday</field>
+            <field name="ot_group">legal</field>
+            <field name="ot_type">leg_hol</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">2.0</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_leg_hol_ot" model="hr.overtime.computation">
+            <field name="name">Regular Holiday - OT</field>
+            <field name="ot_group">legal</field>
+            <field name="ot_type">leg_hol_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">2.6</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_leg_hol_ot_nd" model="hr.overtime.computation">
+            <field name="name">Regular Holiday - ND OT</field>
+            <field name="ot_group">legal</field>
+            <field name="ot_type">leg_hol_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">2.86</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- SPECIAL HOLIDAY - DAY-OFF -->
+        <record id="ot_spc_hol_dayoff" model="hr.overtime.computation">
+            <field name="name">Special Holiday - Day-Off</field>
+            <field name="ot_group">special</field>
+            <field name="ot_type">spc_hol_dayoff</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.5</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_spc_hol_dayoff_ot" model="hr.overtime.computation">
+            <field name="name">Special Holiday - Day-Off OT</field>
+            <field name="ot_group">special</field>
+            <field name="ot_type">spc_hol_dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">1.95</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_spc_hol_dayoff_ot_nd" model="hr.overtime.computation">
+            <field name="name">Special Holiday - Day-Off ND OT</field>
+            <field name="ot_group">special</field>
+            <field name="ot_type">spc_hol_dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">2.145</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- REGULAR HOLIDAY - DAY-OFF -->
+        <record id="ot_leg_hol_dayoff" model="hr.overtime.computation">
+            <field name="name">Regular Holiday - Day-Off</field>
+            <field name="ot_group">legal</field>
+            <field name="ot_type">leg_hol_dayoff</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">2.6</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_leg_hol_dayoff_ot" model="hr.overtime.computation">
+            <field name="name">Regular Holiday - Day-Off OT</field>
+            <field name="ot_group">legal</field>
+            <field name="ot_type">leg_hol_dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">3.38</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_leg_hol_dayoff_ot_nd" model="hr.overtime.computation">
+            <field name="name">Regular Holiday - Day-Off ND OT</field>
+            <field name="ot_group">legal</field>
+            <field name="ot_type">leg_hol_dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">3.718</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- DOUBLE HOLIDAY -->
+        <record id="ot_double_hol" model="hr.overtime.computation">
+            <field name="name">Double Holiday</field>
+            <field name="ot_group">double</field>
+            <field name="ot_type">double_hol</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">3</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_double_hol_ot" model="hr.overtime.computation">
+            <field name="name">Double Holiday - OT</field>
+            <field name="ot_group">double</field>
+            <field name="ot_type">double_hol_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">3.9</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_double_hol_ot_nd" model="hr.overtime.computation">
+            <field name="name">Double Holiday - ND OT</field>
+            <field name="ot_group">double</field>
+            <field name="ot_type">double_hol_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">4.29</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <!-- DOUBLE HOLIDAY - DAY-OFF -->
+        <record id="ot_double_hol_dayoff" model="hr.overtime.computation">
+            <field name="name">Double Holiday - Day-Off</field>
+            <field name="ot_group">double</field>
+            <field name="ot_type">double_hol_dayoff</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">3.9</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_double_hol_dayoff_ot" model="hr.overtime.computation">
+            <field name="name">Double Holiday - Day-Off OT</field>
+            <field name="ot_group">double</field>
+            <field name="ot_type">double_hol_dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">5.07</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record id="ot_double_hol_dayoff_ot_nd" model="hr.overtime.computation">
+            <field name="name">Double Holiday - Day-Off ND OT</field>
+            <field name="ot_group">double</field>
+            <field name="ot_type">double_hol_dayoff_ot</field>
+            <field name="rate_type">daily</field>
+            <field name="operator">/</field>
+            <field name="value">8.0</field>
+            <field name="rate">5.577</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+    </data>
+</odoo>

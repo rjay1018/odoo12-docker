@@ -1,0 +1,12 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+
+access_zk_machine_location_hr_mngr,zk.machine.location,ph_payroll_biometric_machine.model_zk_machine_location,hr.group_hr_manager,1,1,1,1
+access_zk_machine_hr_mngr,zk.machine,ph_payroll_biometric_machine.model_zk_machine,hr.group_hr_manager,1,1,1,1
+access_zk_employee_location_line_hr_mngr,zk.employee.location.line,ph_payroll_biometric_machine.model_zk_employee_location_line,hr.group_hr_manager,1,1,1,1
+access_zk_create_user_hr_mngr,zk.create.user,ph_payroll_biometric_machine.model_zk_create_user,hr.group_hr_manager,1,1,1,1
+access_zk_machine_attendance_hr_mngr,zk.machine.attendance,ph_payroll_biometric_machine.model_zk_machine_attendance,hr.group_hr_manager,1,1,1,1
+
+access_zk_machine_location_hr_user,zk.machine.location,ph_payroll_biometric_machine.model_zk_machine_location,hr.group_hr_user,1,1,1,0
+access_zk_machine_hr_user,zk.machine,ph_payroll_biometric_machine.model_zk_machine,hr.group_hr_user,1,1,1,0
+access_zk_employee_location_line_hr_user,zk.employee.location.line,ph_payroll_biometric_machine.model_zk_employee_location_line,hr.group_hr_user,1,1,1,1
+access_zk_create_user_hr_user,zk.create.user,ph_payroll_biometric_machine.model_zk_create_user,hr.group_hr_user,1,1,1,1

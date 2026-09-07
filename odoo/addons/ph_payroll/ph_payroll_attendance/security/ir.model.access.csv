@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_work_scheduling,work.scheduling,model_work_scheduling,hr.group_hr_manager,1,1,1,1
+access_hr_employee_dtr,hr.employee.dtr,model_hr_employee_dtr,hr.group_hr_manager,1,1,1,1
+access_hr_employee_dtr_line,hr.employee.dtr.line,model_hr_employee_dtr_line,hr.group_hr_manager,1,1,1,1
+access_hr_employee_dtr_ot,hr.employee.dtr.ot,model_hr_employee_dtr_ot,hr.group_hr_manager,1,1,1,1
+access_hr_attendance_holiday,hr.attendance.holiday,model_hr_attendance_holiday,hr.group_hr_manager,1,1,1,1
+access_hr_attendance_holiday_all,hr.attendance.holiday.all,model_hr_attendance_holiday,,1,1,1,0
+access_hr_pass_slip,hr.pass.slip,model_hr_pass_slip,hr.group_hr_manager,1,1,1,1
+access_hr_nd_pay_rate,hr.nd.pay.rate,model_hr_nd_pay_rate,,1,1,0,0
+access_hr_overtime_attendance_all,hr.overtime.attendance,model_hr_overtime_attendance,,1,1,1,1
+access_ir_rule_hr_mngr,ir.rule.hr_mngr,base.model_ir_rule,hr.group_hr_manager,1,0,0,0

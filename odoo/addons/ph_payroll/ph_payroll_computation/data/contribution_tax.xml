@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- HDMF -->
+        <record model="hdmf.table" id="hdmf_1">
+            <field name="mo_salary_fr">1000</field>
+            <field name="mo_salary_to">1500</field>
+            <field name="ee_rate">1</field>
+            <field name="er_rate">100</field>
+            <field name="er_computation">fix</field>
+        </record>
+        <record model="hdmf.table" id="hdmf_2">
+            <field name="mo_salary_fr">1500</field>
+            <field name="mo_salary_to">999999</field>
+            <field name="ee_rate">2</field>
+            <field name="er_rate">100</field>
+            <field name="er_computation">fix</field>
+        </record>
+
+
+        <!-- PHIC -->
+        <record model="phic.table" id="phic_1">
+            <field name="mo_salary_fr">0</field>
+            <field name="mo_salary_to">10000</field>
+            <field name="premium_rate">3.0</field>
+        </record>
+        <record model="phic.table" id="phic_2">
+            <field name="mo_salary_fr">10000.01</field>
+            <field name="mo_salary_to">59999.99</field>
+            <field name="premium_rate">3.0</field>
+        </record>
+        <record model="phic.table" id="phic_3">
+            <field name="mo_salary_fr">60000</field>
+            <field name="mo_salary_to">999999</field>
+            <field name="premium_rate">3.0</field>
+        </record>
+
+
+        <!-- SSS -->
+        <record model="sss.table" id="sss_3">
+            <field name="mo_salary_fr">0</field>
+            <field name="mo_salary_to">3249.99</field>
+            <field name="er_rate">255</field>
+            <field name="ee_rate">135</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_4">
+            <field name="mo_salary_fr">3250</field>
+            <field name="mo_salary_to">3749.99</field>
+            <field name="er_rate">297.5</field>
+            <field name="ee_rate">157.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_5">
+            <field name="mo_salary_fr">3750</field>
+            <field name="mo_salary_to">4249.99</field>
+            <field name="er_rate">340</field>
+            <field name="ee_rate">180</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_6">
+            <field name="mo_salary_fr">4250</field>
+            <field name="mo_salary_to">4749.99</field>
+            <field name="er_rate">382.5</field>
+            <field name="ee_rate">202.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_7">
+            <field name="mo_salary_fr">4750</field>
+            <field name="mo_salary_to">5249.99</field>
+            <field name="er_rate">425</field>
+            <field name="ee_rate">225</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_8">
+            <field name="mo_salary_fr">5250</field>
+            <field name="mo_salary_to">5749.99</field>
+            <field name="er_rate">467.5</field>
+            <field name="ee_rate">247.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_9">
+            <field name="mo_salary_fr">5750</field>
+            <field name="mo_salary_to">6249.99</field>
+            <field name="er_rate">510</field>
+            <field name="ee_rate">270</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_10">
+            <field name="mo_salary_fr">6250</field>
+            <field name="mo_salary_to">6749.99</field>
+            <field name="er_rate">552.5</field>
+            <field name="ee_rate">292.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_11">
+            <field name="mo_salary_fr">6750</field>
+            <field name="mo_salary_to">7249.99</field>
+            <field name="er_rate">595</field>
+            <field name="ee_rate">315</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_12">
+            <field name="mo_salary_fr">7250</field>
+            <field name="mo_salary_to">7749.99</field>
+            <field name="er_rate">637.5</field>
+            <field name="ee_rate">337.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_13">
+            <field name="mo_salary_fr">7750</field>
+            <field name="mo_salary_to">8249.99</field>
+            <field name="er_rate">680</field>
+            <field name="ee_rate">360</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_15">
+            <field name="mo_salary_fr">8250</field>
+            <field name="mo_salary_to">8749.99</field>
+            <field name="er_rate">722.5</field>
+            <field name="ee_rate">382.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_16">
+            <field name="mo_salary_fr">8750</field>
+            <field name="mo_salary_to">9249.99</field>
+            <field name="er_rate">765</field>
+            <field name="ee_rate">405</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_17">
+            <field name="mo_salary_fr">9250</field>
+            <field name="mo_salary_to">9749.99</field>
+            <field name="er_rate">807.5</field>
+            <field name="ee_rate">427.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_18">
+            <field name="mo_salary_fr">9750</field>
+            <field name="mo_salary_to">10249.99</field>
+            <field name="er_rate">850</field>
+            <field name="ee_rate">450</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_19">
+            <field name="mo_salary_fr">10250</field>
+            <field name="mo_salary_to">10749.99</field>
+            <field name="er_rate">892.5</field>
+            <field name="ee_rate">472.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_20">
+            <field name="mo_salary_fr">10750</field>
+            <field name="mo_salary_to">11249.99</field>
+            <field name="er_rate">935</field>
+            <field name="ee_rate">495</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_21">
+            <field name="mo_salary_fr">11250</field>
+            <field name="mo_salary_to">11749.99</field>
+            <field name="er_rate">977.5</field>
+            <field name="ee_rate">517.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_22">
+            <field name="mo_salary_fr">11750</field>
+            <field name="mo_salary_to">12249.99</field>
+            <field name="er_rate">1020</field>
+            <field name="ee_rate">540</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_23">
+            <field name="mo_salary_fr">12250</field>
+            <field name="mo_salary_to">12749.99</field>
+            <field name="er_rate">1062.5</field>
+            <field name="ee_rate">562.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_24">
+            <field name="mo_salary_fr">12750</field>
+            <field name="mo_salary_to">13249.99</field>
+            <field name="er_rate">1105</field>
+            <field name="ee_rate">585</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_25">
+            <field name="mo_salary_fr">13250</field>
+            <field name="mo_salary_to">13749.99</field>
+            <field name="er_rate">1147.5</field>
+            <field name="ee_rate">607.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_26">
+            <field name="mo_salary_fr">13750</field>
+            <field name="mo_salary_to">14249.99</field>
+            <field name="er_rate">1190</field>
+            <field name="ee_rate">630</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_27">
+            <field name="mo_salary_fr">14250</field>
+            <field name="mo_salary_to">14749.99</field>
+            <field name="er_rate">1232.5</field>
+            <field name="ee_rate">652.5</field>
+            <field name="ec_er_rate">10</field>
+        </record>
+        <record model="sss.table" id="sss_28">
+            <field name="mo_salary_fr">14750</field>
+            <field name="mo_salary_to">15249.99</field>
+            <field name="er_rate">1275</field>
+            <field name="ee_rate">675</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_29">
+            <field name="mo_salary_fr">15250</field>
+            <field name="mo_salary_to">15749.99</field>
+            <field name="er_rate">1317.5</field>
+            <field name="ee_rate">697.5</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_30">
+            <field name="mo_salary_fr">15750</field>
+            <field name="mo_salary_to">16249.99</field>
+            <field name="er_rate">1360</field>
+            <field name="ee_rate">720</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_31">
+            <field name="mo_salary_fr">16250</field>
+            <field name="mo_salary_to">16749.99</field>
+            <field name="er_rate">1402.5</field>
+            <field name="ee_rate">742.5</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_32">
+            <field name="mo_salary_fr">16750</field>
+            <field name="mo_salary_to">17249.99</field>
+            <field name="er_rate">1445</field>
+            <field name="ee_rate">765</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_33">
+            <field name="mo_salary_fr">17250</field>
+            <field name="mo_salary_to">17749.99</field>
+            <field name="er_rate">1487.5</field>
+            <field name="ee_rate">787.5</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_34">
+            <field name="mo_salary_fr">17750</field>
+            <field name="mo_salary_to">18249.99</field>
+            <field name="er_rate">1530</field>
+            <field name="ee_rate">810</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_35">
+            <field name="mo_salary_fr">18250</field>
+            <field name="mo_salary_to">18749.99</field>
+            <field name="er_rate">1572.5</field>
+            <field name="ee_rate">832.5</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_36">
+            <field name="mo_salary_fr">18750</field>
+            <field name="mo_salary_to">19249.99</field>
+            <field name="er_rate">1615</field>
+            <field name="ee_rate">855</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_37">
+            <field name="mo_salary_fr">19250</field>
+            <field name="mo_salary_to">19749.99</field>
+            <field name="er_rate">1657.5</field>
+            <field name="ee_rate">877.5</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_38">
+            <field name="mo_salary_fr">19750</field>
+            <field name="mo_salary_to">20249.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+        </record>
+        <record model="sss.table" id="sss_39">
+            <field name="mo_salary_fr">20250</field>
+            <field name="mo_salary_to">20749.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">42.5</field>
+            <field name="mpf_ee_rate">22.5</field>
+        </record>
+        <record model="sss.table" id="sss_40">
+            <field name="mo_salary_fr">20750</field>
+            <field name="mo_salary_to">21249.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">85</field>
+            <field name="mpf_ee_rate">45</field>
+        </record>
+        <record model="sss.table" id="sss_41">
+            <field name="mo_salary_fr">21250</field>
+            <field name="mo_salary_to">21749.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">127.5</field>
+            <field name="mpf_ee_rate">67.5</field>
+        </record>
+        <record model="sss.table" id="sss_42">
+            <field name="mo_salary_fr">21750</field>
+            <field name="mo_salary_to">22249.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">170</field>
+            <field name="mpf_ee_rate">90</field>
+        </record>
+        <record model="sss.table" id="sss_43">
+            <field name="mo_salary_fr">22250</field>
+            <field name="mo_salary_to">22749.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">212.5</field>
+            <field name="mpf_ee_rate">112.5</field>
+        </record>
+        <record model="sss.table" id="sss_44">
+            <field name="mo_salary_fr">22750</field>
+            <field name="mo_salary_to">23249.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">255</field>
+            <field name="mpf_ee_rate">135</field>
+        </record>
+        <record model="sss.table" id="sss_45">
+            <field name="mo_salary_fr">23250</field>
+            <field name="mo_salary_to">23749.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">297.5</field>
+            <field name="mpf_ee_rate">157.5</field>
+        </record>
+        <record model="sss.table" id="sss_46">
+            <field name="mo_salary_fr">23750</field>
+            <field name="mo_salary_to">24249.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">340</field>
+            <field name="mpf_ee_rate">180</field>
+        </record>
+        <record model="sss.table" id="sss_47">
+            <field name="mo_salary_fr">24250</field>
+            <field name="mo_salary_to">24749.99</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">382.5</field>
+            <field name="mpf_ee_rate">202.5</field>
+        </record>
+        <record model="sss.table" id="sss_48">
+            <field name="mo_salary_fr">24750</field>
+            <field name="mo_salary_to">9999999</field>
+            <field name="er_rate">1700</field>
+            <field name="ee_rate">900</field>
+            <field name="ec_er_rate">30</field>
+            <field name="mpf_er_rate">425</field>
+            <field name="mpf_ee_rate">225</field>
+        </record>
+
+
+
+        <!-- WTAX -->
+        <record model="wtax.table" id="wtax_d_1">
+            <field name="payroll_period">1_d</field>
+            <field name="range_fr">0</field>
+            <field name="range_to">685</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">0</field>
+        </record>
+        <record model="wtax.table" id="wtax_d_2">
+            <field name="payroll_period">1_d</field>
+            <field name="range_fr">685</field>
+            <field name="range_to">1095</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">20</field>
+        </record>
+        <record model="wtax.table" id="wtax_d_3">
+            <field name="payroll_period">1_d</field>
+            <field name="range_fr">1096</field>
+            <field name="range_to">2191</field>
+            <field name="prescribed_wtax">82.19</field>
+            <field name="tax_on_excess">25</field>
+        </record>
+        <record model="wtax.table" id="wtax_d_4">
+            <field name="payroll_period">1_d</field>
+            <field name="range_fr">2192</field>
+            <field name="range_to">5478</field>
+            <field name="prescribed_wtax">356.16</field>
+            <field name="tax_on_excess">30</field>
+        </record>
+        <record model="wtax.table" id="wtax_d_5">
+            <field name="payroll_period">1_d</field>
+            <field name="range_fr">5479</field>
+            <field name="range_to">21917</field>
+            <field name="prescribed_wtax">1342.47</field>
+            <field name="tax_on_excess">32</field>
+        </record>
+        <record model="wtax.table" id="wtax_d_6">
+            <field name="payroll_period">1_d</field>
+            <field name="range_fr">21918</field>
+            <field name="range_to">999999</field>
+            <field name="prescribed_wtax">6602.74</field>
+            <field name="tax_on_excess">35</field>
+        </record>
+
+        <record model="wtax.table" id="wtax_w_1">
+            <field name="payroll_period">2_w</field>
+            <field name="range_fr">0</field>
+            <field name="range_to">4808</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">0</field>
+        </record>
+        <record model="wtax.table" id="wtax_w_2">
+            <field name="payroll_period">2_w</field>
+            <field name="range_fr">4808</field>
+            <field name="range_to">7691</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">20</field>
+        </record>
+        <record model="wtax.table" id="wtax_w_3">
+            <field name="payroll_period">2_w</field>
+            <field name="range_fr">7692</field>
+            <field name="range_to">15384</field>
+            <field name="prescribed_wtax">576.92</field>
+            <field name="tax_on_excess">25</field>
+        </record>
+        <record model="wtax.table" id="wtax_w_4">
+            <field name="payroll_period">2_w</field>
+            <field name="range_fr">15385</field>
+            <field name="range_to">38461</field>
+            <field name="prescribed_wtax">2500</field>
+            <field name="tax_on_excess">30</field>
+        </record>
+        <record model="wtax.table" id="wtax_w_5">
+            <field name="payroll_period">2_w</field>
+            <field name="range_fr">38462</field>
+            <field name="range_to">153845</field>
+            <field name="prescribed_wtax">9423.08</field>
+            <field name="tax_on_excess">32</field>
+        </record>
+        <record model="wtax.table" id="wtax_w_6">
+            <field name="payroll_period">2_w</field>
+            <field name="range_fr">153846</field>
+            <field name="range_to">999999</field>
+            <field name="prescribed_wtax">46346.15</field>
+            <field name="tax_on_excess">35</field>
+        </record>
+
+        <record model="wtax.table" id="wtax_sm_1">
+            <field name="payroll_period">3_sm</field>
+            <field name="range_fr">0</field>
+            <field name="range_to">10417</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">0</field>
+        </record>
+        <record model="wtax.table" id="wtax_sm_2">
+            <field name="payroll_period">3_sm</field>
+            <field name="range_fr">10417</field>
+            <field name="range_to">16666</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">20</field>
+        </record>
+        <record model="wtax.table" id="wtax_sm_3">
+            <field name="payroll_period">3_sm</field>
+            <field name="range_fr">16667</field>
+            <field name="range_to">33332</field>
+            <field name="prescribed_wtax">1250</field>
+            <field name="tax_on_excess">25</field>
+        </record>
+        <record model="wtax.table" id="wtax_sm_4">
+            <field name="payroll_period">3_sm</field>
+            <field name="range_fr">33333</field>
+            <field name="range_to">83332</field>
+            <field name="prescribed_wtax">5416.67</field>
+            <field name="tax_on_excess">30</field>
+        </record>
+        <record model="wtax.table" id="wtax_sm_5">
+            <field name="payroll_period">3_sm</field>
+            <field name="range_fr">83333</field>
+            <field name="range_to">333332</field>
+            <field name="prescribed_wtax">20416.67</field>
+            <field name="tax_on_excess">32</field>
+        </record>
+        <record model="wtax.table" id="wtax_sm_6">
+            <field name="payroll_period">3_sm</field>
+            <field name="range_fr">333333</field>
+            <field name="range_to">999999</field>
+            <field name="prescribed_wtax">100416.67</field>
+            <field name="tax_on_excess">35</field>
+        </record>
+
+        <record model="wtax.table" id="wtax_m_1">
+            <field name="payroll_period">4_m</field>
+            <field name="range_fr">0</field>
+            <field name="range_to">20833</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">0</field>
+        </record>
+        <record model="wtax.table" id="wtax_m_2">
+            <field name="payroll_period">4_m</field>
+            <field name="range_fr">20833</field>
+            <field name="range_to">33332</field>
+            <field name="prescribed_wtax">0</field>
+            <field name="tax_on_excess">20</field>
+        </record>
+        <record model="wtax.table" id="wtax_m_3">
+            <field name="payroll_period">4_m</field>
+            <field name="range_fr">33333</field>
+            <field name="range_to">66666</field>
+            <field name="prescribed_wtax">2500</field>
+            <field name="tax_on_excess">25</field>
+        </record>
+        <record model="wtax.table" id="wtax_m_4">
+            <field name="payroll_period">4_m</field>
+            <field name="range_fr">66667</field>
+            <field name="range_to">166666</field>
+            <field name="prescribed_wtax">10833.33</field>
+            <field name="tax_on_excess">30</field>
+        </record>
+        <record model="wtax.table" id="wtax_m_5">
+            <field name="payroll_period">4_m</field>
+            <field name="range_fr">166667</field>
+            <field name="range_to">666666</field>
+            <field name="prescribed_wtax">40833.33</field>
+            <field name="tax_on_excess">32</field>
+        </record>
+        <record model="wtax.table" id="wtax_m_6">
+            <field name="payroll_period">4_m</field>
+            <field name="range_fr">666667</field>
+            <field name="range_to">999999</field>
+            <field name="prescribed_wtax">200833.33</field>
+            <field name="tax_on_excess">35</field>
+        </record>
+
+
+
+        <!-- PREMIUMS & TAX CONFIG -->
+        <record model="hr.premiums.tax.config" id="prem_tax_config_hdmf">
+            <field name="name">HDMF / Pag-Ibig</field>
+            <field name="period_type">1st_2nd</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record model="hr.premiums.tax.config" id="prem_tax_config_phic">
+            <field name="name">PHIC / PhilHealth</field>
+            <field name="period_type">1st_2nd</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record model="hr.premiums.tax.config" id="prem_tax_config_sss">
+            <field name="name">SSS</field>
+            <field name="period_type">1st_2nd</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        <record model="hr.premiums.tax.config" id="prem_tax_config_wtax">
+            <field name="name">Withholding Tax</field>
+            <field name="period_type">1st_2nd</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+        
+        # No longer use
+        <delete model="hr.premiums.tax.config" id="ph_payroll_computation.prem_tax_config_exp_wtax"/>
+            <!-- <field name="name">Expanded W-Tax</field>
+            <field name="period_type">1st_2nd</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record> -->
+    </data>
+</odoo>

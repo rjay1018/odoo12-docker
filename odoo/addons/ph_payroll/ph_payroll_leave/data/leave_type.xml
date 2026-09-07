@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="leave_type_sick" model="hr.leave.type">
+            <field name="name">Sick Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">lightgreen</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="leave_type_vacation" model="hr.leave.type">
+            <field name="name">Vacation Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">lightblue</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="leave_type_birthday" model="hr.leave.type">
+            <field name="name">Birthday Leave</field>
+            <field name="allocation_type">fixed</field>
+            <field name="color_name">lightyellow</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <record id="leave_type_absence" model="hr.leave.type">
+            <field name="name">Leave of Absence</field>
+            <field name="allocation_type">no</field>
+            <field name="leave_type">unpaid</field>
+            <field name="color_name">lightcyan</field>
+            <field name="sequence">4</field>
+            <field name="absence" eval="True"/>
+        </record>
+
+        <delete id="hr_holidays.holiday_status_cl" model="hr.leave.type"/>
+        <delete id="hr_holidays.holiday_status_sl" model="hr.leave.type"/>
+        <delete id="hr_holidays.holiday_status_comp" model="hr.leave.type"/>
+        <delete id="hr_holidays.holiday_status_unpaid" model="hr.leave.type"/>
+
+
+        <!-- Leave Allocation -->
+        <record id="leave_alloc_absence" model="hr.leave.allocation">
+            <field name="absence" eval="True"/>
+            <field name="holiday_status_id" ref="leave_type_absence"/>
+            <field name="number_of_days">0</field>
+            <field name="holiday_type">company</field>
+            <field name="mode_company_id" ref="base.main_company"/>
+            <field name="state">validate</field>
+        </record>
+
+    </data>
+</odoo>

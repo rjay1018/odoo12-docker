@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_hr_contribution_taxes"
+        name="Premiums and Tax Tables"
+        parent="hr_payroll.menu_hr_payroll_configuration"
+        sequence="100"/>
+
+    
+    <!-- HDMF -->
+    <record id="hdmf_table_tree_view" model="ir.ui.view">
+        <field name="name">HDMF Contribution Table</field>
+        <field name="model">hdmf.table</field>
+        <field name="arch" type="xml">
+            <tree string="HDMF Contribution Table" editable="bottom">
+                <field name="mo_salary_fr"/>
+                <field name="mo_salary_to"/>
+                <field name="ee_rate"/>
+                <field name="er_computation"/>
+                <field name="er_rate"/>
+                <field name="total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hdmf_table" model="ir.actions.act_window">
+        <field name="name">HDMF Contribution Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hdmf.table</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_hdmf_table"
+        parent="menu_hr_contribution_taxes"
+        sequence="1"
+        action="action_hdmf_table"/>
+
+
+    <!-- PHIC -->
+    <record id="phic_table_tree_view" model="ir.ui.view">
+        <field name="name">PHIC Contribution Table</field>
+        <field name="model">phic.table</field>
+        <field name="arch" type="xml">
+            <tree string="PHIC Contribution Table" editable="bottom">
+                <field name="mo_salary_fr"/>
+                <field name="mo_salary_to"/>
+                <field name="premium_rate"/>
+                <field name="mo_premium"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_phic_table" model="ir.actions.act_window">
+        <field name="name">PHIC Contribution Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">phic.table</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_phic_table"
+        parent="menu_hr_contribution_taxes"
+        sequence="2"
+        action="action_phic_table"/>
+
+
+    <!-- SSS -->
+    <record id="sss_table_tree_view" model="ir.ui.view">
+        <field name="name">SSS Contribution Table</field>
+        <field name="model">sss.table</field>
+        <field name="arch" type="xml">
+            <tree string="SSS Contribution Table" editable="bottom">
+                <field name="mo_salary_fr"/>
+                <field name="mo_salary_to"/>
+                <field name="er_rate"/>
+                <field name="ee_rate"/>
+                <field name="er_ee_ss_total"/>
+                <field name="ec_er_rate"/>
+                <field name="mpf_er_rate"/>
+                <field name="mpf_ee_rate"/>
+                <field name="mpf_total"/>
+                <field name="er_total"/>
+                <field name="ee_total"/>
+                <field name="total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_sss_table" model="ir.actions.act_window">
+        <field name="name">SSS Contribution Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sss.table</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_sss_table"
+        parent="menu_hr_contribution_taxes"
+        sequence="3"
+        action="action_sss_table"/>
+
+
+    <!-- WTAX -->
+    <record id="wtax_table_tree_view" model="ir.ui.view">
+        <field name="name">Withholding Tax Table</field>
+        <field name="model">wtax.table</field>
+        <field name="arch" type="xml">
+            <tree string="Withholding Tax Table" editable="bottom">
+                <field name="payroll_period"/>
+                <field name="range_fr"/>
+                <field name="range_to"/>
+                <field name="prescribed_wtax"/>
+                <field name="tax_on_excess"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="wtax_table_search_view" model="ir.ui.view">
+        <field name="name">Withholding Tax Table</field>
+        <field name="model">wtax.table</field>
+        <field name="arch" type="xml">
+            <search string="Withholding Tax Table">
+                <field name="range_fr"/>
+                <field name="range_to"/>
+                <group string="Group By">
+                    <filter string="Payroll Schedule" name="grp_pay_sched"
+                        context="{'group_by': 'payroll_period'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_wtax_table" model="ir.actions.act_window">
+        <field name="name">Withholding Tax Table</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wtax.table</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="menu_wtax_table"
+        parent="menu_hr_contribution_taxes"
+        sequence="4"
+        action="action_wtax_table"/>
+
+
+    <!-- PREMIUMS & TAX -->
+    <record id="premiums_tax_config_tree" model="ir.ui.view">
+        <field name="name">premiums.tax.config.tree</field>
+        <field name="model">hr.premiums.tax.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuration" create="0" delete="0">
+                <field name="name"/>
+                <field name="period_type"/>
+                <field name="ga_ee_credit_account_id"/>
+                <field name="ga_er_debit_account_id"/>
+                <field name="er_credit_account_id"/>
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="premiums_tax_config_form" model="ir.ui.view">
+        <field name="name">premiums.tax.config.form</field>
+        <field name="model">hr.premiums.tax.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuration" create="0" delete="0">
+                <sheet>
+                    <label for="name"/>
+                    <h1><field name="name" readonly="1"/></h1>
+                    <group>
+                        <group>
+                            <field name="period_type"/>
+                            <field name="journal_id"/>
+                        </group>
+                        <group>
+                            <field name="ga_ee_credit_account_id"/>
+                            <field name="ga_er_debit_account_id"/>
+                            <field name="er_credit_account_id"/>
+                        </group>
+                        <group string="MPF" attrs="{'invisible': [('name', '!=', 'SSS')]}">
+                            <field name="sss_ee_mpf_credit_account_id"/>
+                            <field name="sss_er_mpf_debit_account_id"/>
+                            <field name="sss_er_mpf_credit_account_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_premiums_tax_config" model="ir.actions.act_window">
+        <field name="name">Configuration</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.premiums.tax.config</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_premiums_tax_config"
+        parent="menu_hr_contribution_taxes"
+        action="action_premiums_tax_config"
+        sequence="5"/>
+
+</odoo>

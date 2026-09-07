@@ -1,0 +1,1109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <delete model="ir.ui.menu" id="hr_payroll.menu_hr_payroll_structure_view"/>
+    <delete model="ir.ui.menu" id="hr_payroll.menu_hr_salary_rule_category"/>
+    <delete model="ir.ui.menu" id="hr_payroll.menu_action_hr_contribution_register_form"/>
+    <delete model="ir.ui.menu" id="hr_payroll.menu_action_hr_salary_rule_form"/>
+    <delete model="ir.ui.menu" id="hr_payroll.hr_contract_advantage_template_menu_action"/>
+
+    <menuitem id="hr_payroll.menu_hr_payslip_run"
+        name="Payroll Registers"
+        action="hr_payroll.action_hr_payslip_run_tree"
+        parent="hr_payroll.menu_hr_payroll_root"
+        groups="hr.group_hr_manager,hr.group_hr_user"
+        sequence="1"/>
+
+    <menuitem id="hr_payroll.menu_department_tree"
+        name="Payslips"
+        action="hr_payroll.action_view_hr_payslip_form"
+        parent="hr_payroll.menu_hr_payroll_root"
+        groups="hr.group_hr_manager,hr.group_hr_user"
+        sequence="2"/>
+
+
+    <!-- REGISTER -->
+    <record id="hr_payslip_run_inherit_tree" model="ir.ui.view">
+        <field name="name">hr.payslip.run.inherit.tree</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="string">Payroll Registers</attribute>
+            </xpath>
+            <field name="date_start" position="replace"/>
+            <field name="date_end" position="replace"/>
+            <field name="name" position="after">
+                <field name="payroll_schedule"/>
+                <field name="payroll_period_id"/>
+                <field name="date"/>
+                <field name="cash_bank_account_id"/>
+            </field>
+            <field name="credit_note" position="replace">
+                <field name="total_gross" sum="Total"/>
+                <field name="total_net" sum="Total"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_payslip_run_search_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.run.search.inherit</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_filter"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="string">Payroll Registers</attribute>
+            </field>
+            <field name="date_start" position="replace"/>
+            <field name="date_end" position="replace"/>
+            <filter name="done_filter" position="after">
+                <filter name="payroll_schedule" string="Payroll Schedule" context="{'group_by': 'payroll_schedule'}"/>
+                <filter name="payroll_period_id" string="Payroll Period" context="{'group_by': 'payroll_period_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="payroll_register_form_inherit" model="ir.ui.view">
+        <field name="name">payroll.register.form.inherit</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="attributes">
+                <attribute name="string">Payroll Registers</attribute>
+            </xpath>
+            <xpath expr="//sheet" position="replace">
+                <sheet>
+                    <label for="name" class="oe_edit_only"/>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group>
+                            <field name="date_from" invisible="1"/>
+                            <field name="date_end" invisible="1"/>
+                            <field name="payroll_schedule" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="payroll_period_id"
+                                domain="[('payroll_schedule', '=', payroll_schedule), ('state', '=', 'confirm')]"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                options="{'no_create': True}"/>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <separator colspan="2"/>
+                            <field name="convertible_leave" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="release_13th_pay" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="journal_entry" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="cash_bank_account_id"
+                                attrs="{'readonly': [('state', '!=', 'draft')], 'required': [('journal_entry', '!=', False)]}"/>
+                            <field name="journal_id" attrs="{'readonly': [('state', '!=', 'draft')], 'required': [('journal_entry', '!=', False)]}" />
+                            <field name="credit_note" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Payslips">
+                            <field name="slip_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                context="{'default_payslip_run_id': active_id}">
+                                <tree decoration-muted="state=='cancel' or state=='refund' or credit_note==True">
+                                    <field name="payslip_run_id" invisible="1"/>
+                                    <field name="employee_id"/>
+                                    <field name="wage_type"/>
+                                    <field name="wage"/>
+                                    <field name="basic_pay"/>
+                                    <field name="daily_pay"/>
+                                    <field name="cola_amount"/>
+                                    <field name="work_days" string="Worked Days"/>
+                                    <field name="late_amount" string="Late"/>
+                                    <field name="undertime_amount" string="Undertime"/>
+                                    <field name="overtime_amount" string="Overtime"/>
+                                    <field name="night_diff_amount" string="Night Diff."/>
+                                    <field name="total_premium"/>
+                                    <field name="gross_pay"/>
+                                    <field name="wtax"/>
+                                    <field name="other_earning"/>
+                                    <field name="other_deduction"/>
+                                    <field name="net_pay"/>
+                                    <field name="state"/>
+                                    <field name="credit_note" invisible="1"/>
+                                </tree>
+                            </field>
+                            <group string="Overview">
+                                <group>
+                                    <group>
+                                        <field name="slip_count"/>
+                                        <field name="total_late"/>
+                                        <field name="total_undertime"/>
+                                        <field name="total_overtime"/>
+                                        <field name="total_night_diff"/>
+                                    </group>
+                                    <group>
+                                        <field name="total_premium"/>
+                                        <field name="total_wtax"/>
+                                        <field name="total_earning"/>
+                                        <field name="total_deduction"/>
+                                    </group>
+                                </group>
+                                <group class="oe_subtotal_footer oe_right">
+                                    <field name="total_gross"/>
+                                    <field name="total_net"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payroll_account.hr_payslip_run_form_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.run.form.inherit</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <button name="close_payslip_run" position="replace"/>
+            <button name="draft_payslip_run" position="replace"/>
+            <button name="%(hr_payroll.action_hr_payslip_by_employees)d" position="attributes">
+                <attribute name="context">{'default_payroll_reg_id': active_id}</attribute>
+            </button>
+            <button name="%(hr_payroll.action_hr_payslip_by_employees)d" position="after">
+                <button type="object" name="action_recompute_sheet" states="draft" string="Recompute Sheet" class="oe_highlight"/>
+                <button type="object" name="action_confirm" states="draft" string="Confirm Sheet" class="oe_highlight"/>
+
+                <button type="object" name="action_validate" string="Validate Sheet" class="oe_highlight"
+                    attrs="{'invisible': ['|', ('journal_entry', '!=', False), ('state', '!=', 'confirm')]}"/>
+
+                <button type="object" name="action_validate" string="Post to Journal" class="oe_highlight"
+                    confirm="You are about to post these payslips to Journal. Press Ok to continue."
+                    attrs="{'invisible': ['|', ('journal_entry', '=', False), ('state', '!=', 'confirm')]}"/>
+
+                <button type="object" name="action_draft" states="confirm" string="Set to Draft" class="oe_link"/>
+                <button type="object" name="action_cancel" states="confirm" string="Cancel" class="oe_link"
+                    confirm="You are about to cancel this register. Press Ok to continue."/>
+                <button type="object" name="generate_bank_doc" string="Generate Bank Document" class="oe_highlight"/>
+            </button>
+            <field name="credit_note" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_payroll.action_hr_payslip_run_tree" model="ir.actions.act_window">
+        <field name="name">Payroll Registers</field>
+        <field name="res_model">hr.payslip.run</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="hr_payroll.hr_payslip_run_filter"/>
+    </record>
+
+
+    <!-- PAYSLIPS -->
+    <record id="hr_payslip_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.tree.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="decoration-warning">credit_note!=False or state=='cancel' or state=='refund'</attribute>
+                <attribute name="decoration-muted">state=='draft'</attribute>
+                <attribute name="decoration-info">state=='confirm'</attribute>
+            </xpath>
+            <field name="number" position="replace">
+                <field name="payslip_run_id" string="Payroll Register"/>
+            </field>
+            <field name="employee_id" position="before">
+                <field name="payroll_schedule"/>
+                <field name="payroll_period_id"/>
+            </field>
+            <field name="employee_id" position="after">
+                <field name="wage_type"/>
+                <field name="wage"/>
+                <field name="basic_pay"/>
+                <field name="daily_pay"/>
+                <field name="cola_amount"/>
+                <field name="gross_pay" sum="Total"/>
+                <field name="net_pay" sum="Total"/>
+                <field name="currency_id" invisible="1"/>
+            </field>
+            <field name="date_from" position="replace"/>
+            <field name="date_to" position="replace"/>
+            <field name="name" position="replace"/>
+            <field name="state" position="after">
+                <field name="credit_note"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_payslip_kanban_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.kanban.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div/div/div[4]" position="replace"/>
+            <xpath expr="//div/div/div[3]" position="replace">
+                <div class="col-12">
+                    <span>
+                        <field name="payroll_period_id"/>
+                    </span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payslip_search_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.search.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_filter"/>
+        <field name="arch" type="xml">
+            <filter name="payslip_run_id" position="replace"/>
+            <field name="name" position="replace">
+                <field name="name" string="Payslip" filter_domain="['|',('name','ilike',self),('payslip_run_id','ilike',self)]"/>
+            </field>
+            <field name="date_from" position="replace"/>
+            <filter name="employee_id" position="before">
+                <filter string="Payroll Register" name="payslip_run_id" context="{'group_by': 'payslip_run_id'}"/>
+                <filter string="Payroll Schedule" name="payroll_schedule" context="{'group_by': 'payroll_schedule'}"/>
+                <filter string="Payroll Period" name="payroll_period_id" context="{'group_by': 'payroll_period_id'}"/>
+            </filter>
+            <filter name="employee_id" position="attributes">
+                <attribute name="string">Employee</attribute>
+            </filter>
+            <filter name="company_id" position="replace"/>
+            <filter name="state" position="attributes">
+                <attribute name="string">State</attribute>
+            </filter>
+            <filter name="draft" position="after">
+                <filter name="confirm" string="Confirmed" domain="[('state', '=', 'confirm')]"/>
+            </filter>
+            <xpath expr="//search" position="inside">
+                <filter name="active_slips" string="Active" domain="[('state', '!=', 'refund'), ('credit_note', '=', False)]"/>
+                <filter name="refund_credit_note" string="Refund or Credit Note" domain="['|', ('state', '=', 'refund'), ('credit_note', '!=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payslip_form_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.form.inherit</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="replace">
+                <field name="state" widget="statusbar"/>
+            </field>
+            <xpath expr="//page[4]/group/group" position="inside">
+                <field name="name" readonly="1" force_save="1"/>
+                <field name="refund_slip_id" readonly="1" force_save="1"/>
+                <field name="credit_note" readonly="1" force_save="1"/>
+                <field name="journal_entry" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+            </xpath>
+            <field name="paid" position="replace"/>
+            <button name="action_payslip_done" position="replace"/>
+            <button name="refund_sheet" position="replace">
+                <button type="object" string="Refund" name="refund_sheet"
+                    attrs="{'invisible': ['|', ('state', '!=', 'done'), ('credit_note', '!=', False)]}"
+                    confirm="You are about to refund this payslip. Press Ok to continue."/>
+            </button>
+            <button name="compute_sheet" position="attributes">
+                <attribute name="string">Compute Sheet</attribute>
+            </button>
+            <button name="action_payslip_draft" position="before">
+                <button type="object" name="action_confirm" states="draft" string="Confirm Sheet" class="oe_highlight"/>
+                <button type="object" name="action_validate" string="Validate Sheet" class="oe_highlight"
+                    attrs="{'invisible': ['|', ('journal_entry', '!=', False), ('state', '!=', 'confirm')]}"/>
+                <button type="object" name="action_validate" string="Post to Journal" class="oe_highlight"
+                    confirm="You are about to post this payslip to Journal. Press Ok to continue."
+                    attrs="{'invisible': ['|', ('journal_entry', '=', False), ('state', '!=', 'confirm')]}"/>
+            </button>          
+            <button name="action_payslip_draft" position="attributes">
+                <attribute name="states">confirm,cancel</attribute>
+            </button>
+            <button name="action_payslip_draft" position="after">
+                <button type="object" name="action_cancel" states="confirm" string="Cancel" class="oe_link"
+                    confirm="You are about to cancel this payslip. Press Ok to continue."/>
+            </button>
+            <button name="action_payslip_cancel" position="replace"/>
+            <xpath expr="//div[hasclass('oe_button_box')]/button" position="replace"/>
+            <xpath expr="//div[hasclass('oe_title')]" position="replace"/>
+            <xpath expr="//group" position="replace">
+                <group>
+                    <group>
+                        <field name="payslip_run_id" string="Payroll Register" readonly="0"/>
+                        <field name="payroll_schedule" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="payroll_period_id" readonly="0" required="1"
+                             domain="[('payroll_schedule', '=', payroll_schedule), ('state', '=', 'confirm')]"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            options="{'no_create': True}"/>
+                        <field name="date" string="Payroll Date" readonly="0"/>
+                        <separator colspan="2"/>
+                        <field name="final_pay" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="convertible_leave" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="release_13th_pay" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="currency_id" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="employee_id" readonly="0" options="{'no_create': True}"/>
+                        <field name="contract_id" readonly="0"
+                            domain="[('employee_id', '=', employee_id), ('state', '=', 'open')]"
+                            context="{'default_employee_id': employee_id}"
+                            options="{'no_create': True}" required="1"/>
+                        <field name="parent_department_id" required="0"
+                            domain="[('parent_id', '=', False)]"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//page[1]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[3]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[4]/group/group/field[@name='payslip_run_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <field name="journal_id" position="replace">
+                <field name="salary_wage_account_id"
+                    attrs="{'readonly': [('state', '!=', 'draft')], 'required': [('journal_entry', '!=', False)]}"/>
+                <field name="cash_bank_account_id"
+                    attrs="{'readonly': [('state', '!=', 'draft')], 'required': [('journal_entry', '!=', False)]}"/>
+                <field name="journal_id" attrs="{'required': [('journal_entry', '!=', False)]}"/>
+            </field>
+            <field name="move_id" position="attributes">
+                <attribute name="attrs">{'invisible': [('journal_entry', '=', False)]}</attribute>
+            </field>
+            <xpath expr="//page[4]/group/group[2]/field[@name='date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[4]" position="before">
+                <page string="Salary Computation">
+                    <field name="slip_structure_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                        <tree editable="bottom" decoration-muted="active == False">
+                            <field name="structure_line_id" invisible="1" force_save="1"/>
+                            <field name="loan_id" readonly="1" force_save="1"/>
+                            <field name="canteen_id" attrs="{'readonly': [('loan_id', '!=', False)]}"
+                                domain="[('state', '=', 'confirm')]"/>
+                            <field name="adjustment_id"/>
+                            <field name="adjustment_type"/>
+                            <field name="adjustment_for"/>
+                            <field name="computation" invisible="1"/>
+                            <field name="rate" invisible="1"/>
+                            <field name="amount"/>
+                            <field name="ceiling_amount" readonly="1" force_save="1"/>
+                            <field name="taxable_amount" readonly="1" force_save="1" sum="Total"/>
+                            <field name="payment_date"/>
+                            <field name="convertible_leave" invisible="1"/>
+                            <field name="release_13th_pay" invisible="1"/>
+                            <field name="active" widget="boolean_toggle" invisible="1"/>
+                        </tree>
+                    </field>
+                    <group string="Wage Information" col="6">
+                        <group colspan="2">
+                            <field name="wage_type"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="wage"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="daily_pay"/>
+                        </group>
+                    </group>
+                    <group string="Overview" col="6">
+                        <group colspan="2">
+                            <field name="work_days" force_save="1"/>
+                            <field name="regular_holiday" force_save="1"/>
+                            <field name="paid_leave" force_save="1"/>
+                            <field name="unpaid_leave" force_save="1"/>
+                            <field name="late" widget="float_time" force_save="1"/>
+                            <field name="undertime" widget="float_time" force_save="1"/>
+                            <field name="overtime" widget="float_time" force_save="1"/>
+                            <field name="night_diff" widget="float_time" force_save="1"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="basic_pay" force_save="1"/>
+                            <field name="regular_holiday_amount" force_save="1"/>
+                            <field name="cola_amount" force_save="1"/>
+                            <field name="unpaid_leave_amount" force_save="1"/>
+                            <field name="late_amount" force_save="1"/>
+                            <field name="undertime_amount" force_save="1"/>
+                            <field name="overtime_amount" force_save="1"/>
+                            <field name="night_diff_amount" force_save="1"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="total_premium" force_save="1"/>
+                            <separator colspan="2"/>
+                            <field name="gross_pay" force_save="1"/>
+                            <field name="wtax" force_save="1"/>
+                            <field name="other_earning" force_save="1"/>
+                            <field name="other_deduction" force_save="1"/>
+                            <field name="net_pay" force_save="1"/>
+                        </group>
+                    </group>
+                    <group string="Premiums/Benefits" name="premiums_benefits" col="6">
+                        <group colspan="2">
+                            <field name="hdmf_ee"/>
+                            <field name="hdmf_er"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="phic_ee"/>
+                            <field name="phic_er"/>
+                        </group>
+                        <group colspan="2">
+                            <field name="sss_ee"/>
+                            <field name="sss_ee_mpf"/>
+                            <field name="sss_er"/>
+                            <field name="sss_er_mpf"/>
+                        </group>
+                    </group>
+                    <group string="13th Month Pay">
+                        <field name="month_13th" force_save="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Overtime Summary">
+                            <field name="overtime_summary_ids" nolabel="1" readonly="1" force_save="1">
+                                <tree>
+                                    <field name="slip_id" invisible="1"/>
+                                    <field name="ot_hours" sum="Total" widget="float_time"/>
+                                    <field name="ot_amount" sum="Total"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Leaves Summary">
+                            <field name="leave_summary_ids" nolabel="1" readonly="1" force_save="1">
+                                <tree>
+                                    <field name="slip_id" invisible="1"/>
+                                    <field name="holiday_status_id"/>
+                                    <field name="leave_type"/>
+                                    <field name="duration" sum="Total"/>
+                                    <field name="amount" sum="Total"/>
+                                </tree>
+                            </field>
+                            <group string="Converted Leaves" colspan="4" attrs="{'invisible': [('convertible_leave', '=', False)]}">
+                                <field name="converted_leave_ids" nolabel="1" readonly="1" force_save="1">
+                                    <tree>
+                                        <field name="leave_allocation_id" invisible="1"/>
+                                        <field name="holiday_status_id"/>
+                                        <field name="fiscal_year_id"/>
+                                        <field name="total_allocation"/>
+                                        <field name="convertible_leave"/>
+                                        <field name="leave_count"/>
+                                        <field name="leave_balance"/>
+                                        <field name="converted_days" sum="Total"/>
+                                        <field name="amount" sum="Total"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Absent Information">
+                            <group string="Unpaid Leave/Absent">
+                                <group>
+                                    <field name="halfday" force_save="1"/>
+                                    <field name="absent" force_save="1"/>
+                                </group>
+                                <group>
+                                    <field name="halfday_amount" force_save="1"/>
+                                    <field name="absent_amount" force_save="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payroll.action_view_hr_payslip_form" model="ir.actions.act_window">
+        <field name="name">Payslips</field>
+        <field name="res_model">hr.payslip</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="search_view_id" ref="hr_payslip_search_inherit"/>
+        <field name="context">{'search_default_active_slips': 1}</field>
+    </record>
+
+
+    <!-- PAYROLL ADJUSTMENTS/STRUCTURE -->
+    <record id="payroll_adjustment_form_view" model="ir.ui.view">
+        <field name="name">payroll.adjustment.form.view</field>
+        <field name="model">hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <form string="Payroll Adjustments/Structures">
+                <sheet>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Name :" style="font-weight: bold"/>
+                        <h1><field name="name" readonly="0" force_save="1" class="oe_inline"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="adjustment_type"/>
+                            <field name="adjustment_for" attrs="{'invisible': [('adjustment_type', '!=', 'adjustment')], 'required': [('adjustment_type', '=', 'adjustment')]}"/>
+                            <field name="month13th_comp" attrs="{'invisible': [('adjustment_type', '!=', '13th_mo')]}" widget="radio"/>
+                        </group>
+                        <group >
+                            <field name="computation" invisible="1"/>
+                            <field name="rate" attrs="{'invisible': [('computation', '=', 'fix')]}"/>
+                            <field name="ceiling_amount"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group string="General Account">
+                            <field name="ga_other_assets_account_id" attrs="{'invisible': [('adjustment_type', '=', 'adjustment')]}"/>
+                            <field name="ga_liability_account_id" attrs="{'invisible': [('adjustment_type', '=', 'adjustment')]}"/>
+                            <field name="ga_extra_liability_account_id" string="Payroll Account" attrs="{'invisible': [('adjustment_type', '=', 'adjustment')]}"/>
+                        </group>
+                        <group string="Journal">
+                            <field name="journal_id"/>
+                        </group>
+                    </group>
+
+                    <group string="Rice Computation Table" name="rice_allow"
+                        attrs="{'invisible': [('rice_allowance', '=', False)]}">
+                        <field name="rice_allowance" invisible="1"/>
+                        <field name="rice_allowance_ids" nolabel="1" colspan="4"
+                            attrs="{'invisible': [('rice_allowance', '=', False)]}">
+                            <tree string="" editable="bottom">
+                                <field name="month_fr"/>
+                                <field name="month_to"/>
+                                <field name="amount"/>
+                                <field name="notes"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="payroll_adjustment_tree_view" model="ir.ui.view">
+        <field name="name">payroll.adjustment.tree.view</field>
+        <field name="model">hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <tree string="Payroll Adjustments/Structures">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="adjustment_type"/>
+                <field name="adjustment_for"/>
+                <field name="computation" invisible="1"/>
+                <field name="ceiling_amount"/>
+                <field name="rate" invisible="1"/>
+                <field name="journal_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="payroll_adjustment_search_view" model="ir.ui.view">
+        <field name="name">payroll.adjustment.search.view</field>
+        <field name="model">hr.payroll.adjustment</field>
+        <field name="arch" type="xml">
+            <search string="Payroll Adjustments/Structures">
+                <field name="name"/>
+                <group string="Group By">
+                    <filter string="Adjustment Type" name="grp_adj_type" context="{'group_by': 'adjustment_type'}"/>
+                    <filter string="Adjustment For" name="grp_adj_for" context="{'group_by': 'adjustment_for'}"/>
+                </group>
+           </search>
+        </field>
+    </record>
+
+    <record id="action_payroll_adjustment" model="ir.actions.act_window">
+        <field name="name">Payroll Adjustments/Structures</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.payroll.adjustment</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_payroll_adjustment"
+        action="action_payroll_adjustment"
+        parent="hr_payroll.menu_hr_payroll_root"
+        groups="hr.group_hr_manager,hr.group_hr_user"
+        sequence="5"/>
+
+
+    <!-- CONTRACT -->
+    <record model="ir.ui.view" id="hr_contract_pay_structure_inherit_form">
+        <field name="name">hr.contract.pay.structure.inherit.form</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other']/group[2]" position="before">
+                <group string="Salary Structure" name="salary_structure">
+                    <field name="structure_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                        <tree string="" editable="bottom" decoration-info="state == 'open'" decoration-muted="state == 'done'">
+                            <field name="contract_id" invisible="1"/>
+                            <field name="employee_id" invisible="1"/>
+                            <field name="adjustment_for" invisible="1"/>
+                            <field name="computation" invisible="1"/>
+                            <field name="rate" invisible="1"/>
+
+                            <field name="date"/>
+                            <field name="loan_id"
+                                domain="[('employee_id', '=', employee_id), ('state', '=', 'approve'), ('balance_amount', '&gt;', 0)]"
+                                attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="adjustment_id"
+                                domain="[('adjustment_type', '!=', 'adjustment')]"
+                                attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="adjustment_type"/>
+                            <field name="period_type"
+                                attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="amount"
+                                attrs="{'readonly': [('state', '=', 'done')]}"/>
+                            <field name="state" force_save="1" readonly="1"/>
+                            <button type="object" name="mark_done" states="open" string="Set as Paused/Done" class="oe_link"
+                                attrs="{'column_invisible': [('parent.state', '!=', 'draft')]}"/>
+                            <button type="object" name="mark_open" states="done" string="Set as Open/Running" class="oe_link"
+                                attrs="{'column_invisible': [('parent.state', '!=', 'draft')]}"/>
+                        </tree>
+                    </field>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="payroll_structure_line_form">
+        <field name="name">payroll.structure.line.form</field>
+        <field name="model">hr.payroll.structure.line</field>
+        <field name="arch" type="xml">
+            <form string="Salary Structure" create="0" edit="0" delete="0">
+                <header>
+                    <button type="object" name="mark_done" states="open" string="Set as Paused/Done" class="oe_highlight"/>
+                    <button type="object" name="mark_open" states="done" string="Set as Open/Running" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="adjustment_for" invisible="1"/>
+                        <field name="computation" invisible="1"/>
+                        <field name="rate" invisible="1"/>
+                        <group>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="contract_id" readonly="1"/>
+                            <field name="date" readonly="1"/>
+                            <field name="loan_id" readonly="1"/>
+                            <field name="adjustment_id" readonly="1"/>
+                            <field name="adjustment_type" readonly="1"/>
+                            <field name="period_type" readonly="1"/>
+                            <field name="amount" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="payroll_structure_line_tree">
+        <field name="name">payroll.structure.line.tree</field>
+        <field name="model">hr.payroll.structure.line</field>
+        <field name="arch" type="xml">
+            <tree string="Salary Structure" create="0" delete="0">
+                <field name="adjustment_for" invisible="1"/>
+                <field name="computation" invisible="1"/>
+                <field name="rate" invisible="1"/>
+                <field name="employee_id" readonly="1"/>
+                <field name="contract_id" readonly="1"/>
+                <field name="date" readonly="1"/>
+                <field name="loan_id" readonly="1"/>
+                <field name="adjustment_id" readonly="1"/>
+                <field name="adjustment_type" readonly="1"/>
+                <field name="period_type" readonly="1"/>
+                <field name="amount" readonly="1"/>
+                <field name="state" readonly="1"/>
+                <button type="object" name="mark_done" states="open" string="Set as Paused/Done" class="oe_highlight"/>
+                <button type="object" name="mark_open" states="done" string="Set as Open/Running" class="oe_highlight"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="payroll_structure_line_search">
+        <field name="name">payroll.structure.line.search</field>
+        <field name="model">hr.payroll.structure.line</field>
+        <field name="arch" type="xml">
+            <search string="Salary Structure">
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="date"/>
+                <field name="loan_id"/>
+                <field name="adjustment_id"/>
+                <field name="adjustment_type"/>
+                <field name="period_type"/>
+                <filter name="grp_employee" string="Employee" context="{'group_by': 'employee_id'}"/>
+                <filter name="grp_contract" string="Contract" context="{'group_by': 'contract_id'}"/>
+                <filter name="grp_loans" string="Loans" context="{'group_by': 'loan_id'}"/>
+                <filter name="grp_adjustment" string="Adjustment" context="{'group_by': 'adjustment_id'}"/>
+                <filter name="grp_adjustment_type" string="Adjustment Type" context="{'group_by': 'adjustment_type'}"/>
+                <filter name="grp_period_type" string="Period Type" context="{'group_by': 'period_type'}"/>
+                <filter name="grp_state" string="State" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+     <record id="action_payroll_structure_line" model="ir.actions.act_window">
+        <field name="name">Salary Structure</field>
+        <field name="res_model">hr.payroll.structure.line</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_payroll_salary_structure"
+        parent="hr.menu_hr_root"
+        action="action_payroll_structure_line"
+        sequence="4"
+        groups="hr.group_hr_manager"/>
+
+    <menuitem id="menu_payroll_salary_structure_main"
+        action="action_payroll_structure_line"
+        parent="hr_payroll.menu_hr_payroll_root"
+        groups="hr.group_hr_manager"
+        sequence="2"/>
+
+
+    <!-- DAY-OFF CALENDAR -->
+    <record model="ir.ui.view" id="dayoff_calendar_inherit_calendar">
+        <field name="name">dayoff.calendar.inherit.calendar</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="inherit_id" ref="ph_payroll_contract.dayoff_calendar_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="attributes">
+                <attribute name="color">payroll_period_id</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dayoff_calendar_inherit_form">
+        <field name="name">dayoff.calendar.inherit.form</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="inherit_id" ref="ph_payroll_contract.dayoff_calendar_form"/>
+        <field name="arch" type="xml">
+            <field name="resource_calendar_id" position="before">
+                <field name="payroll_period_id" required="1"
+                    domain="[('state', '=', 'confirm')]"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dayoff_calendar_inherit_tree">
+        <field name="name">dayoff.calendar.inherit.tree</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="inherit_id" ref="ph_payroll_contract.dayoff_calendar_tree"/>
+        <field name="arch" type="xml">
+            <field name="day_off_date" position="after">
+                <field name="payroll_period_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="dayoff_calendar_inherit_search">
+        <field name="name">dayoff.calendar.inherit.search</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="inherit_id" ref="ph_payroll_contract.dayoff_calendar_search"/>
+        <field name="arch" type="xml">
+            <field name="day_off_date" position="after">
+                <field name="payroll_period_id"/>
+            </field>
+            <filter name="day_off_date" position="after">
+                <filter string="Payroll Period" name="payroll_period_id" context="{'group_by': 'payroll_period_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+
+
+    <!-- Department -->
+    <record id="department_salary_wages_inherit_form" model="ir.ui.view">
+        <field name="name">Departments</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="Salaries and Wages">
+                    <group>
+                        <field name="salary_wage_account_id"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Payslip Employees Modal -->
+    <record id="payslip_employees_inherit_form" model="ir.ui.view">
+        <field name="name">hr.payslip.employees.inherit.form</field>
+        <field name="model">hr.payslip.employees</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_by_employees" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[1]" position="replace"/>
+            <xpath expr="//group/separator" position="replace"/>
+            <field name="employee_ids" position="replace"/>
+            <xpath expr="//form" position="inside">
+                <notebook>
+                    <page string="Employees">
+                        <group>
+                            <group>
+                                <field name="employee_filter"/>
+                            </group>
+                            <group>
+                                <field name="payroll_reg_id" readonly="1" force_save="1"/>
+                            </group>
+                        </group>
+                        <field name="employee_ids" nolabel="1" colspan="4" domain="[('id', '&gt;', 1)]"/>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="res_config_settings_payslip_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.payslip Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_payroll.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <div id="hr_payroll_accountant" position="after">
+                <h2>Payslip</h2>
+                <div class="row mt16 o_settings_container" id="payslip_settings">
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Cash in Bank</span>
+                            <div class="text-muted">
+                                Account to use in payslip journal entries
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="payroll_cash_bank_account_id" string="Account" class="col-lg-3 o_light_label"/>
+                                    <field name="payroll_cash_bank_account_id" options="{'no_create_edit': True}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane"/>
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label">Company Bank</span>
+                            <div class="text-muted">
+                                Bank account number to be use when generating bank related documents
+                            </div>
+                            <div class="content-group">
+                                <div class="row mt16">
+                                    <label for="company_bank_account_no" string="Bank Account No." class="col-lg-3 o_light_label"/>
+                                    <field name="company_bank_account_no"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="taxable_ot"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="taxable_ot" string="Taxable Overtime"/>
+                            <div class="text-muted">
+                                Exclude overtime in gross taxable
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="post_slip_journal_entries"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="post_slip_journal_entries" string="Salary Journal"/>
+                            <div class="text-muted">
+                                Create payslip journal entries
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+
+
+
+    <!-- Payslip Report -->
+    <record id="hr_payslip_report_pivot" model="ir.ui.view">
+        <field name="name">hr.payslip.report.view.pivot</field>
+        <field name="model">hr.payslip.report.view</field>
+        <field name="arch" type="xml">
+            <pivot string="Payslip Analysis">
+                <field name="name" type="row"/>
+                <field name="payroll_period_id" type="col"/>
+
+                <field name="basic_pay" type="measure"/>
+                <field name="cola_amount" type="measure"/>
+                <field name="unpaid_leave_amount" type="measure"/>
+                <field name="late_amount" type="measure"/>
+                <field name="undertime_amount" type="measure"/>
+                <field name="overtime_amount" type="measure"/>
+                <field name="night_diff_amount" type="measure"/>
+
+                <field name="hdmf_ee" type="measure"/>
+                <field name="hdmf_er" type="measure"/>
+                <field name="phic_ee" type="measure"/>
+                <field name="phic_er" type="measure"/>
+                <field name="sss_ee" type="measure"/>
+                <field name="sss_ee_mpf" type="measure"/>
+                <field name="sss_er" type="measure"/>
+                <field name="sss_er_mpf" type="measure"/>
+                
+                <field name="gross_pay" type="measure"/>
+                <field name="wtax" type="measure"/>
+                <field name="other_earning" type="measure"/>
+                <field name="other_deduction" type="measure"/>
+                <field name="net_pay" type="measure"/>
+                <field name="month_13th" type="measure"/>
+
+                <field name="salary_atm" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hr_payslip_report_graph" model="ir.ui.view">
+        <field name="name">hr.payslip.report.view.graph</field>
+        <field name="model">hr.payslip.report.view</field>
+        <field name="arch" type="xml">
+            <graph string="Payslip Analysis" type="bar" stacked="1">
+                <field name="payroll_period_id"/>
+                <field name="net_pay" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="hr_payslip_report_search" model="ir.ui.view">
+        <field name="name">hr.payslip.report.view.search</field>
+        <field name="model">hr.payslip.report.view</field>
+        <field name="arch" type="xml">
+            <search string="Payslip Analysis">
+                <field name="name"/>
+                <field name="payroll_period_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <filter string="This Year" name="current_year"
+                    domain="[('date_from','&lt;=', time.strftime('%%Y-12-31')),('date_from','&gt;=',time.strftime('%%Y-01-01')),('date_to','&lt;=', time.strftime('%%Y-12-31')),('date_to','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter string="ATM Employees" name="atm_emp" domain="[('salary_atm', '!=', False)]"/>
+                <filter string="Non-ATM Employees" name="non_atm_emp" domain="[('salary_atm', '=', False)]"/>
+                <filter string="Employee" name="employee" context="{'group_by': 'name'}"/>
+                <filter string="Payroll Period" name="payroll_period" context="{'group_by': 'payroll_period_id'}"/>
+                <filter string="Department" name="department" context="{'group_by': 'department_id'}"/>
+                <filter string="Job" name="job" context="{'group_by': 'job_id'}"/>
+                <filter string="State" name="state" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_payslip_report" model="ir.actions.act_window">
+        <field name="res_model">hr.payslip.report.view</field>
+        <field name="name">Payslip Report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_current_year': 1}</field>
+        <field name="help">This report helps in payroll analysis. This helps you to check your payslips and sorting it out from different group criteria (Employee, Payroll Period, Department, Job Position and etc.)</field>
+    </record>
+
+    <menuitem name="Reports"
+            id="menu_hr_payroll_reports"
+            parent="hr_payroll.menu_hr_payroll_root"
+            groups="hr.group_hr_manager"/>
+
+    <menuitem id="menu_hr_payslip_report"
+            parent="menu_hr_payroll_reports"
+            action="action_hr_payslip_report"
+            groups="hr.group_hr_manager"
+            sequence="1"/>
+
+    <!-- Payslip Report Detailed View -->
+    <record id="hr_payslip_report_detailed_pivot" model="ir.ui.view">
+        <field name="name">hr.payslip.report.detailed.view.pivot</field>
+        <field name="model">hr.payslip.report.detailed.view</field>
+        <field name="arch" type="xml">
+            <pivot string="Payslip Analysis - Detailed">
+                <field name="name" type="row"/>
+                <field name="payroll_period_id" type="col"/>
+
+                <field name="basic_pay" type="measure"/>
+                <field name="cola_amount" type="measure"/>
+                <field name="unpaid_leave_amount" type="measure"/>
+                <field name="late_amount" type="measure"/>
+                <field name="undertime_amount" type="measure"/>
+                <field name="overtime_amount" type="measure"/>
+                <field name="night_diff_amount" type="measure"/>
+
+                <field name="hdmf_ee" type="measure"/>
+                <field name="hdmf_er" type="measure"/>
+                <field name="phic_ee" type="measure"/>
+                <field name="phic_er" type="measure"/>
+                <field name="sss_ee" type="measure"/>
+                <field name="sss_ee_mpf" type="measure"/>
+                <field name="sss_er" type="measure"/>
+                <field name="sss_er_mpf" type="measure"/>
+                
+                <field name="gross_pay" type="measure"/>
+                <field name="wtax" type="measure"/>
+                <field name="adjustment_type" type="measure"/>
+                <field name="adj_name" type="measure"/>
+                <field name="adj_amount" type="measure"/>
+                <field name="earn_deduct" type="measure"/>
+                <field name="net_pay" type="measure"/>
+                <field name="month_13th" type="measure"/>
+
+                <field name="salary_atm" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="hr_payslip_report_detailed_graph" model="ir.ui.view">
+        <field name="name">hr.payslip.report.detailed.view.graph</field>
+        <field name="model">hr.payslip.report.detailed.view</field>
+        <field name="arch" type="xml">
+            <graph string="Payslip Analysis - Detailed" type="bar" stacked="1">
+                <field name="payroll_period_id"/>
+                <field name="gross_pay" type="measure"/>
+                <field name="net_pay" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="hr_payslip_report_detailed_search" model="ir.ui.view">
+        <field name="name">hr.payslip.report.detailed.view.search</field>
+        <field name="model">hr.payslip.report.detailed.view</field>
+        <field name="arch" type="xml">
+            <search string="Payslip Analysis - Detailed">
+                <field name="name"/>
+                <field name="payroll_period_id"/>
+                <field name="department_id"/>
+                <field name="job_id"/>
+                <field name="adjustment_type"/>
+                <field name="adj_name"/>
+                <filter string="This Year" name="current_year"
+                    domain="[('date_from','&lt;=', time.strftime('%%Y-12-31')),('date_from','&gt;=',time.strftime('%%Y-01-01')),('date_to','&lt;=', time.strftime('%%Y-12-31')),('date_to','&gt;=',time.strftime('%%Y-01-01'))]"/>
+                <filter string="ATM Employees" name="atm_emp" domain="[('salary_atm', '!=', False)]"/>
+                <filter string="Non-ATM Employees" name="non_atm_emp" domain="[('salary_atm', '=', False)]"/>
+                <filter string="Employee" name="employee" context="{'group_by': 'name'}"/>
+                <filter string="Payroll Period" name="payroll_period" context="{'group_by': 'payroll_period_id'}"/>
+                <filter string="Department" name="department" context="{'group_by': 'department_id'}"/>
+                <filter string="Job" name="job" context="{'group_by': 'job_id'}"/>
+                <filter string="State" name="state" context="{'group_by': 'state'}"/>
+                <filter string="Adjustment Type" name="adjustment_type" context="{'group_by': 'adjustment_type'}"/>
+                <filter string="Adjustment Name" name="grp_adj_name" context="{'group_by': 'adj_name'}"/>
+                <filter string="Earnings/Deductions" name="grp_earn_deduct" context="{'group_by': 'earn_deduct'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_payslip_report_detailed" model="ir.actions.act_window">
+        <field name="res_model">hr.payslip.report.detailed.view</field>
+        <field name="name">Payslip Report - Detailed</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot,graph</field>
+        <field name="context">{'search_default_current_year': 1, 'search_default_employee': 1, 'search_default_grp_earn_deduct': 1, 'search_default_grp_adj_name': 1}</field>
+    </record>
+
+    <menuitem id="menu_hr_payslip_report_detailed"
+            parent="menu_hr_payroll_reports"
+            action="action_hr_payslip_report_detailed"
+            groups="hr.group_hr_manager"
+            sequence="2"/>
+
+</odoo>

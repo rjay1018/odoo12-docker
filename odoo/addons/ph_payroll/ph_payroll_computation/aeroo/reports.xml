@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<odoo noupdate="0">
+
+    <record id="aeroo_payroll_register_rpt" model="ir.actions.report">
+        <field name="name">Payroll Register</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="report_name">aeroo_payroll_register_rpt</field>
+        <field name="report_type">aeroo</field>
+        <field name="aeroo_in_format">odt</field>
+        <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_pdf_odt"/>
+        <field name="aeroo_template_source">file</field>
+        <field name="aeroo_lang_eval">o.company_id.partner_id.lang</field>
+        <field name="aeroo_company_eval">o.company_id</field>
+        <field name="aeroo_country_eval">o.company_id.partner_id.country_id</field>
+        <field name="aeroo_currency_eval">o.company_id.partner_id.currency_id</field>
+        <field name="aeroo_template_path">ph_payroll_computation/aeroo/payroll_register.odt</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="binding_model_id" ref="model_hr_payslip_run"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <record id="aeroo_payroll_summary_rpt" model="ir.actions.report">
+        <field name="name">Payroll Summary</field>
+        <field name="type">ir.actions.report</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="report_name">aeroo_payroll_summary_rpt</field>
+        <field name="report_type">aeroo</field>
+        <field name="aeroo_in_format">ods</field>
+        <field name="aeroo_out_format_id" ref="report_aeroo.aeroo_mimetype_xls_odt"/>
+        <field name="aeroo_template_source">file</field>
+        <field name="aeroo_lang_eval">o.company_id.partner_id.lang</field>
+        <field name="aeroo_company_eval">o.company_id</field>
+        <field name="aeroo_country_eval">o.company_id.partner_id.country_id</field>
+        <field name="aeroo_currency_eval">o.company_id.partner_id.currency_id</field>
+        <field name="aeroo_template_path">ph_payroll_computation/aeroo/payroll_summary.ods</field>
+        <field name="attachment_use" eval="False"/>
+        <field name="binding_model_id" ref="model_hr_payslip_run"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

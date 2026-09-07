@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="canteen_loan_form" model="ir.ui.view">
+        <field name="name">canteen.loan.form</field>
+        <field name="model">hr.canteen</field>
+        <field name="arch" type="xml">
+            <form string="Canteen Charges">
+                <header>
+                    <button type="object" name="action_confirm" states="draft" string="Confirm" class="oe_highlight"/>
+                    <button type="object" name="action_paid" states="confirm" string="Set as Paid" class="oe_highlight"/>
+                    <button type="object" name="action_confirm" states="paid" string="Set as Unpaid" class="oe_highlight"/>
+                    <button type="object" name="action_draft" string="Set to Draft" states="confirm" class="oe_highlight"
+                        confirm="This action will reset to Draft and remove Accounting Entry. Press Ok to continue."/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group string="Charge Details">
+                            <field name="employee_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                 domain="[('id', '&gt;', 1)]" options="{'no_create': True}"/>
+                            <field name="contract_id" required="1" readonly="1" force_save="1"/>
+                            <field name="department_id"/>
+                            <field name="parent_department_id" required="1" readonly="1" force_save="1"/>
+                            <separator colspan="2"/>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="loan_amount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group string="Accounting" attrs="{'invisible': [('journal_entry', '=', False)]}">
+                            <field name="journal_entry" readonly="1" force_save="1"/>
+                            <field name="other_assets_account_id" readonly="1" force_save="1"/>
+                            <field name="liability_account_id" readonly="1" force_save="1"/>
+                            <field name="journal_id" readonly="1" force_save="1"/>
+                            <field name="move_id" readonly="1" force_save="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="canteen_loan_tree" model="ir.ui.view">
+        <field name="name">canteen.loan.tree</field>
+        <field name="model">hr.canteen</field>
+        <field name="arch" type="xml">
+            <tree string="Canteen Charges">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="loan_amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="canteen_loan_search" model="ir.ui.view">
+        <field name="name">canteen.loan.search</field>
+        <field name="model">hr.canteen</field>
+        <field name="arch" type="xml">
+            <search string="Canteen Charges">
+                <field name="name" string="Charge # or Employee" filter_domain="['|', ('name', 'ilike', self), ('employee_id', 'ilike', self)]"/>
+                <filter string="Employee" name="employee_id" context="{'group_by': 'employee_id'}"/>
+                <filter string="State" name="state" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_canteen_loan" model="ir.actions.act_window">
+        <field name="name">Canteen Charges</field>
+        <field name="res_model">hr.canteen</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="search_view_id" ref="canteen_loan_search"/>
+    </record>
+
+    <menuitem id="menu_canteen_loan_view"
+        parent = "menu_hr_loans_and_advances"
+        action="action_canteen_loan"
+        sequence="2"
+        groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+</odoo>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <delete id="resource.resource_calendar_std_35h" model="resource.calendar"/>
+    <delete id="resource.resource_calendar_std_38h" model="resource.calendar"/>
+
+    <data noupdate="1">
+        <record id="resource.resource_calendar_std" model="resource.calendar">
+            <field name="name">Standard 40 Hours/Week</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="regular_schedule" eval="True"/>
+            <field name="grace_period">0.0833333333333333</field>
+            <field name="state">approve</field>
+            <field name="short_name">8AM-5PM</field>
+        </record>
+
+        <record id="regular_working_hrs" model="resource.calendar">
+            <field name="name">Working Hours (8AM - 5PM)</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="grace_period">0.0833333333333333</field>
+            <field name="state">approve</field>
+            <field name="short_name">8AM-5PM</field>
+        </record>
+    </data>
+
+    <record id="working_schedule_form" model="ir.ui.view">
+        <field name="name">working.schedule.form</field>
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.resource_calendar_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <button type="object" name="action_approve" string="Approve" states="draft" class="oe_highlight"/>
+                    <button type="object" name="action_cancel" string="Cancel" states="draft,approve" class="oe_link"/>
+                    <button type="object" name="action_draft" string="Set to Draft" states="approve,cancel" class="oe_link"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+            </xpath>
+            <xpath expr="//sheet/div" position="replace"/>
+            <field name="company_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="hours_per_day" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="tz" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <xpath expr="//sheet/h1" position="replace"/>
+            <xpath expr="//sheet/group" position="inside">
+                <group>
+                    <field name="name" string="Name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="short_name" placeholder="Ex. 8AM - 5PM" required="1"
+                        attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </group>
+                <group>
+                    <field name="regular_schedule" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="grace_period" widget="float_time" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="work_break" invisible="1" widget="float_time"/>
+                </group>
+            </xpath>
+            <xpath expr="//page[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <field name="attendance_ids" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <xpath expr="//field[@name='attendance_ids']" position="replace">
+                <field name="attendance_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                    <tree string="Working Time" editable="top">
+                        <field name="name" invisible="1"/>
+                        <field name="dayofweek"/>
+                        <field name="day_period"
+                            attrs="{'column_invisible': [('parent.regular_schedule', '=', False)], 'required': [('parent.regular_schedule', '!=', False)]}"/>
+                        <field name="hour_from" widget="float_time"/>
+                        <field name="hour_to" widget="float_time"/>
+                        <field name="has_nd"/>
+                        <field name="dayoff"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="working_schedule_tree" model="ir.ui.view">
+        <field name="name">working.schedule.tree</field>
+        <field name="model">resource.calendar</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="string">Name</attribute>
+            </field>
+            <field name="name" position="after">
+                <field name="short_name"/>
+                <field name="regular_schedule"/>
+                <field name="grace_period" widget="float_time"/>
+                <field name="work_break" widget="float_time" string="Work Break (HH:MM)" invisible="1"/>
+                <field name="state"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="resource.action_resource_calendar_form" model="ir.actions.act_window">
+        <field name="name">Work Schedule</field>
+        <field name="res_model">resource.calendar</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="resource.view_resource_calendar_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Define working hours and time table that could be scheduled to your project members
+          </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_work_schedule"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="resource.action_resource_calendar_form"
+        sequence="21"
+        groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+
+    <record id="working_schedule_attendance_tree" model="ir.ui.view">
+        <field name="name">working.schedule.attendance.tree</field>
+        <field name="model">resource.calendar.attendance</field>
+        <field name="inherit_id" ref="resource.view_resource_calendar_attendance_tree"/>
+        <field name="arch" type="xml">
+            <field name="day_period" position="replace"/>
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="date_from" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="date_to" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="dayofweek" position="after">
+                <field name="day_period" attrs="{'column_invisible': [('parent.regular_schedule', '=', False)], 'required': [('parent.regular_schedule', '!=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+
+    <!-- WORK SHIFT SCHEDULING -->
+    <record id="work_scheduling_form" model="ir.ui.view">
+        <field name="name">work.scheduling.form</field>
+        <field name="model">work.scheduling</field>
+        <field name="arch" type="xml">
+            <form string="Work Shift Scheduling">
+                <header>
+                    <button type="object" name="apply_work_sched" string="Apply Work Schedule" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="resource_calendar_id"
+                                domain="[('regular_schedule', '=', False), ('state', '=', 'approve')]"
+                                options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="date_fr"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+                    <group string="Employees">
+                        <field name="employee_ids" nolabel="1" domain="[('id', '&gt;', 1)]"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_work_scheduling" model="ir.actions.act_window">
+        <field name="name">Work Shift Scheduling</field>
+        <field name="res_model">work.scheduling</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_work_scheduling"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="action_work_scheduling"
+        sequence="22"
+        groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_contract_all,hr.contract.all,hr_contract.model_hr_contract,,1,0,0,0
+access_hr_contract_work_schedule,hr.contract.work.schedule,model_hr_contract_work_schedule,hr.group_hr_manager,1,1,1,1
+access_hr_contract_work_schedule_line,hr.contract.work.schedule.line,model_hr_contract_work_schedule_line,hr.group_hr_manager,1,1,1,1
+access_hr_dayoff_calendar,hr.dayoff.calendar,model_hr_dayoff_calendar,hr.group_hr_manager,1,1,1,1
+access_hr_dayoff_calendar_all,hr.dayoff.calendar.all,model_hr_dayoff_calendar,,1,0,0,0
+access_dayoff_scheduling,dayoff.scheduling,model_dayoff_scheduling,hr.group_hr_manager,1,1,1,1
+
+access_res_country_region_all,res_country_region_all,model_res_country_region,,1,1,0,0
+access_hr_wage_rate_hr_mgr,hr_wage_rate_hr_mgr,model_hr_wage_rate,hr.group_hr_manager,1,1,1,1

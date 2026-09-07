@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_late_deduction_table_hr_mgr,hr_late_deduction_table_hr_mgr,model_hr_late_deduction_table,hr.group_hr_manager,1,1,1,1
+
+access_hr_undertime_hr_mgr,hr_undertime_hr_mgr,model_hr_undertime,hr.group_hr_manager,1,1,1,1
+access_hr_undertime_hr_hol_mgr,hr_undertime_hr_hol_mgr,model_hr_undertime,hr_holidays.group_hr_holidays_manager,1,1,1,1

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="loan_res_config_settings_form" model="ir.ui.view">
+        <field name="name">loan.res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Loans and Salary Advance" string="Loans and Salary Advance" data-key="ph_payroll_loan" groups="hr.group_hr_manager">
+                    <div class="row mt16 o_settings_container" id="loan_settings">
+                        <div class="col-lg-6 col-12 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="post_loan_journal_entries"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="post_loan_journal_entries" string="Loan Request"/>
+                                <div class="text-muted">
+                                    Create loan journal entries
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="post_canteen_journal_entries"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="post_canteen_journal_entries" string="Canteen Charges"/>
+                                <div class="text-muted">
+                                    Create canteen journal entries
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_hr_loan_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'ph_payroll_loan'}</field>
+    </record>
+
+    <menuitem id="menu_loan_global_settings"
+        parent="menu_hr_loans_and_advances" sequence="30"
+        action="action_hr_loan_configuration" groups="base.group_system"/>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+
+    <t t-name="EmployeeDTRView.multiple_dtr">
+        <button type="button" class="btn btn-primary o_button_multiple_dtr">
+            Multiple DTR
+        </button>
+    </t>
+    <t t-extend="ListView.buttons" t-name="EmployeeDTRView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <t t-js="ctx">
+                if (window.odoo._modules.indexOf("base_import") >= 0) {
+                    r.push(context.engine.tools.call(context, 'ImportView.import_button', dict));
+                };
+            </t>
+            <t t-call="EmployeeDTRView.multiple_dtr"/>
+        </t>
+    </t>
+
+    <t t-name="EmployeeAttendanceView.multiple_attendance">
+        <button type="button" class="btn btn-primary o_button_multiple_attendance">
+            Multiple Attendance
+        </button>
+        <!-- <button type="button" class="btn btn-primary o_button_multi_ot_request">
+            Create Overtime Request
+        </button> -->
+    </t>
+    <t t-extend="ListView.buttons" t-name="EmployeeAttendanceView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+            <t t-js="ctx">
+                if (window.odoo._modules.indexOf("base_import") >= 0) {
+                    r.push(context.engine.tools.call(context, 'ImportView.import_button', dict));
+                };
+            </t>
+            <t t-call="EmployeeAttendanceView.multiple_attendance"/>
+        </t>
+    </t>
+
+</templates>

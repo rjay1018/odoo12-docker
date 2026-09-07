@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="hr_contract_employee_inherit_form">
+        <field name="name">hr.contract.employee.inherit.form</field>
+        <field name="model">hr.contract</field>
+        <field name="mode">primary</field>
+        <field name="priority">1</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <field name="state" position="replace">
+                <button type="object" name="create_new_contract" string="Create New Contract" states="open,pending,close,cancel" class="oe_highlight"
+                    confirm="You are about to create a new active contract. Press Ok to continue"/>
+                <button type="object" name="action_open" string="Running" states="draft" class="oe_highlight"/>
+                <button type="object" name="action_pending" string="To Renew" states="open" class="oe_highlight"/>
+                <button type="object" name="action_close" string="Expired" states="open,pending" class="oe_link"/>
+                <button type="object" name="action_cancel" string="Cancel" states="open,pending" class="oe_link"
+                    confirm="You are about to cancel this contract. Press Ok to continue."/>
+                <button type="object" name="action_draft" string="Set as Draft" states="open,pending,close,cancel" class="oe_link"/>
+                <field name="state" widget="statusbar"/>
+            </field>
+            <field name="name" position="attributes">
+                <attribute name="required">1</attribute>
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <field name="employee_id" position="attributes">
+                <attribute name="required">1</attribute>
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="domain">[('id', '&gt;', 1)]</attribute>
+            </field>
+            <field name="department_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                <attribute name="required">1</attribute>
+            </field>
+            <field name="job_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <field name="type_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <field name="type_id" position="after">
+                <field name="classification" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+            </field>
+            <field name="struct_id" position="replace">
+                <field name="wage_type" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+            </field>
+            <field name="date_start" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+            </field>
+            <field name="date_end" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', 'in', ('close', 'cancel'))]}</attribute>
+            </field>
+            <field name="trial_date_end" position="attributes">
+                <attribute name="attrs">{'readonly': [('state', 'in', ('close', 'cancel'))]}</attribute>
+            </field>
+            <field name="reported_to_secretariat" position="replace"/>
+            <xpath expr="//field[@name='resource_calendar_id']" position="replace">
+                <field name="payroll_schedule" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="has_attendance" force_save="1" attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('wage_type', '=', 'monthly')]}"/>
+                <field name="has_night_diff" force_save="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                <field name="has_holiday" force_save="1" attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('wage_type', '=', 'monthly')]}"/>
+                <field name="compute_late" force_save="1" attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('wage_type', '=', 'monthly')], 'invisible': [('has_attendance', '=', False)]}"/>
+                <field name="compute_undertime" force_save="1" attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('wage_type', '=', 'monthly')], 'invisible': [('has_attendance', '=', False)]}"/>
+                <field name="paid_reg_holiday" force_save="1" attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('wage_type', '=', 'monthly')]}"/>
+            </xpath>
+            <xpath expr="//group[@name='duration_group']" position="after">
+                <group string="Premium Contributions" name="premium_contrib">
+                    <div>
+                        <field name="premiums_excluded" class="oe_inline" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <label for="premiums_excluded" style="width: 70%; font-weight: bold"/>
+                    </div>
+                    <separator/>
+                    <div>
+                        <label for="hdmf" string="HDMF :" style="width: 20%; font-weight: bold"/>
+                        <field name="hdmf" class="oe_inline" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <label for="hdmf_amount" string="Amount :" class="pl-4" style="font-weight: bold"/>
+                        <field name="hdmf_amount" style="width: 30% !important" class="oe_inline" force_save="1"
+                            attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('hdmf', '=', False)]}"/>
+                    </div>
+                    <separator/>
+                    <div>
+                        <label for="phic" string="PHIC :" style="width: 20%; font-weight: bold"/>
+                        <field name="phic" class="oe_inline" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <label for="phic_amount" string="Amount :" class="pl-4" style="font-weight: bold"/>
+                        <field name="phic_amount" style="width: 30% !important" class="oe_inline" force_save="1"
+                            attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('phic', '=', False)]}"/>
+                    </div>
+                    <separator/>
+                    <div>
+                        <label for="sss" string="SSS :" style="width: 20%; font-weight: bold"/>
+                        <field name="sss" class="oe_inline" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <label for="sss_amount" string="Amount :" class="pl-4" style="font-weight: bold"/>
+                        <field name="sss_amount" style="width: 30% !important" class="oe_inline" force_save="1"
+                            attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('sss', '=', False)]}"/>
+                    </div>
+                </group>
+                <group string="Work Schedule">
+                    <field name="work_shift_fix" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="resource_calendar_id" required="0"
+                        attrs="{'required': [('work_shift_fix', '!=', False)], 'invisible': [('work_shift_fix', '=', False)], 'readonly': [('state', '!=', 'draft')]}"
+                        domain="[('regular_schedule', '!=', False), ('state', '=', 'approve')]"/>
+                </group>
+                <group string="Day-Off">
+                    <div>
+                        <label for="no_of_dayoff"/>
+                        <field name="no_of_dayoff" class="oe_inline"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"/> (within Payroll Period)
+                    </div>
+                </group>        
+            </xpath>
+            <xpath expr="//page[@name='other']/group[2]" position="before">
+                <field name="work_schedule_ids" nolabel="1"
+                    attrs="{'required': [('work_shift_fix', '=', False)], 'invisible': [('work_shift_fix', '!=', False)], 'readonly': [('state', '!=', 'draft')]}">
+                    <tree string="" editable="bottom">
+                        <field name="resource_calendar_id"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"
+                            domain="[('regular_schedule', '=', False), ('state', '=', 'approve')]"
+                            options="{'no_create': True}"/>
+                        <field name="date_fr" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="date_to" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="state" readonly="1" force_save="1"/>
+                        <button type="object" name="action_run" states="draft" string="Set as Running" class="oe_link"
+                            attrs="{'column_invisible': [('parent.state', '!=', 'draft')]}"/>
+                        <button type="object" name="action_close" states="open" string="Set as Close" class="oe_link"
+                            attrs="{'column_invisible': [('parent.state', '!=', 'draft')]}"/>
+                        <button type="object" name="action_draft" states="open,close" string="Set to Draft" class="oe_link"
+                            attrs="{'column_invisible': [('parent.state', '!=', 'draft')]}"/>
+                    </tree>
+                </field>
+            </xpath>
+            <xpath expr="//page[@name='information']/group[@name='main_info']/group[@name='salary_and_advantages']" position="replace">
+                <group name="salary_and_advantages" string="Wage">
+                    <field name="work_days" widget="radio" attrs="{'readonly': [('state', '!=','draft')], 'invisible': [('wage_type', '=','monthly')]}"/>
+                    <field name="factor_days" attrs="{'readonly': [('state', '!=','draft')], 'invisible': [('wage_type', '=','daily')], 'required': [('wage_type', '=','monthly')]}"/>
+                    <field name="wage_rate_id" attrs="{'readonly': [('state', '!=','draft')], 'invisible': [('wage_type', '!=','daily')]}"/>
+                    <label for="wage" string="Basic Wage"/>
+                    <div class="o_row" name="wage">
+                        <field name="wage" nolabel="1" force_save="1" attrs="{'readonly': [('state', '!=','draft')]}"/>
+                    </div>
+                    <label for="daily_pay"/>
+                    <div class="o_row" name="daily_pay">
+                        <field name="daily_pay" nolabel="1" force_save="1" attrs="{'readonly': [('state', '!=','draft')]}"/>
+                    </div>
+                    <label for="cola_amount" attrs="{'invisible': [('wage_type', '!=','daily')]}"/>
+                    <div class="o_row" name="cola_amount" attrs="{'invisible': [('wage_type', '!=','daily')]}">
+                        <field name="cola_amount" nolabel="1" force_save="1" attrs="{'readonly': [('state', '!=','draft')]}"/>
+                    </div>
+                    <label for="total_daily_pay" attrs="{'invisible': [('wage_type', '!=','daily')]}"/>
+                    <div class="o_row" name="total_daily_pay" attrs="{'invisible': [('wage_type', '!=','daily')]}">
+                        <field name="total_daily_pay" nolabel="1"/>
+                    </div>
+                    <field name="advantages" nolabel="1" placeholder="Advantages..." colspan="2" invisible="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payroll_account.hr_contract_form_inherit" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.inherit</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='salary_and_advantages']" position="after">
+               <group string="Accounting">
+                    <field name="analytic_account_id" groups="analytic.group_analytic_accounting" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="journal_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_contract_form_inherit2" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.inherit2</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+        <field name="arch" type="xml">
+            <field name="schedule_pay" position="replace"/>
+        </field>
+    </record>
+
+
+    <record id="hr_contract_inherit_tree" model="ir.ui.view">
+        <field name="name">hr.contract.inherit.tree</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="job_id" position="before">
+                <field name="department_id"/>
+            </field>
+            <field name="type_id" position="after">
+                <field name="classification"/>
+                <field name="wage_type"/>
+            </field>
+            <field name="date_start" position="before">
+                <field name="payroll_schedule"/>
+            </field>
+            <field name="date_end" position="after">
+                <field name="has_attendance"/>
+                <field name="has_night_diff"/>
+                <field name="has_holiday"/>
+                <field name="compute_late"/>
+                <field name="compute_undertime"/>
+                <field name="paid_reg_holiday"/>
+                <field name="state"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_contract_inherit_search" model="ir.ui.view">
+        <field name="name">hr.contract.inherit.search</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+        <field name="arch" type="xml">
+            <filter name="employee" position="after">
+                <filter string="Department" name="department" context="{'group_by': 'department_id'}"/>
+            </filter>
+            <filter name="contract_type" position="after">
+                <filter string="Classification" name="classification" context="{'group_by': 'classification'}"/>
+                <filter string="Wage Type" name="wage_type" context="{'group_by': 'wage_type'}"/>
+            </filter>
+        </field>
+    </record>
+
+    <record id="hr_contract.action_hr_contract" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="res_model">hr.contract</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_group_by_state': 1}</field>
+        <field name="search_view_id" ref="hr_contract.hr_contract_view_search"/>
+        <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+            Create a new employee contract
+          </p>
+        </field>
+    </record>
+
+
+    <!-- FLEXIBLE WORK SCHEDULE -->
+    <record id="contract_work_schedule_tree" model="ir.ui.view">
+        <field name="name">hr.contract.work.schedule.tree</field>
+        <field name="model">hr.contract.work.schedule</field>
+        <field name="arch" type="xml">
+            <tree string="Work Shift Schedule">
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="department_id"/>
+                <field name="resource_calendar_id"/>
+                <field name="date_fr"/>
+                <field name="date_to"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="contract_work_schedule_form" model="ir.ui.view">
+        <field name="name">hr.contract.work.schedule.form</field>
+        <field name="model">hr.contract.work.schedule</field>
+        <field name="arch" type="xml">
+            <form string="Work Shift Schedule">
+                <header>
+                    <button type="object" name="action_run" states="draft" string="Set as Running" class="oe_highlight"/>
+                    <button type="object" name="action_close" states="open" string="Set as Close" class="oe_highlight"/>
+                    <button type="object" name="action_draft" states="open,close" string="Set to Draft"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" required="1" readonly="0"
+                                domain="[('id', '&gt;', 1)]"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="contract_id" required="1"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                domain="[('employee_id', '=', employee_id), ('state', '=', 'open')]"/>
+                            <field name="department_id" readonly="1" force_save="1"/>
+                        </group>
+                        <group>
+                            <field name="resource_calendar_id"
+                                attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                domain="[('regular_schedule', '=', False), ('state', '=', 'approve')]"
+                                options="{'no_create': True}"/>
+                            <field name="date_fr" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="date_to" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="contract_work_schedule_search" model="ir.ui.view">
+        <field name="name">hr.contract.work.schedule.search</field>
+        <field name="model">hr.contract.work.schedule</field>
+        <field name="arch" type="xml">
+            <search string="Work Shift Schedule">
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="department_id"/>
+                <field name="resource_calendar_id"/>
+                <filter string="Employee" name="employee_id" context="{'group_by': 'employee_id'}"/>
+                <filter string="Department" name="department" context="{'group_by': 'department_id'}"/>
+                <filter string="Work Schedule" name="work_sched" context="{'group_by': 'resource_calendar_id'}"/>
+                <filter string="Status" name="status" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="contract_work_schedule_calendar" model="ir.ui.view">
+        <field name="name">hr.contract.work.schedule.calendar</field>
+        <field name="model">hr.contract.work.schedule</field>
+        <field name="arch" type="xml">
+            <calendar string="Work Shift Schedule" date_start="date_fr" date_stop="date_to"
+                mode="month" color="resource_calendar_id" all_day="all_day">
+                <field name="employee_id"/>
+                <field name="resource_calendar_id"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="action_contract_work_schedule" model="ir.actions.act_window">
+        <field name="name">Work Shift Schedule</field>
+        <field name="res_model">hr.contract.work.schedule</field>
+        <field name="view_mode">tree,calendar,form</field>
+    </record>
+
+    <menuitem id="menu_contract_work_schedule"
+        name="Work Shift Schedule Summary"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="action_contract_work_schedule"
+        sequence="23"/>
+
+
+    <!-- Day-Off Calendar -->
+    <record id="dayoff_calendar_calendar" model="ir.ui.view">
+        <field name="name">hr.dayoff.calendar.calendar</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="arch" type="xml">
+            <calendar string="Day-Off Calendar"
+                date_start="day_off_date" date_stop="day_off_date"
+                mode="month" quick_add="False">
+                <field name="employee_id"/>
+                <field name="resource_calendar_id"/>
+                <field name="notes"/>
+           </calendar>
+        </field>
+    </record>
+
+    <record id="dayoff_calendar_tree" model="ir.ui.view">
+        <field name="name">hr.dayoff.calendar.tree</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="arch" type="xml">
+            <tree string="Day-Off Calendar">
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="department_id"/>
+                <field name="day_off_date"/>
+                <field name="resource_calendar_id"/>
+                <field name="dayofweek"/>
+                <field name="week_no"/>
+                <field name="fiscal_year"/>
+                <field name="notes"/>
+           </tree>
+        </field>
+    </record>
+
+    <record id="dayoff_calendar_search" model="ir.ui.view">
+        <field name="name">hr.dayoff.calendar.search</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="arch" type="xml">
+            <search string="Day-Off Calendar">
+                <field name="employee_id"/>
+                <field name="contract_id"/>
+                <field name="department_id"/>
+                <field name="day_off_date"/>
+                <field name="resource_calendar_id"/>
+                <field name="dayofweek"/>
+                <field name="week_no"/>
+                <field name="fiscal_year"/>
+                <field name="notes"/>
+                <filter string="Employee" name="employee_id" context="{'group_by': 'employee_id'}"/>
+                <filter string="Department" name="department_id" context="{'group_by': 'department_id'}"/>
+                <filter string="Work Schedule" name="resource_calendar_id" context="{'group_by': 'resource_calendar_id'}"/>
+                <filter string="Day-Off Date" name="day_off_date" context="{'group_by': 'day_off_date'}"/>
+           </search>
+        </field>
+    </record>
+
+    <record id="dayoff_calendar_form" model="ir.ui.view">
+        <field name="name">hr.dayoff.calendar.form</field>
+        <field name="model">hr.dayoff.calendar</field>
+        <field name="arch" type="xml">
+            <form string="Day-Off Calendar">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id" required="1" domain="[('id', '&gt;', 1)]"/>
+                            <field name="contract_id" required="1"
+                                domain="[('employee_id', '=', employee_id), ('state', '=', 'open')]"/>
+                            <field name="department_id"/>
+                            <field name="day_off_date" required="1"/>
+                        </group>
+                        <group>
+                            <field name="resource_calendar_id"
+                                domain="[('state', '=', 'approve')]"
+                                required="1" readonly="1" force_save="1"/>
+                            <field name="dayofweek"/>
+                            <field name="week_no"/>
+                            <field name="fiscal_year"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1" colspan="4"/>
+                    </group>
+                </sheet>
+           </form>
+        </field>
+    </record>
+
+    <record id="action_dayoff_calendar" model="ir.actions.act_window">
+        <field name="name">Day-Off Calendar</field>
+        <field name="res_model">hr.dayoff.calendar</field>
+        <field name="view_mode">calendar,tree,form</field>
+    </record>
+
+    <menuitem id="menu_dayoff_calendar_schedule"
+        parent="hr.menu_hr_root"
+        action="action_dayoff_calendar"
+        sequence="5"
+        groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+    <menuitem id="menu_dayoff_calendar_schedule_attendance"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="action_dayoff_calendar"
+        sequence="24"
+        groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+
+    <record id="employee_day_off_calendar_form" model="ir.ui.view">
+        <field name="name">hr.employee.dayoff.calendar</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_dayoff_calendar)d"
+                    type="action"
+                    class="oe_stat_button"
+                    icon="fa-calendar"
+                    context="{'search_default_employee_id': active_id, 'default_employee_id': active_id}"
+                    string="Day-Off Calendar">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="contract_day_off_calendar_form" model="ir.ui.view">
+        <field name="name">hr.contract.dayoff.calendar</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_dayoff_calendar)d"
+                    type="action"
+                    class="oe_stat_button"
+                    icon="fa-calendar"
+                    context="{'search_default_employee_id': employee_id, 'default_employee_id': employee_id}"
+                    string="Day-Off Calendar">
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <!-- DAY-OFF SCHEDULING -->
+    <record id="dayoff_scheduling_form" model="ir.ui.view">
+        <field name="name">dayoff.scheduling.form</field>
+        <field name="model">dayoff.scheduling</field>
+        <field name="arch" type="xml">
+            <form string="Day-Off Scheduling">
+                <header>
+                    <button type="object" name="apply_dayoff" string="Apply Day-Off" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="day_off_date"/>
+                        </group>
+                    </group>
+                    <group string="Employees">
+                        <field name="employee_ids" nolabel="1" domain="[('id', '&gt;', 1)]"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_dayoff_scheduling" model="ir.actions.act_window">
+        <field name="name">Day-Off Scheduling</field>
+        <field name="res_model">dayoff.scheduling</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_dayoff_scheduling"
+        parent="hr_attendance.menu_hr_attendance_root"
+        action="action_dayoff_scheduling"
+        sequence="25"
+        groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+</odoo>

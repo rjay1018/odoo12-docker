@@ -1,0 +1,408 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <template id="payslip_header">
+            <div class="header" style="font-size: 8pt">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td width="4%" style="padding: 0px" class="pl-0 pr-0">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="height: 70px;"/>
+                            </td>
+                            <td width="58%" style="padding: 0px" class="pl-2">
+                                <span style="font-size: 13px" t-field="o.company_id.name"/><br/>
+                                <t t-if="o.company_id.partner_id._format_company_header(o.company_id.partner_id)['street']">
+                                    <span t-esc="o.company_id.partner_id._format_company_header(o.company_id.partner_id)['street']"/>,<br/>
+                                </t>
+                                <t t-else=""/>
+                                <t t-if="o.company_id.partner_id._format_company_header(o.company_id.partner_id)['city']">
+                                    <span t-esc="o.company_id.partner_id._format_company_header(o.company_id.partner_id)['city']"/>,<br/>
+                                </t>
+                                <t t-else=""/>
+                                <t t-if="o.company_id.partner_id._format_company_header(o.company_id.partner_id)['country']">
+                                    <span t-esc="o.company_id.partner_id._format_company_header(o.company_id.partner_id)['country']"/>
+                                </t>
+                                <t t-else=""/>
+                            </td>
+                            <td width="38%" style="padding: 0px">
+                                <div class="text-right">
+                                    Date: <span t-esc="datetime.datetime.now().strftime('%m/%d/%Y %I:%M %p')"/>
+                                </div>
+                                <br/>
+                                <div class="text-right" style="overflow-x: hidden; margin-right: -2.5mm">
+                                    <img t-if="o.name" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 1600, 240)" style="align:right; height:30px"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+        <template id="payslip_info">
+            <div class="border rounded pl-2 pr-2">
+                <div class="row pt-1">
+                    <div class="col-3">
+                        Emp. No.: <strong><span t-field="o.employee_id.identification_id"/></strong>
+                    </div>
+                    <div class="col-6">
+                        Payroll Period: <strong><span t-esc="o.payroll_period_id.payroll_period_name_full()"/></strong>
+                    </div>
+                    <div class="col-3">
+                        Payroll Date: <strong><span t-field="o.date"/></strong>
+                    </div>
+                </div>
+                <div class="row pt-1 pb-1">
+                    <div class="col-4">
+                        Name: <strong><span t-field="o.employee_id.name"/></strong>
+                    </div>
+                    <div class="col-5">
+                        Department: <strong><span t-field="o.contract_id.department_id.name"/></strong>
+                    </div>
+                    <div class="col-3">
+                        Daily Rate: <strong><span t-field="o.daily_pay"/></strong>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="emp_payslip_doc">
+            <t t-call="ph_payroll_computation.payslip_header"/>
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+                <div class="page" style="font-size: 8pt">
+                    <t t-call="ph_payroll_computation.payslip_info"/>
+                    <div class="pt-1"/>
+                    <table class="table table-bordered table-sm" style="margin-bottom:0;">
+                        <thead>
+                            <tr style="padding:1px" class="align-middle">
+                                <th class="text-center">EARNINGS</th>
+                                <th class="text-center">OTHER EARNINGS</th>
+                                <th class="text-center">DEDUCTIONS</th>
+                                <th class="text-center">OTHER DEDUCTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!--Earnings-->
+                                <td>
+                                    <table class="table table-borderless" style="margin-bottom:0;">
+                                        <tbody>
+                                            <tr class="border-bottom">
+                                                <td style="padding:0px"/>
+                                                <td style="padding:0px" class="text-center">Duration</td>
+                                                <td style="padding:0px" class="text-center">Amount</td>
+                                            </tr>
+                                            <tr>
+                                                <t t-set="ot" t-value="o._get_ot_summary()"/>
+                                                <td>
+                                                    Basic + COLA + Paid Reg. Hol.<br/>
+
+                                                    <t t-if="o.contract_id.has_attendance">
+                                                        VL + SL<br/>
+                                                    </t>
+
+                                                    Night Diff.<br/>
+                                                    
+                                                    Reg.: OT + ND<br/>
+
+                                                    Day-Off<br/>
+                                                    Day-Off: OT + ND<br/>
+                                                    
+                                                    Spec. Hol.<br/>
+                                                    Spec. Hol.: OT + ND<br/>
+                                                    Spec. Hol. Day-Off<br/>
+                                                    Spec. Hol. Day-Off: OT + ND<br/>
+                                                    
+                                                    Reg. Hol.<br/>
+                                                    Reg. Hol.: OT + ND<br/>
+                                                    Reg. Hol. Day-Off<br/>
+                                                    Reg. Hol. Day-Off: OT + ND<br/>
+
+                                                    Dbl. Hol.<br/>
+                                                    Dbl. Hol.: OT + ND<br/>
+                                                    Dbl. Hol. Day-Off<br/>
+                                                    Dbl. Hol. Day-Off: OT + ND
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-if="(o.work_days + o.regular_holiday) &gt; 0"><span t-esc="'{0:,.2f}'.format(o.work_days + o.regular_holiday)"/></t><t t-else="">-</t><br/>
+
+                                                    <t t-if="o.contract_id.has_attendance">
+                                                        <t t-if="(o.vacation_leave + o.sick_leave) &gt; 0"><span t-esc="'{0:,.2f}'.format(o.vacation_leave + o.sick_leave)"/></t><t t-else="">-</t><br/>
+                                                        <!-- <t t-if="o.sick_leave &gt; 0"><span t-esc="'{0:,.2f}'.format(o.sick_leave)"/></t><t t-else="">-</t><br/> -->
+                                                    </t>
+
+                                                    <t t-if="o.night_diff &gt; 0"><span t-field="o.night_diff" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                                                    <t t-if="ot['reg_hrs'] &gt; 0"><span t-esc="ot['reg_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                                                    <t t-if="ot['dayoff_hrs'] &gt; 0"><span t-esc="ot['dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                                                    <t t-if="ot['spc_hol_hrs'] &gt; 0"><span t-esc="ot['spc_hol_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['spc_hol_ot_hrs'] &gt; 0"><span t-esc="ot['spc_hol_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['spc_hol_dayoff_hrs'] &gt; 0"><span t-esc="ot['spc_hol_dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['spc_hol_dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['spc_hol_dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                                                    <t t-if="ot['leg_hol_hrs'] &gt; 0"><span t-esc="ot['leg_hol_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['leg_hol_ot_hrs'] &gt; 0"><span t-esc="ot['leg_hol_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['leg_hol_dayoff_hrs'] &gt; 0"><span t-esc="ot['leg_hol_dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['leg_hol_dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['leg_hol_dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                                                    <t t-if="ot['double_hol_hrs'] &gt; 0"><span t-esc="ot['double_hol_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['double_hol_ot_hrs'] &gt; 0"><span t-esc="ot['double_hol_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['double_hol_dayoff_hrs'] &gt; 0"><span t-esc="ot['double_hol_dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="ot['double_hol_dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['double_hol_dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-set="vl" t-value="0"/>
+                                                    <t t-set="sl" t-value="0"/>
+                                                    <t t-if="o.contract_id.has_attendance">
+                                                        <t t-set="vl" t-value="o.vacation_leave * o.daily_pay"/>
+                                                        <t t-set="sl" t-value="o.sick_leave * o.daily_pay"/>
+                                                    </t>
+
+                                                    <t t-if="o.basic_pay &gt; 0"><span t-esc="'{0:,.2f}'.format((o.basic_pay + o.cola_amount + o.regular_holiday_amount) - (vl + sl))"/></t><t t-else=""/><br/>
+
+                                                    <t t-if="o.contract_id.has_attendance">
+                                                        <t t-if="(vl + sl) &gt; 0"><span t-esc="'{0:,.2f}'.format(vl + sl)"/></t><t t-else=""/><br/>
+                                                    </t>
+
+                                                    <t t-if="o.night_diff_amount &gt; 0"><span t-field="o.night_diff_amount"/></t><t t-else=""/><br/>
+
+                                                    <t t-if="ot['reg_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['reg_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                                                    <t t-if="ot['dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['dayoff_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                                                    <t t-if="ot['spc_hol_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['spc_hol_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['spc_hol_dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['spc_hol_dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_dayoff_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                                                    <t t-if="ot['leg_hol_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['leg_hol_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['leg_hol_dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['leg_hol_dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_dayoff_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                                                    <t t-if="ot['double_hol_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['double_hol_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['double_hol_dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                                                    <t t-if="ot['double_hol_dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_dayoff_ot_hrs_amt'])"/></t><t t-else=""/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                
+                                <!--Other Earnings-->
+                                <td>
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr class="border-bottom">
+                                                <td style="padding:0px">Description</td>
+                                                <td style="padding:0px" class="text-center">Amount</td>
+                                            </tr>
+                                            <tr><td style="padding: 1px"/></tr>
+                                            <t t-foreach="o.slip_structure_ids" t-as="ss">
+                                                <tr style="line-height: 0.8">
+                                                    <t t-if="ss.adjustment_id.adjustment_type in ('allowance', 'otherbenefit', 'otherearning', 'refund', '13th_mo', '14th_mo') and ss.active">
+                                                        <td class="align-bottom"><span t-field="ss.adjustment_id.name"/></td>
+                                                        <td class="align-bottom text-right"><span t-field="ss.amount"/></td>
+                                                    </t>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                
+                                <!--Deductions-->
+                                <td>
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr class="border-bottom">
+                                                <td style="padding:0px"/>
+                                                <td style="padding:0px" class="text-center">Duration</td>
+                                                <td style="padding:0px" class="text-center">Amount</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    W-Tax<br/>
+                                                    SSS<br/>
+                                                    SSS MPF<br/>
+                                                    PHIC<br/>
+                                                    Pag-Ibig<br/>
+                                                    <!-- <br/> -->
+                                                    <!-- Halfday<br/> -->
+                                                    <!-- Absent<br/> -->
+                                                    <br/>
+                                                    Late<br/>
+                                                    Undertime
+                                                </td>
+                                                <td class="text-right">
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <!-- <br/> -->
+                                                    <!-- <t t-if="o.halfday &gt; 0"><span t-field="o.halfday"/></t><t t-else="">-</t><br/> -->
+                                                    <!-- <t t-if="o.absent &gt; 0"><span t-field="o.absent"/></t><t t-else="">-</t><br/> -->
+                                                    <br/>
+                                                    <t t-if="o.late &gt; 0"><span t-field="o.late" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                                                    <t t-if="o.undertime &gt; 0"><span t-field="o.undertime" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t>
+                                                </td>
+                                                <td class="text-right">
+                                                    <t t-set="halfday" t-value="o.halfday * o.daily_pay"/>
+                                                    <t t-set="absent" t-value="o.absent * o.daily_pay"/>
+                                                    <t t-if="o.wtax &gt; 0"><span t-field="o.wtax"/></t><t t-else=""/><br/>
+                                                    <t t-if="o.sss_ee &gt; 0"><span t-field="o.sss_ee"/></t><t t-else=""/><br/>
+                                                    <t t-if="o.sss_ee_mpf &gt; 0"><span t-field="o.sss_ee_mpf"/></t><t t-else=""/><br/>
+                                                    <t t-if="o.phic_ee &gt; 0"><span t-field="o.phic_ee"/></t><t t-else=""/><br/>
+                                                    <t t-if="o.hdmf_ee &gt; 0"><span t-field="o.hdmf_ee"/></t><t t-else=""/><br/>
+                                                    <!-- <br/> -->
+                                                    <!-- <t t-if="halfday &gt; 0"><span t-esc="'{0:,.2f}'.format(halfday)"/></t><t t-else=""/><br/> -->
+                                                    <!-- <t t-if="absent &gt; 0"><span t-esc="'{0:,.2f}'.format(absent)"/></t><t t-else=""/><br/> -->
+                                                    <br/>
+                                                    <t t-if="o.late_amount &gt; 0"><span t-field="o.late_amount"/></t><t t-else=""/><br/>
+                                                    <t t-if="o.undertime_amount &gt; 0"><span t-field="o.undertime_amount"/></t><t t-else=""/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                
+                                <!--Other Deductions-->
+                                <td >
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr class="border-bottom">
+                                                <td style="padding:0px">Description</td>
+                                                <td style="padding:0px" class="text-center">Amount</td>
+                                            </tr>
+                                            <tr><td style="padding: 1px"/></tr>
+                                            <t t-foreach="o.slip_structure_ids" t-as="ss">
+                                                <tr style="line-height: 0.8">
+                                                    <t t-if="ss.adjustment_id.adjustment_type in ('cashadvance', 'loan', 'otherdeduct') and ss.active">
+                                                        <td class="align-bottom">
+                                                            <t t-if="ss.loan_id">
+                                                                <span t-field="ss.loan_id.name"/> - <span t-field="ss.adjustment_id.name"/>
+                                                            </t>
+                                                            <t t-elif="ss.canteen_id">
+                                                                <span t-field="ss.canteen_id.name"/> - <span t-field="ss.adjustment_id.name"/>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <span t-field="ss.adjustment_id.name"/>
+                                                            </t>
+                                                        </td>
+                                                        <td class="align-bottom text-right"><span t-field="ss.amount"/></td>
+                                                    </t>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                
+                            </tr>
+                            
+                            <!--Subtotal-->
+                            <tr style="border-spacing: 0px">
+                                <td>
+                                    <div class="row">
+                                        <div class="col-7">Earnings:</div>
+                                        <div class="col-5 text-right"><span t-esc="'{0:,.2f}'.format(o._get_slip_total('1')['earn'])"/></div>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="row">
+                                        <div class="col-7">Other Earn.:</div>
+                                        <div class="col-5 text-right"><span t-esc="'{0:,.2f}'.format(o._get_slip_total('2')['other_earn'])"/></div>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="row">
+                                        <div class="col-7">Deductions:</div>
+                                        <div class="col-5 text-right"><span t-esc="'{0:,.2f}'.format(o._get_slip_total('3')['deduct'])"/></div>
+                                    </div>
+                                </td>
+                                
+                                <td>
+                                    <div class="row">
+                                        <div class="col-7">Other Deduct.:</div>
+                                        <div class="col-5 text-right"><span t-esc="'{0:,.2f}'.format(o._get_slip_total('4')['other_deduct'])"/></div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <div class="pt-1"/>
+                    <div class="border rounded pl-2 pt-2 pr-2 pb-2">
+                        <div class="row">
+                            <div class="col-4 border-right">
+                                TOTAL EARNINGS:<strong><span class="float-right" t-esc="'{0:,.2f}'.format(o._get_slip_total('1')['earn'] + o._get_slip_total('2')['other_earn'])"/></strong><br/>
+                                TOTAL DEDUCTIONS:<strong><span class="float-right" t-esc="'{0:,.2f}'.format(o._get_slip_total('3')['deduct'] + o._get_slip_total('4')['other_deduct'])"/></strong><br/>
+                                <div style="font-size: 10pt" class="pt-2 pb-2">
+                                    NET PAY:<strong><span class="float-right" t-field="o.net_pay"/></strong><br/>
+                                </div>
+                                <t t-if="o.employee_id.bank_account_id">
+                                    <div class="border-top pt-1">
+                                        Bank: <span t-field="o.employee_id.bank_account_id.bank_id.name"/> (<span t-field="o.employee_id.bank_account_id.acc_number"/>)
+                                    </div>
+                                </t>
+                            </div>
+                            <div class="col-8">
+                                I hereby acknowledge to have received the amount <span t-field="o.net_pay"/> as payment of my salaries and allowances for the payroll period of
+                                <span t-field="o.payroll_period_id.period_fr"/> - <span t-field="o.payroll_period_id.period_to"/><br/>
+                                <div class="pt-2"/>
+                                Prepared By: <span t-esc="o._get_pay_master()"/><br/>
+                                Received By: <span t-field="o.employee_id.name"/><br/>
+                                <div class="float-right"><span class="pl-4">Signature: ____________________</span><span class="pl-4">Date: ____________________</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="emp_payslip_doc_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="ph_payroll_computation.emp_payslip_doc" t-lang="o.company_id.partner_id.lang"/>
+                </t>
+            </t>
+        </template>
+
+        <record id="paperformat_payslip" model="report.paperformat">
+            <field name="name">Payslip</field>
+            <field name="default" eval="True"/>
+            <field name="format">A5</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">22</field>
+            <field name="margin_bottom">3</field>
+            <field name="margin_left">3</field>
+            <field name="margin_right">3</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">17</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report id="hr_payroll.action_report_payslip"
+            model="hr.payslip"
+            string="Payslip"
+            report_type="qweb-pdf"
+            name="ph_payroll_computation.emp_payslip_doc_report"
+            file="ph_payroll_computation.emp_payslip_doc_report"
+            print_report_name="'%s' % (object.name or '-')"
+            paperformat="ph_payroll_computation.paperformat_payslip"/>
+
+
+        <delete id="hr_payroll.payslip_details_report" model="ir.actions.report"/>
+        <delete id="hr_payroll.action_contribution_register" model="ir.actions.report"/>
+        <delete id="hr_payroll.act_payslip_lines" model="ir.actions.act_window"/>
+
+    </data>
+</odoo>

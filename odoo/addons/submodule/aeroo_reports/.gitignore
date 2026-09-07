@@ -1,0 +1,6 @@
+venv
+extra-addons
+log
+/.idea
+__pycache__/
+*.pyc

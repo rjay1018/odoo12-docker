@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="grp_emp_own_ot" model="res.groups">
+            <field name="name">Employee Own Overtime</field>
+            <field name="category_id" ref="ph_payroll_computation.mod_categ_ph_payroll"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="rule_emp_own_ot" model="ir.rule">
+            <field name="name">Employee Own OT</field>
+            <field name="model_id" ref="model_hr_overtime" />
+            <field name="perm_create" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('grp_emp_own_ot'))]"/>
+        </record>
+
+    </data>
+</odoo>

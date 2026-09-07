@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hr.holidays</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="55"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Leaves" string="Leaves" data-key="hr_holidays" groups="hr.group_hr_manager">
+                    <div class="row mt16 o_settings_container" id="leaves_settings">
+                        <div class="col-lg-6 col-12 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="accumulated_annual_leave"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="accumulated_annual_leave" string="Accumulated Annual Leave"/>
+                                <div class="text-muted">
+                                    Unused leave allocations accumulates gradually during the year
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_hr_holidays_configuration" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'hr_holidays'}</field>
+    </record>
+
+    <menuitem id="menu_hr_holidays_global_settings" name="Settings"
+        parent="hr_holidays.menu_hr_holidays_configuration" sequence="0"
+        action="action_hr_holidays_configuration" groups="base.group_system"/>
+
+</odoo>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <record model="res.country.region" id="region_ncr">
+            <field name="name">National Capital Region</field>
+            <field name="code">NCR</field>
+            <field name="description">Covers the Cities of Caloocan, Las Pinas, Makati, Malabon, Mandaluyong, Manila, Marikina, Muntinlupa, Paranaque, Pasay, Pasig, Quezon, San Juan, Taguig, Navotas, and Valenzuela and Municipality of Pateros.</field>
+        </record>
+
+        <record model="res.country.region" id="region_car">
+            <field name="name">Cordillera Administrative Region</field>
+            <field name="code">CAR</field>
+            <field name="description">Covers the Provinces of Mt. Province, Abra, Benguet, Ifugao, Kalinga and Apayao and the City of Baguio.</field>
+        </record>
+
+        <record model="res.country.region" id="region_i">
+            <field name="name">Ilocos Region</field>
+            <field name="code">I</field>
+            <field name="description">Covers the Provinces of Ilocos Norte, Ilocos Sur, La Union and Pangasinan and Cities of Laoag, Batac, Vigan, Candon, San Fernando, Urdaneta, Dagupan, San Carlos and Alaminos.</field>
+        </record>
+
+        <record model="res.country.region" id="region_ii">
+            <field name="name">Cagayan Valley Region</field>
+            <field name="code">II</field>
+            <field name="description">Covers the Cities of Tuguegarao, Cauayan and Santiago and the Provinces of Cagayan, Isabela, Quirino, Nueva Vizcaya and Batanes.</field>
+        </record>
+
+        <record model="res.country.region" id="region_iii">
+            <field name="name">Central Luzon</field>
+            <field name="code">III</field>
+            <field name="description">Covers the Provinces of Aurora, Bataan, Bulacan, Nueva Ecija, Pampanga, Tarlac,  Zambales and the Cities of Angeles, Balanga, Cabanatuan, Gapan, Malolos, Munoz, Olongapo, Palayan, San Fernando, San Jose, San Jose del Monte and Tarlac.</field>
+        </record>
+
+        <record model="res.country.region" id="region_iv_a">
+            <field name="name">CALABARZON</field>
+            <field name="code">IV-A</field>
+            <field name="description">Covers the Provinces of Cavite, Laguna, Batangas, Rizal, Quezon, and the Cities of Cavite, Tagaytay, Trece Martirez, Calamba, San Pablo, Lipa,Tanauan, Antipolo and Lucena, per Executive Order 103 issued on 17 May 2002.</field>
+        </record>
+
+        <record model="res.country.region" id="region_iv_b">
+            <field name="name">MIMAROPA</field>
+            <field name="code">IV-B</field>
+            <field name="description">Covers the Provinces of Occidental Mindoro, Oriental Mindoro, Marinduque, Romblon and Palawan, otherwise known as MIMAROPA, including the City of Calapan and the Highly Urbanized City of Puerto Princesa.</field>
+        </record>
+
+        <record model="res.country.region" id="region_v">
+            <field name="name">Bicol Region</field>
+            <field name="code">V</field>
+            <field name="description">Covers the Provinces of Albay, Camarines Norte, Camarines Sur, Catanduanes, Masbate, Sorsogon and the Cities of Iriga, Legazpi, Ligao, Masbate, Nage, Sorsogon and Tabaco.</field>
+        </record>
+
+        <record model="res.country.region" id="region_vi">
+            <field name="name">Western Visayas</field>
+            <field name="code">VI</field>
+            <field name="description">Covers the Provinces of Aklan, Antique, Capiz, Guimaras, Iloilo, and Negros Occidental, including their respective component cities and the highly urbanized Cities of Bacolod and Iloilo.</field>
+        </record>
+
+        <record model="res.country.region" id="region_vii">
+            <field name="name">Central Visayas</field>
+            <field name="code">VII</field>
+            <field name="description">Covers the cities of Carcar, Cebu, Danao, Lapulapu, Mandaue, Naga, Talisay and Municipalities of Compostela, Consolacion, Cordova, Liloan, Minglanilla, San Fernando, or Expanded Metro Cebu, Toledo, Bogo, and the rest of Municipalities in Cebu Province, Tagbilaran City and all municipalities in Bohol Province &amp; Negros Oriental Province, Municipalities in Siquijor Province &amp; Municipalities in Bantayan and Camotes.</field>
+        </record>
+
+        <record model="res.country.region" id="region_viii">
+            <field name="name">Eastern Visayas</field>
+            <field name="code">VIII</field>
+            <field name="description">Covers the Provinces of Leyte, Southern Leyte, Biliran, Samar, Eastern Samar, Northern Samar and  the Cities of Tacloban, Ormoc, Maasin, Catbalogan, Borongan, Baybay and Calbayog.</field>
+        </record>
+
+        <record model="res.country.region" id="region_ix">
+            <field name="name">Zamboanga Peninsula</field>
+            <field name="code">IX</field>
+            <field name="description">Covers the Cities of Zamboanga, Pagadian, Dipolog, Dapital and Isabela, and the Provinces of Zamboanga del Sur, Zamboanga Del Norte and Zamboanga Sibugay.</field>
+        </record>
+
+        <record model="res.country.region" id="region_x">
+            <field name="name">Northern Mindanao</field>
+            <field name="code">X</field>
+            <field name="description">Wage Category I - Cities of Cagayan de Oro and Iligan, and the Municipalities of Tagoloan, Villanueva, and Jasaan
+            Wage Category II - Cities of Malaybalay, Valencia, Gingoog, El Salvador and Ozamiz, and Municipalities of Opol. Maramag, Quezon, Manolo Fortich, and Lugait
+            Wage Category III - Cities of Oroquieta and Tangub and Municipalities of Laguindingan, Mambajao, and Balingasag
+            Wage Category IV - All other areas not covered under the above categories; and all Retail and Service Establishments employing not more than ten (10) workers
+            </field>
+        </record>
+
+        <record model="res.country.region" id="region_xi">
+            <field name="name">Davao Region</field>
+            <field name="code">XI</field>
+            <field name="description">Covers the Cities of Davao, Digos, Island Garden of Samal, Tagum, Panabo, Mati, and the Provinces of Davao del Sur, Davao del Norte, Davao Oriental, and Compostela Valley.</field>
+        </record>
+
+        <record model="res.country.region" id="region_xii">
+            <field name="name">SOCCSKSARGEN</field>
+            <field name="code">XII</field>
+            <field name="description">Covers the Cities of General Santos, Kidapawan, Koronadal and Tacurong, Provinces of North Cotabato (except the 63 barangays that are now part of the BARMM), Sarangani, South Cotabato, and Sultan Kudarat.</field>
+        </record>
+
+        <record model="res.country.region" id="region_xiii">
+            <field name="name">CARAGA Region</field>
+            <field name="code">XIII</field>
+            <field name="description">Covers the Provinces of Agusan del Norte, Agusan del Sur, Surigao del Norte, Surigao del Sur, Dinagat Island, and the Cities of Butuan, Surigao, Bislig, Cabadbaran, Bayugan and Tandag.</field>
+        </record>
+
+        <record model="res.country.region" id="region_barmm">
+            <field name="name">Bangsamoro Autonomous Region in Muslim Mindanao</field>
+            <field name="code">BARMM</field>
+            <field name="description">Covers the Provinces of Maguindanao, Lanao del Sur, Basilan, Sulu, Tawi-Tawi, the Cities of Marawi and Lamitan, Cotabato City, and the 63 barangays in North Cotabato.</field>
+        </record>
+
+    </data>
+</odoo>

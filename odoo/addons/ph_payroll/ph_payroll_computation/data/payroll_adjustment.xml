@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- # Delete existing record and re-create
+        # to remove value for field `adjustment_for`
+        <delete id="ph_payroll_computation.adj_hdmf_calamity_loan" model="hr.payroll.adjustment"/>
+        <delete id="ph_payroll_computation.adj_hdmf_housing_loan" model="hr.payroll.adjustment"/>
+        <delete id="ph_payroll_computation.adj_sss_calamity_loan" model="hr.payroll.adjustment"/> -->
+        <delete id="ph_payroll_computation.adj_net" model="hr.payroll.adjustment"/>
+
+
+
+        <record id="adj_basic" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">basic</field>
+            <field name="name">Basic Salary</field>
+            <field name="sequence" eval="1"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_lwp" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">lwp</field>
+            <field name="name">Leave With Pay</field>
+            <field name="sequence" eval="2"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_lwop" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">lwop</field>
+            <field name="name">Leave Without Pay</field>
+            <field name="sequence" eval="3"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_late" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">late</field>
+            <field name="name">Late</field>
+            <field name="sequence" eval="4"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_undertime" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">undertime</field>
+            <field name="name">Undertime</field>
+            <field name="sequence" eval="5"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_cola" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">cola</field>
+            <field name="name">COLA</field>
+            <field name="sequence" eval="6"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_rice_allowance" model="hr.payroll.adjustment">
+            <field name="adjustment_type">allowance</field>
+            <field name="name">Rice Allowance</field>
+            <field name="sequence" eval="7"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+            <field name="rice_allowance" eval="True"/>
+        </record>
+
+        <record id="adj_ot" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">ot</field>
+            <field name="name">Overtime</field>
+            <field name="sequence" eval="8"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_reg_night_diff" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">nd</field>
+            <field name="name">Night Differential</field>
+            <field name="sequence" eval="9"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_hdmf_premium" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">hdmf_prem</field>
+            <field name="name">HDMF Premium</field>
+            <field name="sequence" eval="10"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_phic_premium" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">phic_prem</field>
+            <field name="name">PHIC Premium</field>
+            <field name="sequence" eval="11"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_sss_premium" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">sss_prem</field>
+            <field name="name">SSS Premium</field>
+            <field name="sequence" eval="12"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_wtax" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">wtax</field>
+            <field name="name">Withholding Tax</field>
+            <field name="sequence" eval="13"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_earn" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">earn</field>
+            <field name="name">Other Earning</field>
+            <field name="sequence" eval="14"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_deduct" model="hr.payroll.adjustment">
+            <field name="adjustment_type">adjustment</field>
+            <field name="adjustment_for">deduct</field>
+            <field name="name">Other Deduction</field>
+            <field name="sequence" eval="15"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_cashadv" model="hr.payroll.adjustment">
+            <field name="adjustment_type">cashadvance</field>
+            <field name="name">Cash Advance</field>
+            <field name="sequence" eval="17"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="hdmf_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">HDMF Loan</field>
+            <field name="sequence" eval="18"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+            <field name="product_type">hdmf_loan</field>
+        </record>
+
+        <record id="phic_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">PHIC Loan</field>
+            <field name="sequence" eval="19"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+            <field name="product_type">phic_loan</field>
+        </record>
+
+        <record id="sss_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">SSS Loan</field>
+            <field name="sequence" eval="20"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+            <field name="product_type">sss_loan</field>
+        </record>
+
+        <record id="canteen_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">Canteen Charges</field>
+            <field name="sequence" eval="21"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="13th_month" model="hr.payroll.adjustment">
+            <field name="adjustment_type">13th_mo</field>
+            <field name="name">13th Month Pay</field>
+            <field name="sequence" eval="22"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="14th_month" model="hr.payroll.adjustment">
+            <field name="adjustment_type">14th_mo</field>
+            <field name="name">14th Month Pay</field>
+            <field name="sequence" eval="23"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="tax_ref" model="hr.payroll.adjustment">
+            <field name="adjustment_type">refund</field>
+            <field name="name">Tax Refund</field>
+            <field name="sequence" eval="24"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="slc" model="hr.payroll.adjustment">
+            <field name="adjustment_type">otherbenefit</field>
+            <field name="name">SL Conversion</field>
+            <field name="sequence" eval="25"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="vlc" model="hr.payroll.adjustment">
+            <field name="adjustment_type">otherbenefit</field>
+            <field name="name">VL Conversion</field>
+            <field name="sequence" eval="26"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_no_in_out" model="hr.payroll.adjustment">
+            <field name="adjustment_type">otherdeduct</field>
+            <field name="name">No IN/OUT</field>
+            <field name="sequence" eval="31"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_error_late" model="hr.payroll.adjustment">
+            <field name="adjustment_type">otherearning</field>
+            <field name="name">Error - Late/UD</field>
+            <field name="sequence" eval="32"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_travel_allow" model="hr.payroll.adjustment">
+            <field name="adjustment_type">allowance</field>
+            <field name="name">Travel Allowance</field>
+            <field name="sequence" eval="33"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_hdmf_calamity_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">HDMF Calamity Loan</field>
+            <field name="sequence" eval="34"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_hdmf_housing_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">HDMF Housing Loan</field>
+            <field name="sequence" eval="35"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_sss_calamity_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">SSS Calamity Loan</field>
+            <field name="sequence" eval="36"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+        <record id="adj_comp_loan" model="hr.payroll.adjustment">
+            <field name="adjustment_type">loan</field>
+            <field name="name">Company Loan</field>
+            <field name="sequence" eval="37"/>
+            <field name="computation">fix</field>
+            <field name="journal_id" ref="ph_payroll_computation.salary_journal"/>
+        </record>
+
+    </data>
+</odoo>

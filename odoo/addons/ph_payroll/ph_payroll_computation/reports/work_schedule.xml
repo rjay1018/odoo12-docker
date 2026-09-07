@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="work_sched_custom_header">
+        <div class="header" style="font-size: 12px">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td width="4%" class="ml-0 mr-0 pl-0 pr-0 pb-0">
+                            <img t-if="request.env.user.company_id.logo" t-att-src="image_data_uri(request.env.user.company_id.logo)" style="height: 70px;"/>
+                        </td>
+                        <td width="58%" class="ml-0 mr-0 pl-0 pr-0 pb-0">
+                            <span style="font-size: 12pt" t-field="request.env.user.company_id.name"/><br/>
+                            <span style="font-size: 10pt" t-esc="o._get_company_address()"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+    <template id="work_sched_document">
+        <div class="article">
+            <t t-call="ph_payroll_computation.work_sched_custom_header"/>
+            <table class="table table-borderless pt-0 pb-0" style="font-size: 10pt">
+                <tbody>
+                    <tr>
+                        <td width="50%" class="pb-0">
+                            Payroll Period : <strong><span t-field="o.payroll_period_id.name"/></strong><br/>
+                            <t t-if="o.department_id">
+                                Department : <strong><span t-field="o.department_id.name"/></strong>
+                            </t>
+                        </td>
+                        <td width="30%" class="pb-0">
+                            <span/><br/>
+                            <span/><br/>
+                        </td>
+                        <td width="20%" class="pb-0">
+                            <span style="font-size: 13pt">WORK SCHEDULE</span><br/>
+                            <span style="font-size: 9pt" t-esc="context_timestamp(datetime.datetime.now()).strftime('%b. %d, %Y @ %I:%M %p')"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="page pt-4">
+                <div class="pt-0 pl-0 pr-0 col-md-6" style="font-size: 8pt">
+                    <table class="table table-bordered table-sm" style="line-height: 1.5">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">Employee Name</th>
+                                <t t-if="not o.department_id">
+                                    <th class="align-middle">Department</th>
+                                </t>
+                                <t t-foreach="o._get_payroll_period_dates()" t-as="d">
+                                    <th class="text-center align-middle">
+                                        <span t-esc="(d.date).strftime('%a')"/><br/>
+                                        <span t-esc="(d.date).strftime('%m/%d')"/>
+                                    </th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.employee_ids" t-as="emp">
+                                <tr>
+                                    <td><span t-field="emp.name"/></td>
+                                    <t t-if="not o.department_id">
+                                        <td><span t-field="emp.department_id.name"/></td>
+                                    </t>
+                                    <t t-foreach="o._get_working_hours(emp)" t-as="wh">
+                                        <td class="text-center"><span t-esc="wh"/></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_work_sched_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="ph_payroll_computation.work_sched_document"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_work_sched" model="report.paperformat">
+        <field name="name">Work Schedule</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">20</field>
+        <field name="margin_bottom">5</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        string="Work Schedule"
+        id="work_sched_document_rpt_id"
+        model="work.schedule.report"
+        report_type="qweb-pdf"
+        name="ph_payroll_computation.report_work_sched_document"
+        file="ph_payroll_computation.report_work_sched_document"
+        paperformat="ph_payroll_computation.paperformat_work_sched"
+        menu="False"
+    />
+
+</odoo>

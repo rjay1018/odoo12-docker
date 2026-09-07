@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="work_sched_report_form" model="ir.ui.view">
+        <field name="name">work.sched.report.form</field>
+        <field name="model">work.schedule.report</field>
+        <field name="arch" type="xml">
+            <form string="Work Schedule">
+                <header>
+                    <button type="object" name="print_report" string="Print Schedule" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="report_type" invisible="1"/>
+                            <field name="payroll_period_id"/>
+                            <field name="department_id"/>
+                        </group>
+                    </group>
+                    <group string="Employees">
+                        <field name="employee_ids" nolabel="1" colspan="4" domain="[('id', '&gt;', 1)]"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_work_sched_report" model="ir.actions.act_window">
+        <field name="name">Work Schedule</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">work.schedule.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_report"
+        name="Reporting"
+        parent="hr_attendance.menu_hr_attendance_root"
+        sequence="30"/>
+
+    <menuitem id="menu_attendance_analysis_report"
+        name="Attendance Analysis"
+        parent="hr_attendance.menu_hr_attendance_report"
+        sequence="1"
+        action="hr_attendance.hr_attendance_action_graph"/>
+
+    <menuitem id="menu_work_sched_report"
+        name="Work Schedule"
+        parent="hr_attendance.menu_hr_attendance_report"
+        action="action_work_sched_report"
+        sequence="2"/>
+
+</odoo>

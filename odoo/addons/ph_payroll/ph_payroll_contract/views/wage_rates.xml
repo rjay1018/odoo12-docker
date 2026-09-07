@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record model="ir.ui.view" id="wage_rate_form">
+        <field name="name">wage.rate.form</field>
+        <field name="model">hr.wage.rate</field>
+        <field name="arch" type="xml">
+            <form string="Daily Min. Wage Rates">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="region_id"/>
+                            <field name="sector"/>
+                            <field name="agriculture"/>
+                            <field name="establishment"/>
+                            <field name="area"/>
+                            <field name="employment_size"/>
+                        </group>
+                        <group>
+                            <field name="basic_wage"/>
+                            <field name="cola"/>
+                            <field name="min_wage_rate"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="wage_rate_tree">
+        <field name="name">wage.rate.tree</field>
+        <field name="model">hr.wage.rate</field>
+        <field name="arch" type="xml">
+            <tree string="Daily Min. Wage Rates">
+                <field name="region_id"/>
+                <field name="sector"/>
+                <field name="agriculture"/>
+                <field name="establishment"/>
+                <field name="area"/>
+                <field name="employment_size"/>
+                <field name="basic_wage"/>
+                <field name="cola"/>
+                <field name="min_wage_rate"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="wage_rate_search">
+        <field name="name">wage.rate.search</field>
+        <field name="model">hr.wage.rate</field>
+        <field name="arch" type="xml">
+            <search string="Daily Min. Wage Rates">
+                <field name="region_id"/>
+                <field name="sector"/>
+                <field name="agriculture"/>
+                <field name="establishment"/>
+                <field name="area"/>
+                <field name="employment_size"/>
+                <filter name="grp_region" string="Region" context="{'group_by': 'region_id'}"/>
+                <filter name="grp_agriculture" string="Agriculture" context="{'group_by': 'agriculture'}"/>
+                <filter name="grp_establishment" string="Establishment" context="{'group_by': 'establishment'}"/>
+                <filter name="grp_employment_size" string="Employment Size" context="{'group_by': 'employment_size'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="act_open_wage_rate" model="ir.actions.act_window">
+        <field name="name">Daily Min. Wage Rates</field>
+        <field name="res_model">hr.wage.rate</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_wage_rates"
+        parent="hr.menu_human_resources_configuration" 
+         action="act_open_wage_rate" sequence="50"/>
+
+
+
+    <record model="ir.ui.view" id="region_form">
+        <field name="name">res.country.region.form</field>
+        <field name="model">res.country.region</field>
+        <field name="arch" type="xml">
+            <form string="Regions">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="region_tree">
+        <field name="name">res.country.region.tree</field>
+        <field name="model">res.country.region</field>
+        <field name="arch" type="xml">
+            <tree string="Regions" editable="bottom">
+                <field name="code"/>
+                <field name="name"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="region_search">
+        <field name="name">res.country.region.search</field>
+        <field name="model">res.country.region</field>
+        <field name="arch" type="xml">
+            <search string="Regions">
+                <field name="name" string="Code, Name or Description"
+                    filter_domain="['|', '|', ('code', 'ilike', self), ('name', 'ilike', self), ('description', 'ilike', self)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="act_open_region" model="ir.actions.act_window">
+        <field name="name">Regions</field>
+        <field name="res_model">res.country.region</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_regions"
+        parent="hr.menu_human_resources_configuration" 
+         action="act_open_region" sequence="50"/>
+
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_emp_badge" model="report.paperformat">
+        <field name="name">Employee Badge</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">85</field>
+        <field name="page_width">54</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="employee_badge_doc">
+        <div class="article">
+            <div class="header pt-2 mt-1" style="font-size: 8pt">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <td width="12%" style="padding:0px">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="height:44px;"/>
+                            </td>
+                            <td width="88%" style="padding:0px; margin-left:-2mm">
+                                <strong><span t-esc="o.company_id.name"/></strong><br/>
+                                <span t-esc="o._get_company_address()"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="py-4"/>
+            <div class="page">
+                <hr class="padding:0px"/>
+                <div class="row" style="margin-top:-2mm; height:112pt">
+                    <div class="col" style="width:30%">
+                        <img class="border" t-att-src="'data:image/png;base64,%s' % to_text(o.image)" style="max-width:98px"/>
+                    </div>
+                    <div class="col" style="width:70%">
+                        <strong><span t-esc="o.name" style="font-size:13pt"/></strong><br/>
+                        <span t-esc="o.department_id.name" style="font-size:10pt"/><br/>
+                        <span t-esc="o.job_id.name" style="font-size:10pt"/><br/>
+                        <div class="py-3"/>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.barcode, 840, 120)" style="max-height:30pt; max-width:100%" align="center"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="report_employee_badge">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="ph_payroll_employee.employee_badge_doc"/>
+            </t>
+        </t>
+    </template>
+
+    <report id="employee_badge_report"
+        string="Employee Badge"
+        model="hr.employee"
+        report_type="qweb-pdf"
+        name="ph_payroll_employee.report_employee_badge"
+        file="ph_payroll_employee.report_employee_badge"
+        paperformat="paperformat_emp_badge"
+        print_report_name="'Employee Badge - %s' % (object.name).replace('/', '')"/>
+
+</odoo>

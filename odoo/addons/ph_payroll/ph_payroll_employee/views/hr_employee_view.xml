@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hide_employee_admin" model="ir.rule">
+            <field name="name">Hide - Employee Admin</field>
+            <field name="model_id" ref="hr.model_hr_employee"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">[('id', '>', 1)]</field>
+            <field name="perm_read" eval="False"/>
+        </record>
+        
+        <menuitem id="employee_report_menu" name="Reports" sequence="30"
+                  groups="hr.group_hr_manager,hr.group_hr_user"/>
+        <menuitem id="menu_hr_management" name="HR Management" parent="hr.menu_hr_root" sequence="5"
+                  groups="hr.group_hr_manager,hr.group_hr_user"/>
+
+        <record model="ir.ui.view" id="hr_employee_inherit_form_view">
+            <field name="name">hr.employee.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet" position="before">
+                    <header>
+                        <button type="object" string="Create Related Partner" name="create_partner" class="oe_highlight"
+                            attrs="{'invisible': [('partner_id', '!=', False)]}"/>
+                        <button type="object" string="Create Related User" name="create_user" class="oe_highlight"
+                            attrs="{'invisible': [('user_id', '!=', False)]}"/>
+                    </header>
+                </xpath>
+                <field name="user_id" position="before">
+                    <field name="partner_id"/>
+                </field>
+                <field name="user_id" position="after">
+                    <field name="identification_id" invisible="1"/>
+                    <field name="joining_date"/>
+                    <field name="retire_date"/>
+                    <field name="years_in_service" readonly="1" force_save="1"/>
+                    <field name="id_expiry_date"  groups="hr.group_hr_user"
+                        attrs="{'invisible': [('identification_id', 'in', [None,False])]}"/>
+                    <field name="id_attachment_id" groups="hr.group_hr_user"
+                        widget="many2many_binary" class="oe_inline"
+                        attrs="{'invisible': [('identification_id', 'in', [None,False])]}"/>
+                </field>
+
+                <field name="department_id" position="before">
+                    <field name="employment_status" required="1"/>
+                </field>
+
+                <field name="job_title" position="replace"/>
+                <!-- <field name="manual_attendance" position="replace"/> -->
+
+                <xpath expr="//page[@name='personal_information']" position="replace">
+                    <page name="personal_information" string="Personal Information" groups="hr.group_hr_user">
+                        <field name="emergency_contact" invisible="1"/>
+                        <field name="emergency_phone" invisible="1"/>
+                        <group>
+                            <group>
+                                <separator string="Contact Information"/>
+                                <field name="address_home_id" context="{'show_address': 1, 'default_type': 'private', 'form_view_ref': 'base.res_partner_view_form_private'}" options='{"always_reload": True, "highlight_first_line": True}'/>
+                                <field name="is_address_home_a_company" invisible="1"/>
+                                <div class="text-warning" groups="hr.group_hr_user"
+                                     attrs="{'invisible': [('is_address_home_a_company','=', False)]}">
+                                    Use here the home address of the employee.
+                                    This private address is used in the expense report reimbursement document.
+                                    It should be different from the work address.
+                                </div>
+                                <field name="km_home_work" string="Distance from Home (km)"/>
+                                <field name="personal_mobile" readonly="0" force_save="1"/>
+                                <field name="personal_email" readonly="0" force_save="1"/>
+                                <separator string="Birth and Status"/>
+                                <field name="birthday"/>
+                                <field name="age"/>
+                                <field name="place_of_birth" groups="hr.group_hr_user"/>
+                                <field name="country_of_birth" groups="hr.group_hr_user"/>
+                                <field name="gender"/>
+                                <field name="marital"/>
+                                <field name="spouse_complete_name" attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}" groups="hr.group_hr_user"/>
+                                <field name="spouse_birthdate" attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}" groups="hr.group_hr_user"/>
+                                <field name="children"/>
+                                <separator string="Education"/>
+                                <field name="certificate"/>
+                                <field name="study_field"/>
+                                <field name="study_school"/>
+                                <separator string="Bank Account"/>
+                                <field name="bank_account_id" context="{'default_partner_id': partner_id}"/>
+                                <field name="salary_atm"/>
+                            </group>
+                            <group name="emp_info_col2">
+                                <separator string="Government ID"/>
+                                <field name="pagibig_id"/>
+                                <field name="phic_id"/>
+                                <field name="sss_id"/>
+                                <field name="tin"/>
+                                <separator string="Passport ID"/>
+                                <field name="country_id" options='{"no_open": True, "no_create": True}'/>
+                                <field name="passport_id"/>
+                                <field name="passport_expiry_date" groups="hr.group_hr_user" attrs="{'invisible': [('passport_id', '=', False)]}"/>
+                                <field name="passport_attachment_id" groups="hr.group_hr_user" widget="many2many_binary" class="oe_inline"
+                                    attrs="{'invisible': [('passport_id', '=', False)]}"/>
+                                <separator string="Work Permit" name="work_permit"/>
+                                <field name="visa_no"/>
+                                <field name="permit_no"/>
+                                <field name="visa_expire"/>
+                            </group>
+                        </group>
+                        <group name="emergency_contact" string="Emergency Contacts">
+                            <field name="emergency_contacts" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="contact_no"/>
+                                    <field name="relation"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Additional Note" name="add_note">
+                            <field name="additional_note" colspan="4" nolabel="1"/>
+                        </group>
+                    </page>
+                </xpath>
+
+                <page name="hr_settings" position="after">
+                    <!-- <page name="family_info" string="Family Information">
+                        <group string="Family">
+                            <field name="fam_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="member_name"/>
+                                    <field name="relation"/>
+                                    <field name="member_contact"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page> -->
+                    <page name="trainings" string="Trainings/Seminars">
+                        <field name="training_ids" nolabel="1" readonly="1"/>
+                    </page>
+                </page>
+
+                <field name="category_ids" position="replace"/>
+                <field name="image" position="replace"/>
+                <xpath expr="//sheet/div[2]/div/div[hasclass('oe_title')]" position="replace"/>
+
+                <xpath expr="//sheet/div[hasclass('oe_button_box')]" position="after">
+                    <field name="name" invisible="1"/>
+                    <label class="oe_edit_only" for="identification_id" string="Employee #:" style="font-weight: bold"/>
+                    <h1><field name="identification_id" readonly="0" force_save="1" class="oe_inline"/></h1>
+                    <div>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}"/>
+                        <div class="row pl-3">
+                            <div class="column">
+                                <label for="last_name" string="Last Name :" style="font-weight: bold; width: 120px"/>
+                                <field name="last_name" required="1" width="80%" class="oe_inline"/><br/>
+                                <label for="first_name" string="First Name :" style="font-weight: bold; width: 120px"/>
+                                <field name="first_name" required="1" width="80%" class="oe_inline"/><br/>
+                                <label for="middle_name" string="Middle Name :" style="font-weight: bold; width: 120px"/>
+                                <field name="middle_name" required="1" width="80%" class="oe_inline"/><br/>
+                                <label for="extension_name" string="Extension Name :" style="font-weight: bold; width: 120px"/>
+                                <field name="extension_name" width="80%" class="oe_inline" placeholder="Jr, Sr, II, III, IV"/>
+                            </div>
+                            <div class="column px-4"/>
+                            <div class="column">
+                                <label for="category_ids" string="Category/Tags: "/>
+                                <field name="category_ids" widget="many2many_tags"/>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+
+                <xpath expr="//group[@name='active_group']" position="after">
+                    <group name="loan" string="Loan &amp; Salary Advance">
+                        <field name="max_loan"/>
+                    </group>
+                </xpath>
+
+                <field name="coach_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="resource_calendar_id" position="attributes">
+                    <attribute name="required">0</attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="tz" position="attributes">
+                    <attribute name="required">0</attribute>
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="manual_attendance" position="after">
+                    <field name="pin"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="hr_employee_inherit_tree_view">
+            <field name="name">hr.employee.tree.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+                <field name="parent_id" position="after">
+                    <field name="joining_date"/>
+                    <field name="retire_date"/>
+                    <field name="years_in_service"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="hr_expense.hr_employee_view_form_inherit_expense" model="ir.ui.view">
+            <field name="name">hr.employee.expense.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="active" eval="False"/>
+        </record>
+
+
+        <!-- Bank Account -->
+        <record id="view_employee_partner_bank_form" model="ir.ui.view">
+            <field name="name">employee.res.partner.bank.form</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="mode">primary</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="required">0</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+
+        <!-- Employee Trainings -->
+        <record id="employee_training_tree" model="ir.ui.view">
+            <field name="name">hr.training.tree</field>
+            <field name="model">hr.training</field>
+            <field name="arch" type="xml">
+                <tree string="Employee Trainings">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="duration"/>
+                    <field name="location"/>
+                    <field name="resource_speaker"/>
+                    <field name="notes"/>
+               </tree>
+            </field>
+        </record>
+
+        <record id="employee_training_search" model="ir.ui.view">
+            <field name="name">hr.training.search</field>
+            <field name="model">hr.training</field>
+            <field name="arch" type="xml">
+                <search string="Employee Trainings">
+                    <field name="name"/>
+                    <field name="location"/>
+                    <field name="notes"/>
+                    <field string="Employee" name="employee_ids" filter_domain="[('employee_ids', 'child_of', self)]"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="employee_training_form" model="ir.ui.view">
+            <field name="name">hr.training.form</field>
+            <field name="model">hr.training</field>
+            <field name="arch" type="xml">
+                <form string="Employee Trainings">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="duration"/>
+                                <field name="rate"/>
+                            </group>
+                            <group>
+                                <field name="location"/>
+                                <field name="resource_speaker"/>
+                                <field name="notes"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Employees">
+                                <field name="employee_ids" nolabel="1" domain="[('id', '&gt;', 1)]"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_employee_training" model="ir.actions.act_window">
+            <field name="name">Employee Trainings</field>
+            <field name="res_model">hr.training</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_employee_training_only" model="ir.actions.act_window">
+            <field name="name">Employee Trainings</field>
+            <field name="res_model">hr.training</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('employee_ids', 'in', active_id)]</field>
+        </record>
+
+        <menuitem id="menu_employee_training"
+            parent="hr.menu_hr_root"
+            action="action_employee_training"
+            sequence="6"/>
+
+
+
+        <record model="ir.ui.view" id="hr_employee_training_inherit_form_view">
+            <field name="name">hr.employee.training.form.view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(action_employee_training_only)d"
+                        type="action"
+                        class="oe_stat_button"
+                        icon="fa-certificate"
+                        string="Trainings/Seminars">
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="hr_employee_manager_inherit_form" model="ir.ui.view">
+            <field name="name">hr.employee.manager.inherit.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+                <field name="manager" position="replace">
+                    <field name="manager" string="HR Manager"/>
+                    <field name="payroll_master"/>
+                </field>
+            </field>
+        </record>
+
+
+        <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+            <field name="domain">[('id', '&gt;', 1)]</field>
+        </record>
+
+        <delete id="hr_gamification.hr_hr_employee_view_form" model="ir.ui.view"/>
+
+        <record id="employee_gamification_inherit_form" model="ir.ui.view">
+            <field name="name">employee.gamification.inherit.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <page name="hr_settings" position="after">
+                    <page name="badges" string="Received Badges" attrs="{'invisible': [('user_id', '=', False)]}">
+                        <field name="has_badges" invisible="1"/>
+                        <button string="Grant a Badge" type="action" name="%(hr_gamification.action_reward_wizard)d"/> to reward this employee for a good action
+                        <div class="o_field_nocontent" attrs="{'invisible': [('has_badges', '=', True)]}">
+                            <p>
+                                Grant this employee his first badge
+                            </p><p class="oe_grey">
+                                Badges are rewards of good work. Give them to people you believe deserve it.
+                            </p>
+                        </div>
+                        <field name="badge_ids" mode="kanban" widget="many2many"/>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="applicant_inherit_form">
+            <field name="name">applicant.inherit.form</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h2" position="replace">
+                    <group>
+                        <field name="partner_name" invisible="1"/>
+                        <group>
+                            <field name="first_name" required="1"/>
+                            <field name="middle_name" required="1"/>
+                            <field name="last_name" required="1"/>
+                            <field name="extension_name" placeholder="Jr, Sr, II, III, IV"/>
+                        </group>
+                        <group>
+                            <field name="categ_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

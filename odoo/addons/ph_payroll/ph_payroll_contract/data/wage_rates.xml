@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- NCR -->
+        <record model="hr.wage.rate" id="ncr_non_agri">
+            <field name="region_id" ref="ph_payroll_contract.region_ncr"/>
+            <field name="sector">non_agri</field>
+            <field name="basic_wage">512</field>
+            <field name="cola">25</field>
+        </record>
+        <record model="hr.wage.rate" id="ncr_agri_plant">
+            <field name="region_id" ref="ph_payroll_contract.region_ncr"/>
+            <field name="sector">agri</field>
+            <field name="agriculture">plant</field>
+            <field name="basic_wage">475</field>
+            <field name="cola">25</field>
+        </record>
+        <record model="hr.wage.rate" id="ncr_agri_non_plant">
+            <field name="region_id" ref="ph_payroll_contract.region_ncr"/>
+            <field name="sector">agri</field>
+            <field name="agriculture">non_plant</field>
+            <field name="basic_wage">475</field>
+            <field name="cola">25</field>
+        </record>
+        <record model="hr.wage.rate" id="ncr_agri_retail_service_15more">
+            <field name="region_id" ref="ph_payroll_contract.region_ncr"/>
+            <field name="sector">agri</field>
+            <field name="agriculture"></field>
+            <field name="basic_wage">475</field>
+            <field name="cola">25</field>
+        </record>
+        <record model="hr.wage.rate" id="ncr_agri_manufacturing">
+            <field name="region_id" ref="ph_payroll_contract.region_ncr"/>
+            <field name="sector">agri</field>
+            <field name="agriculture"></field>
+            <field name="basic_wage">475</field>
+            <field name="cola">25</field>
+        </record>
+
+
+        <!-- NCR -->
+        <record model="hr.wage.rate" id="car_all_area_1">
+            <field name="region_id" ref="ph_payroll_contract.region_car"/>
+            <field name="sector">all</field>
+            <field name="area">Baguio City &amp; La Trinidad, Benguet, Tabuk City, Kalinga</field>
+            <field name="basic_wage">340</field>
+            <field name="cola">10</field>
+        </record>
+        <record model="hr.wage.rate" id="car_all_area_2">
+            <field name="region_id" ref="ph_payroll_contract.region_car"/>
+            <field name="sector">all</field>
+            <field name="area">Other Areas in the Region</field>
+            <field name="basic_wage">330</field>
+            <field name="cola">10</field>
+        </record>
+
+
+        <!-- REGION I -->
+        <record model="hr.wage.rate" id="reg_i_non_agri_30_more">
+            <field name="region_id" ref="ph_payroll_contract.region_i"/>
+            <field name="sector">non_agri</field>
+            <field name="employment_size">30_more</field>
+            <field name="basic_wage">310</field>
+            <field name="cola">30</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_i_non_agri_10_29">
+            <field name="region_id" ref="ph_payroll_contract.region_i"/>
+            <field name="sector">non_agri</field>
+            <field name="employment_size">10_29</field>
+            <field name="basic_wage">285</field>
+            <field name="cola">25</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_i_non_agri_1_9_3m_15m">
+            <field name="region_id" ref="ph_payroll_contract.region_i"/>
+            <field name="sector">non_agri</field>
+            <field name="employment_size">1_9_3m_15m</field>
+            <field name="basic_wage">265</field>
+            <field name="cola">17</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_i_non_agri_1_9_3m_below">
+            <field name="region_id" ref="ph_payroll_contract.region_i"/>
+            <field name="sector">non_agri</field>
+            <field name="employment_size">1_9_3m_below</field>
+            <field name="basic_wage">273</field>
+            <field name="cola">9</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_i_agri_plant">
+            <field name="region_id" ref="ph_payroll_contract.region_i"/>
+            <field name="sector">agri</field>
+            <field name="agriculture">plant</field>
+            <field name="basic_wage">265</field>
+            <field name="cola">30</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_i_non_agri_plant">
+            <field name="region_id" ref="ph_payroll_contract.region_i"/>
+            <field name="sector">agri</field>
+            <field name="agriculture">non_plant</field>
+            <field name="basic_wage">256</field>
+            <field name="cola">26</field>
+        </record>
+
+
+        <!-- REGION II -->
+        <record model="hr.wage.rate" id="reg_ii_non_agri_10more">
+            <field name="region_id" ref="ph_payroll_contract.region_ii"/>
+            <field name="sector">non_agri</field>
+            <field name="establishment">retail_service_10more</field>
+            <field name="basic_wage">360</field>
+            <field name="cola">10</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_ii_agri">
+            <field name="region_id" ref="ph_payroll_contract.region_ii"/>
+            <field name="sector">agri</field>
+            <field name="basic_wage">340</field>
+            <field name="cola">5</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_ii_agri_10less">
+            <field name="region_id" ref="ph_payroll_contract.region_ii"/>
+            <field name="sector">agri</field>
+            <field name="establishment">retail_service_10less</field>
+            <field name="basic_wage">332.5</field>
+            <field name="cola">12.5</field>
+        </record>
+
+
+        <!-- REGION III -->
+        <record model="hr.wage.rate" id="reg_iii_non_agri_10more">
+            <field name="region_id" ref="ph_payroll_contract.region_iii"/>
+            <field name="sector">non_agri</field>
+            <field name="establishment">retail_service_10more</field>
+            <field name="basic_wage">349</field>
+            <field name="cola">20</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_iii_non_agri_10less">
+            <field name="region_id" ref="ph_payroll_contract.region_iii"/>
+            <field name="sector">non_agri</field>
+            <field name="establishment">retail_service_10less</field>
+            <field name="basic_wage">349</field>
+            <field name="cola">20</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_iii_agri_plant">
+            <field name="region_id" ref="ph_payroll_contract.region_iii"/>
+            <field name="sector">agri</field>
+            <field name="agriculture">plant</field>
+            <field name="basic_wage">334</field>
+            <field name="cola">20</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_iii_agri_non_plant">
+            <field name="region_id" ref="ph_payroll_contract.region_iii"/>
+            <field name="sector">agri</field>
+            <field name="agriculture">non_plant</field>
+            <field name="basic_wage">322</field>
+            <field name="cola">20</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_iii_agri_10more">
+            <field name="region_id" ref="ph_payroll_contract.region_iii"/>
+            <field name="sector">agri</field>
+            <field name="establishment">retail_service_10more</field>
+            <field name="basic_wage">284</field>
+            <field name="cola">20</field>
+        </record>
+        <record model="hr.wage.rate" id="reg_iii_agri_10less">
+            <field name="region_id" ref="ph_payroll_contract.region_iii"/>
+            <field name="sector">agri</field>
+            <field name="establishment">retail_service_10less</field>
+            <field name="basic_wage">284</field>
+            <field name="cola">20</field>
+        </record>
+
+    </data>
+</odoo>

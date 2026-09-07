@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <!-- QWEB Report use paperformat -->
+        <report 
+            id="dynamic_label"
+            model="label.config"
+            string="Label"
+            menu="False"
+            report_type="qweb-pdf"
+            name="label.report_label"
+            />
+
+
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Parent Departments -->
+        <record model="hr.department" id="hr_dept_gen_admin">
+            <field name="name">General Administration</field>
+            <field name="code">GA</field>
+        </record>
+
+    </data>
+</odoo>

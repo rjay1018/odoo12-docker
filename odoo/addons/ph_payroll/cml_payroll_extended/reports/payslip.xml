@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <template id="payslip_doc_inherit" inherit_id="ph_payroll_computation.emp_payslip_doc">
+            <xpath expr="//table/tbody/tr/td[1]/table/tbody/tr[2]" position="replace">
+                <tr>
+                    <t t-set="ot" t-value="o._get_ot_summary()"/>
+                    <td>
+                        Basic + COLA + Paid Reg. Hol.<br/>
+
+                        Night Diff.<br/>
+                        
+                        Reg.: OT + ND<br/>
+
+                        Day-Off<br/>
+                        Day-Off: OT + ND<br/>
+                        
+                        Spec. Hol.<br/>
+                        Spec. Hol.: OT + ND<br/>
+                        Spec. Hol. Day-Off<br/>
+                        Spec. Hol. Day-Off: OT + ND<br/>
+                        
+                        Reg. Hol.<br/>
+                        Reg. Hol.: OT + ND<br/>
+                        Reg. Hol. Day-Off<br/>
+                        Reg. Hol. Day-Off: OT + ND<br/>
+
+                        Dbl. Hol.<br/>
+                        Dbl. Hol.: OT + ND<br/>
+                        Dbl. Hol. Day-Off<br/>
+                        Dbl. Hol. Day-Off: OT + ND
+                    </td>
+                    <td class="text-right">
+                        <t t-if="(o.work_days + o.regular_holiday) &gt; 0"><span t-esc="'{0:,.2f}'.format(o.work_days + o.regular_holiday)"/></t><t t-else="">-</t><br/>
+
+                        <t t-if="o.night_diff &gt; 0"><span t-field="o.night_diff" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                        <t t-if="ot['reg_hrs'] &gt; 0"><span t-esc="ot['reg_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                        <t t-if="ot['dayoff_hrs'] &gt; 0"><span t-esc="ot['dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                        <t t-if="ot['spc_hol_hrs'] &gt; 0"><span t-esc="ot['spc_hol_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['spc_hol_ot_hrs'] &gt; 0"><span t-esc="ot['spc_hol_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['spc_hol_dayoff_hrs'] &gt; 0"><span t-esc="ot['spc_hol_dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['spc_hol_dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['spc_hol_dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                        <t t-if="ot['leg_hol_hrs'] &gt; 0"><span t-esc="ot['leg_hol_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['leg_hol_ot_hrs'] &gt; 0"><span t-esc="ot['leg_hol_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['leg_hol_dayoff_hrs'] &gt; 0"><span t-esc="ot['leg_hol_dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['leg_hol_dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['leg_hol_dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+
+                        <t t-if="ot['double_hol_hrs'] &gt; 0"><span t-esc="ot['double_hol_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['double_hol_ot_hrs'] &gt; 0"><span t-esc="ot['double_hol_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['double_hol_dayoff_hrs'] &gt; 0"><span t-esc="ot['double_hol_dayoff_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t><br/>
+                        <t t-if="ot['double_hol_dayoff_ot_hrs'] &gt; 0"><span t-esc="ot['double_hol_dayoff_ot_hrs']" t-options="{'widget': 'float_time'}"/></t><t t-else="">-</t>
+                    </td>
+                    <td class="text-right">
+                        <t t-if="o.basic_pay &gt; 0"><span t-esc="'{0:,.2f}'.format(o.basic_pay + o.cola_amount + o.regular_holiday_amount)"/></t><t t-else=""/><br/>
+
+                        <t t-if="o.night_diff_amount &gt; 0"><span t-field="o.night_diff_amount"/></t><t t-else=""/><br/>
+
+                        <t t-if="ot['reg_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['reg_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                        <t t-if="ot['dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['dayoff_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                        <t t-if="ot['spc_hol_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['spc_hol_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['spc_hol_dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['spc_hol_dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['spc_hol_dayoff_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                        <t t-if="ot['leg_hol_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['leg_hol_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['leg_hol_dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['leg_hol_dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['leg_hol_dayoff_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+
+                        <t t-if="ot['double_hol_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['double_hol_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_ot_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['double_hol_dayoff_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_dayoff_hrs_amt'])"/></t><t t-else=""/><br/>
+                        <t t-if="ot['double_hol_dayoff_ot_hrs_amt'] &gt; 0"><span t-esc="'{0:,.2f}'.format(ot['double_hol_dayoff_ot_hrs_amt'])"/></t><t t-else=""/>
+                    </td>
+                </tr>
+            </xpath>
+
+            <xpath expr="//table/tbody/tr/td[2]/table/tbody" position="inside">
+                <tr style="line-height: 0.8">
+                    <t t-if="o.paid_leave &gt; 0">
+                        <t t-set="paid_leave" t-value="o.paid_leave * o.daily_pay"/>
+                        <td class="align-bottom">Paid Leave</td>
+                        <td class="align-bottom text-right"><span t-esc="'{0:,.2f}'.format(paid_leave)"/></td>
+                    </t>
+                </tr>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

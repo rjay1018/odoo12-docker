@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_overtime_computation_hr_mgr,hr.overtime.computation,model_hr_overtime_computation,hr.group_hr_manager,1,1,1,1
+access_hr_overtime_hr_mgr,hr.overtime,model_hr_overtime,hr.group_hr_manager,1,1,1,1
+
+access_hr_overtime_emp_own_,hr_overtime_emp_own,model_hr_overtime,grp_emp_own_ot,1,1,1,0
+access_hr_overtime_computation_emp_own_,hr_overtime_computation_emp_own,model_hr_overtime_computation,grp_emp_own_ot,1,0,0,0
+
+access_hr_holiday_emp_own_,hr_holiday_emp_own,ph_payroll_computation.model_hr_holiday,grp_emp_own_ot,1,0,0,0
+
+access_hr_contract_emp_own_,hr_contract_emp_own,hr_contract.model_hr_contract,grp_emp_own_ot,1,0,0,0
+access_hr_dayoff_calendar_emp_own_,hr_dayoff_calendar_emp_own,ph_payroll_contract.model_hr_dayoff_calendar,grp_emp_own_ot,1,0,0,0
+
+access_hr_overtime_hours_all,hr.overtime.hours,model_hr_overtime_hours,,1,1,1,1
+
+access_hr_advance_overtime_all,hr_advance.overtime,model_hr_advance_overtime,,1,1,1,1
+access_hr_advance_overtime_line_all,hr_advance.overtime_line,model_hr_advance_overtime_line,,1,1,1,1
+;access_ot_hr_employee_contract_all,ot_hr_employee_contract,model_ot_hr_employee_contract,,1,1,1,1
