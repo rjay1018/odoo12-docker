@@ -8,6 +8,7 @@ ENV LANG=C.UTF-8
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     curl \
+    default-jre \
     dirmngr \
     fonts-noto-cjk \
     gnupg \
