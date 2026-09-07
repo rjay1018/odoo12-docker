@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_competency_tree" model="ir.ui.view">
+            <field name="name">hr.competency.tree</field>
+            <field name="model">hr.competency</field>
+            <field name="arch" type="xml">
+               <tree string="Competency Profile" editable="top">
+                    <field name="knowledge"/>
+                    <field name="capability"/>
+                    <field name="skill_level"/>
+                    <field name="talent"/>
+                    <field name="org_result"/>
+                    <field name="jobs_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_competency" model="ir.actions.act_window">
+            <field name="name">Competency Profile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.competency</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_competency"
+            parent="hr_recruitment.menu_hr_recruitment_configuration"
+            action="action_competency"
+            sequence="10"/>
+
+    </data>
+</odoo>

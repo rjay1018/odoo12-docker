@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="hr_employee_form_inherit">
+            <field name="name">he_employee_form_inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[last()]" position="after">
+                    <page string="Available Appointments">
+                        <field name="hr_slots_ids" readonly="1">
+                            <tree>
+                                <field name="date"/>
+                                <field name="slot_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='pseudonym']" position="after">
+                    <field name="client_support_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

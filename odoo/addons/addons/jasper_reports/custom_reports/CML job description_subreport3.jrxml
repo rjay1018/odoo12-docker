@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CML job description_subreport3" language="groovy" pageWidth="540" pageHeight="752" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.3579476910000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;competency_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Knowledge_Base-knowledge" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Competency-competency_ids/Knowledge_Base-knowledge]]></fieldDescription>
+	</field>
+	<field name="Capability_Requirments-capability" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Competency-competency_ids/Capability_Requirments-capability]]></fieldDescription>
+	</field>
+	<field name="Skill_Level-skill_level" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Competency-competency_ids/Skill_Level-skill_level]]></fieldDescription>
+	</field>
+	<field name="Talent_Requirments-talent" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Competency-competency_ids/Talent_Requirments-talent]]></fieldDescription>
+	</field>
+	<field name="Organizational_Result_Area-org_result" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Competency-competency_ids/Organizational_Result_Area-org_result]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="281" y="48" width="34" height="33" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Skill Level]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="48" width="119" height="33" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Knowledge Base]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="452" y="48" width="88" height="33" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Organizational Result Area]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="319" y="48" width="129" height="33" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Talent Requirments]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="123" y="48" width="154" height="33" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Capability Requirments]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="81" width="540" height="3"/>
+				<box>
+					<pen lineColor="#55555A"/>
+					<topPen lineColor="#55555A"/>
+					<leftPen lineColor="#55555A"/>
+					<bottomPen lineWidth="0.25" lineColor="#D6D6D8"/>
+					<rightPen lineColor="#55555A"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="12" width="540" height="26" forecolor="#55555A"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Competency Profile]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="319" y="0" width="129" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Talent_Requirments-talent}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="281" y="0" width="34" height="25" forecolor="#55555A"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Skill_Level-skill_level}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="119" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Knowledge_Base-knowledge}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="123" y="0" width="154" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Capability_Requirments-capability}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="452" y="0" width="88" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Organizational_Result_Area-org_result}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="equipment_asset_wizard_view">
+            <field name="name">equipment.asset.wizard.form</field>
+            <field name="model">equipment.asset</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                         <group>
+                             <field name="equipment_asset_id" domain="[('maintenance_equipment_id', '=', False)]"/>
+                         </group>
+                    </group>
+                    <footer>
+                        <button name="submit_asset_record" string="Submit" type="object"/>
+                        <button name="cancel"  special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+         <record model="ir.actions.act_window" id="equipment_asset_wizard_action_menu">
+             <field name="name">Generate Asset</field>
+             <field name="res_model">equipment.asset</field>
+             <field name="view_type">form</field>
+             <field name="view_mode">form</field>
+             <field name="target">new</field>
+         </record>
+    </data>
+</odoo>

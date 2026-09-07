@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="group_hide_menu"  model="res.groups">
+            <field name="name">Hide Menus</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+        <record id="employee_orientation.menu_employee_training_child" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6,0,[ref('group_hide_menu')])]"/>
+        </record>
+    </data>
+</odoo>

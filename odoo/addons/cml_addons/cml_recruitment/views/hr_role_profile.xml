@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_role_profile_tree" model="ir.ui.view">
+            <field name="name">hr.role.profile.tree</field>
+            <field name="model">hr.role.profile</field>
+            <field name="arch" type="xml">
+               <tree string="Role Profile" editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_role_profile" model="ir.actions.act_window">
+            <field name="name">Role Profile</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.role.profile</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_hr_role_profile"
+            parent="hr_recruitment.menu_hr_recruitment_configuration"
+            action="action_hr_role_profile"
+            sequence="10"/>
+
+    </data>
+</odoo>

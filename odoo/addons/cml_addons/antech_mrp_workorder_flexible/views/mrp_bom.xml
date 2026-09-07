@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="form_mrp_bom_flexible_inherit" model="ir.ui.view">
+      <field name="name">view.mrp.bom.flexible.form.inherit</field>
+      <field name="model">mrp.bom</field>
+      <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook/page[2]/group[1]/group[1]/field[@name='sequence']" position="after">
+          <field name="consumption" attrs="{'invisible': [('type','!=','normal')]}" required="1"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

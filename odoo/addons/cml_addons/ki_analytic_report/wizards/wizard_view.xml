@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='analytic_wizard_form'>
+            <field name="name">analytic.period.report.wizard.form</field>
+            <field name="model">analytic.period.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Report Data">
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="filter_group" widget="radio"/>
+                            </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                        <label for="analytic_account_ids" attrs="{'invisible': [('filter_group', '!=', 'analytic_account')]}"/>
+                            <field name="analytic_account_ids" attrs="{'invisible': [('filter_group', '!=', 'analytic_account')]}"/>
+                        <label for="analytic_tag_ids" attrs="{'invisible': [('filter_group', '!=', 'analytic_tag')]}"/>
+                            <field name="analytic_tag_ids" attrs="{'invisible': [('filter_group', '!=', 'analytic_tag')]}"/>
+
+                    </group>
+                    <footer>
+                        <button name="export_xls" type="object" default_focus="1"
+                                string="Generate Report" class="oe_highlight"
+                                context="{'xls_export':1}" icon="fa-download"/>
+                        or
+                        <button string="Cancel" class="oe_link"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='analytic_wizard_action'>
+            <field name="name">Analytic in Excel</field>
+            <field name="res_model">analytic.period.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="analytic_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.ui.view" id="analytic_report_template_excel_report_views">
+            <field name="name">Analytic Report</field>
+            <field name="model">analytic.reports.exel</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="excel_file" filename="file_name"/>
+                    </group>
+                    <footer>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <menuitem name="Analytic Period Report"
+                  id="export_product_card_excel" action="analytic_wizard_action"
+                  sequence="5" parent="account.menu_finance_reports"/>
+    </data>
+</odoo>

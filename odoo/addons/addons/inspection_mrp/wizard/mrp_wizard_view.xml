@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="mrp_wizard_view_form" model="ir.ui.view">
+		<field name="name">mrp.wizard.form</field>
+		<field name="model">mrp.wizard</field>
+		<field name="arch" type="xml">
+			<form string="Failed Finished Goods">
+				<p>Finished Good doesn't pass in Quality Inspection. Do you want to proceed..!!</p>
+				<footer>
+					<button name="do_stock" string="Move to Stock" type="object"
+						class="oe_highlight" />
+					<button name="do_scrap" string="Move to Scrap" type="object"
+						class="oe_highlight"/>
+				</footer>
+			</form>
+		</field>
+	</record>
+
+
+	<record id="action_mrp_wizard"
+		model="ir.actions.act_window">
+		<field name="name">Finished Goods</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">mrp.wizard</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+		<field name="view_id" ref="mrp_wizard_view_form" />
+	</record>
+</odoo>

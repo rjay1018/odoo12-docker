@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Sales Invoice_subreport1" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="8411a06c-0428-4a59-868a-477ec5ec490b">
+	<property name="ireport.zoom" value="4.177248169415656"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;tax_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Untaxed_Amount-amount_untaxed" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Untaxed_Amount-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Base-base" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Base-base]]></fieldDescription>
+	</field>
+	<field name="Tax_Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Tax_Description-name]]></fieldDescription>
+	</field>
+	<field name="Amount_Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Amount_Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Code-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Tax_Account-account_id/Code-code]]></fieldDescription>
+	</field>
+	<field name="Sequence-sequence" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Sequence-sequence]]></fieldDescription>
+	</field>
+	<field name="Tax-amount_tax" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Amount_Due-residual" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Amount_Due-residual]]></fieldDescription>
+	</field>
+	<sortField name="Tax_Description-name"/>
+	<variable name="vat" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Amount_Total-amount_total} == "" ? 0.00 :$F{Amount_Total-amount_total})]]></variableExpression>
+	</variable>
+	<variable name="vat_total" class="java.lang.Double" resetType="Group" resetGroup="Tax Name" calculation="Sum">
+		<variableExpression><![CDATA[$V{vat}]]></variableExpression>
+	</variable>
+	<variable name="Total" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total-amount_total} == "" ? 0.00 :$F{Total-amount_total})]]></variableExpression>
+	</variable>
+	<variable name="Grand_Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{Total}]]></variableExpression>
+	</variable>
+	<group name="Tax Name">
+		<groupExpression><![CDATA[$F{Tax_Description-name}]]></groupExpression>
+		<groupFooter>
+			<band height="16">
+				<textField isBlankWhenNull="true">
+					<reportElement x="2" y="0" width="116" height="16" uuid="187b9fdf-fdde-413a-bdab-720ebecc2c07"/>
+					<box>
+						<pen lineWidth="0.5" lineColor="#808080"/>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.5" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font isBold="true"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Tax_Description-name} == "VAT / IN" ? "VAT AMOUNT" :
+$F{Tax_Description-name} == "VAT / EX" ? "VAT AMOUNT" :
+$F{Tax_Description-name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="199" y="0" width="4" height="16" uuid="1b506bb1-2c8c-4f5e-b675-d0a0d947d04f"/>
+					<box>
+						<pen lineWidth="0.5" lineColor="#808080"/>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.5" lineColor="#808080"/>
+						<rightPen lineWidth="0.5" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="118" y="0" width="81" height="16" uuid="a43d307f-a2eb-475d-a61b-54ac4c49a693"/>
+					<box>
+						<pen lineWidth="0.5" lineColor="#808080"/>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.5" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+						<font isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Amount_Total-amount_total} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Amount_Total-amount_total}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="2" height="16" uuid="fa6f5f15-0e00-47ee-b60d-696f4da491cd"/>
+					<box>
+						<pen lineWidth="0.5" lineColor="#808080"/>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<leftPen lineWidth="0.5" lineColor="#808080"/>
+						<bottomPen lineWidth="0.5" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font isBold="false"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="2"/>
+	</detail>
+	<pageFooter>
+		<band height="35">
+			<staticText>
+				<reportElement x="0" y="33" width="203" height="2" uuid="a5a6845b-e812-452a-a83f-33eb56a9c732"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="118" y="17" width="81" height="16" backcolor="#D6D6D8" uuid="7435e935-4767-4d0f-8425-64880a56163d"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format(
+Double.valueOf($F{Amount_Due-residual} == "" ? 0.00 :$F{Amount_Due-residual})
+)]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="199" y="17" width="4" height="16" backcolor="#D6D6D8" uuid="828e27a7-acec-4606-9b87-5d412adaf545"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="17" width="116" height="16" uuid="59f52429-4fbb-44e1-8835-5ea642fa6529"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL AMOUNT DUE:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="17" width="2" height="16" backcolor="#D6D6D8" uuid="869d9920-56d3-42a3-bc5c-7a83fa8b8cf3"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="1" width="116" height="16" uuid="815aa229-2cf1-4299-a1c9-da8a82c03295"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TOTAL AMOUNT:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="1" width="2" height="16" backcolor="#D6D6D8" uuid="de2d0de4-743d-4df2-9108-c5b8706fed8c"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="118" y="1" width="81" height="16" backcolor="#D6D6D8" uuid="9fe47551-8dd7-4e7a-a6d7-35371d6d4781"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Total})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="199" y="1" width="4" height="16" backcolor="#D6D6D8" uuid="56a1fd9b-6ad9-4883-9d65-a717d1788f9c"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

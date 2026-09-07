@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<template id="assets_frontends"
+		inherit_id="website.assets_frontend">
+		<xpath expr="script[last()]" position="after">
+			<script type="text/javascript"
+				src="/ki_survey_extend/static/src/js/button_status.js"></script>
+		</xpath>
+	</template>
+
+	<template id="survey_init_inherit"
+		inherit_id="survey.survey_init">
+		<xpath expr="//div[@class='jumbotron mt32']" position="replace">
+			<div class='jumbotron mt32'>
+				<h1 t-field='survey.title' class="text-center" />
+				<div t-field='survey.description'
+					class="oe_no_empty text-center" />
+				<div >
+					<t t-if='survey.user_confirmation_content'>
+						<p t-raw='survey.user_confirmation_content' />
+						<br />
+					</t>
+				</div>
+				<div class="text-center">
+				   <t t-if='survey.user_confirmation'>
+						<input type="checkbox" id="agree" name="agree" value="Agree" />
+						<label for="agree">I accept terms and conditions.</label>
+                    </t>
+				</div>
+				<div class="text-center">
+                    <a role="button" class="btn btn-primary btn-lg pull-center"
+                        id="button_survey"
+                        t-att-href="'/survey/fill/%s/%s' % (slug(survey), token)">
+                        Start Survey
+                    </a>
+
+				</div>
+			</div>
+		</xpath>
+	</template>
+
+</odoo>

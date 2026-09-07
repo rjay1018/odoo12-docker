@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="survey_user_input_form_inherit_summary" model="ir.ui.view">
+            <field name="name">survey_user_input_form.inherit.summary</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_form" />
+            <field name="arch" type="xml">
+                <data>
+                <xpath expr="//field[@name='user_input_line_ids']" position="after">
+                    <group>
+                        <field name="total_score"/>
+                        <field name="average_score"/>
+                    </group>
+                    <separator string="Assesment Score Summary" colspan="4"/>                    
+
+                                <button name="action_compute_score_summary"
+                                    type="object" string="Compute Score Summary"
+                                    class="btn btn-primary"/>
+                                <field name="pagewise_summary_ids" nolabel="1">
+                                    <tree editable="bottom"  >
+                                        <field name="page_id"/>
+                                        <field name="total_score"/>
+                                        <field name="average_score"/>
+                                    </tree>
+                                </field>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>

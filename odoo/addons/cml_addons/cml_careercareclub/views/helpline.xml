@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <!-- Inherit Form View -->
+    <record id="view_helpline_sessions_form_extend" model="ir.ui.view">
+        <field name="name">view_helpline_sessions_form_extend</field>
+        <field name="model">helpline.sessions</field>
+        <field name="inherit_id" ref="cml_helpline.view_helpline_sessions_form"/>
+        <field name="arch" type="xml">
+        	<xpath expr="//field[@name='caller_type_id']" position="attributes">
+				<attribute name="string">Type</attribute>
+			</xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Responsible</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Member</attribute>
+            </xpath>
+            <xpath expr="//label[@for='summary']" position="replace">
+               <label for="summary" string="Narrative"/>
+            </xpath>
+		</field>
+    </record>
+
+    <!-- Inherit Tree View -->
+    <record id="view_helpline_sessions_tree_extend" model="ir.ui.view">
+        <field name="name">view_helpline_sessions_tree_extend</field>
+        <field name="model">helpline.sessions</field>
+        <field name="inherit_id" ref="cml_helpline.view_helpline_sessions_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='summary']" position="attributes">
+                <attribute name="string">Narrative</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Responsible</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Inherit Action -->
+    <record id="cml_helpline.action_helpline" model="ir.actions.act_window">
+            <field name="name">Members Requests</field>
+    </record>
+
+    <!-- Inherit Menus -->
+    <record id="cml_helpline.helpline_root" model="ir.ui.menu">
+        <field name="name">Request Form</field>
+    </record>
+
+    <record id="cml_helpline.helpline_sessions" model="ir.ui.menu">
+        <field name="name">Members Request</field>
+    </record>
+
+</odoo>

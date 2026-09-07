@@ -1,0 +1,140 @@
+._hide {
+  display: none !important;
+}
+._show {
+  display: block !important;
+}
+._menuEdit {
+  cursor: pointer;
+  font-size: 11px;
+  opacity: 0.8;
+  i {
+    margin-right: 5px;
+  }
+}
+._menuEdit:hover {
+  opacity: 1;
+}
+._bgEdit {
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0px;
+  border-top: 5px solid #6f7d82;
+}
+.wrapMenuEdit {
+  overflow: hidden;
+  min-width: 500px;
+  background: white;
+  border: 1px solid #2c373c;
+  color: #bbbbbb;
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  margin: auto;
+  border-top-width: 0px;
+  position: relative;
+  ._bot {
+    background: #3c3f41;
+    padding: 10px;
+    text-align: right;
+    border-top: 1px solid #2c383b;
+    ._btnConfirm {
+      color: white;
+      background: #6f7d82;
+      border: 1px solid #3c3f41;
+      font-weight: bold;
+    }
+  }
+  ._head {
+    padding: 15px 10px;
+    border-bottom: 1px solid #2c2f30;
+    display: flex;
+    background: #3c3f41;
+    div:first-child {
+      flex: 1;
+      a {
+        font-size: 16px;
+        color: #d6d6d6  ;
+        font-weight: bold;
+      }
+    }
+    div:last-child {
+      text-align: left;
+    }
+    i {
+      font-size: 19px;
+      color: #878787;
+      cursor: pointer;
+    }
+    i:hover {
+      color: #d6d6d6;
+    }
+  }
+  ._con {
+    background-color: #2b2b2b;
+    max-height: 500px;
+    overflow-y: scroll;
+    padding: 20px;
+    >ul {
+      padding: 0px;
+    }
+  }
+  ul {
+    list-style: none;
+    padding-left: 30px;
+  }
+  ._wInfo:hover {
+    opacity: 1;
+  }
+  ._wInfo {
+    display: flex;
+    background: #fafbfc;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background: #3b3f41;
+    border: 1px solid #707d84;
+    ._wEdit {
+      margin-top: 4px;
+      width: 23px;
+      background-image: url(/ye_dynamic_odoo/static/src/img/edit.png);
+    }
+    ._wName {
+      flex: 1;
+      padding: 5px 15px;
+      background: #50565a;
+      //border: 1px solid #707d84;
+      border-left-width: 0px;
+      border-right-width: 0px;
+      color: #bbbbbb;
+      input {
+        display: none;
+      }
+      input:focus {
+        border: 1px solid #a5a3d3;
+      }
+    }
+    ._wAdd {
+      padding: 7px 7px 0px 7px;
+      background: #6f7d83;
+      color: white;
+      i {
+        //font-size: 16px;
+      }
+    }
+    ._wIcon {
+      margin: 3px 5px 0px 5px;
+      display: block;
+      width: 22px;
+      height: 25px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+    }
+    ._wRemove {
+      background-image: url(/ye_dynamic_odoo/static/src/img/remove.png);
+    }
+  }
+}

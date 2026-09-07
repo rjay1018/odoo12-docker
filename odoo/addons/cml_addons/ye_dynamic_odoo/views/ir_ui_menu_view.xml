@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="create_menu_form_view" model="ir.ui.view">
+            <field name="model">ir.ui.menu</field>
+            <field name="arch" type="xml">
+                <form string="Create Menu">
+                    <field name="name" placeholder="Menu name..." />
+                    <field name="model_id" placeholder="Model..." />
+                </form>
+            </field>
+        </record>
+
+        <record id="edit_menu_form_view" model="ir.ui.view">
+            <field name="model">ir.ui.menu</field>
+            <field name="arch" type="xml">
+                <form string="Edit Menu">
+                    <field name="name" placeholder="Menu name..." />
+                    <field name="groups_id" widget="many2many_tags" placeholder="Group..." />
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

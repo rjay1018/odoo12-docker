@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template xml:space="preserve">
+    <t t-extend="HrAttendanceKioskMode">
+        <t t-jquery=".o_hr_attendance_kiosk_mode" t-operation="append">
+            <h5 class="mt8 mb3">Scan your badge (Camera)</h5>
+
+            <div class="row sh_attendance_bm_kiosk_welcome_row">
+             
+                <div class="col-sm-12">
+                    <div>
+                        <a style="color: #fff; border-radius: 0px; margin-bottom: 5px; margin-right: 5px;" class="btn btn-primary js_cls_sh_attendance_barcode_mobile_start_btn">
+                            <i class="fa fa-barcode"></i>
+                            Start
+                        </a>
+                        <a style="display: none; color: #fff; border-radius: 0px; margin-bottom: 5px; margin-right: 5px;" class="btn btn-danger js_cls_sh_attendance_barcode_mobile_reset_btn">
+                            <i class="fa fa-barcode"></i>
+                            Stop
+                        </a>
+                    </div>
+
+                    <div class="js_cls_sh_attendance_barcode_mobile_vid_div" style="display: block;">
+                        <group style="margin-bottom: 10px;">
+                            <div class="form-group row" style="margin-bottom: 0px;">
+                                <strong style="align-self: center;" class="col-3">Camera</strong>
+                                <select class="js_cls_sh_attendance_barcode_mobile_cam_select col-8 form-control"> </select>
+                            </div>
+                        </group>
+
+                        <video id="js_id_sh_attendance_bm_video" class="cls_sh_all_in_one_mbs_video_tag mt-3" style="object-fit: cover; border: 1px solid gray; width: 100%;"></video>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+</template>

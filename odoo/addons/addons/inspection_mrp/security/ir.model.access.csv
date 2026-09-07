@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_inspection_user,inspection.user,model_inspection,stock.group_stock_user,1,1,0,0
+access_inspection_manager,inspection.manager,model_inspection,stock.group_stock_manager,1,1,1,1
+access_quality_inspection_user,quality.inspection.user,model_quality_inspection,stock.group_stock_user,1,1,1,0
+access_quality_inspection_manager,quality.inspection.manager,model_quality_inspection,stock.group_stock_manager,1,1,1,1
+access_quality_inspection_line_user,quality.inspection.line.user,model_quality_inspection_line,stock.group_stock_user,1,1,1,0
+access_quality_inspection_line_manager,quality.inspection.line.manager,model_quality_inspection_line,stock.group_stock_manager,1,1,1,1
+access_mrp_wizard_user,mrp.wizard.user,model_mrp_wizard,stock.group_stock_user,1,1,1,0
+access_mrp_wizard_manager,mrp.wizard.manager,model_mrp_wizard,stock.group_stock_manager,1,1,1,1

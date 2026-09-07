@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="partner_account_statements_form_inherit1" model="ir.ui.view">
+            <field name="name">partner_account_statements_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account_statement.view_partner_inherit_followup_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_amount_overdue_amt']" position="before">
+                    <separator></separator>
+                    <field name="total_debits"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_amount_due_amt']" position="before">
+                    <separator></separator>
+                    <field name="total_credits"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_amount_overdue_amt_supplier']" position="before">
+                    <separator></separator>
+                    <field name="total_debits_supplier"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_amount_due_amt_supplier']" position="before">
+                    <separator></separator>
+                    <field name="total_credits_supplier"/>
+                </xpath>
+            </field>
+        </record>
+
+         <record id="invoice_customer_statement_search" model="ir.ui.view">
+            <field name="name">customer.statement.invoice.search</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//filter[@name='draft']" position="after">
+                         <filter string="Date of Invoice" name="filter_date_of_invoice" date="date_invoice"/>
+                    </xpath>
+            </field>
+         </record>
+    </data>
+
+</odoo>

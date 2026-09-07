@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="mindwell_invoice" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa138fbc-025b-4300-a549-c2c36a9b63bd">
+	<property name="ireport.zoom" value="1.9487171000000083"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="185"/>
+	<property name="ODOO_RELATIONS" value="[&apos;agen_invoice_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Total-amount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Number-number]]></fieldDescription>
+	</field>
+	<field name="Reference_Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Reference_Description-name]]></fieldDescription>
+	</field>
+	<field name="Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Invoice_Lines-invoice_line_ids/Description-name]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner-partner_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="Created_on-create_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Created_on-create_date]]></fieldDescription>
+	</field>
+	<field name="Payment_Amount-amount" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payment_Amount-amount]]></fieldDescription>
+	</field>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Tax-amount_tax" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Tax-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Untaxed_Amount-amount_untaxed" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Untaxed_Amount-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Name-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Name-name]]></fieldDescription>
+	</field>
+	<field name="Tax_ID-vat" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Tax_ID-vat]]></fieldDescription>
+	</field>
+	<field name="Payment_Notes" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payment_Notes-payment_notes]]></fieldDescription>
+	</field>
+	<field name="Zip-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Zip-zip]]></fieldDescription>
+	</field>
+	<field name="Payment_Date-payment_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Payment_Date-payment_date]]></fieldDescription>
+	</field>
+	<field name="Partner_Code_-partner_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner_Code_-partner_ref]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Partner-partner_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Name-name4" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Company_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner-partner_id/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Parent_name-parent_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner-partner_id/Parent_name-parent_name]]></fieldDescription>
+	</field>
+	<field name="Company_Type-company_type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agen_Invoice-agen_invoice_ids/Partner-partner_id/Company_Type-company_type]]></fieldDescription>
+	</field>
+	<variable name="AmountSubtotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Untaxed_Amount-amount_untaxed}]]></variableExpression>
+	</variable>
+	<variable name="AmountTax" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Tax-amount_tax}]]></variableExpression>
+	</variable>
+	<variable name="AmountTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total-amount_total}]]></variableExpression>
+	</variable>
+	<variable name="Zero" class="java.lang.String">
+		<variableExpression><![CDATA["0.00"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="286" y="0" width="269" height="66" uuid="4af7b192-647d-449a-825b-7b39e8aa7f83"/>
+				<imageExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/logo_landscape.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="8" y="0" width="278" height="23" forecolor="#6666FF" uuid="7c2cf1d6-6b20-4f64-b72e-dbf86dab70c2"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Be well with Mindwell]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="286" y="66" width="269" height="38" forecolor="#6666FF" uuid="faf03196-f223-4b92-a7bd-4608471f2e2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="20" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="104" width="555" height="1" uuid="693c065a-b05e-47e6-bfb0-c2f55d606e19"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="23" width="286" height="55" uuid="681bc5c5-1b4e-4a13-95b2-fcb41d82e96c"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[
+Suite 1013, Westgate Plaza, 120 H.V. De La Costa Street,
+Salcedo Village, Barangay Bel-air, Makati City,
+NCR, Philippines 1227]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="112" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="2" width="261" height="20" forecolor="#000000" uuid="e12dd1cf-06bc-463f-9991-1ce113638899"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Billing Date :" +new SimpleDateFormat("MMMM dd, yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement isPrintRepeatedValues="false" x="62" y="57" width="201" height="11" isPrintWhenDetailOverflows="true" uuid="f954f671-ec63-4d70-bef4-9514f8fc9570"/>
+				<textElement>
+					<font size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Street-street}+" "+$F{Street2-street2}+" "+$F{City-city}+" "+$F{Zip-zip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="0" y="33" width="62" height="11" uuid="7b8e8efc-5ff8-40e7-92ba-e2940a9195e3"/>
+				<textElement>
+					<font size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Invoice for : "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="0" y="57" width="62" height="11" uuid="98207d8c-b75b-476c-a326-735244c50ff6"/>
+				<textElement>
+					<font size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Address : "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="351" y="45" width="204" height="11" uuid="d25a1365-688d-45a3-91a1-2334b7b4b805"/>
+				<textElement>
+					<font size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AUB Account Number: 029-01-000185-0"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="285" y="34" width="66" height="11" uuid="baffae8f-291e-404c-b75d-4f6c76af1ee8"/>
+				<textElement>
+					<font size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Payable to : "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="351" y="33" width="204" height="11" uuid="f4123887-8cbc-47a9-8473-7af30146d8b0"/>
+				<textElement>
+					<font size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CML Mental Well-being and Psychological Services"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="285" y="58" width="66" height="11" uuid="95622195-5bb2-4a34-b30e-a942c47b4eae"/>
+				<textElement>
+					<font size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Project :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="351" y="57" width="204" height="11" uuid="4ad67d2c-4862-499f-9621-1fb294c86076"/>
+				<textElement>
+					<font size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Mental Health Support Services"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="2" width="181" height="20" forecolor="#010101" uuid="4d06ec43-adb4-42b4-b7d9-a11658f97d11"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Due Date: " +new SimpleDateFormat("MMMM dd, yyyy").format($F{Payment_Date-payment_date})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement isPrintRepeatedValues="false" x="62" y="33" width="201" height="11" isPrintWhenDetailOverflows="true" uuid="bdbcc343-d663-4ad5-b548-2aa6bd3f4146"/>
+				<textElement>
+					<font size="9" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="9722d802-fa12-4c55-93a9-8cbce9ab4331"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="66" y="0" width="205" height="20" forecolor="#000000" uuid="34cf5ff0-d24f-47ed-a84c-08c22fbaf58e"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Client Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="0" width="69" height="20" forecolor="#000000" uuid="d15d9b5a-16ed-4b1c-8228-6cdedcd15d58"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="271" y="0" width="157" height="20" forecolor="#000000" uuid="65f5c519-e408-4634-86b4-88eb692ec51c"/>
+				<textElement markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Services]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="0" width="58" height="20" forecolor="#000000" uuid="f896c8fa-3bd4-4ed6-8b71-9bc651301dbc"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="66" height="20" forecolor="#000000" uuid="b983a442-d991-41d1-af12-6b6ef35423f0"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Invoice No.:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="66" y="1" width="205" height="24" uuid="23d86b8c-37d8-4e76-9f9b-dff2cb6cc169"/>
+				<textElement verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name4}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="1" width="157" height="24" uuid="ee00f6c9-cf72-46c9-bb1e-deb89e9bc447"/>
+				<textElement verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Description-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="1" width="58" height="24" uuid="3281e741-6a2d-4fb6-9e75-0a193a68e9b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="1" width="69" height="24" uuid="e6a03f34-5e30-4627-a77e-adfcaee2c918"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("PHP #,##0.00").format(Double.valueOf($F{Total-amount_total}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="1" width="66" height="24" uuid="a8ea7123-8d73-4a3c-a154-e62a89435475"/>
+				<textElement verticalAlignment="Top">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Number-number}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="0" y="30" width="555" height="20" uuid="edc85f47-3ee0-49a9-999b-d86050032a3f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="12" width="555" height="15" forecolor="#6666FF" uuid="304f8871-13a7-4430-ac3c-9ddf1b501014"/>
+				<box>
+					<topPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[+63.917.182.9355	clinic@mindwell.ph	https://www.mindwell.ph/]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="138" splitType="Stretch">
+			<textField>
+				<reportElement x="453" y="24" width="102" height="13" forecolor="#000000" uuid="99894b52-ba4d-45eb-92f1-6aecf444cb10"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{AmountSubtotal}== "" ? "0.00" : new DecimalFormat("PHP #,##0.00").format(Double.valueOf($V{AmountSubtotal}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="453" y="37" width="102" height="13" uuid="9bc5b39c-d29c-48b6-be1f-0308e7a08715"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{AmountTax} == null ? $V{Zero} : new DecimalFormat("PHP #,##0.00").format(Double.valueOf($V{AmountTax}))]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="453" y="54" width="102" height="13" forecolor="#000000" uuid="d094d1d8-8441-4408-ac58-679450123024"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{AmountTotal} == "" ? "0.00" : new DecimalFormat("PHP #,##0.00").format(Double.valueOf($V{AmountTotal}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="50" width="386" height="88" uuid="223fbdfe-b87d-413f-9640-7c76aa240146"/>
+				<box>
+					<pen lineWidth="0.25" lineColor="#595959"/>
+					<topPen lineWidth="0.25" lineColor="#595959"/>
+					<leftPen lineWidth="0.25" lineColor="#595959"/>
+					<bottomPen lineWidth="0.25" lineColor="#595959"/>
+					<rightPen lineWidth="0.25" lineColor="#595959"/>
+				</box>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="18" width="555" height="1" uuid="65a49d6e-1497-44ef-89c1-f487f035ccd0"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="388" y="37" width="65" height="13" uuid="5e7abdd8-e7ac-42e8-8e3d-9c034d7383d9"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tax:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="24" width="65" height="13" forecolor="#000000" uuid="3417b876-37dc-4196-a682-2303e8bdc2d6"/>
+				<textElement textAlignment="Right" markup="none">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Subtotal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="54" width="65" height="13" forecolor="#000000" uuid="811fa5f7-2eff-4ead-b5d3-f36869628b10"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="8" y="54" width="378" height="84" isPrintWhenDetailOverflows="true" uuid="8e080596-28f0-4e44-9974-34a912f8dccc"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Payment_Notes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

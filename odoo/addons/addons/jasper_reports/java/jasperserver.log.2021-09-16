@@ -1,0 +1,372 @@
+516064961 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_report1_1631798113511_200047: 706: unable to resolve class DecomalFormat 
+ @ line 706, column 22.
+calculator_report1_1631798113511_200047: 758: unable to resolve class DecomalFormat 
+ @ line 758, column 22.
+calculator_report1_1631798113511_200047: 810: unable to resolve class DecomalFormat 
+ @ line 810, column 22.
+3 errors
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_report1_1631798113511_200047: 706: unable to resolve class DecomalFormat 
+ @ line 706, column 22.
+calculator_report1_1631798113511_200047: 758: unable to resolve class DecomalFormat 
+ @ line 758, column 22.
+calculator_report1_1631798113511_200047: 810: unable to resolve class DecomalFormat 
+ @ line 810, column 22.
+3 errors
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_report1_1631798113511_200047: 706: unable to resolve class DecomalFormat 
+ @ line 706, column 22.
+calculator_report1_1631798113511_200047: 758: unable to resolve class DecomalFormat 
+ @ line 758, column 22.
+calculator_report1_1631798113511_200047: 810: unable to resolve class DecomalFormat 
+ @ line 810, column 22.
+3 errors
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_report1_1631798113511_200047: 706: unable to resolve class DecomalFormat 
+ @ line 706, column 22.
+calculator_report1_1631798113511_200047: 758: unable to resolve class DecomalFormat 
+ @ line 758, column 22.
+calculator_report1_1631798113511_200047: 810: unable to resolve class DecomalFormat 
+ @ line 810, column 22.
+3 errors
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_report1_1631798113511_200047: 706: unable to resolve class DecomalFormat 
+ @ line 706, column 22.
+calculator_report1_1631798113511_200047: 758: unable to resolve class DecomalFormat 
+ @ line 758, column 22.
+calculator_report1_1631798113511_200047: 810: unable to resolve class DecomalFormat 
+ @ line 810, column 22.
+3 errors
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:523)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+516302566 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: java.lang.String cannot be cast to java.lang.Number
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+	at net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer.increment(JRDoubleIncrementerFactory.java:294)
+	at net.sf.jasperreports.engine.fill.JRAbstractExtendedIncrementer.increment(JRAbstractExtendedIncrementer.java:42)
+	at net.sf.jasperreports.engine.fill.JRCalculator.estimateVariables(JRCalculator.java:250)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1392)
+	at net.sf.jasperreports.engine.fill.SortFillDatasetRun.advanceDataset(DatasetSortUtil.java:371)
+	at net.sf.jasperreports.engine.fill.JRFillDatasetRun.iterate(JRFillDatasetRun.java:301)
+	at net.sf.jasperreports.engine.fill.SortFillDatasetRun.sort(DatasetSortUtil.java:319)
+	at net.sf.jasperreports.engine.fill.DatasetSortUtil.getSortedDataSource(DatasetSortUtil.java:112)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.initDatasource(JRFillDataset.java:730)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.setParameters(BaseReportFiller.java:429)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:572)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by:
+java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+	at net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer.increment(JRDoubleIncrementerFactory.java:294)
+	at net.sf.jasperreports.engine.fill.JRAbstractExtendedIncrementer.increment(JRAbstractExtendedIncrementer.java:42)
+	at net.sf.jasperreports.engine.fill.JRCalculator.estimateVariables(JRCalculator.java:250)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1392)
+	at net.sf.jasperreports.engine.fill.SortFillDatasetRun.advanceDataset(DatasetSortUtil.java:371)
+	at net.sf.jasperreports.engine.fill.JRFillDatasetRun.iterate(JRFillDatasetRun.java:301)
+	at net.sf.jasperreports.engine.fill.SortFillDatasetRun.sort(DatasetSortUtil.java:319)
+	at net.sf.jasperreports.engine.fill.DatasetSortUtil.getSortedDataSource(DatasetSortUtil.java:112)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.initDatasource(JRFillDataset.java:730)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.setParameters(BaseReportFiller.java:429)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:572)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+517128724 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: java.lang.String cannot be cast to java.lang.Number
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+	at net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer.increment(JRDoubleIncrementerFactory.java:294)
+	at net.sf.jasperreports.engine.fill.JRAbstractExtendedIncrementer.increment(JRAbstractExtendedIncrementer.java:42)
+	at net.sf.jasperreports.engine.fill.JRCalculator.estimateVariables(JRCalculator.java:250)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1392)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1366)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.next(JRBaseFiller.java:1173)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:97)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by:
+java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+	at net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer.increment(JRDoubleIncrementerFactory.java:294)
+	at net.sf.jasperreports.engine.fill.JRAbstractExtendedIncrementer.increment(JRAbstractExtendedIncrementer.java:42)
+	at net.sf.jasperreports.engine.fill.JRCalculator.estimateVariables(JRCalculator.java:250)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1392)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1366)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.next(JRBaseFiller.java:1173)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:97)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+517159892 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: java.lang.String cannot be cast to java.lang.Number
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+	at net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer.increment(JRDoubleIncrementerFactory.java:294)
+	at net.sf.jasperreports.engine.fill.JRAbstractExtendedIncrementer.increment(JRAbstractExtendedIncrementer.java:42)
+	at net.sf.jasperreports.engine.fill.JRCalculator.estimateVariables(JRCalculator.java:250)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1392)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1366)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.next(JRBaseFiller.java:1173)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:97)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by:
+java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Number
+	at net.sf.jasperreports.engine.fill.JRDoubleSumIncrementer.increment(JRDoubleIncrementerFactory.java:294)
+	at net.sf.jasperreports.engine.fill.JRAbstractExtendedIncrementer.increment(JRAbstractExtendedIncrementer.java:42)
+	at net.sf.jasperreports.engine.fill.JRCalculator.estimateVariables(JRCalculator.java:250)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1392)
+	at net.sf.jasperreports.engine.fill.JRFillDataset.next(JRFillDataset.java:1366)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.next(JRBaseFiller.java:1173)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:97)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+518710219 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Report design not valid : 
+	 1. Variable not found : Tax_Group
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Variable not found : Tax_Group
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:280)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:152)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:197)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by:
+net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Variable not found : Tax_Group
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:280)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:152)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:197)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+518750169 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Report design not valid : 
+	 1. Unknown reset group 'Tax Name' for variable : Tax_Group
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Unknown reset group 'Tax Name' for variable : Tax_Group
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.assignGroupsToVariables(JRXmlLoader.java:364)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:324)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:285)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:274)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:219)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:194)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:185)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:253)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:197)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by:
+net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Unknown reset group 'Tax Name' for variable : Tax_Group
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.assignGroupsToVariables(JRXmlLoader.java:364)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:324)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:285)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:274)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:219)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:194)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:185)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:253)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:197)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor47.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)

@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Request for Quotation" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.6105100000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;order_line&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Mobile-mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Mobile-mobile]]></fieldDescription>
+	</field>
+	<field name="Phone-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Phone-phone]]></fieldDescription>
+	</field>
+	<field name="Title-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Title-title/Title-name]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Related_Company-parent_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Country_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Country-country_id/Country_Name-name]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="State_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/State-state_id/State_Name-name]]></fieldDescription>
+	</field>
+	<field name="Zip-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Zip-zip]]></fieldDescription>
+	</field>
+	<field name="Order_Reference-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Reference-name]]></fieldDescription>
+	</field>
+	<field name="Order_Date-date_order" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Order_Date-date_order]]></fieldDescription>
+	</field>
+	<field name="Name-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Purchase_Representative-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Name-name4" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Internal_Reference-default_code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Product-product_id/Internal_Reference-default_code]]></fieldDescription>
+	</field>
+	<field name="Quantity-product_qty" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Quantity-product_qty]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Product_Unit_of_Measure-product_uom/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<background>
+		<band height="752" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="95" y="248" width="253" height="281" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="460" y="248" width="112" height="281" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="248" width="95" height="281" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="348" y="248" width="112" height="281" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</background>
+	<title>
+		<band height="248" splitType="Stretch">
+			<staticText>
+				<reportElement x="357" y="51" width="85" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[QR#]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="63" width="95" height="12"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Order_Date-date_order})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="51" width="95" height="12"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Order_Reference-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="146" width="259" height="31"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Street-street}+" "+$F{Street2-street2}+" "+$F{City-city}+" "+$F{State_Name-name}+" "+$F{Zip-zip}+" "+$F{Country_Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="357" y="63" width="85" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="3" y="114" width="112" height="16" forecolor="#FFFFFF" backcolor="#669900"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VENDOR :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="0" width="308" height="16"/>
+				<textElement lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="63" width="275" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[(02)82-852-270, (02)83-592-741, (02)89-280-098]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="75" width="95" height="12"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name3}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="13" y="0" width="251" height="63"/>
+				<imageExpression class="java.lang.String"><![CDATA[$F{Company_Logo-logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="357" y="75" width="85" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[REQUESTED BY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="26" width="184" height="20"/>
+				<textElement lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REQUEST QUOTATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="75" width="275" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VAT REG TIN: 208-918-559-000]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="444" y="87" width="95" height="12"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="132" width="259" height="14"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="177" width="259" height="15"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Contact Person:"+" "+$F{Title-name}+" "+$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="114" width="3" height="16" backcolor="#669900"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="3" y="192" width="259" height="16"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Contact #:"+" "+$F{Mobile-mobile}+"/"+$F{Phone-phone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="232" width="112" height="16" forecolor="#FFFFFF" backcolor="#669900"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="232" width="95" height="16" forecolor="#FFFFFF" backcolor="#669900"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ITEM CODE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="95" y="232" width="253" height="16" forecolor="#FFFFFF" backcolor="#669900"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="348" y="232" width="112" height="16" forecolor="#FFFFFF" backcolor="#669900"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="16" width="308" height="10"/>
+				<textElement lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="275" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[439 Katipunan St., Brgy. Unang Sigaw, Balintawak, QC]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="95" height="13"/>
+				<box>
+					<pen lineWidth="0.0" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.0" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Internal_Reference-default_code}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="3" width="112" height="13"/>
+				<box>
+					<pen lineWidth="0.0" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.0" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="3" width="253" height="13"/>
+				<box>
+					<pen lineWidth="0.0" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.0" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="3" width="112" height="13"/>
+				<box>
+					<pen lineWidth="0.0" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.0" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Quantity-product_qty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

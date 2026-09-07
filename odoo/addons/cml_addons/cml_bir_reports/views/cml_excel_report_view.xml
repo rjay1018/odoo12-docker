@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tax_report_form_inherit" model="ir.ui.view">
+        <field name="name">account.tax.form.inherit</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="tax_report_description" string="Tax Description"/>
+                <field name="show_in_tax_report" string="Show in Tax Report"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="account_invoice_inherit_form" model="ir.ui.view">
+        <field name="name">account.invoice.inherit.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_bir_report_wizard"
+                        string="Bir Reports"
+                        type="object"
+                        class="oe_highlight"
+                        icon="fa-download"
+                        groups="account.group_account_invoice"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="account_invoice_tax_inherit_form" model="ir.ui.view">
+        <field name="name">account.invoice.tax.inherit.form</field>
+        <field name="model">account.invoice.tax</field>
+        <field name="inherit_id" ref="account.view_invoice_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="description" string="Description"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

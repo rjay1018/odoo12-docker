@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="hr_contract_form_att_policy_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.att.policy.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='struct_id']" position="after">
+                    <field name="att_policy_id" required="1"/>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

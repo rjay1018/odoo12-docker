@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_employee_form_inherit_ninebox" model="ir.ui.view">
+        <field name="name">hr.employee</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']" position="inside">                          
+                <group>
+                    <group string="Talent Ratings">
+                        <field name="potential"/>
+                        <field name="performance"/>                        
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//div[@id='o_employee_main']" position="before">
+                <div class="ninebox">
+                    <field name="nbox_rating" widget="ninebox"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

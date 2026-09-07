@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MBTI" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6ca773b-df9b-4202-b9a0-bb6d584ae160">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SubReport1" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/MBTI_subreport1.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/"]]></defaultValueExpression>
+	</parameter>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50">
+			<textField>
+				<reportElement x="0" y="13" width="100" height="20" uuid="e40f9cd0-280d-4e1b-b5d0-8872830bf324"/>
+				<textFieldExpression><![CDATA["MBTI REPORT"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="100">
+			<subreport>
+				<reportElement x="0" y="0" width="200" height="100" uuid="e9744dc9-3c7a-439f-b37a-644698890782"/>
+				<dataSourceExpression><![CDATA[$P{SubReport1}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "MBTI_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

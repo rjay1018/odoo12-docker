@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="survey_form_inherit" model="ir.ui.view">
+        <field name="name">survey.form.inherit</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='quizz_mode']" position="after">
+                <field name="user_confirmation"/>
+            </xpath>
+            <xpath expr="//group[hasclass('o_label_nowrap')]" position="after">
+                <group string="User Confirmation Content" attrs="{'invisible': [('user_confirmation', '=', False)]}">
+                    <field name="user_confirmation_content" nolabel="1"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='user_confirmation']" position="after">
+                <field name="survey_category_id"/>
+                <field name="mail_template_id"/>
+                <field name="notification_user_ids"  widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="survey_search_inherit" model="ir.ui.view">
+        <field name="name">survey.search.inherit</field>
+        <field name="model">survey.survey</field>
+        <field name="inherit_id" ref="survey.survey_survey_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field" position="after">
+                <field name="survey_category_id"/>
+            </xpath>
+            <xpath expr="//filter" position="after">
+                <filter string="Survey Category" name="group_by_survey_category" domain="[]" context="{'group_by': 'survey_category_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Finished Product Label" language="groovy" pageWidth="576" pageHeight="792" columnWidth="536" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true">
+	<property name="ireport.zoom" value="1.2100000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="135"/>
+	<property name="ODOO_RELATIONS" value="[&apos;finished_move_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Finished_Product-finished_move_line_ids/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Finished_Product-finished_move_line_ids/Unit_of_Measure-product_uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<field name="Done-qty_done" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Finished_Product-finished_move_line_ids/Done-qty_done]]></fieldDescription>
+	</field>
+	<field name="Lot_Serial_Number-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Finished_Product-finished_move_line_ids/Lot_Serial_Number-lot_id/Lot_Serial_Number-name]]></fieldDescription>
+	</field>
+	<variable name="no" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{Lot_Serial_Number-name}]]></variableExpression>
+	</variable>
+	<variable name="lot" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Lot_Serial_Number-name} == "" ? "0.00" : $F{Lot_Serial_Number-name}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="752" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="536" height="752"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="25" y="73" width="490" height="100" backcolor="#EBEBEB"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="25" y="173" width="490" height="48" backcolor="#EBEBEB"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Done-qty_done} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Done-qty_done}))+" "+$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="25" y="312" width="490" height="142"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="EAN128" drawText="false" checksumRequired="false" barWidth="0" barHeight="0">
+					<jr:codeExpression><![CDATA[$V{lot}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<break>
+				<reportElement x="0" y="751" width="100" height="1">
+					<printWhenExpression><![CDATA[$V{no}.intValue()==1]]></printWhenExpression>
+				</reportElement>
+			</break>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="25" y="454" width="490" height="48" backcolor="#EBEBEB"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="30" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Lot_Serial_Number-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

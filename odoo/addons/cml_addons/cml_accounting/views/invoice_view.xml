@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_customer_statement_tree" model="ir.ui.view">
+            <field name="name">account.invoice.tree.customer</field>
+            <field name="model">account.invoice</field>
+            <field name="arch" type="xml">
+                <tree string="Customer statement">
+                    <field name="date_invoice"/>
+                    <field name="number"/>
+                    <field name="company_id"/>
+                    <field name="date_due"/>
+                    <field name="amount_total_signed"/>
+                    <field name="credit_amount"/>
+                    <field name="result"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+</odoo>

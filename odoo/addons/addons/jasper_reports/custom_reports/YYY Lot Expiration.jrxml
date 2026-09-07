@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Lot Expiration" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="af73aa08-f52e-42db-b546-fe41534bb7ea">
+	<property name="ireport.zoom" value="2.143588810000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Lot_Serial_Number-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Lot_Serial_Number-name]]></fieldDescription>
+	</field>
+	<field name="Quantity-product_qty" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Quantity-product_qty]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Internal_Reference-default_code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Internal_Reference-default_code]]></fieldDescription>
+	</field>
+	<field name="Internal_Reference-ref" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Internal_Reference-ref]]></fieldDescription>
+	</field>
+	<field name="End_of_Life_Date-life_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/End_of_Life_Date-life_date]]></fieldDescription>
+	</field>
+	<field name="Location_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Quants-quant_ids/Location-location_id/Location_Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Product_Category-categ_id/Name-name]]></fieldDescription>
+	</field>
+	<sortField name="Name-name2"/>
+	<group name="category">
+		<groupExpression><![CDATA[$F{Name-name2}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<textField>
+					<reportElement x="0" y="0" width="262" height="14" uuid="680977aa-99a1-4d7d-b327-7e9cb42ffaad"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Name-name2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="111" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="29" uuid="e226d7f0-a075-47b2-92e0-95d75be30067"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Company_Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="29" width="572" height="18" uuid="4e613035-48c6-40cf-b172-8a229443f9f9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Lot Number Expiration"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="79" width="107" height="27" uuid="6e2f89c8-1701-4537-9997-02ca463a4014"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[LOT #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="79" width="278" height="27" uuid="081c5ee3-e299-4860-beb2-0fda86175044"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="79" width="61" height="27" uuid="4ddd4d75-834a-4996-800b-e66a9b7abadc"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="80" width="111" height="26" uuid="0e46631f-7991-42a6-babe-65f4a7e73fa1"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[EXPIRATION DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="47" width="262" height="20" uuid="d059a4f5-55eb-400f-ac66-bac304051b8c"/>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[As of ]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="265" y="47" width="307" height="20" uuid="237e322d-53e2-410b-b626-1fec2816b52f"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="14" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="107" height="14" uuid="9752c3e4-2fb9-4380-a4e7-af1ba83d60b2"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lot_Serial_Number-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="126" y="0" width="268" height="14" uuid="b548f2cc-7717-4828-9481-3a9d453b4612"/>
+				<textElement>
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="398" y="0" width="61" height="14" uuid="ea993fbe-f279-4e7f-9d7b-5ff65aadb672"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Quantity-product_qty}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="461" y="0" width="111" height="14" uuid="3eb73fcf-b26a-45ee-bdca-18593f070940"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{End_of_Life_Date-life_date})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

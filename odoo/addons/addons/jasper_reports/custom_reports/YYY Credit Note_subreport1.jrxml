@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Credit Note_subreport1" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="3.797498335832415"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;tax_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Untaxed_Amount-amount_untaxed" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Untaxed_Amount-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Base-base" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Base-base]]></fieldDescription>
+	</field>
+	<field name="Tax_Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Tax_Description-name]]></fieldDescription>
+	</field>
+	<field name="Amount_Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Amount_Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Code-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Tax_Account-account_id/Code-code]]></fieldDescription>
+	</field>
+	<field name="Sequence-sequence" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax_Lines-tax_line_ids/Sequence-sequence]]></fieldDescription>
+	</field>
+	<field name="Tax-amount_tax" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax-amount_tax]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="199" y="0" width="4" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="131" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Tax_Description-name} == "VAT / IN" ? " VATABLE SALE" :
+$F{Tax_Description-name} == "VAT / EX" ? " VATABLE SALE" :
+" "+$F{Tax_Description-name}.toUpperCase()
+]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="131" y="0" width="68" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Base-base} == "" ? "-" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Base-base}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="34" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="131" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Tax-amount_tax} == "" ? "" : " VAT AMOUNT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="16" width="106" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" "+"TOTAL AMOUNT DUE:"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="32" width="203" height="2"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="199" y="0" width="4" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="131" y="0" width="68" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Tax-amount_tax} == "" ? "-" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Tax-amount_tax}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="106" y="16" width="93" height="16" backcolor="#D6D6D8"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total-amount_total} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total-amount_total}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="199" y="16" width="4" height="16" backcolor="#D6D6D8"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

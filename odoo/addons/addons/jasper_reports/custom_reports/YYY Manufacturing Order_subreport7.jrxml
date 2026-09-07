@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Manufacturing Order_subreport7" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="3.4522712143931047"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;workorder_ids/employee_ids&apos;]"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\PC\\OneDrive\\Desktop\\Jason\\CML\\YYY\\jrxml\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter1" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport7_subreport1.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Assigned_Workers-employee_ids/Name-name]]></fieldDescription>
+	</field>
+	<field name="Work_Order-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Work_Order-name]]></fieldDescription>
+	</field>
+	<field name="Work_Center-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Work_Center-workcenter_id/Work_Center-name]]></fieldDescription>
+	</field>
+	<field name="Scheduled_Date_Start-date_planned_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Scheduled_Date_Start-date_planned_start]]></fieldDescription>
+	</field>
+	<field name="Scheduled_Date_Finished-date_planned_finished" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Scheduled_Date_Finished-date_planned_finished]]></fieldDescription>
+	</field>
+	<field name="Effective_Start_Date-date_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Effective_Start_Date-date_start]]></fieldDescription>
+	</field>
+	<field name="Effective_End_Date-date_finished" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Effective_End_Date-date_finished]]></fieldDescription>
+	</field>
+	<field name="Expected_Duration-duration_expected" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Expected_Duration-duration_expected]]></fieldDescription>
+	</field>
+	<field name="Real_Duration-duration" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Work_Orders-workorder_ids/Real_Duration-duration]]></fieldDescription>
+	</field>
+	<variable name="count_name" class="java.lang.Integer" resetType="Group" resetGroup="workorder" calculation="Count">
+		<variableExpression><![CDATA[$F{Name-name}]]></variableExpression>
+	</variable>
+	<group name="workorder">
+		<groupExpression><![CDATA[$F{Work_Order-name}]]></groupExpression>
+		<groupHeader>
+			<band height="56">
+				<staticText>
+					<reportElement x="0" y="15" width="548" height="41"/>
+					<box>
+						<pen lineWidth="0.5" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.5" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.5" lineColor="#808080"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToTallestObject" x="4" y="0" width="544" height="16"/>
+					<box>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.5" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Work_Order-name}+" "+$F{Work_Center-name}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="4" height="16" backcolor="#669900"/>
+					<box>
+						<pen lineWidth="0.5" lineColor="#808080"/>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<leftPen lineWidth="0.5" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="452" y="21" width="96" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Expected_Duration-duration_expected} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Expected_Duration-duration_expected}))]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement x="181" y="36" width="100" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Effective_End_Date-date_finished} == null ? "" : new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format($F{Effective_End_Date-date_finished})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="170" y="21" width="11" height="15"/>
+					<box>
+						<pen lineWidth="0.0" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[to]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="356" y="36" width="96" height="15"/>
+					<box>
+						<pen lineWidth="0.0" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Real Duration]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement x="70" y="21" width="100" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Scheduled_Date_Start-date_planned_start} == null ? "" : new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format($F{Scheduled_Date_Start-date_planned_start})]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="452" y="36" width="96" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Real_Duration-duration} == null ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Real_Duration-duration}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="4" y="21" width="66" height="15"/>
+					<box>
+						<pen lineWidth="0.0" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Planned Date]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement x="181" y="21" width="100" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Scheduled_Date_Finished-date_planned_finished} == null ? "" : new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format($F{Scheduled_Date_Finished-date_planned_finished})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="170" y="36" width="11" height="15"/>
+					<box>
+						<pen lineWidth="0.0" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[to]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="356" y="21" width="96" height="15"/>
+					<box>
+						<pen lineWidth="0.0" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Expected Duration]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+					<reportElement x="70" y="36" width="100" height="15"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Effective_Start_Date-date_start} == null ? "" : new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format($F{Effective_Start_Date-date_start})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="4" y="36" width="66" height="15"/>
+					<box>
+						<pen lineWidth="0.0" lineColor="#808080"/>
+						<topPen lineWidth="0.0" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Effective Date]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="8">
+				<staticText>
+					<reportElement mode="Transparent" x="0" y="0" width="548" height="8" forecolor="#000000" backcolor="#669900"/>
+					<box>
+						<pen lineColor="#808080"/>
+						<topPen lineWidth="0.5" lineColor="#808080"/>
+						<leftPen lineWidth="0.0" lineColor="#808080"/>
+						<bottomPen lineWidth="0.0" lineColor="#808080"/>
+						<rightPen lineWidth="0.0" lineColor="#808080"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="548" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[WORK ORDER & ASSIGNED WORKERS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="16" y="0" width="532" height="13"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="16" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{count_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="548" height="13" backcolor="#669900"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.0" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.0" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

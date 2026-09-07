@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="client_assessment_report_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.8531167061100042"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;user_input_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="tags" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Display_Name-display_name"/>
+		<fieldDescription><![CDATA[Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="answer_value" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Answers-user_input_line_ids/Row_answer-value_suggested_row/Suggested_value-value"/>
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Row_answer-value_suggested_row/Suggested_value-value]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Partner-partner_id/Display_Name-display_name"/>
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="survey_title" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Survey-survey_id/Display_Name-display_name"/>
+		<fieldDescription><![CDATA[/data/record/Survey-survey_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Suggested_value-value" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Suggested_value-value"/>
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Suggested_value-value]]></fieldDescription>
+	</field>
+	<field name="Average_Score-average_score" class="java.lang.Double">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Average_Score-average_score"/>
+		<fieldDescription><![CDATA[/data/record/Average_Score-average_score]]></fieldDescription>
+	</field>
+	<field name="Total_Score-total_score" class="java.lang.Double">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Total_Score-total_score"/>
+		<fieldDescription><![CDATA[/data/record/Total_Score-total_score]]></fieldDescription>
+	</field>
+	<field name="Answers-user_input_line_ids" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="ancestor::Answers-user_input_line_ids"/>
+		<fieldDescription><![CDATA[ancestor::Answers-user_input_line_ids]]></fieldDescription>
+	</field>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User-User/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Score_given_for_this_choice-quizz_mark" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Score_given_for_this_choice-quizz_mark]]></fieldDescription>
+	</field>
+	<field name="Created_on-create_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Created_on-create_date]]></fieldDescription>
+	</field>
+	<variable name="no" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{answer_value}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="16"/>
+	</title>
+	<detail>
+		<band height="19" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="18"/>
+			</frame>
+			<break>
+				<reportElement x="0" y="18" width="100" height="1">
+					<printWhenExpression><![CDATA[$V{no}.intValue()==25]]></printWhenExpression>
+				</reportElement>
+			</break>
+		</band>
+	</detail>
+</jasperReport>

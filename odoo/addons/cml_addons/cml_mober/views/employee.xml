@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		
+		<!-- VIEWS: "Mober Customized" -->
+		
+		<!-- Form view for "Employee Profile" -->
+		<record id="mober_hr_employee_custom" model="ir.ui.view">
+			<field name="name">mober_employee_view</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='job_id']" position="attributes">
+					<attribute name="string">Position Level</attribute>
+				</xpath>
+				<xpath expr="//field[@name='bank_account_id']" position="attributes">
+					<attribute name="string">Payroll Account Number</attribute>
+				</xpath>
+				<xpath expr="//field[@name='km_home_work']" position="attributes">
+					<attribute name="string">Km Distance Home-Work</attribute>
+				</xpath>
+				<xpath expr="//notebook/page[@name='personal_information']//group//group[1]" position="attributes"> 
+					<attribute name="string">Payroll Information</attribute>
+				</xpath>
+				<xpath expr="//field[@name='country_id']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//group[@name='identification_id']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='tinid']" position="before">
+					<field name="identification_id" string="ID Number"/>
+				</xpath>
+				<xpath expr="//group[@name='entry_checklist']" position="attributes">
+					<attribute name="string">Pre-employment Checklist</attribute>
+				</xpath>
+				<xpath expr="//field[@name='entry_checklist']" position="attributes">
+					<attribute name="string">Pre-employment</attribute>
+				</xpath>
+				<xpath expr="//group[@name='emergency_contact']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

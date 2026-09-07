@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="stock_reports" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c2ee52e-86bf-46e1-928d-67e023eb42e7">
+	<property name="ODOO_RELATIONS" value="[&apos;id&apos;]"/>
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Unit_of_Measure-product_uom_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Quantity-quantity]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="12" width="13" height="47" uuid="a1ec7b4a-8384-4682-8e18-669f26f897ca"/>
+				<textElement>
+					<font size="15" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="38" width="196" height="20" uuid="2415fe29-d29c-48de-ae3e-8fc81e71cc79"/>
+				<textElement textAlignment="Right">
+					<font size="15" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[STOCK REPORT]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="539" y="12" width="33" height="16" uuid="c5412122-3b4e-4b0e-8e4a-fae28a3ac401"/>
+				<textElement>
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="75" width="275" height="12" uuid="6600308c-00d4-47da-8a63-f47838ec983c"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[(02)82-852-270, (02)83-592-741, (02)89-280-098]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="457" y="12" width="79" height="16" uuid="b075e3b1-f7ff-48e3-9e2e-03a5527fdc33"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame">
+				<reportElement x="14" y="12" width="251" height="63" uuid="723d4410-a650-46a8-acba-89c4e3f0eedb"/>
+				<imageExpression><![CDATA[$F{Company_Logo-logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="63" width="275" height="12" uuid="46baf981-0495-400c-a3f4-0b4dce5d5818"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[439 Katipunan St., Brgy. Unang Sigaw, Balintawak, QC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="87" width="275" height="12" uuid="4c704302-f619-40dc-83a2-87e153492f65"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[VAT REG TIN: 208-918-559-000]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="190" height="20" uuid="282388cf-1057-424b-a6f4-f50ccbc65b3b"/>
+				<text><![CDATA[Product]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="190" y="0" width="190" height="20" uuid="f94d94ae-2f95-4264-89cd-3f2b41c42d0a"/>
+				<text><![CDATA[UoM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="0" width="190" height="20" uuid="20a6bbad-e775-4759-ab6f-b43007818e7f"/>
+				<text><![CDATA[On-Hand]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="190" height="20" uuid="26bbedae-a50d-41b0-bd0e-9bf3c57186ba"/>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="190" height="20" uuid="4092de01-1167-484e-ab3a-599b3026d1f7"/>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="190" height="20" uuid="65a557e7-fa69-4f52-bb53-538369776555"/>
+				<textFieldExpression><![CDATA[$F{Quantity-quantity}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

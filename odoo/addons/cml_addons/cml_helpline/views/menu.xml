@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem 
+            id="helpline_root"
+            name="Helpline"
+            sequence="5"/>
+
+            <menuitem 
+            id="helpline_sessions"
+            name="Helpline Sessions"
+            parent="helpline_root"
+            action="action_helpline"
+            sequence="10"/>
+            
+            <menuitem 
+            id="helpline_configuration"
+            name="Configurations"
+            groups="cml_helpline.group_helpline_manager"
+            parent="helpline_root"
+            sequence="40"/>
+
+                <menuitem 
+                id="helpline_calltype"
+                name="Call Type"
+                parent="helpline_configuration"
+                action="action_call_type"
+                sequence="10"/>
+
+                <menuitem 
+                id="helpline_casecategory"
+                name="Case Category"
+                parent="helpline_configuration"
+                action="action_case_category"
+                sequence="15"/>
+
+                <menuitem 
+                id="helpline_calllanguage"
+                name="Language"
+                parent="helpline_configuration"
+                action="action_call_language"
+                sequence="20"/>
+    </data>
+</odoo>

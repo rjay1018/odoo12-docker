@@ -1,0 +1,54 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="crm_case_form_view_job_inherit">
+            <field name="name">crm_case_form_view_job_inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <notebook>
+                        <page string= "Stage">
+                            <field name="stage_lines_ids">
+                                <tree editable = "top">
+                                    <field name="stage_id"/>
+                                    <field name="start_time"/>
+                                    <field name="end_time"/>
+                                    <field name="duration" widget='float_time'/>                                
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+        
+    <record id="ki_hr_applicant_stage_view_pivot" model="ir.ui.view">
+         <field name="name">ki.hr.applicant.stage.pivot</field>
+         <field name="model">ki.hr.applicant.stage</field>
+         <field name="arch" type="xml">
+             <pivot string="Turn Around Time">
+                 <field name="request_id" type="row"/>
+                 <field name="stage_id" type="col"/>
+                 <field name="start_time" interval="day"/>
+                 <field name="end_time" interval="day"/>
+                 <field name="duration" type="measure"/>
+             </pivot>
+         </field>
+    </record>
+    
+    <record id="action_ki_hr_applicant_stage" model="ir.actions.act_window">
+        <field name="name">Turn Around Time</field>
+        <field name="res_model">ki.hr.applicant.stage</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">pivot</field>
+    </record>
+        
+        <menuitem name="Reports" id="menu_hr_recruitment_root_reports" parent="hr_recruitment.menu_hr_recruitment_root"
+            sequence="99"/>
+        <menuitem name="Recruitment Analysis" id="hr_recruitment.report_hr_recruitment" parent="menu_hr_recruitment_root_reports"
+            sequence="1" action="hr_recruitment.hr_applicant_action_analysis"/>
+        <menuitem name="Request Turn Around Time " id="report_hr_applicant_stage" parent="menu_hr_recruitment_root_reports"
+            sequence="2" action="action_ki_hr_applicant_stage"/>
+            
+    </data>
+</odoo>

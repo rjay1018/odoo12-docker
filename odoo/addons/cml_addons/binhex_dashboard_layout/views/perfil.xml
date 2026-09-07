@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+      <template id="myprofile">
+        <t t-call="binhex_dashboard_layout.layout">
+   <style>
+                    .o_portal.container.mt-3{
+                    display:none;
+                    }
+                  </style>
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Profile</h1>
+              </div>
+            </div>
+          </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-3">
+
+                <!-- Profile Image -->
+                <div class="card card-primary card-outline">
+                  <div class="card-body box-profile">
+                    <div class="text-center">
+                      <img class="profile-user-img img-fluid img-circle"
+                          t-attf-src="data:image/*;base64,{{user_id.partner_id.image}}"
+                           alt="User profile picture"/>
+                    </div>
+
+                    <h3 class="profile-username text-center"><t t-esc="user_id.partner_id.name"/></h3>
+                  </div>
+                  <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-9">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">My details</a></li>
+                    </ul>
+                  </div><!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="activity">
+                        <div class="card-body">
+                          <div class="o_portal_my_details">
+                              <h4>My details <a role="button" href="/my/account" class="btn btn-sm btn-link"><i class="fa fa-pencil"/> Edit</a></h4>
+                              <hr/>
+                          </div>
+                          <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+
+                          <p class="text-muted"><t t-esc="user_id.partner_id.street"/><br/>
+                          <t t-esc="user_id.partner_id.city"/> <t t-esc="user_id.partner_id.state_id.name"/> <t t-esc="user_id.partner_id.zip"/><br/>
+                          <t t-esc="user_id.partner_id.country_id.name"/></p>
+                          <hr/>
+
+                          <strong><i class="fas fa-phone-alt mr-1"></i> Telephone</strong>
+
+                          <p class="text-muted"><t t-esc="user_id.partner_id.phone"/></p>
+
+                          <hr/>
+
+                          <strong><i class="far fa-envelope mr-1"></i> Email</strong>
+
+                          <p class="text-muted"><t t-esc="user_id.partner_id.email"/></p>
+                        </div>
+                      </div>
+
+                      <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                  </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </section>
+    </t>
+      </template>
+
+    </data>
+</odoo>

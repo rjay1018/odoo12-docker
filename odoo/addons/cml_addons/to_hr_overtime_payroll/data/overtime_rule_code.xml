@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<!-- Overtime Rules Codes -->
+	<data noupdate="1">
+		<!-- Code for normal working days -->
+		<record model="hr.overtime.rule.code" id="rule_code_ot0006">
+			<field name="name">OT0006</field>
+			<field name="rate">200</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_ot0618">
+			<field name="name">OT0618</field>
+			<field name="rate">150</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_ot1822">
+			<field name="name">OT1822</field>
+			<field name="rate">150</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_ot2224">
+			<field name="name">OT2224</field>
+			<field name="rate">200</field>
+		</record>
+		
+		<!-- Code for saturday work -->
+		<record model="hr.overtime.rule.code" id="rule_code_otsat0006">
+			<field name="name">OTSAT0006</field>
+			<field name="rate">200</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsat0612">
+			<field name="name">OTSAT0612</field>
+			<field name="rate">150</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsat1218">
+			<field name="name">OTSAT1218</field>
+			<field name="rate">200</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsat1822">
+			<field name="name">OTSAT1822</field>
+			<field name="rate">200</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsat2224">
+			<field name="name">OTSAT2224</field>
+			<field name="rate">250</field>
+		</record>
+		
+		<!-- Code for sunday work -->
+		<record model="hr.overtime.rule.code" id="rule_code_otsun0006">
+			<field name="name">OTSUN0006</field>
+			<field name="rate">250</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsun0618">
+			<field name="name">OTSUN0618</field>
+			<field name="rate">200</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsun1822">
+			<field name="name">OTSUN1822</field>
+			<field name="rate">200</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otsun2224">
+			<field name="name">OTSUN2224</field>
+			<field name="rate">250</field>
+		</record>
+		
+		<!-- Code for holiday work from monday to friday -->
+		<record model="hr.overtime.rule.code" id="rule_code_othol0006">
+			<field name="name">OTHOL0006</field>
+			<field name="rate">300</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_othol0618">
+			<field name="name">OTHOL0618</field>
+			<field name="rate">250</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_othol1822">
+			<field name="name">OTHOL1822</field>
+			<field name="rate">250</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_othol2224">
+			<field name="name">OTHOL2224</field>
+			<field name="rate">300</field>
+		</record>
+		
+		<!-- Code for holiday work on Saturday -->
+		<record model="hr.overtime.rule.code" id="rule_code_otholsat0006">
+			<field name="name">OTHOLSAT0006</field>
+			<field name="rate">350</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsat0612">
+			<field name="name">OTHOLSAT0612</field>
+			<field name="rate">300</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsat1218">
+			<field name="name">OTHOLSAT1218</field>
+			<field name="rate">300</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsat1822">
+			<field name="name">OTHOLSAT1822</field>
+			<field name="rate">300</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsat2224">
+			<field name="name">OTHOLSAT2224</field>
+			<field name="rate">350</field>
+		</record>
+		
+		<!-- Code for holiday work on Sunday -->
+		<record model="hr.overtime.rule.code" id="rule_code_otholsun0006">
+			<field name="name">OTHOLSUN0006</field>
+			<field name="rate">350</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsun0618">
+			<field name="name">OTHOLSUN0618</field>
+			<field name="rate">300</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsun1822">
+			<field name="name">OTHOLSUN1822</field>
+			<field name="rate">300</field>
+		</record>
+		<record model="hr.overtime.rule.code" id="rule_code_otholsun2224">
+			<field name="name">OTHOLSUN2224</field>
+			<field name="rate">350</field>
+		</record>
+	</data>
+</odoo>

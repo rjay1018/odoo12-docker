@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.ui.view" id="mrp_maintenance_request_form">
+        <field name="name">mrp_maintenance_request_form</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="arch" type="xml">
+            <field name="priority" position="after">
+                <field name="production_id" invisible="1"/>
+                <field name="workorder_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+</odoo>

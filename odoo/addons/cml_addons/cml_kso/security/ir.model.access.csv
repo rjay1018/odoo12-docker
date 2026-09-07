@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+all_refusal_reasons,all_refusal_reasons,model_refusal_reasons,,1,1,1,1
+hr_unit,hr_unit,model_hr_unit,,1,1,1,1
+hr_sector,hr_sector,model_hr_sector,,1,1,1,1
+hr_kfamily,hr_kfamily,model_hr_kfamily,,1,1,1,1

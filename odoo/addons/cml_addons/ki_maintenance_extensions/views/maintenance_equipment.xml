@@ -1,0 +1,138 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="product_template_form_view_inherit_equipement">
+              <field name="name">product.template.inherit.equipment</field>
+              <field name="model">product.template</field>
+              <field name="inherit_id" ref="product.product_template_form_view"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//div[@name='options']" position="inside">
+                       <div>
+                           <field name="is_equipment_product"/>
+                           <label for="is_equipment_product"/>
+                       </div>
+                  </xpath>
+              </field>
+        </record>
+
+        <record model="ir.ui.view" id="maintenance_inherit_menu">
+              <field name="name">maintenance.inherit.menu</field>
+              <field name="model">maintenance.equipment</field>
+              <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//field[@name='employee_id']" position="after">
+                      <field name="usage_type" invisible="1"/>
+                      <field name="asset_id" />
+                  </xpath>
+                  <xpath expr="//field[@name='serial_no']" position="after">
+                      <field name="related_product_id" domain="[('is_equipment_product', '=', True)]"/>
+                  </xpath>
+                  <xpath expr="/form/*" position="before">
+                    <header>
+                       <button  name="%(ki_maintenance_extensions.equipment_asset_wizard_action_menu)d"
+                            string="Link Asset" type="action"
+                            attrs="{'invisible': [('asset_id', '!=', False)]}"/>
+                    </header>
+                  </xpath>
+                  <xpath expr="//button[@name='toggle_active']" position="after">
+                       <button string="Purchase Requests" type="object"
+                            name="action_open_purchase_orders" class="oe_stat_button" icon="fa-tasks"/>
+                  </xpath>
+                  <xpath expr="/form/sheet/notebook" position="inside">
+                      <page string="Spare Parts"  attrs="{'invisible': [('usage_type', '=', 'spare_Part')]}">
+                          <field name="spare_part_id" context ="{'default_usage_type': 'spare_Part'}" >
+                              <tree editable="bottom">
+                                  <field name="name" string="Spare Part Name"/>
+                                  <field name="serial_no" />
+                                  <field name="related_product_id"  domain="[('is_equipment_product', '=', True)]"/>
+                                  <field name="usage_type" invisible="1"/>
+                              </tree>
+                          </field>
+                      </page>
+                      <page string="Checklist type" attrs="{'invisible': [('usage_type', '=', 'spare_Part')]}">
+                          <field name="checklist_id" />
+                      </page>
+                  </xpath>
+              </field>
+        </record>
+        <record model="ir.ui.view" id="equipment_checklist_list">
+            <field name="name">equipment_checklist.list</field>
+                <field name="model">equipment.checklist</field>
+                <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+      <record model="ir.ui.view" id="equipment_checklist_form">
+        <field name="name">equipment_checklist.from</field>
+        <field name="model">equipment.checklist</field>
+        <field name="arch" type="xml">
+          <form>
+              <group>
+                  <field name="name"/>
+              </group>
+          </form>
+        </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="equipment_checklist_action_window">
+          <field name="name">Equipment Checklist</field>
+          <field name="res_model">equipment.checklist</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+       <menuitem id="equipment_checklist_menu" name="Checklist"
+                 parent="maintenance.menu_maintenance_configuration"
+                 action="equipment_checklist_action_window"/>
+
+       <record id="hr_equipment_actions" model="ir.actions.act_window">
+            <field name="name">Equipments</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="maintenance.hr_equipment_view_kanban"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new equipment
+                </p><p>
+                    Track equipments and link it to an employee or department.
+                    You will be able to manage allocations, issues and maintenance of your equipment.
+                </p>
+            </field>
+           <field name="domain">[ ('usage_type', '=', 'equipment')]</field>
+           <field name="context">{'default_usage_type':'equipment'}</field>
+       </record>
+
+
+    <menuitem id="spare Part_usage_type" name="Equipments"
+             parent="maintenance.menu_equipment_form"
+              action="hr_equipment_actions"
+            />
+
+    <record id="hr_equipment_spare_part_action" model="ir.actions.act_window">
+            <field name="name">Spare Part</field>
+            <field name="res_model">maintenance.equipment</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="maintenance.hr_equipment_view_kanban"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a new equipment
+                </p><p>
+                    Track equipments and link it to an employee or department.
+                    You will be able to manage allocations, issues and maintenance of your equipment.
+                </p>
+            </field>
+           <field name="domain">[ ('usage_type', '=', 'spare_Part')]</field>
+           <field name="context">{'default_usage_type':'spare_Part'}</field>
+   </record>
+
+
+    <menuitem id="spare_part_usage_type" name="Spare Part"
+             parent="maintenance.menu_equipment_form"
+              action="hr_equipment_spare_part_action"
+            />
+
+    </data>
+</odoo>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <!-- Tree view for Clinic E-Prescription-->
+    <record id="clinic_eprescription_tree" model="ir.ui.view">
+        <field name="name">clinic.eprescription.tree</field>
+        <field name="model">clinic.eprescription</field>
+        <field name="type">tree</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <tree string="Clinic E-Prescription">
+                <field name="name" />
+                <field name="consulation_date" />
+                <field name="partner_id" />
+                <field name="employee_id" />
+            </tree>
+        </field>
+    </record>
+    
+    <!-- Form view for Clinic E-Prescription-->
+    <record id="clinic_eprescription_form" model="ir.ui.view">
+        <field name="name">clinic.eprescription.form</field>
+        <field name="model">clinic.eprescription</field>
+        <field name="type">form</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <form string="Clinic E-Prescription">
+                <header>
+                    <button string="Send By Email" name="action_send_prescription" type="object"
+                            attrs="{'invisible':[('sent','=',True)]}"  class="oe_highlight"/> 
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" />
+                        <h1>
+                            <field name="name" class="oe_inline" placeholder="name"/>
+                        </h1>  
+                    </div>
+                    <field name="client_photo" nolabel="1" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="phone"/>
+                            <field name="client_email"/>   
+                        </group>     
+                        <group>
+                            <field name="consulation_date" />
+                            <field name="source" />
+                            <field name="sent" invisible="True"/>
+                        </group>
+                    </group>
+                    <separator string="Name of medicines and/or drug prescribed" colspan="4" />
+                        <field name="prescription"/>
+                        <!-- <field name="prescription_line_ids" >
+                            <tree editable="bottom">
+                                <field name="name" />
+                                <field name="prescription" />
+                                <field name="no_refill" />
+                                <field name="qty" widget="integer"/>
+                                <field name="uom"/>
+                                <field name="num_word" invisible="1"/>
+                            </tree>
+                        </field> -->
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="emp_phone"/>
+                            <field name="prc_number"/>
+                            <field name="ptr_number"/>
+                            <field name="s2_license"/>
+                            <field name="valid_until"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group>
+                            <field name="doc_signature" widget="signature" width="600" height="200"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <!-- Search view for Clinic E-Prescription-->
+    <record id="clinic_eprescription_search" model="ir.ui.view">
+        <field name="name">clinic.eprescription.search</field>
+        <field name="model">clinic.eprescription</field>
+        <field name="type">search</field>
+        <field name="mode">primary</field>
+        <field name="priority" eval="16" />
+        <field name="active" eval="True" />
+        <field name="arch" type="xml">
+            <search string="Clinic E-Prescription">
+                <field name="name" />
+                <field name="partner_id" />
+                <field name="employee_id" />
+            </search>
+        </field>
+    </record>
+    
+    <!-- Main window action for Clinic E-Prescription-->
+    <record id="action_clinic_eprescription" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="name">E-Prescription</field>
+        <field name="res_model">clinic.eprescription</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="search_view_id" ref="clinic_eprescription_search" />
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add new E-Prescription
+            </p><p>
+                Something about clinic.eprescription
+            </p>
+        </field>
+    </record>
+    
+    <menuitem id="menu_clinic_eprescription"
+                  name="E-Prescription" 
+                  parent="cml_clinic.clinic_client"
+                  sequence="3"
+                  groups="cml_eprescription.eprescription_user"
+                  action="cml_eprescription.action_clinic_eprescription"/>
+    </data>
+</odoo>

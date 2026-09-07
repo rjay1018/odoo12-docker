@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="Mobile Barcode assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+          
+            <link rel="stylesheet" href="/sh_attendance_barcode_mobile/static/src/scss/custom.scss" />
+			
+            <script type="text/javascript" src="/sh_attendance_barcode_mobile/static/src/js/ZXing.js"></script>
+
+            <script type="text/javascript" src="/sh_attendance_barcode_mobile/static/src/js/kiosk_mode.js"></script>
+
+                        
+        </xpath>
+    </template>
+</odoo>

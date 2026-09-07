@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_clinic_appointment_tree">
+            <field name="name">res.clinic.tree</field>
+            <field name="model">res.clinic</field>
+            <field name="arch" type="xml">
+                <tree string="Clinic List">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_clinic_appointment_form">
+            <field name="name">res.clinic.form</field>
+            <field name="model">res.clinic</field>
+            <field name="arch" type="xml">
+                <form string="Clinic">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                 <label for="street" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State"/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="mobile"/>
+                                <field name="email"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_res_clinic" model="ir.actions.act_window">
+            <field name="name">Clinic</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.clinic</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem
+                name="Clinic"
+                id="clinic_menu"
+                parent="cml_clinic.clinic_configuration"
+                action="action_res_clinic"
+                sequence="25"/>
+    </data>
+</odoo>

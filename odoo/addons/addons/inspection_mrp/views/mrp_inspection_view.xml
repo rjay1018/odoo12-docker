@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="view_inspection_tree" model="ir.ui.view">
+		<field name="name">inspection.tree</field>
+		<field name="model">inspection</field>
+		<field name="priority">2</field>
+		<field name="arch" type="xml">
+			<tree string="Inspection">
+				<field name="name" />
+				<!-- <field name="checklist_category_id" /> -->
+				<field name="product_id"/>
+				<field name="description" />
+				<!-- <field name="remarks" /> -->
+			</tree>
+		</field>
+	</record>
+
+	<record id="view_inspection_form" model="ir.ui.view">
+		<field name="name">inspection.form</field>
+		<field name="model">inspection</field>
+		<field name="arch" type="xml">
+			<form string="Inspection">
+				<sheet>
+					<group>
+						<group>
+							<field name="name" string="Question" placeholder="Question"/>
+							
+							<!-- <field name='checklist_category_id'/> -->
+						</group>
+						<group>
+							<field name="product_id"/>
+							<!-- <field name="description" />
+							<field name="remarks" /> -->
+						</group>
+					</group>
+					<group>
+						<group>
+							<field name="type" widget="radio"/>
+						</group>
+						<group>
+							<div class="col-lg-6 offset-lg-3 o_preview_questions">
+	                            <!-- Multiple Lines Text Zone -->
+		                        <div attrs="{'invisible': [('type', '!=', 'numeric')]}">
+		                        	<i class="fa fa-2x" role="img" aria-label="Numeric" title="Numeric">123...</i>
+		                        </div>
+		                        <div attrs="{'invisible': [('type', '!=', 'image')]}">
+		                        	<i class="fa fa-picture-o fa-2x" role="img" aria-label="Image" title="Image"></i>
+		                        </div>
+		                        <div attrs="{'invisible': [('type', '!=', 'descriptive')]}">
+		                        	<i class="fa fa-2x" role="img" aria-label="Descriptive" title="Descriptive">abcd...</i>
+		                        </div>
+	                        </div>
+						</group>
+					</group>
+					<group>
+						<group>
+							<field name="max_value" attrs="{'invisible':[('type','!=','numeric')],'required':[('type','=','numeric')]}"/>							
+							<field name="image" widget="image" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}" attrs="{'invisible':[('type','!=','image')],'required':[('type','=','image')]}"/>
+						</group>
+						<group>
+							<field name="min_value" attrs="{'invisible':[('type','!=','numeric')],'required':[('type','=','numeric')]}"/>
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_inspection_menu"
+		model="ir.actions.act_window">
+		<field name="name">Inspection</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">inspection</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Click here to create a record
+			</p>
+		</field>
+	</record>
+
+		<menuitem id="inspection_menu_view" name="Inspection"
+		action="action_inspection_menu" parent="mrp.menu_mrp_bom"
+		sequence="2" />
+
+</odoo>

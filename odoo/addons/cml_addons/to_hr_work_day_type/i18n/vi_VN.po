@@ -1,0 +1,137 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* to_hr_work_day_type
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-24 13:05+0000\n"
+"PO-Revision-Date: 2019-03-24 13:05+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__rate
+msgid "Allowance Rate"
+msgstr "Tỷ lệ Phụ cấp"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__create_uid
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__create_date
+msgid "Created on"
+msgstr "Được tạo vào"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__date_from
+msgid "Date From"
+msgstr "Từ Ngày"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__date_to
+msgid "Date To (incl.)"
+msgstr "Đến Ngày"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__is_holiday
+msgid "Holiday Period"
+msgstr "Là Ngày nghỉ lễ"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__id
+msgid "ID"
+msgstr ""
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type____last_update
+msgid "Last Modified on"
+msgstr "Sửa lần cuối"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật Lần cuối Bởi"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối"
+
+#. module: to_hr_work_day_type
+#: model:work.day.type,name:to_hr_work_day_type.normal_work_day
+msgid "Normal Working Day"
+msgstr "Ngày làm việc Thông thường"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,help:to_hr_work_day_type.field_work_day_type__date_to
+msgid "The ending date of the period. This date is included in the period."
+msgstr "Ngày kết thúc của Kiểu ngày làm việc. Ngày này bao gồm trong Kiểu ngày làm việc."
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,help:to_hr_work_day_type.field_work_day_type__name
+msgid "The name of the type"
+msgstr "Tên của Kiểu ngày làm việc"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,help:to_hr_work_day_type.field_work_day_type__rate
+msgid "The rate for allowance in percentage. For example, you can specify 150 here for 150% so that the salary rule can multiple the basic wage with this rate for, for example, overtime."
+msgstr "Tỷ lệ phụ cấp tính theo phần trăm. Ví dụ, bbạn có thể thiết lập 150 ở đây để làm tỷ lệ 150%, sau đó, thiết lập quy tắc lương sử dụng tỷ lệ này, ví dụ, nhân lương cơ bản với tỷ lệ này khi đi làm vào ngày thuộc Kiểu nghỉ lễ."
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,help:to_hr_work_day_type.field_work_day_type__date_from
+msgid "The starting date of the period. This date is included in the period."
+msgstr "Ngày bắt đầu của Kiểu ngày làm việc. Ngày này bao gồm trong Kiểu ngày làm việc."
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,help:to_hr_work_day_type.field_work_day_type__is_holiday
+msgid "This is to indicate if this type is a holiday period"
+msgstr "Trường này để chỉ ra rằng kiểu ngày làm việc này là một kỳ nghỉ lễ"
+
+#. module: to_hr_work_day_type
+#: model:ir.model.fields,field_description:to_hr_work_day_type.field_work_day_type__name
+msgid "Title"
+msgstr "Tiêu đề"
+
+#. module: to_hr_work_day_type
+#: model:ir.actions.act_window,name:to_hr_work_day_type.work_day_type_action
+#: model:ir.model,name:to_hr_work_day_type.model_work_day_type
+#: model_terms:ir.ui.view,arch_db:to_hr_work_day_type.work_day_type_form_view
+#: model_terms:ir.ui.view,arch_db:to_hr_work_day_type.work_day_type_tree_view
+msgid "Work Day Type"
+msgstr "Kiểu Ngày làm việc"
+
+#. module: to_hr_work_day_type
+#: model:ir.ui.menu,name:to_hr_work_day_type.work_day_type_menu
+msgid "Work Day Types"
+msgstr "Kiểu Ngày làm việc"
+
+#. module: to_hr_work_day_type
+#: code:addons/to_hr_work_day_type/models/work_day_type.py:69
+#, python-format
+msgid "You cannot delete the work day type '%s' which is required for some operations."
+msgstr "Bạn không thể xoá kiểu ngày làm việc '%s'. Nó bắt buộc phải tồn tại đối với một số hoạt động của hệ thống."
+
+#. module: to_hr_work_day_type
+#: code:addons/to_hr_work_day_type/models/work_day_type.py:40
+#, python-format
+msgid "You were trying to create a new Work Day Type that overlapped an existing one, which is %s"
+msgstr "Bạn đã cố gắng tạo một Kiểu Ngày làm việc mà chồng tréo với một kiểu đã tồn tại là %s"
+

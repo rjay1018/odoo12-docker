@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Invoice Lines -->
+        <!-- Form Views -->
+        <record id="sh_customer_invoice_line_form_view_inherit" model="ir.ui.view">
+            <field name="name">Customer Line Form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" />
+                        <group>
+                            <group>
+                                <field name="invoice_id" string="Order" />
+                                <field name="product_id" />
+                                <field name="uom_id" />
+                                <field name="account_id" string="Account" />
+                                <field name="invoice_line_tax_ids" widget="many2many_tags" />
+                                <field name="price_tax" />
+                                <field name="price_subtotal" />
+                            </group>
+                            <group>
+                                <field name="partner_id" />
+                                <field name="name" />
+                                <field name="price_unit" />
+                                <field name="quantity" />
+                                <field name="discount" />
+                                <field name="invoice_type" />
+                                <field name="invoice_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="sh_customer_invoice_line_tree_view_inherit" model="ir.ui.view">
+            <field name="name">Customer Line Tree</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="invoice_id" string="Order" />
+                    <field name="image" widget="image" width="20%%" />
+                    <field name="product_id" />
+                    <field name="partner_id" />
+                    <field name="uom_id" />
+                    <field name="name" />
+                    <field name="account_id" />
+                    <field name="price_tax" />
+                    <field name="price_unit" />
+                    <field name="quantity" />
+                    <field name="price_subtotal" />
+                    <field name="invoice_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <record id="sh_customer_invoice_line_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">Customer Line Kanban</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="partner_id">
+                    <field name="id" />
+                    <field name="product_id" />
+                    <field name="quantity" string="Qty" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('account.invoice.line', 'image', record.id.raw_value)" role="img" alt="Product" class="o_kanban_image_fill_left o_kanban_image_full" />
+                                </div>
+                                <div class="o_kanban_details">
+                                    <strong>Invoice : <field name="invoice_id" /> </strong>
+                                    <br />
+                                    Product : <field name="product_id" />
+                                    <br />
+                                    Qty : <field name="quantity" />
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- All Lines Kanban View -->
+        <record id="sh_account_all_line_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">All Line Kanban</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="inv_type">
+                    <field name="id" />
+                    <field name="product_id" />
+                    <field name="partner_id" />
+                    <field name="state" />
+                    <field name="quantity" string="Qty" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('account.invoice.line', 'image', record.id.raw_value)" role="img" alt="Product" class="o_kanban_image_fill_left o_kanban_image_full" />
+                                </div>
+                                <div class="o_kanban_details">
+                                    <strong>Invoice : <field name="invoice_id" /> </strong>
+                                    <br />
+                                    Partner : <field name="partner_id" string="product_id :" />
+                                    <br />
+                                    Product : <field name="product_id" />
+                                    <br />
+                                    Qty : <field name="quantity" />
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <span class="float-right text-right">
+                                        <field
+                                            name="state"
+                                            widget="label_selection"
+                                            options="{'classes': {'draft': 'default', 'cancel': 'default', 'none': 'danger', 'open': 'warning',                                             'paid': 'success'}}"
+                                        />
+                                    </span>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="sh_customer_invoice_line_search_view_inherit" model="ir.ui.view">
+            <field name="name">Customer Line Search</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Customer Line">
+                	<field name="category_id"/>
+                	<field name="product_id"/>
+                	<field name="invoice_date"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]" />
+                    <filter name="unpaid" string="Open" domain="[('state', '=', 'open')]" />
+                    <filter name="in_payment" string="In Payment" domain="[('state', '=', 'in_payment')]" />
+                    <filter name="paid" string="Paid" domain="[('state', '=', 'paid')]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_invoice_partner_id" domain="[]" string="Partner" context="{'group_by':'partner_id'}" />
+                        <filter name="group_by_invoice_id" domain="[]" string="Order" context="{'group_by':'invoice_id'}" />
+                        <filter name="group_by_product_id" domain="[]" string="Product" context="{'group_by':'product_id'}" />
+                        <filter name="group_by_category_id" domain="[]" string="Product Category" context="{'group_by':'category_id'}" />
+                        <filter name="group_by_invoice_date" domain="[]" string="Invoice Date" context="{'group_by':'invoice_date'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- All Search View -->
+        <record id="sh_account_all_line_search_view" model="ir.ui.view">
+            <field name="name">All Lines Search</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <search string="Search All Line">
+                    <field name="inv_type" />
+                    <field name="category_id"/>
+                	<field name="product_id"/>
+                    <filter name="draft" string="Draft" domain="[('state','=','draft')]" />
+                    <filter name="unpaid" string="Open" domain="[('state', '=', 'open')]" />
+                    <filter name="in_payment" string="In Payment" domain="[('state', '=', 'in_payment')]" />
+                    <filter name="paid" string="Paid" domain="[('state', '=', 'paid')]" />
+                    <filter string="Invoices" name="invoice" domain="[('inv_type', '=', 'out_invoice')]" />
+                    <filter string="Credit Notes" name="credit_notes" domain="[('inv_type', '=', 'out_refund')]" />
+                    <filter string="Bills" name="bills" domain="[('inv_type', '=', 'in_invoice')]" />
+                    <filter string="Refunds" name="refunds" domain="[('inv_type', '=', 'in_refund')]" />
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_invoice_partner_id" domain="[]" string="Partner" context="{'group_by':'partner_id'}" />
+                        <filter name="group_by_invoice_id" domain="[]" string="Order" context="{'group_by':'invoice_id'}" />
+                        <filter name="group_by_product_id" domain="[]" string="Product" context="{'group_by':'product_id'}" />
+                        <filter name="group_by_category_id" domain="[]" string="Product Category" context="{'group_by':'category_id'}" />
+                        <filter string="Type" name="group_by_type" context="{'group_by':'inv_type'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- All Pivot View -->
+        <record model="ir.ui.view" id="view_all_line_pivot">
+            <field name="name">all.line.pivot</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <pivot string="All Lines">
+                    <field name="inv_type" />
+                    <field name="state" type="row" />
+                    <field name="invoice_id" type="row" />
+                    <field name="quantity" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Pivot View -->
+        <record model="ir.ui.view" id="view_customer_line_pivot">
+            <field name="name">customer.line.pivot</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Customer Line">
+                    <field name="state" type="row" />
+                    <field name="invoice_id" type="row" />
+                    <field name="quantity" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Graph View -->
+        <record model="ir.ui.view" id="view_customer_line_graph">
+            <field name="name">customer.invoice.line.graph</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <graph string="Customer Line">
+                    <field name="product_id" />
+                    <field name="partner_id" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+        <!-- Calendar View -->
+        <record id="view_customer_line_calendar" model="ir.ui.view">
+            <field name="name">customer.invoice.line.calendar</field>
+            <field name="model">account.invoice.line</field>
+            <field name="arch" type="xml">
+                <calendar string="Invoices" date_start="create_date">
+                    <field name="partner_id" />
+                    <field name="invoice_id" />
+                </calendar>
+            </field>
+        </record>
+
+        <record id="sh_action_customer_lines" model="ir.actions.act_window">
+            <field name="name">Invoice Line</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field name="domain">[('invoice_type','=','out_invoice')]</field>
+            <field name="search_view_id" ref="sh_customer_invoice_line_search_view_inherit" />
+            <field
+                name="view_ids"
+                eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_customer_invoice_line_tree_view_inherit')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('sh_customer_invoice_line_kanban_view_inherit')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_customer_line_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_customer_invoice_line_form_view_inherit')})]"
+            />
+        </record>
+
+        <record id="sh_action_customer_credit_lines" model="ir.actions.act_window">
+            <field name="name">Credit Note Line</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field name="domain">[('invoice_type','=','out_refund')]</field>
+            <field name="search_view_id" ref="sh_customer_invoice_line_search_view_inherit" />
+            <field
+                name="view_ids"
+                eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_customer_invoice_line_tree_view_inherit')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('sh_customer_invoice_line_kanban_view_inherit')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_customer_line_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_customer_invoice_line_form_view_inherit')})]"
+            />
+        </record>
+
+        <record id="sh_action_vendor_lines" model="ir.actions.act_window">
+            <field name="name">Bills Line</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field name="domain">[('invoice_type','=','in_invoice')]</field>
+            <field name="search_view_id" ref="sh_customer_invoice_line_search_view_inherit" />
+            <field
+                name="view_ids"
+                eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_customer_invoice_line_tree_view_inherit')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('sh_customer_invoice_line_kanban_view_inherit')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_customer_line_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_customer_invoice_line_form_view_inherit')})]"
+            />
+        </record>
+
+        <record id="sh_action_vendor_credit_lines" model="ir.actions.act_window">
+            <field name="name">Debit Note Line</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field name="search_view_id" ref="sh_customer_invoice_line_search_view_inherit" />
+            <field name="domain">[('invoice_type','=','in_refund')]</field>
+            <field
+                name="view_ids"
+                eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_customer_invoice_line_tree_view_inherit')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('sh_customer_invoice_line_kanban_view_inherit')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_customer_line_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_customer_invoice_line_form_view_inherit')})]"
+            />
+        </record>
+
+        <record id="sh_action_account_all_lines" model="ir.actions.act_window">
+            <field name="name">Account All Lines</field>
+            <field name="res_model">account.invoice.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="search_view_id" ref="sh_account_all_line_search_view" />
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field
+                name="view_ids"
+                eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_customer_invoice_line_tree_view_inherit')}),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('sh_account_all_line_kanban_view_inherit')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_all_line_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_customer_invoice_line_form_view_inherit')})]"
+            />
+        </record>
+    </data>
+
+    <menuitem id="sh_customer_invoice_line" name="Invoice Lines" action="sh_action_customer_lines" parent="account.menu_finance_receivables" sequence="111" />
+
+    <menuitem id="sh_customer_invoice_credit_line" name="Credit Notes Lines" action="sh_action_customer_credit_lines" parent="account.menu_finance_receivables" sequence="112" />
+
+    <menuitem id="sh_vendor_line" name="Bill Lines" action="sh_action_vendor_lines" parent="account.menu_finance_payables" sequence="213" />
+
+    <menuitem id="sh_vendor_credit_line" name="Refund Lines" action="sh_action_vendor_credit_lines" parent="account.menu_finance_payables" sequence="214" />
+
+    <menuitem id="sh_account_all_line" name="All Lines" action="sh_action_account_all_lines" parent="account.menu_finance_entries" sequence="615" />
+</odoo>

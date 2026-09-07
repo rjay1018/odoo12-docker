@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="mrp_workers_planning_form">
+            <field name="name">mrp.worker.planning.form</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='time_ids']" position="before">
+                    <group>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                    </group>
+                    <separator></separator>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_workers_planning_kanban">
+            <field name="name">mrp.worker.planning.kanban</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.workcenter_line_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@class='o_kanban_record_bottom']" position="after">
+                    <div>
+                        <br><strong>Workers</strong></br>
+                        <field name="employee_ids" widget="many2many_tags"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mrp_workers_planning_search">
+            <field name="name">mrp.worker.planning.form</field>
+            <field name="model">mrp.workorder</field>
+            <field name="inherit_id" ref="mrp.view_mrp_production_workorder_form_view_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                        <field name="employee_ids" string="Assigned Workers"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

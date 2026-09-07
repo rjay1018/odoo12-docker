@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_client_referrals_tree" model="ir.ui.view">
+            <field name="name">client.referral.tree</field>
+            <field name="model">client.referral</field>
+            <field name="arch" type="xml">
+                <tree string="Referral Request"> 
+                    <field name="name"/>
+                    <field name="requested_date"/>
+                    <field name="support_id"/>
+                    <field name="user_id"/>
+                    <field name="source"/>
+                    <field name="state"/>
+                </tree>	
+            </field>
+        </record>        
+
+        <record id="view_client_referrals_form" model="ir.ui.view">
+            <field name="name">client.referral.form</field>
+            <field name="model">client.referral</field>
+            <field name="arch" type="xml">
+                <form string="Referral Request">
+                    <header>
+                        <button name="action_confirm" string="Confirm" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_done" string="Done" states="confirmed" type="object" class="oe_highlight"/>
+                        <button name="action_draft" string="Reset to Draft" states="confirmed" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" string="Cancel" states="confirmed" type="object" class="oe_highlight"/>
+                        <field name="state" statusbar_visible="draft,confirmed,done,cancel" widget="statusbar"/>
+                    </header>
+		            <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="support_id"/>
+                            <field name="reason"/>
+                            <field name="user_id" readonly="1"/>
+                            <field name="source" readonly="1"/>
+                            <field name="requested_date" readonly="1"/>
+                        </group>
+		            </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="client_referrals_action" model="ir.actions.act_window">
+           <field name="name">Referral Request</field>
+            <field name="res_model">client.referral</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_client_referrals_tree"/>
+        </record>
+
+     <!--creating menus-->
+        <menuitem id="menu_client_referrals"
+                  name="Referral Request" 
+                  parent="cml_clinic.clinic_client"
+                  groups="cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager"
+                  sequence="3"
+                  action="cml_clinic.client_referrals_action"/>
+</odoo>

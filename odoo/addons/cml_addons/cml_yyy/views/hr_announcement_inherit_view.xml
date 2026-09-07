@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_announcement_form_inherit" model="ir.ui.view">
+        <field name="name">view_hr_announcement_form_inherit</field>
+        <field name="model">hr.announcement</field>
+        <field name="inherit_id" ref="ph_payroll_reward_warning.view_hr_announcement_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='requested_date']" position="before">
+                <field name="user_ids" widget="many2many_tags"
+                                    attrs="{'invisible': ['|',('is_announcement', '!=', False), ('announcement_type', '!=', 'user')]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

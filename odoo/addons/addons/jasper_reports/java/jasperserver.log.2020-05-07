@@ -1,0 +1,1312 @@
+0    [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864568575_45495: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864568575_45495: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864568575_45495: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864568575_45495: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864568575_45495: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+8711 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864577337_955123: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864577337_955123: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864577337_955123: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864577337_955123: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864577337_955123: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+25340 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864593961_300359: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864593961_300359: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864593961_300359: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864593961_300359: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864593961_300359: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+42169 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864610795_581255: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864610795_581255: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864610795_581255: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864610795_581255: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864610795_581255: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+223888 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864792526_873611: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864792526_873611: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864792526_873611: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864792526_873611: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864792526_873611: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+316567 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864885208_800297: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864885208_800297: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864885208_800297: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864885208_800297: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588864885208_800297: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+447230 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865015874_935260: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865015874_935260: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865015874_935260: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865015874_935260: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865015874_935260: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+579496 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865148138_920457: 718: unexpected token: > @ line 718, column 94.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865148138_920457: 718: unexpected token: > @ line 718, column 94.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865148138_920457: 718: unexpected token: > @ line 718, column 94.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865148138_920457: 718: unexpected token: > @ line 718, column 94.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865148138_920457: 718: unexpected token: > @ line 718, column 94.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+1    [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865236763_581834: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865236763_581834: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865236763_581834: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865236763_581834: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865236763_581834: 718: unexpected char: '\' @ line 718, column 91.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+30117 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865267186_110651: 718: unexpected token: > @ line 718, column 94.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865267186_110651: 718: unexpected token: > @ line 718, column 94.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865267186_110651: 718: unexpected token: > @ line 718, column 94.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865267186_110651: 718: unexpected token: > @ line 718, column 94.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_eprescription_1588865267186_110651: 718: unexpected token: > @ line 718, column 94.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 19 more
+766851 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Error evaluating expression for source text: "Date: " + new SimpleDateFormat("MM/dd/yyyy").format( $F{Consulation_Date-consulation_date})
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: "Date: " + new SimpleDateFormat("MM/dd/yyyy").format( $F{Consulation_Date-consulation_date})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillBandNoOverflow(JRVerticalFiller.java:431)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillPageHeader(JRVerticalFiller.java:393)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:246)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:99)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.text.DateFormat.format(DateFormat.java:310)
+	at java.text.Format.format(Format.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at eprescription_1588866003604_747882.evaluate(calculator_eprescription_1588866003604_747882:730)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 29 more
+Caused by:
+net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: "Date: " + new SimpleDateFormat("MM/dd/yyyy").format( $F{Consulation_Date-consulation_date})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillBandNoOverflow(JRVerticalFiller.java:431)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillPageHeader(JRVerticalFiller.java:393)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:246)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:99)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.text.DateFormat.format(DateFormat.java:310)
+	at java.text.Format.format(Format.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at eprescription_1588866003604_747882.evaluate(calculator_eprescription_1588866003604_747882:730)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 29 more
+824226 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Error evaluating expression for source text: "Date: " +new SimpleDateFormat("MM/dd/yyyy").format($F{Consulation_Date-consulation_date})
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: "Date: " +new SimpleDateFormat("MM/dd/yyyy").format($F{Consulation_Date-consulation_date})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillBandNoOverflow(JRVerticalFiller.java:431)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillPageHeader(JRVerticalFiller.java:393)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:246)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:99)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.text.DateFormat.format(DateFormat.java:310)
+	at java.text.Format.format(Format.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at eprescription_1588866061187_831617.evaluate(calculator_eprescription_1588866061187_831617:730)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 29 more
+Caused by:
+net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: "Date: " +new SimpleDateFormat("MM/dd/yyyy").format($F{Consulation_Date-consulation_date})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillBandNoOverflow(JRVerticalFiller.java:431)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillPageHeader(JRVerticalFiller.java:393)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportStart(JRVerticalFiller.java:246)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:99)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.text.DateFormat.format(DateFormat.java:310)
+	at java.text.Format.format(Format.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at eprescription_1588866061187_831617.evaluate(calculator_eprescription_1588866061187_831617:730)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 29 more
+1    [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Report design not valid : 
+	 1. Field not found : s2-s2_license
+	 2. Field not found : validity-valid_until
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : s2-s2_license
+	 2. Field not found : validity-valid_until
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:280)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:152)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by:
+net.sf.jasperreports.engine.design.JRValidationException: Report design not valid : 
+	 1. Field not found : s2-s2_license
+	 2. Field not found : validity-valid_until
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.verifyDesign(JRAbstractCompiler.java:280)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:152)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+381673 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Error evaluating expression for source text: "Doctor's Name: "+$F{Display_Name-display_name}+"\n"+
+"PRC Number: "+$F{PRC_Number-prc_number}+"\n"+
+"PRC Number: "+$F{PTR_Number-ptr_number}+"\n"+
+"S2 License: "+$F{S2_License-s2_license}+"\n"+
+"Valid Until: "+new SimpleDateFormat("MM/dd/yyyy").format($F{valid_until-valid_until})+"\n"
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: "Doctor's Name: "+$F{Display_Name-display_name}+"\n"+
+"PRC Number: "+$F{PRC_Number-prc_number}+"\n"+
+"PRC Number: "+$F{PTR_Number-ptr_number}+"\n"+
+"S2 License: "+$F{S2_License-s2_license}+"\n"+
+"Valid Until: "+new SimpleDateFormat("MM/dd/yyyy").format($F{valid_until-valid_until})+"\n"
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillFixedBand(JRVerticalFiller.java:2662)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnFooter(JRVerticalFiller.java:1101)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillSummaryNoLastFooterSamePage(JRVerticalFiller.java:1261)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillSummary(JRVerticalFiller.java:1164)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportEnd(JRVerticalFiller.java:283)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:106)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.text.DateFormat.format(DateFormat.java:310)
+	at java.text.Format.format(Format.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at eprescription_1588873755430_539232.evaluate(calculator_eprescription_1588873755430_539232:752)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 31 more
+Caused by:
+net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: "Doctor's Name: "+$F{Display_Name-display_name}+"\n"+
+"PRC Number: "+$F{PRC_Number-prc_number}+"\n"+
+"PRC Number: "+$F{PTR_Number-ptr_number}+"\n"+
+"S2 License: "+$F{S2_License-s2_license}+"\n"+
+"Valid Until: "+new SimpleDateFormat("MM/dd/yyyy").format($F{valid_until-valid_until})+"\n"
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillFixedBand(JRVerticalFiller.java:2662)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnFooter(JRVerticalFiller.java:1101)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillSummaryNoLastFooterSamePage(JRVerticalFiller.java:1261)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillSummary(JRVerticalFiller.java:1164)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportEnd(JRVerticalFiller.java:283)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:106)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.IllegalArgumentException: Cannot format given Object as a Date
+	at java.text.DateFormat.format(DateFormat.java:310)
+	at java.text.Format.format(Format.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:108)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at eprescription_1588873755430_539232.evaluate(calculator_eprescription_1588873755430_539232:752)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 31 more

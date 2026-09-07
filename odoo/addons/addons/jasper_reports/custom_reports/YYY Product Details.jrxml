@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Product Details" language="groovy" pageWidth="1584" pageHeight="792" columnWidth="1544" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.6105100000000045"/>
+	<property name="ireport.x" value="521"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Reference-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reference-name]]></fieldDescription>
+	</field>
+	<field name="Product_Code-default_code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Product_Code-default_code]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Quantity_To_Produce-product_qty" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Quantity_To_Produce-product_qty]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product_Unit_of_Measure-product_uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<field name="Start_Date-date_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Start_Date-date_start]]></fieldDescription>
+	</field>
+	<field name="End_Date-date_finished" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/End_Date-date_finished]]></fieldDescription>
+	</field>
+	<field name="Total_Material_Cost-total_material_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Material_Cost-total_material_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Labour_Cost-total_labour_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Labour_Cost-total_labour_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Overhead_Cost-total_overhead_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Overhead_Cost-total_overhead_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Cost-total_all_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Cost-total_all_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Material_Cost-total_actual_material_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Material_Cost-total_actual_material_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Labour_Cost-total_actual_labour_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Labour_Cost-total_actual_labour_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Overhead_Cost-total_actual_overhead_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Overhead_Cost-total_actual_overhead_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Cost-total_actual_all_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Cost-total_actual_all_cost]]></fieldDescription>
+	</field>
+	<field name="Product_Unit_Cost-product_unit_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product_Unit_Cost-product_unit_cost]]></fieldDescription>
+	</field>
+	<field name="Expected_Cost-expected_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Expected_Cost-expected_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Quantity-product_uom_qty" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Quantity-product_uom_qty]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product_Expected_Unit_of_Measure-product_expected_uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<variable name="expected_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Expected_Cost-expected_cost} == "" ? 0.00 :$F{Expected_Cost-expected_cost})]]></variableExpression>
+	</variable>
+	<variable name="expected_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{expected_cost}]]></variableExpression>
+	</variable>
+	<variable name="planned_material_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Material_Cost-total_material_cost} == "" ? 0.00 :$F{Total_Material_Cost-total_material_cost})]]></variableExpression>
+	</variable>
+	<variable name="planned_material_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{planned_material_cost}]]></variableExpression>
+	</variable>
+	<variable name="planned_labor_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Labour_Cost-total_labour_cost} == "" ? 0.00 :$F{Total_Labour_Cost-total_labour_cost})]]></variableExpression>
+	</variable>
+	<variable name="planned_labor_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{planned_labor_cost}]]></variableExpression>
+	</variable>
+	<variable name="planned_overhead_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Overhead_Cost-total_overhead_cost} == "" ? 0.00 :$F{Total_Overhead_Cost-total_overhead_cost})]]></variableExpression>
+	</variable>
+	<variable name="planned_overhead_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{planned_overhead_cost}]]></variableExpression>
+	</variable>
+	<variable name="planned_total_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Cost-total_all_cost} == "" ? 0.00 :$F{Total_Cost-total_all_cost})]]></variableExpression>
+	</variable>
+	<variable name="planned_total_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{planned_total_cost}]]></variableExpression>
+	</variable>
+	<variable name="actual_material_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Actual_Material_Cost-total_actual_material_cost} == "" ? 0.00 :$F{Total_Actual_Material_Cost-total_actual_material_cost})]]></variableExpression>
+	</variable>
+	<variable name="actual_material_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{actual_material_cost}]]></variableExpression>
+	</variable>
+	<variable name="actual_labor_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Actual_Labour_Cost-total_actual_labour_cost} == "" ? 0.00 :$F{Total_Actual_Labour_Cost-total_actual_labour_cost})]]></variableExpression>
+	</variable>
+	<variable name="actual_labor_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{actual_labor_cost}]]></variableExpression>
+	</variable>
+	<variable name="actual_overhead_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Actual_Overhead_Cost-total_actual_overhead_cost} == "" ? 0.00 :$F{Total_Actual_Overhead_Cost-total_actual_overhead_cost})]]></variableExpression>
+	</variable>
+	<variable name="actual_overhead_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{actual_overhead_cost}]]></variableExpression>
+	</variable>
+	<variable name="actual_total_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Actual_Cost-total_actual_all_cost} == "" ? 0.00 :$F{Total_Actual_Cost-total_actual_all_cost})]]></variableExpression>
+	</variable>
+	<variable name="actual_total_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{actual_total_cost}]]></variableExpression>
+	</variable>
+	<variable name="actual_product_unit_cost" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Product_Unit_Cost-product_unit_cost} == "" ? 0.00 :$F{Product_Unit_Cost-product_unit_cost})]]></variableExpression>
+	</variable>
+	<variable name="actual_product_unit_cost_total" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$V{actual_product_unit_cost}]]></variableExpression>
+	</variable>
+	<variable name="expected_qty" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total_Quantity-product_uom_qty} == "" ? 0.00 :$F{Total_Quantity-product_uom_qty})]]></variableExpression>
+	</variable>
+	<variable name="expected_qty_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{expected_qty}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77">
+			<textField>
+				<reportElement x="0" y="13" width="1544" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["PRODUCT MANUFACTURING ORDER DETAILS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="1544" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Company_Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="764" y="47" width="335" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL PLANNED COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1099" y="47" width="445" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL ACTUAL COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="764" y="62" width="83" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATERIAL COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="847" y="62" width="78" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABOUR COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="925" y="62" width="91" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVERHEAD COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1016" y="62" width="83" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1099" y="62" width="83" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATERIAL COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1351" y="62" width="83" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1182" y="62" width="78" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LABOUR COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1260" y="62" width="91" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OVERHEAD COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="47" width="236" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="47" width="87" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QUANTITY TO PRODUCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="628" y="47" width="68" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[START DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="696" y="47" width="68" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[END DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="47" width="76" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MO No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="399" y="47" width="63" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1434" y="62" width="110" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCT UNIT COST]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="47" width="79" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXPECTED QTY / UOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="541" y="47" width="87" height="30"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXPECTED COST]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="764" y="0" width="83" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_material_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1099" y="0" width="83" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_material_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1182" y="0" width="78" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_labor_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1351" y="0" width="83" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_total_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1016" y="0" width="83" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_total_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="847" y="0" width="78" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_labor_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="925" y="0" width="91" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_overhead_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1260" y="0" width="91" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_overhead_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="696" y="0" width="68" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{End_Date-date_finished})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="312" y="0" width="87" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Quantity_To_Produce-product_qty} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Quantity_To_Produce-product_qty}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="628" y="0" width="68" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Start_Date-date_start})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="78" y="0" width="234" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Product_Code-default_code}+" "+$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="76" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reference-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="399" y="0" width="63" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="1434" y="0" width="110" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_product_unit_cost})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="462" y="0" width="79" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{expected_qty})+"/"+$F{Unit_of_Measure-name2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="541" y="0" width="87" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{expected_cost})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="51">
+			<staticText>
+				<reportElement x="0" y="0" width="462" height="15"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="541" y="0" width="87" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{expected_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="764" y="0" width="83" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_material_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="847" y="0" width="78" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_labor_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="925" y="0" width="91" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_overhead_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1016" y="0" width="83" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{planned_total_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1099" y="0" width="83" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_material_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1182" y="0" width="78" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_labor_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1260" y="0" width="91" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_overhead_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1351" y="0" width="83" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_total_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1434" y="0" width="110" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{actual_product_unit_cost_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="628" y="0" width="136" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="0" width="79" height="15"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{expected_qty_total})+"/"+$F{Unit_of_Measure-name2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

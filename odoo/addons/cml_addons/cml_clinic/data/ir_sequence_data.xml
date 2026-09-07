@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    
+        <!-- Sequences for Patient Record
+        <record id="seq_clinic_patient" model="ir.sequence">
+            <field name="name">Patient Sequences</field>
+            <field name="code">clinic.patient.sequence</field>
+            <field name="prefix">PAT</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record> -->
+
+
+        <!-- Sequences for Appointment Record -->
+        <record id="seq_clinic_appointment" model="ir.sequence">
+            <field name="name">Appointment Sequences</field>
+            <field name="code">clinic.appointment.sequence</field>
+            <field name="prefix">APPT</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for Client Referral Record -->
+        <record id="seq_clinic_referral" model="ir.sequence">
+            <field name="name">Clinic Referral Sequences</field>
+            <field name="code">clinic.referral.sequence</field>
+            <field name="prefix">CREF</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <!-- Sequences for Post Evaluation Record -->
+        <record id="seq_clinic_referral" model="ir.sequence">
+            <field name="name">Post Evaluation Sequences</field>
+            <field name="code">post.evaluation.sequence</field>
+            <field name="prefix">POST</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

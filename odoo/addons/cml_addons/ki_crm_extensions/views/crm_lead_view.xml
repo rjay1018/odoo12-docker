@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_crm_form_inh" model="ir.ui.view">
+        <field name="name">view_crm_form_inh</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Create Appointment" class="btn-primary"
+                        type="action" name="%(action_crm_create_appointment)d"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_appointment_count" type="object"
+                        class="oe_stat_button" icon="fa-list">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text">Appointment</span>
+                    </div>
+                </button>
+            </xpath>
+            <xpath expr="//field[@name='team_id']" position="after">
+                <field name="appointment_type"/>
+                <field name="product_id"/>
+<!--                <field name="partner_id"/>-->
+                <field name="clinic_id" attrs="{'invisible': [('appointment_type', '!=', 'inclinic')]}"/>
+                <field name="employee_id"/>
+                <field name="session_start"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

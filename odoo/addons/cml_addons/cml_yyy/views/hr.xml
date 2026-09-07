@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_contract_yyy" model="ir.ui.view">
+            <field name="name">hr_contract_cml</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='advantages']" position="before">
+                    <field name="position_allowance"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- <record id="hr_loan_yyy" model="ir.ui.view">
+            <field name="name">hr_loan_yyy</field>
+            <field name="model">hr.loan</field>
+            <field name="inherit_id" ref="ohrms_loan.hr_loan_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//button[@name='compute_installment']" position="after">
+                    <separator string="Reasons"/>
+                    <field name="reasons" nolabel='1'/>
+                </xpath>
+                <xpath expr="//field[@name='loan_lines']" position="replace">
+                    <field name="loan_lines">
+                        <tree string="Installments" editable="bottom">
+                            <field name="date"/>
+                            <field name="amount"/>
+                            <field name="paid_amount"/>
+                            <field name="paid" readonly="1" invisible="1"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//field[@name='total_amount']" position="after">
+                    <field name="paid_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="balance_amount" class="oe_subtotal_footer_separator" widget="monetary"
+                           options="{'currency_field': 'currency_id'}"/>
+
+                </xpath>
+            </field>
+        </record> -->
+
+    </data>
+</odoo>

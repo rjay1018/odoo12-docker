@@ -1,0 +1,40 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "CML Clinic Management System",
+    'summary': """CML Clinic Management System""",
+    'description': """
+    """,
+    'author': "CML",
+    'maintainer':'Rjay Lopez - renato@cml-intl.com',
+    'website': "www.cml-intl.com",
+    'category': 'Human Resources',
+    'version': '12.0.3',
+    'depends': ['sale', 'mail', 'crm', 'hr', 'cml_hr', 'board', 'muk_dms', 'cml_website_registration', 'membership_extension'],
+    'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
+        'data/ir_sequence_data.xml',
+        'data/mail_template.xml',
+        'wizards/create_appointment.xml',
+        'wizards/create_referral.xml',
+        'views/menu.xml',
+        'views/partner.xml',
+        'views/appointment.xml',
+        'views/employee.xml',
+        'views/file.xml',
+        'views/client_stage_view.xml',
+        'views/client_support.xml',
+        'views/specialist_schedule.xml',
+        'views/specialist_tags.xml',
+        'views/client_referral.xml',
+        'views/account_invoice_view.xml'
+        # 'views/website_registration.xml'
+        # 'views/patient.xml',
+        # 'views/timeslot.xml',
+    ],
+    'demo': [],
+    'images': [],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

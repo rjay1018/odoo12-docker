@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_crm_create_appointment_form" model="ir.ui.view">
+        <field name="name">crm.appointment.wizard.form</field>
+        <field name="model">crm.appointment.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="partner_id"/>
+                    <field name="employee_id"/>
+                </group>
+                <footer>
+                    <button name="action_submit_appointment" type="object" string="Submit" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_crm_create_appointment" model="ir.actions.act_window">
+        <field name="name">Create Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">crm.appointment.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_crm_create_appointment_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

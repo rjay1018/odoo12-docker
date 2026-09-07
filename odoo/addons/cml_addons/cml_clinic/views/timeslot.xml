@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+     <!-- tree view of the timeslot model -->
+        <record id="timeslot_tree" model="ir.ui.view">
+            <field name="name">clinic.timeslot.tree</field>
+            <field name="model">clinic.timeslot</field>
+            <field name="arch" type="xml">
+                <tree string="Appointments">
+                    <field name="name"/>
+                    <field name="timestart" widget="float_time"/>
+                    <field name="timeend" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+
+     <!--form view of the timeslot model-->
+        <record id="timeslot_form" model="ir.ui.view">
+            <field name="name">clinic.timeslot.form</field>
+            <field name="model">clinic.timeslot</field>
+            <field name="arch" type="xml">
+                <form string="Appointments">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="timestart" widget="float_time"/>
+                            <field name="timeend" widget="float_time"/>
+                            <field name="datesample"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+     <!--action of the timeslot menu-->
+        <record id="action_timeslot" model="ir.actions.act_window">
+            <field name="name">Time Slot</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clinic.timeslot</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your Time Slot !
+            </p>
+            </field>
+        </record>
+
+     <!--creating menus-->
+        <menuitem id="clinic_configuration" name="Configuration" parent="clinic_root" sequence="15"/>
+        <menuitem id="clinic_timeslot" name="Time Slot" parent="clinic_configuration" action="action_timeslot"/>
+    </data>
+</odoo>

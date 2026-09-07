@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_appointment_form" model="ir.ui.view">
+        <field name="name">create.appointment.wizard</field>
+        <field name="model">create.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Create Appointment">
+                <group class="oe_title">
+                    <field name="partner_id"/>
+                    <field name="session_start"/>
+                    <field name="duration"/>
+                    <!-- <field name="employee_id" domain="[('is_specialist', '=', True)]"/> -->
+                </group>
+                <footer>
+                    <button name="action_create" string="Create" type="object" class="btn btn-sm btn-primary"/>
+                    <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_appointment" model="ir.actions.act_window">
+        <field name="name">Next Appointment</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.appointment</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="create_appointment_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

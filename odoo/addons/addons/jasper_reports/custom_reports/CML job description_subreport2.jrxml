@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CML job description_subreport2" language="groovy" pageWidth="540" pageHeight="752" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.357947691000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;job_function_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Task_Inventory-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Functions-job_function_ids/Task_Inventory-name]]></fieldDescription>
+	</field>
+	<field name="Result_Area-result_area" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Functions-job_function_ids/Result_Area-result_area]]></fieldDescription>
+	</field>
+	<field name="Performance_Indicator-performance_indicator" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Functions-job_function_ids/Performance_Indicator-performance_indicator]]></fieldDescription>
+	</field>
+	<field name="Work_Tools-work_tools" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Functions-job_function_ids/Work_Tools-work_tools]]></fieldDescription>
+	</field>
+	<field name="Monitoring_and_Evaluation-monitoring" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Functions-job_function_ids/Monitoring_and_Evaluation-monitoring]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="14" width="85" height="43" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Task]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="89" y="14" width="76" height="43" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Result Area]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="169" y="14" width="204" height="43" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Performance Indicator]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="377" y="14" width="82" height="43" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Work Tools]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="463" y="14" width="77" height="43" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monitoring and Evaluation]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="57" width="540" height="3"/>
+				<box>
+					<pen lineColor="#55555A"/>
+					<topPen lineColor="#55555A"/>
+					<leftPen lineColor="#55555A"/>
+					<bottomPen lineWidth="0.25" lineColor="#D6D6D8"/>
+					<rightPen lineColor="#55555A"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="85" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Task_Inventory-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="89" y="0" width="76" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Result_Area-result_area}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="169" y="0" width="204" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Performance_Indicator-performance_indicator}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="377" y="0" width="82" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Work_Tools-work_tools}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="463" y="0" width="77" height="25" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Monitoring_and_Evaluation-monitoring}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

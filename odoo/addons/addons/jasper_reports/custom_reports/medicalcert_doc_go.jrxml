@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="eprescriptionv2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9c01aa8-c7e0-4531-8a50-b94f8515ec08">
+	<property name="ireport.zoom" value="1.6105100000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="143"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist-employee_id/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Start-session_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Start-session_start]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Age-age" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Age-age]]></fieldDescription>
+	</field>
+	<field name="Sex-sex" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Sex-sex]]></fieldDescription>
+	</field>
+	<field name="Client_Age-client_age" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Client_Age-client_age]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Context-context" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Context-context]]></fieldDescription>
+	</field>
+	<field name="Agreed_Action_Step-agreed_astep" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Agreed_Action_Step-agreed_astep]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist-employee_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Job_Title-job_title" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist-employee_id/Job_Title-job_title]]></fieldDescription>
+	</field>
+	<field name="PRC_Number-prc_number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist-employee_id/PRC_Number-prc_number]]></fieldDescription>
+	</field>
+	<variable name="VarSex" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Sex-sex}=="female" ? "Female" : $F{Sex-sex}=="male" ? "Male" : " "]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="IndentVar" class="java.lang.String">
+		<variableExpression><![CDATA["       1"]]></variableExpression>
+		<initialValueExpression><![CDATA["       "]]></initialValueExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="120">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="268" y="0" width="287" height="66" uuid="118785f1-15e6-4bb9-9b64-a511e969304e"/>
+				<imageExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/logo_landscape.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="268" height="104" uuid="90c59270-16e4-4aab-9d03-866cde46f0eb"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Clinic Offices ℅ Aventus Medical Clinics Nationwide
+
+DOH Accreditation Number:  *13-0971-12-PIBS-R
+*through Aventus Medical Care, Inc.
+PRC - CPD Accreditation Number: OGC- 2016-012]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="112" width="555" height="1" uuid="e34216dd-46fc-4d6b-8ee3-f2d79f220f3b"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="268" y="66" width="287" height="38" uuid="d0a66b63-de05-4f3b-a162-30d4dd727ff2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[MEDICAL CERTIFICATE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="213">
+			<elementGroup>
+				<elementGroup>
+					<elementGroup/>
+				</elementGroup>
+			</elementGroup>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="28" y="0" width="107" height="20" uuid="53603cdf-959f-41e4-8a13-fd8cb5eb0c6c"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="MMMMM dd, yyyy">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="35" y="49" width="520" height="164" isPrintWhenDetailOverflows="true" uuid="7644efbb-47e9-4234-805d-5d79e34bd190"/>
+				<box leftPadding="2"/>
+				<textElement markup="html">
+					<font size="9"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["	This is to certify that "+$F{Name-name}+", "+$F{Age-age}+" years old "+$V{VarSex}+" of "+$F{Street-street}+", "+$F{Street2-street2}+", "+$F{City-city}+", is seen and examined thru online consultation this day "+new SimpleDateFormat("MMMMM dd, yyyy").format($F{Start-session_start})+", "+"and is diagnosed to have "+"<b>"+$F{Context-context}+"</b>"
++"\n"
++"\n"
++"	It is recommended that "+$F{Agreed_Action_Step-agreed_astep}
++"\n"
++"\n"
++"	This certification is issued for work purposes and not valid for medicolegal."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="67">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="17" uuid="b0451d95-1acc-423d-a791-8ae6a9624fae"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[+63.917.182.9355  /  clinic@mindwell.ph  /  https://www.mindwell.ph/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="17" width="555" height="50" uuid="b343dfad-efd4-4a03-bec8-08967366aee2"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="150">
+			<textField>
+				<reportElement x="28" y="89" width="168" height="20" uuid="e4e3d312-300a-429c-9b42-0d09a79bab5d"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle" markup="styled">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="109" width="168" height="20" uuid="38a09e2d-1eef-477f-bbbd-19e6223d09aa"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Attending "+$F{Job_Title-job_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="28" y="129" width="168" height="20" uuid="918fa205-a961-40cc-9532-926c6b4fcb8e"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PRC License Number : "+$F{PRC_Number-prc_number}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Center">
+				<reportElement x="28" y="45" width="168" height="44" uuid="fcf451a3-0c2b-4596-93af-334f47891ab8"/>
+				<imageExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/doceve.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="0" width="555" height="20" uuid="fa5f169b-d010-49e9-abfd-a124e8c5870b"/>
+				<textElement textAlignment="Center">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["* * * Nothing Follows * * *"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<menuitem id="overtime_settings" name="Settings"
+			parent="overtime_payroll_root_menu"
+			sequence="99" groups="to_hr_overtime_payroll.group_hr_overtime_manager"/>
+			
+		<menuitem id="overtime_settings_general" name="General"
+			parent="overtime_settings" action="action_hr_overtime_configuration"
+			sequence="1"/>
+	</data>
+</odoo>

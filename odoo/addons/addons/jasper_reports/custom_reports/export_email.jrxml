@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="client_assessment_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eda3180f-3a12-4d0e-8a78-30cd9a1ddd54">
+	<property name="ireport.zoom" value="1.771561000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;user_input_line_ids&apos;]"/>
+	<style name="Row" mode="Opaque" forecolor="#FFFFFF" backcolor="#1FC060" fill="Solid">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#D6FAE7"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="tags" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="Display_Name-display_name"/>
+		<fieldDescription><![CDATA[Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="answer_value" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Answers-user_input_line_ids/Row_answer-value_suggested_row/Suggested_value-value"/>
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Row_answer-value_suggested_row/Suggested_value-value]]></fieldDescription>
+	</field>
+	<field name="client_name" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Partner-partner_id/Display_Name-display_name"/>
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="survey_title" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Survey-survey_id/Display_Name-display_name"/>
+		<fieldDescription><![CDATA[/data/record/Survey-survey_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Suggested_value-value" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Suggested_value-value"/>
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Suggested_value-value]]></fieldDescription>
+	</field>
+	<field name="Average_Score-average_score" class="java.lang.Double">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Average_Score-average_score"/>
+		<fieldDescription><![CDATA[/data/record/Average_Score-average_score]]></fieldDescription>
+	</field>
+	<field name="Total_Score-total_score" class="java.lang.Double">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="/data/record/Total_Score-total_score"/>
+		<fieldDescription><![CDATA[/data/record/Total_Score-total_score]]></fieldDescription>
+	</field>
+	<field name="Answers-user_input_line_ids" class="java.lang.String">
+		<property name="net.sf.jasperreports.xpath.field.expression" value="ancestor::Answers-user_input_line_ids"/>
+		<fieldDescription><![CDATA[ancestor::Answers-user_input_line_ids]]></fieldDescription>
+	</field>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User-User/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Score_given_for_this_choice-quizz_mark" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Score_given_for_this_choice-quizz_mark]]></fieldDescription>
+	</field>
+	<field name="Created_on-create_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Created_on-create_date]]></fieldDescription>
+	</field>
+	<field name="Question_Name-question" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Question-question_id/Question_Name-question]]></fieldDescription>
+	</field>
+	<field name="Text_answer-value_text" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Text_answer-value_text]]></fieldDescription>
+	</field>
+	<field name="Date_answer-value_date" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Date_answer-value_date]]></fieldDescription>
+	</field>
+	<field name="Free_Text_answer-value_free_text" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Free_Text_answer-value_free_text]]></fieldDescription>
+	</field>
+	<field name="Numerical_answer-value_number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Numerical_answer-value_number]]></fieldDescription>
+	</field>
+	<field name="Answer_Type-answer_type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Answer_Type-answer_type]]></fieldDescription>
+	</field>
+	<field name="Type_of_Question-type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Question-question_id/Type_of_Question-type]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="222" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="130" width="554" height="30" uuid="6828fcdf-bce8-4231-95b8-f271dba764c2"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{survey_title}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="174" width="288" height="20" uuid="f4faa3b5-f209-4c83-b15b-403e521404a9"/>
+				<textFieldExpression><![CDATA["Client Name : "+$F{client_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="268" y="66" width="287" height="38" uuid="698a91ea-d08e-4634-9b61-76dbad00f606"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Client Answers]]></text>
+			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="268" y="0" width="287" height="66" uuid="c4a6a23c-87ea-435c-a854-899b6abce20b"/>
+				<imageExpression><![CDATA[$F{Company_Logo-logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="112" width="555" height="1" uuid="af5ef1ee-6dd0-4f7f-999e-d469c8904bca"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="268" height="66" uuid="412ffc0a-bc44-427b-9015-d361ba485a28"/>
+				<textElement>
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Clinic Offices c/o Aventus Medical Clinics Nationwide
+
+DOH Accreditation Number:  *13-0971-12-PIBS-R
+*through Aventus Medical Care, Inc.
+PRC - CPD Accreditation Number: OGC- 2016-012]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="66" width="268" height="38" uuid="86e6504a-fc86-4e6c-9caa-60444d224ed8"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[+63.917.182.9355
+clinic@mindwell.ph
+https://www.mindwell.ph/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="174" width="111" height="20" uuid="e06dbcaf-c9fb-4218-99a5-3523ec4d2fa9"/>
+				<textFieldExpression><![CDATA["Date : "+new SimpleDateFormat("MM/dd/yyyy").format($F{Created_on-create_date})]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="336" height="16" uuid="ec0c0b3c-aca1-4a11-b81c-f3ad4452d41e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a53e5adc-949a-4d49-920b-1864e1c07de1"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Questions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="0" width="218" height="16" uuid="01d6c794-d572-46ab-a9b1-b30a8b17b1ea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef7a30eb-828f-497e-949c-6bb6b5bb8ccd"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Answers]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{Question_Name-question} = "Student's Full Name:"]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="336" height="17" uuid="92880570-b4aa-4d0d-b5b7-874114f3d0ed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ef7a30eb-828f-497e-949c-6bb6b5bb8ccd"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Type_of_Question-type} == "matrix" ? $F{answer_value} : $F{Question_Name-question}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="336" y="0" width="218" height="17" uuid="30831955-897d-4d1f-ae65-ec76bf1f4382">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="387dfdc0-b695-4fbc-80b3-1eab81b70fa4"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Suggested_value-value}+$F{Numerical_answer-value_number}+
+$F{Free_Text_answer-value_free_text}+$F{Date_answer-value_date}+$F{Text_answer-value_text}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="17" width="555" height="1" uuid="536a0904-7016-4a12-a42c-17e3662f086c"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="37">
+			<textField>
+				<reportElement x="0" y="17" width="59" height="20" uuid="ff367be4-9b0c-447c-86ba-ab1ac9d23162"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="59" y="17" width="40" height="20" uuid="0f335096-0499-48c2-bf9e-ac7c09a08771"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY_billing_v2_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9d8aab9f-9a3b-4532-8892-47cbb47c9fe4">
+	<property name="ireport.zoom" value="2.593742460100006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;payment_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Payments_Widget-payments_widget" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payments_Widget-payments_widget]]></fieldDescription>
+	</field>
+	<field name="Payment_Amount-amount" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payments-payment_ids/Payment_Amount-amount]]></fieldDescription>
+	</field>
+	<field name="Payment_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payments-payment_ids/name]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payments-payment_ids/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="16">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="205" height="16" forecolor="#000000" backcolor="#D6D6D8" uuid="17f96d53-4b39-47c7-9229-cefa95ae2453"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Payment History"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="97" y="0" width="104" height="16" uuid="329f8a80-607c-4812-84b6-ec33697f5f35"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Payment_Amount-amount} != "" ? new DecimalFormat("#,##0.00").format(Double.valueOf($F{Payment_Amount-amount})) : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="0" width="93" height="16" uuid="0d0c1fa1-e080-410b-bff2-2be74b07af11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="0" width="4" height="16" uuid="ee500144-f102-4d82-82ad-bb273a7166f1"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="4" height="16" uuid="191e21fa-e5f1-44cb-ac61-41dbc314fca1"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="5">
+			<line>
+				<reportElement x="0" y="0" width="205" height="1" uuid="c5c2b35a-afc7-4859-8f53-50a9cf13f7b7"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

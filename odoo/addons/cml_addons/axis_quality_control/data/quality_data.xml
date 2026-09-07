@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--Hazard-->
+        <record id="hazard_biological" model="quality.hazard">
+            <field name="name">B-Biological</field>
+        </record>
+        <record id="hazard_chemical" model="quality.hazard">
+            <field name="name">C-Chemical</field>
+        </record>
+        <record id="hazard_physical" model="quality.hazard">
+            <field name="name">P-physical</field>
+        </record>
+        
+        
+        <!--Likelihood-->
+        <record id="likelihood_cr" model="quality.likelihood">
+            <field name="name">A-Common Repeating</field>
+        </record>
+        <record id="likelihood_bto" model="quality.likelihood">
+            <field name="name">B-Known to Occur</field>
+        </record>
+        <record id="likelihood_cop" model="quality.likelihood">
+            <field name="name">C-Cloud Occur (Published)</field>
+        </record>
+        <record id="likelihood_neo" model="quality.likelihood">
+            <field name="name">D-Not expected to occur</field>
+        </record>
+        <record id="likelihood_pi" model="quality.likelihood">
+            <field name="name">E-Practically Impossible</field>
+        </record>
+        <record id="likelihood_none" model="quality.likelihood">
+            <field name="name">None</field>
+        </record>
+        
+        <!--Severity-->
+        <record id="severity_fatality" model="quality.severity">
+            <field name="name">1-Fatality</field>
+        </record>
+        <record id="severity_serious_illness" model="quality.severity">
+            <field name="name">2-Serious Illness</field>
+        </record>
+        <record id="severity_product_recall" model="quality.severity">
+            <field name="name">3-Product Recall</field>
+        </record>
+        <record id="severity_customer_complaint" model="quality.severity">
+            <field name="name">4-Customer Complaint</field>
+        </record>
+        <record id="severity_not_significant" model="quality.severity">
+            <field name="name">5-Not Significant</field>
+        </record>
+        <record id="severity_none" model="quality.severity">
+            <field name="name">None</field>
+        </record>
+        
+        <!--Rating-->
+        <record id="rating_significant" model="quality.rating">
+            <field name="name">Significant (S)</field>
+        </record>
+        <record id="rating_not_significant" model="quality.rating">
+            <field name="name">Not Significant (NS)</field>
+        </record>
+    </data>
+</odoo>

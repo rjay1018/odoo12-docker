@@ -1,0 +1,1571 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* to_hr_overtime_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-21 06:54+0000\n"
+"PO-Revision-Date: 2019-04-21 06:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: to_hr_overtime_payroll
+#: model:mail.template,body_html:to_hr_overtime_payroll.email_template_overtime_request_confirm
+msgid "\n"
+"    <p>Dear ${object.approving_user_id.partner_id.name},</p>\n"
+"    <p>There is an overtime request <strong>${object.name}</strong> from the employee: ${object.employee_id.name}.</p>\n"
+"    <p>Please review and approve / refuse.</p>\n"
+"    <p>Best Regard,</p>\n"
+"            "
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_abstract_hr_overtime_request_line
+msgid "Abstract Hr Overtime Request Line is used to share business logics between requests line for single and ones for multiple"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_reason.py:27
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__allow_working_schedule_overlap
+#, python-format
+msgid "Allow Overlap Working Schedule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__hr_contract_id
+msgid "Applied Contract"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Approve"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:mail.template,subject:to_hr_overtime_payroll.email_template_overtime_request_confirm
+msgid "Approve Overtime Request (Ref ${object.employee_id.name_related or 'n/a' })"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Approved"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__approved_by
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__approved_by
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__approved_by
+msgid "Approved By"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_employee__overtime_line_ids
+msgid "Approved Overtime Declaration Lines"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_employee__unpaid_overtime_line_ids
+msgid "Approved Overtime Declaration Lines those have not been included in any payslip yet"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_approved_menu
+msgid "Approved Requests"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__approving_user_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__approving_user_id
+msgid "Approver"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_attachment_count
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_attachment_count
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_hr_overtime_request_graph
+msgid "Attendance"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__can_approve
+msgid "Can Approve"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__can_confirm
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__can_reconfirm
+msgid "Can Confirm"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Cancel"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.request_single,state:0
+msgid "Canceled"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.report,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Cancelled"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__code
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__code
+msgid "Code"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__company_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__company_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__company_id
+msgid "Company"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_config_menu
+msgid "Configuration"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Confirm"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+msgid "Confirmed"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__hr_contract_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__hr_contract_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__contract_id
+msgid "Contract"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_action
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_approved_action
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_to_approve_action
+msgid "Create the first record"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__create_date
+msgid "Date Created"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__dayofweek
+msgid "Day of Week"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__department_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__department_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__department_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Department"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__description
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__description
+msgid "Description"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Done"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_done_action
+msgid "Done Requests which have been reported in payslips will be listed\n"
+"					here"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Draft"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_employee
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__employee_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__employee_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__employee_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__employee_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Employee"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_contract
+msgid "Employee Contract"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__end_time
+msgid "End Time"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_follower_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_follower_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_channel_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_channel_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_partner_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_partner_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Friday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_daytime
+msgid "Friday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_midnight_to_morning
+msgid "Friday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_evening
+msgid "Friday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_night
+msgid "Friday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Group By"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_department
+msgid "HR Department"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.module.category,name:to_hr_overtime_payroll.module_category_hr_overtime
+msgid "HR Overtime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_line
+msgid "HR Overtime Line"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.module.category,description:to_hr_overtime_payroll.module_category_hr_overtime
+msgid "Helps you manage overtime working of your employees"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Holiday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_afernoon
+msgid "Holiday Afternoon (on SAT)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_daytime
+msgid "Holiday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_daytime
+msgid "Holiday Daytime (on SUN)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_midnight_to_morning
+msgid "Holiday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_midnight_to_morning
+msgid "Holiday Early Morning (on SAT)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sun_midnight_to_morning
+msgid "Holiday Early Morning (on SUN)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_evening
+msgid "Holiday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_evening
+msgid "Holiday Evening (on SAT)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sun_evening
+msgid "Holiday Evening (on SUN)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_morning
+msgid "Holiday Morning (on SAT)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_night
+msgid "Holiday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_night
+msgid "Holiday Night (on SAT)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sun_night
+msgid "Holiday Night (on SUN)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Holiday on SAT"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Holiday on SUN"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_line_form_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_form_view
+msgid "Hours"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__id
+msgid "ID"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__company_id
+msgid "If a company is set, this rule will be valid for that company only"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread
+msgid "If checked new messages require your attention."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_reason__allow_working_schedule_overlap
+msgid "If checked, an overtime declaration that overlaps the employee's working schedule will be allowed. This is helpful for some use cases (working on compensatory leave days, etc)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_is_follower
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_is_follower
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__job_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Job"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__job_id
+msgid "Job Position"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__job_id
+msgid "Job Title"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Last 30 Days"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Last Year"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__hr_contract_id
+msgid "Latest contract of the employee"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,name:to_hr_overtime_payroll.group_hr_overtime_manager
+msgid "Manager"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Monday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_daytime
+msgid "Monday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_midnight_to_morning
+msgid "Monday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_evening
+msgid "Monday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_night
+msgid "Monday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_done_action
+msgid "My Overtime Requests"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "My Request"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__name
+msgid "Name"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_date_deadline
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_summary
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_type_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:53
+#, python-format
+msgid "No Overtime Approval User found for this overtime approval request. It's probably the employee profile has not been setup fully (i.e. no department specified, no manager specified).\n"
+"In case this is for an employee without any manager, he must be granted with Overtime Manager rights to declare an overtime request."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:104
+#, python-format
+msgid "No request found."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_reason.py:29
+#, python-format
+msgid "Not Allow Overlap Working Schedule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__number_of_days
+msgid "Number of Days"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__number_of_hours
+msgid "Number of Hours"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error_counter
+msgid "Number of error"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__overtime_rule_id
+msgid "OT Rule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,name:to_hr_overtime_payroll.group_hr_overtime_user
+msgid "Officer"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:94
+#, python-format
+msgid "Only Overtime Managers or the one who approved this request can refuse it after its approval"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,activity_state:0
+#: selection:hr.overtime.request_single,activity_state:0
+msgid "Overdue"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_employee__overtime_line_ids
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.overtime_payroll_root_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_hr_overtime_request_pivot
+msgid "Overtime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_contract__overtime_allowance
+msgid "Overtime Allowance"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.salary.rule,name:to_hr_overtime_payroll.hr_rule_overtime_working
+msgid "Overtime Allowance Amount"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_request_graph
+msgid "Overtime Analysis"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_employee__overtime_approving_user_id
+msgid "Overtime Approver"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_hr_overtime_request_calendar
+msgid "Overtime Calendar"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_rule_codes
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_rule_code_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_code_tree_view
+msgid "Overtime Codes"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip__hr_overtime_line_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__overtime_line_ids
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_payslip_form
+msgid "Overtime Details"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_lines
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_line_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_line_form_view
+msgid "Overtime Lines"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_reason
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_reason
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_reason_form_view
+msgid "Overtime Reason"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_reason_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_reason_tree_view
+msgid "Overtime Reasons"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__overtime_request_id
+msgid "Overtime Reference"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_report
+msgid "Overtime Report"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Overtime Request"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__request_line_ids
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Overtime Request Lines"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_action
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_tree
+msgid "Overtime Requests"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__overtime_rule_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_form_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Overtime Rule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_rules
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_rule_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_line_tree_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_tree_view
+msgid "Overtime Rules"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_payslip_form
+msgid "Overtime Summary"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.contribution.register,name:to_hr_overtime_payroll.contrib_register_overtime_working
+msgid "Overtime Working"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_payslip
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__payslip_id
+msgid "Pay Slip"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__payslip_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__payslip_id
+msgid "Payslip"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip__payslip_ot_line_ids
+msgid "Payslip Overtime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_payslip_overtime_line
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__payslip_ot_line_id
+msgid "Payslip Overtime Line"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,activity_state:0
+#: selection:hr.overtime.request_single,activity_state:0
+msgid "Planned"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:101
+#, python-format
+msgid "Please select an employee first!"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__rate
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__rate
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__rate
+msgid "Rate (%)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__rate
+msgid "Rate(%)"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__reason_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__reason_id
+msgid "Reason"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Refuse"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Refused"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Reported in Payslip"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_done_menu
+msgid "Reported in Payslips"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.menu_hr_overtime_report_main
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.menu_hr_overtime_request_report
+msgid "Reports"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__name
+msgid "Request Number"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_root_menu
+msgid "Requests for Single"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.overtime_requests_menu
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_menu
+msgid "Requests/Declarations"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_resource_calendar
+msgid "Resource Working Time"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_user_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Resubmit"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__overtime_rule_id
+msgid "Rule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__code_id
+msgid "Rule Code"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Saturday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_afternoon
+msgid "Saturday Afternoon"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_midnight_to_morning
+msgid "Saturday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_evening
+msgid "Saturday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_morning
+msgid "Saturday Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_night
+msgid "Saturday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Set to Draft"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Show overtime data in the current year"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Show overtime data in the last year"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__start_time
+msgid "Start Time"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__hour_from
+msgid "Start and End time of overtime working."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__state
+msgid "Status"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_state
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Submitted"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__user_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__user_id
+msgid "Submitted By"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Sunday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_daytime
+msgid "Sunday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_midnight_to_morning
+msgid "Sunday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_evening
+msgid "Sunday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_night
+msgid "Sunday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.rule:0
+msgid "The Work From must be anterior to the Work To."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__rate
+msgid "The allowance rate in percentage which is computed automatically based on the corresponding Overtime Rule's rate. In case no rate defined for the Overtime Rule, 100% will be applied."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.rule.code:0
+msgid "The code must be unique"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__employee_id
+msgid "The employee for whom this request is"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__rate
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule_code__rate
+msgid "The extra pay in percentage (of basic wage, for example) which can be used in payroll computation."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:171
+#, python-format
+msgid "The input overtime interval specified by '%s' and '%s' is overlapping the normal working schedule '%s' of the employee '%s'.\n"
+"The following working hours are overlapped:\n"
+"%s\n"
+"You may need to select a reason that allows overlapping to bypass the check."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:29
+#, python-format
+msgid "The method _generate_name() has not been implementation. This could be a programming error."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:323
+#, python-format
+msgid "The overtime declaration %s ~ %s must be in the state of Approved before it can be set as Done."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__code_id
+msgid "The predefined code to be used in overtime payroll computation"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.reason:0
+msgid "The reason title must be unique"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:75
+#, python-format
+msgid "The request %s must be in the status of 'Confirmed' before it can be approved!"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.line:0
+msgid "The start time must be anterior to the end time."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__code
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule_code__name
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_payslip_overtime_line__code
+msgid "The unique code to be used in conjunction with Overtime Rule for overtime payroll computation"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__approving_user_id
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__approving_user_id
+msgid "The user who is assigned to take approval action on this record"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__approved_by
+msgid "The user who took approval action"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__approved_by
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__approved_by
+msgid "The user who took approval action on this record"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_employee__overtime_approving_user_id
+msgid "The user who will be the default user to take approval action for his subordinate"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,comment:to_hr_overtime_payroll.group_hr_overtime_manager
+msgid "The user will have all rights to do anything within this application and the HR application as it also inherits HR Manager Group."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,comment:to_hr_overtime_payroll.group_hr_overtime_user
+msgid "The user will have the right to approve overtime requests submitted by his subordinate. This group also inherits HR Officer group"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:124
+#, python-format
+msgid "There is no overtime declaration for approval."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "This Year"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__work_day_type_id
+msgid "This field provides additional information on the work day type that the overtime is on. It is helpful when you want to consider work day type is an additional factor for overtime allowance calculation."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Thursday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_daytime
+msgid "Thursday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_midnight_to_morning
+msgid "Thursday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_evening
+msgid "Thursday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_night
+msgid "Thursday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__start_time
+msgid "Time From"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__end_time
+msgid "Time To"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__name
+msgid "Title"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_approved_action
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_to_approve_action
+msgid "To Appove"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_to_approve_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "To Approve"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,activity_state:0
+#: selection:hr.overtime.request_single,activity_state:0
+msgid "Today"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_payslip_form
+msgid "Total Working Days"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Tuesday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_daytime
+msgid "Tuesday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_midnight_to_morning
+msgid "Tuesday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_evening
+msgid "Tuesday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_night
+msgid "Tuesday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_employee__unpaid_overtime_line_ids
+msgid "Unpaid Overtime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__website_message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__website_message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__website_message_ids
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__website_message_ids
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Wednesday"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_daytime
+msgid "Wednesday Daytime"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_midnight_to_morning
+msgid "Wednesday Early Morning"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_evening
+msgid "Wednesday Evening"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_night
+msgid "Wednesday Night"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__work_day_type_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__work_day_type_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__work_day_type_id
+msgid "Work Day Type"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__hour_from
+msgid "Work From"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__hour_to
+msgid "Work To"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__worked_hours
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__worked_hours
+msgid "Worked Hours"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__resource_calendar_id
+msgid "Working Schedule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:137
+#, python-format
+msgid "You are not allowed to input an overtime interval that crossing more than one day. Please re-input the line having the following information:\n"
+"* Employee: %s\n"
+"* Start Time: %s\n"
+"* End Time: %s\n"
+""
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:152
+#, python-format
+msgid "You are not allowed to submit the overtime interval (%s ~ %s) which is overlapping with an existed one (%s ~ %s) that was declared in the request %s. Please re-input the line having the following information:\n"
+"* Employee: %s\n"
+"* Start Time: %s\n"
+"* End Time: %s"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:119
+#, python-format
+msgid "You are not authorised to approve this request. Only the following people can approve it:\n"
+"* Your direct manager %s\n"
+"* The head/manager of your human resource management"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:108
+#, python-format
+msgid "You can only Set to Draft the requests whose state is either 'confirmed' or 'refused' or 'Canceled'."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:100
+#, python-format
+msgid "You can only either confirm your own overtime requests or your direct subordinate's requests. Or, you must be a manager of this application to confirm every request you want"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:90
+#, python-format
+msgid "You can only refuse the requests whose state is either 'Confirmed' or 'Approved'."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:338
+#, python-format
+msgid "You cannot cancel the overtime interval specified by '%s' and '%s' and for the employee %s while it is still referred by the payslip %s."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:334
+#, python-format
+msgid "You cannot cancel the overtime interval specified by '%s' and '%s' and for the employee %s while its state is neither Confirmed nor Approved nor Refused."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:60
+#, python-format
+msgid "You cannot cancel the overtime request %s while its state is neither Confirmed nor Approved nor Refused."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:52
+#, python-format
+msgid "You cannot confirm while the request %s while its status is not Refused."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:274
+#, python-format
+msgid "You cannot confirm while the status is not Draft."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:281
+#, python-format
+msgid "You cannot confirm while the status is not Refused."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:348
+#, python-format
+msgid "You cannot delete a request which is not in draft state"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:35
+#, python-format
+msgid "You cannot delete a request which is not in draft state!"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:68
+#, python-format
+msgid "You cannot mark the overtime request %s as Done while it is not in Approved state"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:288
+#, python-format
+msgid "You cannot refuse a request line whose state is other than 'approved'"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:291
+#, python-format
+msgid "You cannot refuse an overtime line while it is linked to a payslip"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:314
+#, python-format
+msgid "You cannot set the overtime interval specified by '%s' and '%s' for the employee %s to Draft state while it is not in Cancelled state"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_rule.py:77
+#, python-format
+msgid "You have entered an interval that is overlapping the interval of an existing rule (%s)!"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:86
+#, python-format
+msgid "You must create request first."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:97
+#, python-format
+msgid "You must declare your overtime before you can confirm the request."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:180
+#, python-format
+msgid "You've inputed an overtime interval specified by %s and %s that is crossing the following overtime rules:\n"
+"* %s\n"
+"* %s\n"
+"Please split the interval into multiple ones to ensure that each will not be crossing two or more overtime rules"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_abstract_hr_overtime_request
+msgid "abstract.hr.overtime.request"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_line_multiple
+msgid "hr.overtime.line.multiple"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_line_single
+msgid "hr.overtime.line.single"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_request_multiple
+msgid "hr.overtime.request_multiple"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_request_single
+msgid "hr.overtime.request_single"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_rule
+msgid "hr.overtime.rule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_rule_code
+msgid "hr.overtime.rule.code"
+msgstr ""
+

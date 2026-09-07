@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="employee_form_inherit_employee_additional_hide" model="ir.ui.view">
+          <field name="name">hr.employee.additinional.inherit.form</field>
+          <field name="model">hr.employee</field>
+          <field name="inherit_id" ref="cml_kso.view_employee_form_inherit"/>
+          <field name="arch" type="xml">
+            <xpath expr="//page[@name='public']/group/group[1]" position="attributes">
+              <attribute name="string">Work Information</attribute>
+        		</xpath>
+            <xpath expr="//page[@name='public']/group/group[2]" position="attributes">
+              <attribute name="string"></attribute>
+        		</xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+        			<attribute name="string">Immediate Supervisor/Manager</attribute>
+        		</xpath>
+            <xpath expr="//field[@name='coach_id']" position="attributes">
+        			<attribute name="invisible">True</attribute>
+        		</xpath>
+
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_orientation" model="ir.ui.view">
+          <field name="name">orientation.checklist.inherit.form</field>
+          <field name="model">orientation.checklist</field>
+          <field name="inherit_id" ref="employee_orientation.view_orientation_checklist_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//page[@name='checklist_line']" position="attributes">
+              <attribute name="string">Orientation Checklist</attribute>
+        		</xpath>
+            <xpath expr="//page[@name='checklist_line']/field[@name='checklist_line_id']" position="attributes">
+              <attribute name="string">Orientation Checklist</attribute>
+        		</xpath>
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_applicant_changes" model="ir.ui.view">
+          <field name="name">hr.applicant.inherit.form</field>
+          <field name="model">hr.applicant</field>
+          <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+              <attribute name="invisible">True</attribute>
+        		</xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+              <attribute name="invisible">True</attribute>
+        		</xpath>
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_training" model="ir.ui.view">
+          <field name="name">employee.training.inherit.form</field>
+          <field name="model">employee.training</field>
+          <field name="inherit_id" ref="employee_orientation.view_employee_training_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//form/sheet/group/label[@for='date_from']" position="attributes">
+              <attribute name="string">Inclusive Date</attribute>
+            </xpath>
+            <xpath expr="//page[@name='checklist_lines']/field[@name='training_id']" position="replace">
+              <field name='training_id'>
+                <tree>
+                  <field name='name' string="Employee"/>
+                  <field name='work_phone'/>
+                  <field name='work_email'/>
+                  <field name='department_id' string="SATO/UNIT/CLUSTER/SECTOR"/>
+                  <field name='job_id'/>
+                  <field name='parent_id'/>
+                  <field name='entry_progress' string="Status"/>
+                </tree>
+              </field>
+        		</xpath>
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_trainingseminartable" model="ir.ui.view">
+          <field name="name">hr.employee.trainingseminar.inherit.form</field>
+          <field name="model">hr.employee</field>
+          <field name="inherit_id" ref="hr_experience.view_employee_form_inherit"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='certification_ids']" position="after">
+              <group string="Training/Seminar" colspan="4" >
+              <field name='training_seminar_ids' nolabel="1" context="{'default_employee_id': active_id}">
+                  <tree>
+                    <field name='training_seminar_id' string="Training/Seminar"/>
+                    <field name='date'/>
+                    <field name='provider'/>
+                    <field name='venue_id'/>
+                  </tree>
+                </field>
+              </group>
+        		</xpath>
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_orientationchange" model="ir.ui.view">
+          <field name="name">employee.orientation.inherit.form</field>
+          <field name="model">employee.orientation</field>
+          <field name="inherit_id" ref="employee_orientation.view_employee_orientation_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='orientation_request']" position="replace">
+              <field name="orientation_request" attrs="{'readonly':[('state','=','complete')]}">
+                <tree string="lines" editable="bottom">
+                    <field name="request_name" string="Orientation Module"/>
+                    <field name="partner_id" string="Training in Charge"/>
+                    <field name="request_expected_date"/>
+                    <field name="state"/>
+                </tree>
+                <form>
+                    <group colspan="1" col="4" name="main">
+                        <field name="request_name"/>
+                        <field name="request_orientation"/>
+                        <field name="employee_company" readonly="1"/>
+                        <field name="partner_id"/>
+                        <field name="request_date" readonly="1"/>
+                        <field name="request_expected_date"/>
+                        <field name="employee_id" invisible="1"/>
+                    </group>
+                </form>
+              </field>
+        		</xpath>
+          </field>
+      </record>
+      <record id="employee_trainingseminar_tree" model="ir.ui.view">
+          <field name="name">Employee Training/Seminar Record</field>
+          <field name="model">employee.training.seminar.table</field>
+          <field name="arch" type="xml">
+              <tree string="Employee Training/Seminar Record">
+                <field name='employee_id'/>
+                <field name='training_seminar_id' string="Training/Seminar"/>
+                <field name='date'/>
+                <field name='provider'/>
+                <field name='venue_id'/>
+              </tree>
+          </field>
+      </record>
+
+
+      <record id="action_employee_training_history" model="ir.actions.act_window">
+          <field name="name">Employee Training/Seminar Record</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">employee.training.seminar.table</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="view_id" eval="False"/>
+          <field name="domain">[]</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Click to create a new Transfer.
+              </p><p>
+                  Use this menu to browse previous transfer. To record new
+                  transfer, you may use the create button.
+              </p>
+          </field>
+        </record>
+
+          <menuitem id="menu_employee_training_seminar"
+                    name="Employee Training/Seminar Record"
+                    parent="hr_employee_updation.menu_hr_management"
+                    sequence="4"
+                    action="action_employee_training_history"
+                    web_icon="hr_employee_transfer,static/description/transfer_icon.pngg"
+                    groups="hr.group_hr_manager"/>
+
+
+
+
+
+    </data>
+  </odoo>

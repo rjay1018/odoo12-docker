@@ -1,0 +1,1091 @@
+<odoo>
+    <data>
+        <template inherit_id="portal.frontend_layout" id="frontend_layout">
+            <xpath expr="//div[@id='wrapwrap']/header" position="attributes">
+                <attribute name="t-if">not disable_sign_in</attribute>
+            </xpath>
+            <xpath expr="//div[@id='wrapwrap']/footer" position="attributes">
+                <attribute name="t-if">not disable_sign_in</attribute>
+            </xpath>
+        </template>
+
+        <template id="portal_docs_entry" inherit_id="portal.portal_docs_entry">
+            <xpath expr="//div" position="attributes">
+                <attribute name="style">padding: 20px;</attribute>
+            </xpath>
+        </template>
+        <template id="layout" inherit_id="binhex_dashboard_layout.layout">
+            <xpath expr="//ul[hasclass('nav-sidebar')]/li[2]" position="after">
+                <li class="nav-item">
+                    <a href="/new/appointment" class="nav-link">
+                    <i class="nav-icon far fa-calendar-check-o"></i>
+                    <p>
+                        Appointment
+                    </p>
+                    </a>
+                </li>
+            </xpath>
+        </template>
+        <template id="myprofile_inherit" inherit_id="binhex_dashboard_layout.myprofile">
+            <xpath expr="//div[hasclass('box-profile')]" position="before">
+                <div>
+                    <button type="button" class="btn btn-sm btn-link" data-toggle="modal" data-target="#modal_pop_upload_image">
+                        <i class="fa fa-cog"/> Edit
+                    </button>
+                    <div class="modal fade" id="modal_pop_upload_image" tabindex="-1" role="dialog" >
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <form t-att-action="'/my/update/profile/'+str(user_id.partner_id.id)" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Update Profile Image</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input type="file" t-att-name="'document_profile_image'" required="True" accept="image/*"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//ul[hasclass('nav-pills')]" position="inside">
+                <li class="nav-item">
+                        <a class="nav-link" id="t_and_c-tab" data-toggle="tab" href="#t_and_c" role="tab" aria-controls="t_and_c"
+                          aria-selected="true">Terms And Conditions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="personal_info-tab" data-toggle="tab" href="#personal_info" role="tab" aria-controls="personal_info"
+                          aria-selected="false">Personal Information</a>
+                    </li>
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link" id="in_take_form-tab" data-toggle="tab" href="#in_take_form" role="tab" aria-controls="in_take_form"
+                          aria-selected="false">In-Take Form</a>
+                    </li>
+                    -->
+            </xpath>
+            <!--
+            <xpath expr="//div[hasclass('col-md-9')]/div[hasclass('card')]" position="after">
+                <div class="card">
+                    <div class="card-body">
+                        <t t-call="portal.portal_layout">
+                            <t t-set="disable_sign_in" t-value="True"/>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <t t-call="portal.message_thread">
+                                        <t t-set="object" t-value="user_id.partner_id"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </xpath>
+            -->
+            <xpath expr="//div[@id='activity']" position="replace">
+                <div class="active tab-pane" id="activity">
+                    <a role="button" href="/my/account" class="float-right btn btn-sm btn-link"><i class="fa fa-pencil"/><i class="fa fa-cog"/> Edit Profile</a>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Name:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.name"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Email:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.email"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Phone:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.phone"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Address:</label>
+                        <div>
+                            <span t-field="user_id.partner_id"
+                                  t-options='{"widget": "contact", "fields": ["street", "city", "country_id"]}'/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//div[hasclass('tab-content')]" position="inside">
+                <div class="tab-pane fade show" id="t_and_c" role="tabpanel" aria-labelledby="t_and_c-tab">
+                    <a role="button" href="/my/account" class="float-right btn btn-sm btn-link"><i class="fa fa-pencil"/><i class="fa fa-cog"/> Edit Profile</a>
+                    <div class="form-group row">
+                        <span class="text-justify" t-if="user_id.partner_id.consent_info" t-field="user_id.partner_id.consent_info"/>
+                    </div>
+                    <div class="form-group row">
+                        <label class="text-left col-sm-2 col-form-label">Yes, I Agree.</label>
+                       <input type="checkbox" name="consent" t-att-checked="user_id.partner_id.consent" disabled="disabled"/>
+                    </div>
+                </div>
+                <!--<div class="tab-pane fade" id="in_take_form" role="tabpanel" aria-labelledby="in_take_form-tab">
+                    <a role="button" href="/my/account" class="float-right btn btn-sm btn-link"><i class="fa fa-pencil"/><i class="fa fa-cog"/> Edit Profile</a>
+                    <h3 class="text-left" style="margin-top:30px;color:#7C7BAD;">
+                        Area of Concern
+                    </h3>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Emotional:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.emotional"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Environmental:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.environmental"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Financial:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.financial"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Intellectual:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.intellectual"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Occupational:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.occupational"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Physical:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.physical"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Social:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.social"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Spiritual:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.spiritual"/>
+                        </div>
+                    </div>
+                    <h3 class="text-left" style="margin-top:30px;color:#7C7BAD;">
+                        Additional Information
+                    </h3>
+                    <div class="table-responsive text-nowrap">
+                        <table class="table text-left">
+                            <thead>
+                                <tr>
+                                    <th scope="col-6">Additional Questions</th>
+                                    <th scope="col-2">Yes</th>
+                                    <th scope="col-4">More Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="col-6">Risk of Self Harm?</td>
+                                    <td scope="col-2">
+                                        <input type="checkbox" name="selfharm" t-att-checked="user_id.partner_id.selfharm" disabled="disabled"/>
+                                    </td>
+                                    <td scope="col-4">
+                                        <t t-esc="user_id.partner_id.selfharm_details"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="col-6">Currently Taking Medication?</td>
+                                    <td scope="col-2">
+                                        <input type="checkbox" name="taking_meds" t-att-checked="user_id.partner_id.taking_meds" disabled="disabled"/>
+                                    </td>
+                                    <td scope="col-4">
+                                        <t t-esc="user_id.partner_id.taking_meds_details"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="col-6">Previous / On-going Treatment?</td>
+                                    <td scope="col-2">
+                                        <input type="checkbox" name="treatment" t-att-checked="user_id.partner_id.treatment" disabled="disabled"/>
+                                    </td>
+                                    <td scope="col-4">
+                                        <t t-esc="user_id.partner_id.treatment_details"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td scope="col-6">Attending Legal Case?</td>
+                                    <td scope="col-2">
+                                        <input type="checkbox" name="legalcase" t-att-checked="user_id.partner_id.legalcase" disabled="disabled"/>
+                                    </td>
+                                    <td scope="col-4">
+                                        <t t-esc="user_id.partner_id.legalcase_details"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3 class="text-left" style="color:#7C7BAD;">
+                        Presenting Problem
+                    </h3>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Support Type:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.support_ids" widget="many2many_tags"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Personal Preference:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.personal_preference"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Present Problem:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.problem"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label text-left">Other Information:</label>
+                        <div>
+                            <span class="form-control-plaintext" t-field="user_id.partner_id.other_info"/>
+                        </div>
+                    </div>
+                </div>
+                -->
+                <div class="tab-pane fade" id="personal_info" role="tabpanel" aria-labelledby="personal_info-tab">
+                    <a role="button" href="/my/account" class="float-right btn btn-sm btn-link"><i class="fa fa-pencil"/><i class="fa fa-cog"/> Edit Profile</a>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Birthday:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.birthday"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">HMO Provider:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.hmo_id.sudo().name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Client Age:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.client_age"/>
+                                </div>
+                            </div>
+                        </div-->
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">HMO Account Number:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.hmo_no"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">SEX:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.sex"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Clinic Visited:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.clinic_visited"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Civil Status:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.marital"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">PhilHealth:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.philhealthid"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-12" style="margin-top:30px;">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Source:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.source_id.name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Guardian:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.guardian"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <div class="row">
+                                <label class="col-sm-2 col-form-label text-left">Special Priority:</label>
+                                <div>
+                                    <span class="form-control-plaintext" t-field="user_id.partner_id.special_priority"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-left" style="margin-top:30px;color:#7C7BAD;">
+                        Emergency Contacts
+                    </h3>
+                    <h3 class="text-left" t-if="not user_id.partner_id.emergency_line_ids">
+                        No Records Found!!
+                    </h3>
+                    <div t-if="user_id.partner_id.emergency_line_ids" class="table-responsive text-nowrap">
+                        <table class="table text-left">
+                            <thead>
+                                <tr>
+                                    <th scope="col-4">Name</th>
+                                    <th scope="col-4">Contact Number</th>
+                                    <th scope="col-4">Relationship</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="user_id.partner_id.emergency_line_ids" t-as="line">
+                                    <tr>
+                                        <td scope="col-4">
+                                            <t t-esc="line.name"/>
+                                        </td>
+                                        <td scope="col-4">
+                                            <t t-esc="line.contact_number"/>
+                                        </td>
+                                        <td scope="col-4">
+                                            <t t-esc="line.relationship"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <template id="ks_my_account_inherited" inherit_id="ks_theme_kinetik.ks_my_account">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="attributes">
+                <attribute name="class">row  o_portal_docs</attribute>
+            </xpath>
+            <xpath expr="//div[@id='your_details']" position="attributes">
+                <attribute name="class">tab-pane</attribute>
+            </xpath>
+            <xpath expr="//div[@id='your_documents']" position="attributes">
+                <attribute name="class">active</attribute>
+            </xpath>
+            <xpath expr="//li[2]" position="attributes">
+                <attribute name="class" seperator=" " add="active"/>
+            </xpath>
+            <xpath expr="//li[1]" position="replace">
+            </xpath>
+            <xpath expr="//div[@id='product_btn_group']" position="after">
+                <div class="card mt128">
+                    <div class="card-body">
+                        <t t-call="portal.portal_layout">
+                            <t t-set="disable_sign_in" t-value="True"/>
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <t t-call="portal.message_thread">
+                                        <t t-set="object" t-value="user_id.sudo().partner_id.sudo()"/>
+                                    </t>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="portal_my_details_inherited" inherit_id="portal.portal_my_details">
+            <xpath expr="//select[@name='state_id']/t/option" position="attributes">
+                <attribute name="style"></attribute>
+            </xpath>
+            <xpath expr="//label[@for='vat']" position="replace">
+                <label class="col-form-label label-optional" for="vat">TIN</label>
+            </xpath>
+            <xpath expr="//form" position="before">
+                <div class="modal fade" t-att-id="'modal_pop_Contacts_add'" tabindex="-1" role="dialog" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form
+                            t-att-action="'/contact/add/' + str(partner.id)"
+                            method="post" class=''>
+                            <input type="hidden"
+                                name="csrf_token"
+                                t-att-value="request.csrf_token()" />
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Add Emergency Contact
+                                </h5>
+                                <button
+                                    id="pop_add_contact_close"
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span>&amp;times;
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div t-attf-class="col-xl-12">
+                                        <label class="col-form-label" for="name">Name</label>
+                                        <input type="text" id="add_name" name="name" class="form-control" value=""/>
+                                    </div>
+                                    <div t-attf-class="col-xl-12">
+                                        <label class="col-form-label" for="contact_number">Contact</label>
+                                        <input type="tel" id="add_contact_number" name="contact_number" class="form-control" value=""  />
+                                    </div>
+                                    <div t-attf-class="col-xl-12">
+                                        <label class="col-form-label" for="relationship">Relationship</label>
+                                        <input type="text" id="add_relationship" name="relationship" class="form-control" value="" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="pop_add_contact_click()" id="pop_add_contact"
+                                        type="submit"
+                                        class="btn btn-primary">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal fade" t-att-id="'modal_pop_Contacts_update'" tabindex="-1" role="dialog" >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <form id="update_delete_form"
+                            method="post" class=''>
+                            <input type="hidden"
+                                name="csrf_token"
+                                t-att-value="request.csrf_token()" />
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    Update Emergency Contact
+                                </h5>
+                                <button id="pop_update_contact_close"
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span>&amp;times;
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div t-attf-class="form-group col-xl-12">
+                                        <label class="col-form-label" for="name">Name</label>
+                                        <input type="text" id="update_name" name="name" class="form-control"/>
+                                    </div>
+                                    <div t-attf-class="form-group col-xl-12">
+                                        <label class="col-form-label" for="contact_number">Contact</label>
+                                        <input type="tel" id="update_contact_number" name="contact_number" class="form-control" />
+                                    </div>
+                                    <div t-attf-class="form-group col-xl-12">
+                                        <label class="col-form-label" for="relationship">Relationship</label>
+                                        <input type="text" name="relationship" id="update_relationship" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button onclick="pop_update_contact_click()" id="pop_update_contact"
+                                        type="submit"
+                                        class="btn btn-primary">
+                                    Update
+                                </button>
+                                <button onclick="pop_delete_contact_click()" id="pop_delete_contact"
+                                        type="submit"
+                                        class="btn btn-primary">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    function pop_add_contact_click() {
+                        setTimeout(function(){
+                            $('#add_name')[0].value = null;
+                            $('#add_contact_number')[0].value = null;
+                            $('#add_relationship')[0].value = null;
+                            $('#table_responsive').load(location.href + " #table_responsive");
+                            $('#pop_add_contact_close')[0].click();
+                        },1000);
+                    }
+                    function pop_update_contact_click() {
+                        var url = $('#pop_update_contact')[0].name
+                        $('#update_delete_form')[0].action = url
+                        setTimeout(function(){
+                            $('#table_responsive').load(location.href + " #table_responsive");
+                            $('#pop_update_contact_close')[0].click();
+                       },1000);
+                    }
+                    function pop_delete_contact_click() {
+                        var url = $('#pop_delete_contact')[0].name
+                        $('#update_delete_form')[0].action = url
+                        setTimeout(function(){
+                            $('#table_responsive').load(location.href + " #table_responsive");
+                            $('#pop_update_contact_close')[0].click();
+                       },1000);
+                    }
+                </script>
+            </xpath>
+            <xpath expr="//input[@name='redirect']" position="before">
+                <div class="col-12">
+                    <ul class="nav nav-tabs nav-tabs-inline graph-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a aria-controls="sessions" id="t_and_c_menu" href="#t_and_c" class="nav-link active" role="tab" data-toggle="tab">
+                                Terms And Conditions
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a aria-controls="sessions" id="personal_information_menu" href="#personal_information" class="nav-link" role="tab" data-toggle="tab">
+                                Personal Information
+                            </a>
+                        </li>
+                        <!--
+                        <li class="nav-item">
+                            <a aria-controls="sessions" id="in_take_form_menu" href="#in_take_form" class="nav-link" role="tab" data-toggle="tab">
+                                In-Take Form
+                            </a>
+                        </li>
+                        -->
+                    </ul>
+                    <div class="row">
+                        <div class="col-md-12 mb8">
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="t_and_c">
+                                    <span class="text-justify" t-if="partner.consent_info" t-field="partner.consent_info"/>
+                                    <div class="row">
+                                        <div t-attf-class="form-check form-check-inline #{error.get('consent') and 'o_has_error' or ''} col-12">
+                                            <label class="form-check-label" for="consent">Yes, I Agree.</label>
+                                            <input t-attf-class="form-check-input #{error.get('consent') and 'is-invalid' or ''}" type="checkbox" name="consent" t-att-checked="consent or partner.consent"/>
+                                        </div>
+                                        <div onclick="next_personal_info_click()" class="btn btn-primary float-right mt32 mb32">
+                                            Next
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    function next_personal_info_click() {
+                                        $('#personal_information_menu')[0].click();
+                                    }
+                                </script>
+                                <div role="tabpanel" class="tab-pane" id="personal_information">
+                                    <div class="row">
+                                        <div t-attf-class="form-group #{error.get('birthday') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="birthday">Birthday</label>
+                                            <input type="date" name="birthday" t-attf-class="form-control #{error.get('birthday') and 'is-invalid' or ''}" t-att-value="birthday or partner.birthday" />
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('hmo_id') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="hmo_id">HMO Provide</label>
+                                            <select name="hmo_id" t-attf-class="form-control #{error.get('hmo_id') and 'is-invalid' or ''}">
+                                                <option value="">HMO Provider...</option>
+                                                <t t-foreach="hmo_provider_ids or []" t-as="hmo">
+                                                    <option t-att-value="hmo.id" t-att-selected="hmo.id == int(hmo_id) if hmo_id else hmo.id == partner.hmo_id.id">
+                                                        <t t-esc="hmo.name" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <!-- div t-attf-class="form-group #{error.get('client_age') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="client_age">Client Age</label>
+                                            <input type="text" name="client_age" t-attf-class="form-control #{error.get('client_age') and 'is-invalid' or ''}" t-att-value="client_age or partner.client_age" />
+                                        </div-->
+                                        <div t-attf-class="form-group #{error.get('hmo_no') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="hmo_no">HMO Account Number</label>
+                                            <input type="text" name="hmo_no" t-attf-class="form-control #{error.get('hmo_no') and 'is-invalid' or ''}" t-att-value="hmo_no or partner.hmo_no" />
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('sex') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="sex">Sex</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('sex') and 'is-invalid' or ''}" type="radio" name="sex" t-att-checked="partner.sex=='male'" value="male"/>
+                                                <label class="form-check-label label-optional" for="sex_1">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('sex') and 'is-invalid' or ''}" type="radio" name="sex" t-att-checked="partner.sex=='female'" value="female"/>
+                                                <label class="form-check-label label-optional" for="sex_2">Female</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('clinic_visited') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="clinic_visited">Clinic visited</label>
+                                            <input type="text" name="clinic_visited" t-attf-class="form-control #{error.get('clinic_visited') and 'is-invalid' or ''}" t-att-value="clinic_visited or partner.clinic_visited" />
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('marital') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="marital">Civil Status</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('marital') and 'is-invalid' or ''}" type="radio" name="marital" t-att-checked="partner.marital=='single'" value="single"/>
+                                                <label class="form-check-label label-optional" for="marital_1">Single</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('marital') and 'is-invalid' or ''}" type="radio" name="marital" t-att-checked="partner.marital=='married'" value="married"/>
+                                                <label class="form-check-label label-optional" for="marital_2">Married</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('marital') and 'is-invalid' or ''}" type="radio" name="marital" t-att-checked="partner.marital=='separated'" value="separated"/>
+                                                <label class="form-check-label label-optional" for="marital_3">Separated</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('marital') and 'is-invalid' or ''}" type="radio" name="marital" t-att-checked="partner.marital=='widowed'" value="widowed"/>
+                                                <label class="form-check-label label-optional" for="marital_4">Widowed</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('marital') and 'is-invalid' or ''}" type="radio" name="marital" t-att-checked="partner.marital=='divorced'" value="divorced"/>
+                                                <label class="form-check-label label-optional" for="marital_5">Divorced</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('philhealthid') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="philhealthid">PhilHealth</label>
+                                            <input type="text" name="philhealthid" t-attf-class="form-control #{error.get('philhealthid') and 'is-invalid' or ''}" t-att-value="philhealthid or partner.philhealthid" />
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top:30px;">
+                                        <div t-attf-class="form-group #{error.get('name') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="name">Source</label>
+                                            <select name="source_id" t-attf-class="form-control #{error.get('source_id') and 'is-invalid' or ''}">
+                                                <option value="">source...</option>
+                                                <t t-foreach="utm_source_ids or []" t-as="source">
+                                                    <option t-att-value="source.id" t-att-selected="source.id == int(source_id) if source_id else source.id == partner.source_id.id">
+                                                        <t t-esc="source.name" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('guardian') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="guardian">Guardian</label>
+                                            <input type="text" name="guardian" t-attf-class="form-control #{error.get('guardian') and 'is-invalid' or ''}" t-att-value="guardian or partner.guardian" />
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('special_priority') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="special_priority">Special Priority</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('special_priority') and 'is-invalid' or ''}" type="radio" name="special_priority" t-att-checked="partner.special_priority=='pwd'" value="pwd"/>
+                                                <label class="form-check-label label-optional" for="special_priority_1">PWD</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('special_priority') and 'is-invalid' or ''}" type="radio" name="special_priority" t-att-checked="partner.special_priority=='senior'" value="senior"/>
+                                                <label class="form-check-label label-optional" for="special_priority_2">Senior Citizen</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input t-attf-class="form-check-input #{error.get('special_priority') and 'is-invalid' or ''}" type="radio" name="special_priority" t-att-checked="partner.special_priority=='no'" value="no"/>
+                                                <label class="form-check-label label-optional" for="special_priority_3">No</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h3 class="text-left" style="margin-top:30px;color:#7C7BAD;">
+                                            Emergency Contacts
+                                        </h3>
+                                        <div class="table-responsive text-nowrap" id="table_responsive">
+
+                                            <table id="emergency_contact_table" class="table text-left" >
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col-4">Name</th>
+                                                        <th scope="col-3">Contact Number</th>
+                                                        <th scope="col-4">Relationship</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="user_id.partner_id.emergency_line_ids" t-as="line">
+                                                        <t t-set="contact_line" t-value="line.read()"/>
+                                                        <tr data-toggle="modal" onclick = "modal_pop_Contacts_update_click()"
+                                                                t-att-data-contact_name="line.name"
+                                                                t-att-data-contact_number="line.contact_number"
+                                                                t-att-data-contact_relationship="line.relationship"
+                                                                t-att-data-contact_url="'/contact/update/' + str(line.partner_id.id) +'/'+ str(line.id)"
+                                                                t-att-data-contact_delete_url="'/contact/delete/' + str(user_id.partner_id.id) +'/'+ str(line.id)"
+                                                                t-att-data-target="'#modal_pop_Contacts_update'">
+                                                            <td scope="col-4">
+                                                                <t t-esc="line.name"/>
+                                                            </td>
+                                                            <td scope="col-3">
+                                                                <t t-esc="line.contact_number"/>
+                                                            </td>
+                                                            <td scope="col-4">
+                                                                <t t-esc="line.relationship"/>
+                                                            </td>
+                                                        </tr>
+                                                    </t>
+                                                    <tr>
+                                                        <td scope="col-12">
+                                                            <a class="float-left" href="#"
+                                                                data-toggle="modal"
+                                                                t-att-data-target="'#modal_pop_Contacts_add'">
+                                                                <span style="color:#7C7BAD;">Add a line</span>
+                                                            </a>
+                                                        </td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!--
+                                        <div onclick="next_intake_click()" class="btn btn-primary float-right mt32 mb32">
+                                            Next
+                                        </div>
+                                        -->
+                                        <div class="clearfix">
+                                            <button type="submit" class="btn btn-primary float-right mb32 ">
+                                                Confirm
+                                                <span class="fa fa-long-arrow-right" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script>
+                                    function modal_pop_Contacts_update_click() {
+                                        $('#modal_pop_Contacts_update').on('show.bs.modal', function (event) {
+                                            var button = $(event.relatedTarget)
+                                            var name = button.data('contact_name')
+                                            var number = button.data('contact_number')
+                                            var relationship = button.data('contact_relationship')
+                                            var url = button.data('contact_url')
+                                            var delete_url = button.data('contact_delete_url')
+                                            var modal = $(this)
+                                            modal.find('#pop_update_contact')[0].name = url
+                                            modal.find('#pop_delete_contact')[0].name = delete_url
+                                            modal.find('.modal-body #update_name').val(name)
+                                            modal.find('.modal-body #update_contact_number').val(number)
+                                            modal.find('.modal-body #update_relationship').val(relationship)
+                                        });
+                                    }
+                                    <!--
+                                    function next_intake_click() {
+                                        $('#in_take_form_menu')[0].click()
+                                    }
+                                    -->
+                                </script>
+                                <!--
+                                <div role="tabpanel" class="tab-pane" id="in_take_form">
+                                    <h3 class="text-left" style="margin-top:30px;color:#7C7BAD;">
+                                        Area of Concern
+                                    </h3>
+                                    <div class="row">
+                                        <div t-attf-class="form-group #{error.get('emotional') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="emotional">Emotional</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="emotional" t-att-checked="partner.emotional=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="emotional_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="emotional" t-att-checked="partner.emotional=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="emotional_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="emotional" t-att-checked="partner.emotional=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="emotional_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="emotional" t-att-checked="partner.emotional=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="emotional_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('environmental') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="environmental">Environmental</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="environmental" t-att-checked="partner.environmental=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="environmental_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="environmental" t-att-checked="partner.environmental=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="environmental_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="environmental" t-att-checked="partner.environmental=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="environmental_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="environmental" t-att-checked="partner.environmental=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="environmental_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('financial') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="financial">Financial</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="financial" t-att-checked="partner.financial=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="financial_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="financial" t-att-checked="partner.financial=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="financial_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="financial" t-att-checked="partner.financial=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="financial_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="financial" t-att-checked="partner.financial=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="financial_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('intellectual') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="intellectual">Intellectual</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="intellectual" t-att-checked="partner.intellectual=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="intellectual_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="intellectual" t-att-checked="partner.intellectual=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="intellectual_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="intellectual" t-att-checked="partner.intellectual=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="intellectual_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="intellectual" t-att-checked="partner.intellectual=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="intellectual_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('occupational') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="occupational">Occupational</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="occupational" t-att-checked="partner.occupational=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="occupational_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="occupational" t-att-checked="partner.occupational=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="occupational_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="occupational" t-att-checked="partner.occupational=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="occupational_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="occupational" t-att-checked="partner.occupational=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="occupational_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('physical') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="physical">Physical</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="physical" t-att-checked="partner.physical=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="physical_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="physical" t-att-checked="partner.physical=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="physical_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="physical" t-att-checked="partner.physical=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="physical_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="physical" t-att-checked="partner.physical=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="physical_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('social') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="social">Social</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="social" t-att-checked="partner.social=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="social_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="social" t-att-checked="partner.social=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="social_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="social" t-att-checked="partner.social=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="social_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="social" t-att-checked="partner.social=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="social_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('spiritual') and 'o_has_error' or ''} col-xl-12">
+                                            <label class="col-form-label" for="spiritual">Spiritual</label><br/>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="spiritual" t-att-checked="partner.spiritual=='vu'" value="vu"/>
+                                                <label class="form-check-label label-optional" for="spiritual_1">Very Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="spiritual" t-att-checked="partner.spiritual=='su'" value="su"/>
+                                                <label class="form-check-label label-optional" for="spiritual_2">Somewhat Unhealthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="spiritual" t-att-checked="partner.spiritual=='sh'" value="sh"/>
+                                                <label class="form-check-label label-optional" for="spiritual_3">Somewhat Healthy</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="spiritual" t-att-checked="partner.spiritual=='vh'" value="vh"/>
+                                                <label class="form-check-label label-optional" for="spiritual_4">Very Healthy</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-left" style="margin-top:30px;color:#7C7BAD;">
+                                        Additional Information
+                                    </h3>
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col-6">Additional Questions</th>
+                                                    <th scope="col-2">Yes</th>
+                                                    <th scope="col-4">More Details</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="col-6">Risk of Self Harm?</td>
+                                                    <td scope="col-2">
+                                                        <div t-attf-class="form-check form-check-inline #{error.get('selfharm') and 'o_has_error' or ''}">
+                                                            <input type="checkbox" name="selfharm" t-attf-class="form-check-input #{error.get('selfharm') and 'is-invalid' or ''}" t-att-checked="selfharm or partner.selfharm"/>
+                                                        </div>
+                                                    </td>
+                                                    <td scope="col-4">
+                                                        <div t-attf-class="form-group #{error.get('selfharm_details') and 'o_has_error' or ''} col-xl-12">
+                                                            <textarea name="selfharm_details" t-attf-class="form-control #{error.get('selfharm_details') and 'is-invalid' or ''}" rows="3"><t t-esc="partner.selfharm_details"/></textarea>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="col-6">Currently Taking Medication?</td>
+                                                    <td scope="col-2">
+                                                        <div t-attf-class="form-group row #{error.get('taking_meds') and 'o_has_error' or ''}">
+                                                            <input type="checkbox" name="taking_meds" t-attf-class="form-check-input #{error.get('taking_meds') and 'is-invalid' or ''}" t-att-checked="taking_meds or partner.taking_meds"/>
+                                                        </div>
+                                                    </td>
+                                                    <td scope="col-4">
+                                                        <div t-attf-class="form-group #{error.get('taking_meds_details') and 'o_has_error' or ''} col-xl-12">
+                                                            <textarea name="taking_meds_details" t-attf-class="form-control #{error.get('taking_meds_details') and 'is-invalid' or ''}" rows="3"><t t-esc="partner.taking_meds_details"/></textarea>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="col-6">Previous / On-going Treatment?</td>
+                                                    <td scope="col-2">
+                                                        <div t-attf-class="form-group row #{error.get('treatment') and 'o_has_error' or ''}">
+                                                            <input type="checkbox" name="treatment" t-attf-class="form-check-input #{error.get('treatment') and 'is-invalid' or ''}" t-att-checked="treatment or partner.treatment"/>
+                                                        </div>
+                                                    </td>
+                                                    <td scope="col-4">
+                                                        <div t-attf-class="form-group #{error.get('treatment_details') and 'o_has_error' or ''} col-xl-12">
+                                                            <textarea name="treatment_details" t-attf-class="form-control #{error.get('treatment_details') and 'is-invalid' or ''}" rows="3"><t t-esc="partner.treatment_details"/></textarea>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td scope="col-6">Attending Legal Case?</td>
+                                                    <td scope="col-2">
+                                                        <div t-attf-class="form-group row #{error.get('legalcase') and 'o_has_error' or ''}">
+                                                            <input type="checkbox" name="legalcase" t-attf-class="form-check-input #{error.get('legalcase') and 'is-invalid' or ''}" t-att-checked="legalcase or partner.legalcase"/>
+                                                        </div>
+                                                    </td>
+                                                    <td scope="col-4">
+                                                        <div t-attf-class="form-group #{error.get('legalcase_details') and 'o_has_error' or ''} col-xl-12">
+                                                            <textarea name="legalcase_details" t-attf-class="form-control #{error.get('legalcase_details') and 'is-invalid' or ''}" rows="3"><t t-esc="partner.legalcase_details"/></textarea>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <h3 class="text-left" style="color:#7C7BAD;">
+                                        Presenting Problem
+                                    </h3>
+                                    <div class="row">
+                                        <div t-attf-class="form-group #{error.get('support_ids') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="support_ids">Support Type</label>
+                                            <select id="support_ids_list" name="support_ids" t-attf-class="form-control #{error.get('support_ids') and 'is-invalid' or ''}" multiple="true">
+                                                <t t-foreach="client_support_ids or []" t-as="client_support">
+                                                    <option t-att-id="client_support.id" t-att-value="client_support.id" t-att-selected="client_support.id in partner.support_ids.ids">
+                                                        <t t-esc="client_support.name" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                        <script>
+                                            $('#support_ids_list').on("change", function (event) {
+                                                var sel_options = event.currentTarget.selectedOptions
+                                                var options = event.currentTarget.options
+                                                var list = []
+                                                for (var i = 0; i &lt; options.length; i++) {
+                                                    options[i].value = options[i].id
+                                                }
+                                                for (var i = 0; i &lt; sel_options.length; i++) {
+                                                    list.push(sel_options[i].value)
+                                                }
+                                                sel_options[0].value = list.toString()
+                                            });
+                                        </script>
+                                        <div t-attf-class="form-group #{error.get('personal_preference') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="personal_preference">Personal Preference</label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="personal_preference" t-att-checked="partner.personal_preference=='male'" value="male"/>
+                                                <label class="form-check-label label-optional" for="personal_preference_1">Male</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="personal_preference" t-att-checked="partner.personal_preference=='female'" value="female"/>
+                                                <label class="form-check-label label-optional" for="personal_preference_2">Female</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="personal_preference" t-att-checked="partner.personal_preference=='lgbtq'" value="lgbtq"/>
+                                                <label class="form-check-label label-optional" for="personal_preference_3">LGBTQ+</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="personal_preference" t-att-checked="partner.personal_preference=='none'" value="none"/>
+                                                <label class="form-check-label label-optional" for="personal_preference_4">No Preference</label>
+                                            </div>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('problem') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="problem">Problem</label>
+                                            <textarea name="problem" t-attf-class="form-control #{error.get('problem') and 'is-invalid' or ''}" rows="3"><t t-esc="partner.problem"/></textarea>
+                                        </div>
+                                        <div t-attf-class="form-group #{error.get('other_info') and 'o_has_error' or ''} col-xl-6">
+                                            <label class="col-form-label" for="other_info">Other Information</label>
+                                            <textarea name="other_info" t-attf-class="form-control #{error.get('other_info') and 'is-invalid' or ''}" rows="3"><t t-esc="partner.other_info"/></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <button type="submit" class="btn btn-primary float-right mb32 ">
+                                            Confirm
+                                            <span class="fa fa-long-arrow-right" />
+                                        </button>
+                                    </div>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+            <!-- xpath expr="//t[1]/t[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]/form[1]/div[1]/div[1]/div[2]/button[1]" position="replace">
+            </xpath-->
+        </template>
+
+    </data>
+</odoo>

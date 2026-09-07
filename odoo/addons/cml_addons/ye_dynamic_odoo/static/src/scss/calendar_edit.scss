@@ -1,0 +1,31 @@
+._wMainView {
+  height: 100%;
+  ._wCalendarCon {
+    height: 100%;
+    background: white;
+    padding: 5px 0px;
+    .o_view_controller {
+      height: 100%;
+      .o_calendar_container {
+        .o_calendar_sidebar_container {
+          border: 1px solid #ddd;
+          margin-left: 10px;
+          .o_calendar_sidebar {
+            margin: 0px;
+          }
+          .ui-datepicker .ui-widget-header {
+            border: 0px;
+            border-bottom: 1px solid #ddd;
+          }
+        }
+      }
+    }
+  }
+}
+.wrapEdit[view-type='calendar'] {
+  ._wEditProperty {
+    .wLProP {
+      height: 100%;
+    }
+  }
+}

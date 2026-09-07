@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_specialist_schedule_tree" model="ir.ui.view">
+            <field name="name">specialist.schedule.tree</field>
+            <field name="model">specialist.schedule</field>
+            <field name="arch" type="xml">
+                <tree string="Specialist Schedule">
+                    <field name="employee_id"/>    
+                    <field name="job_id"/>                                                                             
+                    <!-- <field name="name"/>-->
+                    <field name="day"/>                                                                               
+                    <field name="availability_ids" widget="many2many_tags"/>
+                    <field name="specialty_ids" widget="many2many_tags"/>
+                    <field name="escalation"/>
+                    <field name="debrief_ok"/>   
+                    <field name="appointment_type"/>
+                </tree>	
+            </field>
+        </record>        
+
+        <record id="view_specialist_schedule_form" model="ir.ui.view">
+            <field name="name">specialist.schedule.form</field>
+            <field name="model">specialist.schedule</field>
+            <field name="arch" type="xml">
+                <form string="Specialist Schedule">
+		            <sheet>
+                        <group>
+                            <!-- <field name="name"/> -->
+                            <field name="employee_id"/>  
+                            <field name="job_id"/>                                                                             
+                            <field name="availability_ids" widget="many2many_tags"/>
+                            <field name="specialty_ids" widget="many2many_tags"/>                                                              
+                        </group>
+                        <group>                                                                            
+                            <field name="day"/>  
+                            <field name="appointment_type"/>                      
+                            <!-- <field name="timein"/>
+                            <field name="timeout"/> -->
+                            <field name="escalation"/>
+                            <field name="debrief_ok"/>                                                                                 
+                        </group>
+		            </sheet>
+                </form>
+            </field>
+        </record>
+     
+    
+        <record id="view_specialist_schedule_search" model="ir.ui.view">
+            <field name="name">view.specialist.schedule.search</field>
+            <field name="model">specialist.schedule</field>
+            <field name="arch" type="xml">
+                <search string="Employees">
+                    <field name="job_id"/>
+                    <field name="appointment_type"/>
+                    <field name="employee_id"/>
+                </search>
+            </field>
+        </record>
+            
+        
+        <record id="specialist_schedule_action" model="ir.actions.act_window">
+            <field name="name">Clinic Schedule</field>
+            <field name="res_model">specialist.schedule</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_specialist_schedule_tree"/>
+        </record>
+
+     <!--creating menus-->
+        <menuitem id="menu_specialist_schedule"
+                  name="Specialist Schedule" 
+                  parent="cml_clinic.clinic_specialist"
+                  groups="cml_clinic.group_clinic_manager"
+                  sequence="15"
+                  action="cml_clinic.specialist_schedule_action"/>
+</odoo>

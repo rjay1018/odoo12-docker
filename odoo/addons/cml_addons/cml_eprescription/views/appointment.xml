@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="appointment_2_eprescription" model="ir.ui.view">
+            <field name="name">clinic.appointment2eprescription</field>
+            <field name="model">clinic.appointment</field>
+            <field name="inherit_id" ref="cml_clinic.appointment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/div" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_eprescription"
+                                string="E-Prescriptions" 
+                                class="oe_stat_button" 
+                                solid_icon="fa-file-prescription" 
+                                type="object"
+                                groups="cml_clinic.eprescription_user">
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

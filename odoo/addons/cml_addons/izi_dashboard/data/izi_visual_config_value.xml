@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_top">
+      <field name="name">top</field>
+      <field name="title">Top</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_legend_position')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_bottom">
+      <field name="name">bottom</field>
+      <field name="title">Bottom</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_legend_position')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_right">
+      <field name="name">right</field>
+      <field name="title">Right</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_legend_position')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_left">
+      <field name="name">left</field>
+      <field name="title">Left</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_legend_position')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_none">
+      <field name="name">none</field>
+      <field name="title">None</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_legend_position')])]"></field>
+    </record>
+    <!-- 00 -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_half">
+      <field name="name">half</field>
+      <field name="title">Half</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_circle_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_three_quarters">
+      <field name="name">threeQuarters</field>
+      <field name="title">Three Quarters</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_circle_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_value_full">
+      <field name="name">full</field>
+      <field name="title">Full</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_circle_type')])]"></field>
+    </record>
+
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_visual_config_allCountries">
+      <field name="name">ALL</field>
+      <field name="title">All Countries</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_map_view')])]"></field>
+    </record>
+
+    <!-- Scorecard Background Colors -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_default">
+      <field name="name">default</field>
+      <field name="title">Default (White)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_primary">
+      <field name="name">primary</field>
+      <field name="title">Primary (Blue)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_success">
+      <field name="name">success</field>
+      <field name="title">Success (Green)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_danger">
+      <field name="name">danger</field>
+      <field name="title">Danger (Red)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_warning">
+      <field name="name">warning</field>
+      <field name="title">Warning (Orange)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_info">
+      <field name="name">info</field>
+      <field name="title">Info (Cyan)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_bg_dark">
+      <field name="name">dark</field>
+      <field name="title">Dark (Dark Gray)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_bg_color')])]"></field>
+    </record>
+
+    <!-- Scorecard Icon Types (Font Awesome 4.7.0) -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_none">
+      <field name="name">none</field>
+      <field name="title">None</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Trends -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_arrow_up">
+      <field name="name">fa-arrow-up</field>
+      <field name="title">Arrow Up</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_arrow_down">
+      <field name="name">fa-arrow-down</field>
+      <field name="title">Arrow Down</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_line_chart">
+      <field name="name">fa-line-chart</field>
+      <field name="title">Line Chart (Trending)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Finance -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_money">
+      <field name="name">fa-money</field>
+      <field name="title">Money / Revenue</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_dollar">
+      <field name="name">fa-dollar</field>
+      <field name="title">Dollar Sign</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_credit_card">
+      <field name="name">fa-credit-card</field>
+      <field name="title">Credit Card / Payment</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Sales & Orders -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_shopping_cart">
+      <field name="name">fa-shopping-cart</field>
+      <field name="title">Shopping Cart / Orders</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_shopping_bag">
+      <field name="name">fa-shopping-bag</field>
+      <field name="title">Shopping Bag / Sales</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_barcode">
+      <field name="name">fa-barcode</field>
+      <field name="title">Barcode / Products</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- People & Users -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_users">
+      <field name="name">fa-users</field>
+      <field name="title">Users / Customers</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_user">
+      <field name="name">fa-user</field>
+      <field name="title">User / Single Person</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_group">
+      <field name="name">fa-group</field>
+      <field name="title">Group / Team</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Inventory & Stock -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_inbox">
+      <field name="name">fa-inbox</field>
+      <field name="title">Inbox / Inventory</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_cubes">
+      <field name="name">fa-cubes</field>
+      <field name="title">Cubes / Stock / Warehouse</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Logistics & Shipping -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_truck">
+      <field name="name">fa-truck</field>
+      <field name="title">Truck / Shipping</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_plane">
+      <field name="name">fa-plane</field>
+      <field name="title">Plane / Air Shipping</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_ship">
+      <field name="name">fa-ship</field>
+      <field name="title">Ship / Sea Shipping</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Analytics & Reports -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_bar_chart">
+      <field name="name">fa-bar-chart</field>
+      <field name="title">Bar Chart / Analysis</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_pie_chart">
+      <field name="name">fa-pie-chart</field>
+      <field name="title">Pie Chart</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_area_chart">
+      <field name="name">fa-area-chart</field>
+      <field name="title">Area Chart</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <!-- Performance & Status -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_check_circle">
+      <field name="name">fa-check-circle</field>
+      <field name="title">Check / Success</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_times_circle">
+      <field name="name">fa-times-circle</field>
+      <field name="title">X / Error / Failed</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_warning">
+      <field name="name">fa-warning</field>
+      <field name="title">Warning / Alert</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_info_circle">
+      <field name="name">fa-info-circle</field>
+      <field name="title">Info / Information</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_thumbs_up">
+      <field name="name">fa-thumbs-up</field>
+      <field name="title">Thumbs Up / Approval</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_type')])]"></field>
+    </record>
+
+    <!-- Scorecard Icon Colors -->
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_color_primary">
+      <field name="name">primary</field>
+      <field name="title">Primary (Blue)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_color_success">
+      <field name="name">success</field>
+      <field name="title">Success (Green)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_color_danger">
+      <field name="name">danger</field>
+      <field name="title">Danger (Red)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_color_warning">
+      <field name="name">warning</field>
+      <field name="title">Warning (Orange)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_color')])]"></field>
+    </record>
+    <record model="izi.visual.config.value" id="izi_dashboard.izi_scrcard_icon_color_info">
+      <field name="name">info</field>
+      <field name="title">Info (Cyan)</field>
+      <field name="value_type">string</field>
+      <field name="visual_config_ids" eval="[(6, 0, [ref('izi_dashboard.izi_visual_config_scrcard_icon_color')])]"></field>
+    </record>
+  </data>
+</odoo>
+
+

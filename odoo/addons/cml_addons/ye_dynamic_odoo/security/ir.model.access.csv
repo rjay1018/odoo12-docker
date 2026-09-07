@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_view_odo_studio,odo.studio,model_odo_studio,base.group_user,1,1,1,1
+access_view_odo_studio_sub_view,odo.studio.sub_view,model_odo_studio_sub_view,base.group_user,1,1,1,1

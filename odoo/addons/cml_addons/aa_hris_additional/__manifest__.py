@@ -1,0 +1,27 @@
+{
+    'name': "HRIS - Centre for mastery and life-long learning",
+    'version': '11.0',
+    'summary': """HRIS additional requirements/changes specifically for Centre for mastery and life-long learning""",
+    'description': """HRIS additional requirements/changes specifically for Centre for mastery and life-long learning """,
+    'category': 'Human Resource',
+    'author': 'Izumi',
+    'company': 'Freelance Worker',
+    'maintainer': 'Izumi',
+    'website': "none",
+    'depends': ['hr_disciplinary_tracking','hr_resignation','hr','cml_kso','hr_employee_updation','oh_employee_check_list','hr_employee_transfer',
+                'employee_orientation','hr_recruitment','hr_contract','hr_experience'
+                ],
+    'data': [
+             'views/disciplinary.xml',
+             'views/contact.xml',
+             'views/hide.xml',
+             'views/zz_contract.xml',
+             # 'views/employee_transfer.xml',
+             # 'views/regularization_views.xml',
+            ],
+    'demo': [],
+    'images': ['static/description/banner.jpg'],
+    'license': "AGPL-3",
+    'installable': True,
+    'application': True,
+}

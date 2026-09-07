@@ -1,0 +1,171 @@
+<odoo>
+  	<data>
+		<record id="view_employee_form_inherit" model="ir.ui.view">
+			<field name="name">hr.employee.form</field>
+			<field name="priority" eval="16" />
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr.view_employee_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='gender']" position="attributes">
+					<attribute name="string">Sex</attribute>
+				</xpath>
+				<xpath expr="//field[@name='marital']" position="attributes">
+					<attribute name="string">Civil Status</attribute>
+				</xpath>
+				<xpath expr="//field[@name='birthday']" position="attributes">
+					<attribute name="string">Birthday</attribute>
+				</xpath>
+				<xpath expr="//field[@name='place_of_birth']" position="attributes">
+					<attribute name="string">Birthplace</attribute>
+				</xpath>
+				<xpath expr="//field[@name='joining_date']" position="attributes">
+					<attribute name="string">Date Hired</attribute>
+				</xpath>
+				<xpath expr="//field[@name='joining_date']" position="before">
+					<field name="source_id"/>
+				</xpath>
+				<xpath expr="//field[@name='joining_date']" position="after">
+					<field name="employee_status"/>
+					<field name="date_regularized"/>
+					<field name="date_separated"/>
+				</xpath>
+				<xpath expr="//notebook/page[@name='personal_information']//group//group[8]" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='address_home_id']" position="attributes">
+					<attribute name="string">Current Address</attribute>
+				</xpath>
+				<xpath expr="//field[@name='address_home_id']" position="after">
+					<field name="provincial_address"/>
+				</xpath>
+				<xpath expr="//field[@name='emergency_phone']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='country_of_birth']" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='country_id']" position="after">
+					<field name="tinid" groups="hr.group_hr_user"/>
+					<field name="sssid" groups="hr.group_hr_user" />
+					<field name="pagibigid" groups="hr.group_hr_user" />
+					<field name="philhealthid" groups="hr.group_hr_user"/>
+					<field name="hmoid" groups="hr.group_hr_user"/>
+				</xpath>
+			</field>
+		</record>
+		
+		
+		<record id="employee_oritentation_view_update" model="ir.ui.view">
+			<field name="name">employee.oritentation.view.override</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="employee_orientation.hr_employee_view_for" />
+			<field name="arch" type="xml">	
+			<xpath expr="//field[@name='certificates']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			</field>
+		</record>
+
+			<!--Family Information-->
+		<record id="hr_employee_updation_extend" model="ir.ui.view">
+			<field name="name">hr.employee.form.updation.inherit</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_employee_updation.hr_employee_inherit_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='emergency_contacts']" position="replace">
+					<field name="emergency_contacts" nolabel="1">
+						<tree editable="bottom">
+							<field name="relation"/>
+							<field name="relationship"/>
+							<field name="number"/>
+						</tree>
+					</field>
+				</xpath>
+				<xpath expr="//field[@name='fam_ids']//tree/field[@name='member_contact']" position="replace">
+					<field name="fam_birthday"/>
+					<field name="emergency_number"/>
+					<field name="hmo_applied"/>
+				</xpath>
+			</field>
+		</record>
+
+		<!--Resume-->
+		<record id="hr_experience_custom_view" model="ir.ui.view">
+			<field name="name">hr.employee.hr.experience.inherit</field>
+			<field name="model">hr.employee</field>
+			<field name="inherit_id" ref="hr_experience.view_employee_form_inherit" />
+			<field name="arch" type="xml">
+				<!--Academic Tree-->
+				<xpath expr="//field[@name='academic_ids']//tree//field[@name='name']" position="attributes"> 
+					<attribute name="string">Degree/Course</attribute>
+				</xpath>
+				<xpath expr="//field[@name='academic_ids']//tree//field[@name='partner_id']" position="attributes"> 
+					<attribute name="string">School</attribute>
+				</xpath>
+				<xpath expr="//field[@name='academic_ids']//tree//field[@name='diploma']" position="attributes"> 
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='academic_ids']//tree//field[@name='study_field']" position="attributes"> 
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<!--Academic Form-->
+				<xpath expr="//field[@name='academic_ids']//form//field[@name='name']" position="attributes">
+					<attribute name="string">Degree/Course</attribute>
+				</xpath>
+				<xpath expr="//field[@name='academic_ids']//form//group[4]" position="attributes"> 
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<xpath expr="//field[@name='academic_ids']//form//group[5]" position="attributes"> 
+					<attribute name="invisible">True</attribute>
+				</xpath>
+				<!-- Experience Tree--> 
+
+				<xpath expr="//field[@name='experience_ids']//tree//field[@name='end_date']" position="after">
+					<field name="description" string='Reason'/>
+				</xpath>
+
+				<xpath expr="//field[@name='experience_ids']//tree/field[@name='partner_id']" position="after">
+					<field name="location"/>
+				</xpath>
+				<xpath expr="//field[@name='experience_ids']//tree//field[@name='start_date']" position="attributes">
+					<attribute name="string">Start Date</attribute>
+				</xpath>
+				<xpath expr="//field[@name='experience_ids']//tree//field[@name='end_date']" position="attributes">
+					<attribute name="string">End Date</attribute>
+				</xpath>
+				<!-- Experience Form-->
+				<xpath expr="//field[@name='experience_ids']//form//group[4]" position="attributes">
+					<attribute name="string">Reason of Separation</attribute>
+				</xpath>
+
+				<!-- Certification Tree -->
+				<xpath expr="//field[@name='certification_ids']//tree//field[@name='name']" position="attributes">
+					<attribute name="string">Certification/License</attribute>
+				</xpath>
+				<xpath expr="//field[@name='certification_ids']//tree//field[@name='start_date']" position="attributes">
+					<attribute name="string">Start/Registration Date</attribute>
+				</xpath>
+				<xpath expr="//field[@name='certification_ids']//tree//field[@name='end_date']" position="attributes">
+					<attribute name="string">Valid Until</attribute>
+				</xpath>
+				
+				<!-- <Certification Form -->
+				<xpath expr="//field[@name='certification_ids']//form//field[@name='name']" position="attributes">
+					<attribute name="string">Certification/License</attribute>
+				</xpath>
+				<xpath expr="//field[@name='certification_ids']//form//field[@name='start_date']" position="attributes">
+					<attribute name="string">Start/Registration Date</attribute>
+				</xpath>
+				<xpath expr="//field[@name='certification_ids']//form//field[@name='end_date']" position="attributes">
+					<attribute name="string">Valid Until</attribute>
+				</xpath>
+				<xpath expr="//field[@name='certification_ids']//form//group[4]" position="attributes">
+					<attribute name="string">Certification/Liscense Information</attribute>
+				</xpath> 
+				<xpath expr="//field[@name='certification_ids']//form//field[@name='certification']" position="attributes">
+					<attribute name="string">Certification/Liscense Number</attribute>
+				</xpath> 
+			</field>
+		</record>
+	</data>
+</odoo>

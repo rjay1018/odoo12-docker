@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="survey_email_compose_message_inherit">
+            <field name="name">survey.mail.compose.message.form.inherit</field>
+            <field name="model">survey.mail.compose.message</field>
+            <field name="inherit_id" ref="survey.survey_email_compose_message"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[2]" position="attributes">
+                    <attribute name="attrs">{'invisible':[('public','in',['email_private', 'email_public_link','email_relative'])]}</attribute>
+                </xpath>
+                <xpath expr="//footer[1]" position="attributes">
+                    <attribute name="attrs">{'invisible':[('public','in',['email_private', 'email_public_link','email_relative'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='multi_email']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('public','in',['email_relative'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_ids']" position="attributes">
+                    <attribute name="attrs">{'invisible':[('public','in',['email_relative'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='multi_email']" position="before">
+                    <field name="relative_partner_id" context="{'force_email':True, 'show_email':True}" attrs="{'invisible':[('public','!=','email_relative')]}" placeholder="Add Existing Contacts"/>
+                    <field name="exclude_partner" attrs="{'invisible':[('public','!=','email_relative')]}"/>
+                    <field name="relative_ids" context="{'default_partner_id' : relative_partner_id}" domain="[('partner_id','=',relative_partner_id)]" attrs="{'invisible' : [('public','!=','email_relative')]}">
+                        <tree>
+                            <field name="relation_type"/>
+                            <field name="email"/>
+                        </tree>
+                        <form>
+                            <group>
+                                <field name="relation_type"/>
+                                <field name="email"/>
+                           </group>
+                        </form>
+                    </field>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

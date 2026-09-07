@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="action_download_excel" model="ir.actions.server">
+            <field name="name">Generate Excel</field>
+            <field name="model_id" ref="ph_payroll_computation.model_hr_payslip_run"/>
+            <field name="binding_model_id" ref="ph_payroll_computation.model_hr_payslip_run"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = records.action_download_excel()
+            </field>
+        </record>
+    </data>
+</odoo>

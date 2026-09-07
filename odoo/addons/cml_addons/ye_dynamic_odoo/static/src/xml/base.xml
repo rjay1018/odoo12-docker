@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="menu.edit">
+        <li class="_liEdit">
+            <a class="_menuEdit">
+                <i class="fa fa-pencil" />Edit
+            </a>
+        </li>
+    </t>
+    <t t-name="menu.ulEdit">
+        <div class="_bgEdit">
+            <div class="wrapMenuEdit">
+                <div class="_head">
+                    <div>
+                        <a>Edit Menu</a>
+                    </div>
+                    <div>
+                        <a class="_aClose"><i class="fa fa-close" /></a>
+                    </div>
+                </div>
+                <div class="_con _divSB"></div>
+                <div class="_bot">
+                    <a class="btn btn-info _btnConfirm">Save</a>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-name="MenuEdit.li">
+        <li class="_liSub" t-att-view-data="id">
+            <div class="_wInfo">
+                <div class="_wAdd">
+                    <i class="fa fa-plus" />
+                </div>
+                <div class="_wName">
+                    <a><t t-esc="name" /></a>
+                    <input class="form-control" t-att-value="name" />
+                </div>
+                <div class="_wEdit _wIcon">
+                </div>
+                <div class="_wRemove _wIcon">
+                </div>
+            </div>
+        </li>
+    </t>
+    <t t-name="EditView.iconMore">
+        <button class='btn btn-secondary fa fa-lg fa-wrench _iMoreView' />
+    </t>
+    <t t-name="EditView.menu">
+        <ul class="_ulView">
+        </ul>
+    </t>
+    <t t-name="EditView.menuItem">
+        <li>
+            <a><i t-att-class="'fa fa-lg '+ icon"/></a>
+        </li>
+    </t>
+    <t t-name="EditView">
+        <div class="wrapEdit">
+            <div class="_wrapEditCon">
+                <div class="_headEdit">
+                    <ul>
+                        <li><a><i class="fa fa-close"></i></a></li>
+                        <li><a><i class="fa fa-minus"></i></a></li>
+                        <li><a><i class="fa fa-expand"></i></a></li>
+                    </ul>
+                </div>
+                <div class="_conEdit">
+                    <div class="_editProperty">
+                        <div class="_TeP">
+                        </div>
+                        <div class="_CeP">
+                            <div class="_cCeP">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_editView">
+                        <div class="_hEView">
+                            <div class="_wIBi">
+                                <a class="_aUndo aBi"></a>
+                            </div>
+                        </div>
+                        <div class="_cEView">
+                            <div class="_cEvL">
+                                <div class="_wIBi">
+                                    <div>
+                                        <a class="_aRemove aBi"></a>
+                                    </div>
+                                    <div>
+                                        <a class="_aSave aBi"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="_cEvR">
+                                <div class="_cEvRC _divSB">
+                                    <div class="_wSubView _divSB"></div>
+                                    <div class="_wMainView"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="_fEView"></div>
+                    </div>
+                </div>
+                <div class="_conBot">
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="OdoStudioEdit">
+        <div class="wrapEdit">
+            <div class="_wrapEditCon">
+                <div class="_headEdit">
+                    <ul>
+                        <li><a><i class="fa fa-close"></i></a></li>
+                        <li><a><i class="fa fa-minus"></i></a></li>
+                        <li><a><i class="fa fa-expand"></i></a></li>
+                    </ul>
+                </div>
+                <div class="_conEdit">
+
+                </div>
+                <div class="_conBot">
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="OSShowViews">
+        <div class="wrapCreateView">
+            <div class="_wConCV">
+
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ListViewEdit.Content">
+        <div class="editList">
+            <table class="tblList">
+                <tbody>
+                    <tr>
+                        <!--<t t-set="columns" t-value="widget.getColumnsSeq()" />-->
+                        <!--<t t-foreach="columns" t-as="column">-->
+                            <!--<t t-set="name" t-value="column.attrs.name" />-->
+                            <!--<t t-call="ListViewEdit.Content.Col" />-->
+                        <!--</t>-->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </t>
+    <t t-name="ListViewEdit.Content.Col">
+        <th t-att-name="name" t-att-class="'_colList ' + class || ''">
+            <div class="lblH"><t t-esc="string" /><span class="_sCl fa fa-close"></span></div>
+            <div class="lnRow"><i t-if="isHandle" class="fa fa-arrows" /></div>
+        </th>
+    </t>
+    <t t-name="ListViewEdit.Property">
+        <div class="_wEditProperty">
+            <div class="wLProP _divSB"></div>
+            <div class="_wEPTab"></div>
+        </div>
+    </t>
+
+
+
+    <!--<t t-name="ListViewEdit.Property.TabContent">-->
+        <!--<div class="_wTabContentField">-->
+            <!--<div class="_wTConH">-->
+                <!--<input type="text" class="_ipSearch" placeholder="search field..." />-->
+                <!--<i class="fa fa-search"  />-->
+            <!--</div>-->
+            <!--<div class="_wTConC">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</t>-->
+
+    <t t-name="ListViewEdit.ListProperty">
+        <div class="_wLPro">
+        </div>
+    </t>
+
+    <!--<t t-name="ListViewEdit.Property.Fields">-->
+        <!--<div class="_wFields _divSB">-->
+            <!--<t t-foreach="viewFields" t-as="field">-->
+                <!--<div class="lblH fIn" t-att-name="field.name">-->
+                    <!--<t t-esc="field.string" />-->
+                <!--</div>-->
+            <!--</t>-->
+        <!--</div>-->
+    <!--</t>-->
+     <t t-name="ListViewEdit.Property.Property">
+        <div class="_wFields _divSB">
+
+        </div>
+    </t>
+
+    <t t-name="EditView.ListViewEdit">
+        <div class="editList">
+        </div>
+    </t>
+    <t t-name="EditView.FormViewEdit">
+        <div>
+            <h1>FormViewEdit</h1>
+        </div>
+    </t>
+
+    <t t-name="FormViewEdit.Content">
+        <div>
+            <div class="_wFormCon o_form_view">
+
+            </div>
+        </div>
+    </t>
+
+    <t t-name="GraphViewEdit.Content">
+        <div class="_wGraphCon">
+        </div>
+    </t>
+
+    <t t-name="CalendarViewEdit.Content">
+        <div class="_wCalendarCon">
+        </div>
+    </t>
+    <t t-name="KanBanViewEdit.Content">
+        <div class="_wKanBanCon">
+        </div>
+    </t>
+    <t t-name="KanBanViewEdit.Tab.Theme">
+        <div class="_wKanBanTheme">
+            <t t-foreach="Object.values(templates)" t-as="template">
+                <div class="templateItem" t-att-template="template.name">
+                    <img t-att-src="template.img" />
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="PivotViewEdit.Content">
+        <div class="_wPivotCon">
+        </div>
+    </t>
+
+    <t t-name="CalendarViewEdit.Property">
+        <div class="_wEditProperty">
+            <div class="wLProP _divSB"></div>
+            <div class="_wEPTab"></div>
+        </div>
+    </t>
+
+    <t t-name="FormViewEdit.Property">
+        <div class="_wEditProperty">
+            <div class="wLProP _divSB"></div>
+            <div class="_wEPTab"></div>
+        </div>
+    </t>
+
+    <t t-name="FormViewEdit.TabFieldsContent">
+        <div>
+            <h3>Field Content</h3>
+        </div>
+    </t>
+
+    <t t-name="FormViewEdit.TabPropFormContent">
+        <div>
+            <h3>Property Form Content</h3>
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.TabComponent.Com">
+        <div t-att-class="class">
+            <div class="_cTagHead" >
+                <h4><t t-esc="label" /></h4>
+            </div>
+            <div class="_cTagCon _wSortable">
+                <t t-foreach="Object.values(child)" t-as="component">
+                    <div class="_wComItem" t-att-type="type" t-att-name="component.name">
+                        <a><i t-if="component.icon" t-att-class="'fa '+component.icon" /><t t-esc="component.label"/></a>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="FormViewEdit.TabComponentContent">
+        <div class="wComponent _divSB">
+            <div class="_wComCon">
+                <!--<div class="_wComTag">-->
+                    <!--<div class="_cTagHead" >-->
+                        <!--<h4>Tags</h4>-->
+                    <!--</div>-->
+                    <!--<div class="_cTagCon _wSortable">-->
+                        <!--<t t-foreach="Object.values(components.component)" t-as="component">-->
+                            <!--<div class="_wComItem" type="component" t-att-name="component.name">-->
+                                <!--<a><t t-esc="component.label"/></a>-->
+                            <!--</div>-->
+                        <!--</t>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="_wComField">-->
+                    <!--<div class="_cTagHead" >-->
+                        <!--<h4>Fields</h4>-->
+                    <!--</div>-->
+                    <!--<div class="_cTagCon _wSortable">-->
+                        <!--<t t-foreach="Object.values(components.fields)" t-as="field">-->
+                            <!--<div class="_wComItem" type="fieldNew" t-att-name="field.name">-->
+                                <!--<a><i t-att-class="'fa '+field.icon" /><t t-esc="field.label"/></a>-->
+                            <!--</div>-->
+                        <!--</t>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+
+        </div>
+    </t>
+
+
+    <t t-name="EditView.KanBanViewEdit">
+        <div>
+            <h1>KanBanViewEdit</h1>
+        </div>
+    </t>
+
+
+
+    <!--Field Basic-->
+
+
+
+    <t t-name="ViewEdit.Tab">
+        <div class="wTab">
+            <div class="_tabHead">
+                <t t-foreach="Object.values(widget.tabs)" t-as="tab">
+                    <div t-att-tab-name="tab.name" t-att-node-id="(tab.fieldNode || {}).nodeId">
+                        <a><i t-att-class="'fa '+ tab.icon" /><t t-esc="tab.label" /></a>
+                    </div>
+                </t>
+            </div>
+            <div class="_tabContent"></div>
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.Tab.newTab">
+        <div class="_wNewTab">
+            <div class="_wGroup _needFl">
+                <div class="_wGroup"></div>
+                <div class="_wGroup"></div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.TabContentFields">
+        <div class="_wTabContentField">
+            <div class="_wTConH">
+                <input type="text" class="_ipSearch" placeholder="search field..." />
+                <i class="fa fa-search"  />
+            </div>
+            <div class="_wTConC _divSB">
+                <t t-call="ViewEdit.List.TCF.Fields" />
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.List.TCF.Fields">
+        <div class="_wFields _divSB">
+            <t t-foreach="viewFields" t-as="field">
+                <div class="lblH fIn" type="field" t-att-name="field.name">
+                    <t t-esc="field.string" />
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.TabContentProperty">
+        <div class="_wCTabProp _divSB">
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.ColorLine">
+        <div class="_wLineColor">
+            <div><a><t t-esc="widget.props.label" />:</a></div>
+            <div>
+                <t t-set="value" t-value="widget.state.value" />
+                <t t-foreach="Object.keys(widget.viewInfo)" t-as="colorKey">
+                    <t t-set="color" t-value="widget.viewInfo[colorKey]" />
+                    <div class="_lColor" t-att-name="colorKey">
+                        <input t-att-placeholder="color.placeholder" t-att-value="value[colorKey] || ''" t-att-name="colorKey" type="text" />
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="ViewEdit.TreeDefault">
+        <tree>
+        </tree>
+    </t>
+    <t t-name="ViewEdit.FormDefault">
+        <form>
+            <div class="oe_title">
+                <h1>
+                    <field name="x_name" default_focus="1" placeholder="Name" />
+                </h1>
+            </div>
+        </form>
+    </t>
+    <t t-name="ViewEdit.CalendarDefault">
+        <calendar date_start="create_date">
+        </calendar>
+    </t>
+    <t t-name="ViewEdit.GraphDefault">
+        <graph></graph>
+    </t>
+    <t t-name="ViewEdit.PivotDefault">
+        <pivot></pivot>
+    </t>
+    <t t-name="ViewEdit.GanttDefault">
+        <gantt date_start="create_date">
+        </gantt>
+    </t>
+</templates>

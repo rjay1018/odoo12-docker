@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+all_refusal_reasons,all_refusal_reasons,model_refusal_reasons,,1,1,1,1
+access_hr_job_level,access_hr_job_level,model_hr_job_level,,1,1,1,1
+access_hr_job_category,access_hr_job_category,model_hr_job_category,,1,1,1,1
+access_hr_address_group,access_hr_address_group,model_hr_address_group,,1,1,1,1
+access_hr_employee_request,access_hr_employee_request,model_hr_employee_request,,1,1,1,1
+access_hr_employee_request_type,access_hr_employee_request_type,model_hr_employee_request_type,,1,1,1,1
+access_hr_application_stage,access_hr_application_stage,model_hr_application_stage,,1,1,1,1
+
+access_competency,access_competency,model_hr_competency,,1,1,1,1
+access_job_functions,access_job_functions,model_hr_job_funtions,,1,1,1,1
+access_succession_plan,access_succession_plan,model_succession_plan,,1,1,1,1
+access_role_profile,access_role_profile,model_hr_role_profile,,1,1,1,1

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_partner_form_inherit_field">
+            <field name="name">res.partner,form.inh</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="membership.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='membership_cancel']" position="after">
+                    <field name="total_free_session"/>
+                    <field name="total_used_session"/>
+                    <field name="total_available_session"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

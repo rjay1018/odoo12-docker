@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="cml_manufacturing_costing_bom" model="ir.ui.view">
+        <field name="name">manufacturing.new.view.form</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="bi_odoo_process_costing_manufacturing.mrp_bom_material_cost_form_view"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='bom_material_cost_ids']//field[@name='operation_id']" position="attributes">
+                <attribute name="domain">[('routing_id', '=', parent.routing_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='bom_labour_cost_ids']//field[@name='operation_id']" position="attributes">
+                <attribute name="domain">[('routing_id', '=', parent.routing_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='bom_overhead_cost_ids']//field[@name='operation_id']" position="attributes">
+                <attribute name="domain">[('routing_id', '=', parent.routing_id)]</attribute>
+            </xpath>
+            <!-- <xpath expr="//field[@name='sub_products']//tree" position="inside">
+                <field name="product_percentage"/>
+            </xpath> -->
+        </field>
+    </record>
+    <record id="cml_bom_byproduct_percentage" model="ir.ui.view">
+        <field name="name">bom.byproductpercentage.view.form</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp_byproduct.mrp_subproduct_view"/>
+
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='sub_products']//tree//field[@name='product_qty']" position="before">
+                <field name="product_percentage"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

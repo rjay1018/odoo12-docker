@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="view_client_stages_tree" model="ir.ui.view">
+            <field name="name">client.stage.tree</field>
+            <field name="model">client.stage</field>
+            <field name="arch" type="xml">
+                <tree string="Client Stages"> 
+                    <field name="sequence"/>                                                                                    
+                    <field name="name"/>
+                </tree>	
+            </field>
+        </record>        
+
+        <record id="view_client_stages_form" model="ir.ui.view">
+            <field name="name">client.stage.form</field>
+            <field name="model">client.stage</field>
+            <field name="arch" type="xml">
+                <form string="Client Stages">
+		            <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>                                                                                    
+                        </group>
+		            </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="client_stages_action" model="ir.actions.act_window">
+           <field name="name">Client Stages</field>
+            <field name="res_model">client.stage</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_client_stages_tree"/>
+        </record>
+
+     <!--creating menus-->
+        <menuitem id="menu_client_stages"
+                  name="Client Stages" 
+                  parent="cml_clinic.clinic_configuration"
+                  sequence="3"
+                  action="cml_clinic.client_stages_action"/>
+</odoo>

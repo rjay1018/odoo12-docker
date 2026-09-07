@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- stock move form view -->
+    <record id="sh_pol_picking_order_line_move_form" model="ir.ui.view">
+        <field name="name">sh.pol.picking.order.line.move.form</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <form string="Operations Line">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar" />
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="date_expected" />
+                            <field name="origin" />
+                            <field name="sh_pol_picking_order_line_picking_type_id" string="Picking Type" />
+                            <field name="sh_pol_picking_order_line_picking_type_code" string="Picking Operation" />
+                            <field name="reference" />
+                            <field name="picking_type_id" invisible="1" />
+                        </group>
+                        <group>
+                            <field name="create_date" invisible="1" groups="base.group_no_one" />
+                            <field name="product_id" />
+                            <field name="location_id" groups="stock.group_stock_multi_locations" string="Source Location" />
+                            <field name="location_dest_id" groups="stock.group_stock_multi_locations" string="Destination Location" />
+                            <field name="product_uom_qty" />
+                            <field name="quantity_done" />
+                            <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom" />
+                            <field name="state" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- stock move list view -->
+    <record id="sh_pol_picking_order_line_move_tree" model="ir.ui.view">
+        <field name="name">sh.pol.picking.order.line.move.tree</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="date" />
+                <field name="date_expected" />
+                <field name="origin" />
+                <field name="sh_pol_picking_order_line_picking_type_id" string="Picking Type" />
+                <field name="sh_pol_picking_order_line_picking_type_code" string="Picking Operation" />
+                <field name="reference" />
+                <field name="picking_type_id" invisible="1" />
+                <field name="create_date" invisible="1" groups="base.group_no_one" />
+                <field name="image" widget="image" width="20%%" />
+                <field name="product_id" />
+                <field name="location_id" groups="stock.group_stock_multi_locations" string="Source Location" />
+                <field name="location_dest_id" groups="stock.group_stock_multi_locations" string="Destination Location" />
+                <field name="product_uom_qty" />
+                <field name="quantity_done" />
+                <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- stock move filter -->
+    <record id="sh_pol_picking_order_line_move_search" model="ir.ui.view">
+        <field name="name">sh.pol.picking.order.line.move.search</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_search" />
+        <field name="arch" type="xml">
+        	<field name="product_id" position="after">
+        		<field name="category_id"/>
+        	</field>
+            <xpath expr="//filter" position="before">
+                <filter string="Receptions" name="incoming" domain="[('picking_id.picking_type_id.code','=','incoming')]" />
+                <filter string="Deliveries" name="outgoing" domain="[('picking_id.picking_type_id.code','=','outgoing')]" />
+                <filter string="Internal" name="internal" domain="[('picking_id.picking_type_id.code','=','internal')]" />
+                <filter string="Manufacturing" name="manufacturing" domain="[('picking_id.picking_type_id.code','=','mrp_operation')]" />
+            </xpath>
+
+            <xpath expr="//group" position="inside">
+                <filter string="Source Document" name="sh_pol_sm_origin_group_by" domain="[]" context="{'group_by':'origin'}" />
+                <filter string="Picking Type" name="sh_pol_sm_picking_type_id_group_by" domain="[]" context="{'group_by':'sh_pol_picking_order_line_picking_type_id'}" />
+                <filter string="Picking Operation" name="sh_pol_sm_picking_type_code_group_by" domain="[]" context="{'group_by':'sh_pol_picking_order_line_picking_type_code'}" />
+            </xpath>
+            <xpath expr="//group//filter[@name='by_product']" position="after">
+            	<filter name="group_by_category_id" domain="[]" string="Product Category" context="{'group_by':'category_id'}" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Move Kanban -->
+    <record model="ir.ui.view" id="stock_move_kanban_image">
+        <field name="name">stock.move.kanban</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="stock.view_move_kandan" />
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="id" />
+                <field name="image" />
+            </field>
+            <xpath expr="//kanban/templates/t/div[1]/div[@class='o_kanban_record_top']" position="before">
+                <div class="o_kanban_image">
+                    <img t-att-src="kanban_image('stock.move', 'image', record.id.raw_value)" role="img" alt="Product" class="o_kanban_image_fill_left o_kanban_image_full" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Move Calendar -->
+    <record model="ir.ui.view" id="sh_stock_move_calendar">
+        <field name="name">sh.stock.move.calendar</field>
+        <field name="model">stock.move</field>
+        <field name="priority" eval="6" />
+        <field name="arch" type="xml">
+            <calendar string="Calendar View" date_start="date">
+                <field name="origin" />
+                <field name="picking_type_id" />
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Stock Move Pivot -->
+    <record id="view_stock_move_pivot" model="ir.ui.view">
+        <field name="name">stock.move.pivot</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <pivot string="Stock Move Line Analysis">
+                <field name="state" type="row" />
+                <field name="product_id" type="row" />
+                <field name="quantity_done" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Stock Move Graph View -->
+    <record model="ir.ui.view" id="view_stock_move_graph">
+        <field name="name">stock.move.graph</field>
+        <field name="model">stock.move</field>
+        <field name="arch" type="xml">
+            <graph string="Stock Move">
+                <field name="product_id" />
+                <field name="partner_id" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <!-- stock move action -->
+    <record id="sh_pol_picking_order_line_move_action" model="ir.actions.act_window">
+        <field name="name">Operations Line</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,pivot,calendar,graph</field>
+        <field name="search_view_id" ref="sh_pol_picking_order_line_move_search" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_pol_picking_order_line_move_tree')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_stock_move_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_pol_picking_order_line_move_form')})]"
+        />
+    </record>
+
+    <!-- stock Incoming action -->
+    <record id="sh_pol_incoming_order_line_move_action" model="ir.actions.act_window">
+        <field name="name">Incoming Operations Line</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,pivot,calendar,graph</field>
+        <field name="domain">[('picking_id.picking_type_id.code','=','incoming')]</field>
+        <field name="search_view_id" ref="sh_pol_picking_order_line_move_search" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_pol_picking_order_line_move_tree')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_stock_move_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_pol_picking_order_line_move_form')})]"
+        />
+    </record>
+
+    <!-- stock Outgoing action -->
+    <record id="sh_pol_outgoing_order_line_move_action" model="ir.actions.act_window">
+        <field name="name">Outgoing Operations Line</field>
+        <field name="res_model">stock.move</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,pivot,calendar,graph</field>
+        <field name="domain">[('picking_id.picking_type_id.code','=','outgoing')]</field>
+        <field name="search_view_id" ref="sh_pol_picking_order_line_move_search" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_pol_picking_order_line_move_tree')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_stock_move_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_pol_picking_order_line_move_form')})]"
+        />
+    </record>
+
+    <menuitem id="sh_pol_picking_order_line_ops_menu" parent="stock.menu_stock_warehouse_mgmt" sequence="6" action="sh_pol_picking_order_line_move_action" groups="stock.group_stock_manager,stock.group_stock_user" />
+
+    <menuitem id="sh_pol_incoming_order_line_ops_menu" parent="stock.menu_stock_warehouse_mgmt" sequence="7" action="sh_pol_incoming_order_line_move_action" groups="stock.group_stock_manager,stock.group_stock_user" />
+
+    <menuitem id="sh_pol_outgoing_order_line_ops_menu" parent="stock.menu_stock_warehouse_mgmt" sequence="8" action="sh_pol_outgoing_order_line_move_action" groups="stock.group_stock_manager,stock.group_stock_user" />
+
+    <!-- =================== stock.move.line ================== -->
+
+    <!-- stock.move form view -->
+    <record id="sh_pol_picking_order_line_move_line_form" model="ir.ui.view">
+        <field name="name">sh.pol.picking.order.line.move.line.form</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <form string="Detailed Operations Line">
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar" />
+                    <group>
+                        <group>
+                            <field name="date" />
+                            <field name="sh_pol_picking_order_line_origin" />
+                            <field name="sh_pol_picking_order_line_picking_type_id" string="Picking Type" />
+                            <field name="sh_pol_picking_order_line_picking_type_code" string="Picking Operation" />
+                            <field name="reference" string="Reference" />
+                            <field name="product_id" />
+                        </group>
+                        <group>
+                            <field name="location_id" string="Source Location" />
+                            <field name="location_dest_id" string="Destination Location" />
+                            <field name="qty_done" string="Quantity Done" />
+                            <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom" />
+                            <field name="state" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- stock.move list view -->
+    <record id="sh_pol_picking_order_line_move_line_tree" model="ir.ui.view">
+        <field name="name">sh.pol.picking.order.line.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <tree >
+                <field name="date" />
+                <field name="sh_pol_picking_order_line_origin" />
+                <field name="sh_pol_picking_order_line_picking_type_id" string="Picking Type" />
+                <field name="sh_pol_picking_order_line_picking_type_code" string="Picking Operation" />
+                <field name="reference" string="Reference" />
+                <field name="image" widget="image" width="20%%" />
+                <field name="product_id" />
+                <field name="location_id" string="Source Location" />
+                <field name="location_dest_id" string="Destination Location" />
+                <field name="qty_done" string="Quantity Done" />
+                <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- stock move filter -->
+    <record id="sh_pol_picking_order_line_move_line_search" model="ir.ui.view">
+        <field name="name">sh.pol.picking.order.line.move.line.search</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.stock_move_line_view_search" />
+        <field name="arch" type="xml">
+        	<field name="product_id" position="after">
+        		<field name="category_id"/>
+        	</field>
+            <xpath expr="//group" position="inside">
+                <filter string="Source Document" name="sh_pol_sml_origin_group_by" domain="[]" context="{'group_by':'sh_pol_picking_order_line_origin'}" />
+                <filter string="Picking Type" name="sh_pol_sml_picking_type_id_group_by" domain="[]" context="{'group_by':'sh_pol_picking_order_line_picking_type_id'}" />
+                <filter string="Picking Operation" name="sh_pol_sml_picking_type_code_group_by" domain="[]" context="{'group_by':'sh_pol_picking_order_line_picking_type_code'}" />
+            </xpath>
+            <xpath expr="//group//filter[@name='groupby_product_id']" position="after">
+            	<filter name="group_by_category_id" domain="[]" string="Product Category" context="{'group_by':'category_id'}" />
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Move Line Calendar -->
+    <record model="ir.ui.view" id="sh_stock_move_line_calendar">
+        <field name="name">sh_stock.move.line.calendar</field>
+        <field name="model">stock.move.line</field>
+        <field name="priority" eval="5" />
+        <field name="arch" type="xml">
+            <calendar string="Calendar View" date_start="date">
+                <field name="sh_pol_picking_order_line_origin" />
+                <field name="sh_pol_picking_order_line_picking_type_id" />
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Stock Move Line Kanban -->
+    <record model="ir.ui.view" id="stock_move_line_kanban_image">
+        <field name="name">stock.move.line.kanban</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_kanban" />
+        <field name="arch" type="xml">
+            <field name="picking_id" position="after">
+                <field name="id" invisible="1" />
+            </field>
+            <xpath expr="//kanban/templates/t/div[1]/strong" position="before">
+                <div class="o_kanban_image">
+                    <img t-att-src="kanban_image('stock.move.line', 'image', record.id.raw_value)" role="img" alt="Product" class="o_kanban_image_fill_left o_kanban_image_full" />
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Move Line Pivot -->
+    <record id="view_sh_stock_move_line_pivot" model="ir.ui.view">
+        <field name="name">sh.stock.move.pivot</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Stock Move Line Analysis">
+                <field name="sh_pol_picking_order_line_picking_type_code" type="row" />
+                <field name="state" type="row" />
+                <field name="picking_id" type="row" />
+                <field name="product_id" type="row" />
+                <field name="location_dest_id" groups="stock.group_stock_multi_locations" type="measure" />
+                <field name="qty_done" type="measure" />
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Stock Move Line Graph View -->
+    <record model="ir.ui.view" id="view_stock_move_graph_">
+        <field name="name">stock.move.graph</field>
+        <field name="model">stock.move.line</field>
+        <field name="arch" type="xml">
+            <graph string="Stock Move Line">
+                <field name="product_id" />
+                <field name="picking_id" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <!-- stock move action -->
+    <record id="sh_pol_picking_order_line_move_line_action" model="ir.actions.act_window">
+        <field name="name">Detailed Operations Line</field>
+        <field name="res_model">stock.move.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban,calendar,pivot,graph</field>
+        <field name="search_view_id" ref="sh_pol_picking_order_line_move_line_search" />
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('sh_pol_picking_order_line_move_line_tree')}),
+                (0, 0, {'view_mode': 'pivot', 'view_id': ref('view_sh_stock_move_line_pivot')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('sh_pol_picking_order_line_move_line_form')})]"
+        />
+    </record>
+
+    <menuitem id="sh_pol_picking_order_line_details_ops_menu" parent="stock.menu_stock_warehouse_mgmt" sequence="11" action="sh_pol_picking_order_line_move_line_action" groups="stock.group_stock_manager,stock.group_stock_user" />
+</odoo>

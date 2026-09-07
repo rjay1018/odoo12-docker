@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Sheet" language="groovy" pageWidth="720" pageHeight="612" orientation="Landscape" columnWidth="720" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="001ff0a6-f998-4e37-b689-ea5d1d9efbb5">
+	<property name="ireport.zoom" value="1.2100000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Number-number]]></fieldDescription>
+	</field>
+	<field name="Due_Date-date_due" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Due_Date-date_due]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Payment_Terms-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payment_Terms-payment_term_id/Payment_Terms-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Salesperson-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Reference_Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reference_Description-name]]></fieldDescription>
+	</field>
+	<field name="Payment_Ref.-reference" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payment_Ref.-reference]]></fieldDescription>
+	</field>
+	<field name="Unit_Price-price_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Unit_Price-price_unit]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Reference-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Product-product_id/Reference-code]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Quantity-quantity]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Unit_of_Measure-uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<field name="Amount__with_Taxes_-price_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Amount__with_Taxes_-price_total]]></fieldDescription>
+	</field>
+	<field name="Name-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name4" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Related_Company-parent_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Country_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Country-country_id/Country_Name-name]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="State_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/State-state_id/State_Name-name]]></fieldDescription>
+	</field>
+	<field name="Zip-zip" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Zip-zip]]></fieldDescription>
+	</field>
+	<field name="Mobile-mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Mobile-mobile]]></fieldDescription>
+	</field>
+	<field name="Phone-phone" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Phone-phone]]></fieldDescription>
+	</field>
+	<field name="Tax-amount_tax" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tax-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Untaxed_Amount-amount_untaxed" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Untaxed_Amount-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Name-name5" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Mobile-mobile2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Mobile-mobile]]></fieldDescription>
+	</field>
+	<field name="Phone-phone2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Phone-phone]]></fieldDescription>
+	</field>
+	<field name="City-city2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/City-city]]></fieldDescription>
+	</field>
+	<field name="Country_Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Country-country_id/Country_Name-name]]></fieldDescription>
+	</field>
+	<field name="State_Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/State-state_id/State_Name-name]]></fieldDescription>
+	</field>
+	<field name="Street-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street22" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="Zip-zip2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Zip-zip]]></fieldDescription>
+	</field>
+	<field name="Name-name6" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Delivery_Address-partner_shipping_id/Related_Company-parent_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Email-email" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Phone-phone3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Phone-phone]]></fieldDescription>
+	</field>
+	<field name="Status-state" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Status-state]]></fieldDescription>
+	</field>
+	<field name="Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Description-name]]></fieldDescription>
+	</field>
+	<field name="Source_Document-origin" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Source_Document-origin]]></fieldDescription>
+	</field>
+	<field name="Type-type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Type-type]]></fieldDescription>
+	</field>
+	<field name="Amount_Due-residual" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Amount_Due-residual]]></fieldDescription>
+	</field>
+	<field name="Check" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payments-payment_ids/CheckNo-checque_no]]></fieldDescription>
+	</field>
+	<field name="Bank" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payments-payment_ids/Bank-bank_id/Name-name]]></fieldDescription>
+	</field>
+	<sortField name="Number-number"/>
+	<variable name="Total" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total-amount_total} == "" ? 0.00 :$F{Total-amount_total})]]></variableExpression>
+	</variable>
+	<variable name="Grand_Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{Total}]]></variableExpression>
+	</variable>
+	<variable name="Balance" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Amount_Due-residual} == "" ? 0.00 :$F{Amount_Due-residual})]]></variableExpression>
+	</variable>
+	<variable name="Balance_Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{Balance}]]></variableExpression>
+	</variable>
+	<variable name="Amount_Paid" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{Total}-$V{Balance}]]></variableExpression>
+	</variable>
+	<variable name="Amount_Paid_Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{Amount_Paid}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="52">
+			<textField>
+				<reportElement x="0" y="0" width="720" height="13" uuid="00db8701-3841-480a-b2a8-c64f08f0af0b"/>
+				<textElement textAlignment="Center" markup="none">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Company_Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="26" width="720" height="13" uuid="1d0dbbff-0cd3-4558-ab0f-73bf303793f5"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Month of  "+new SimpleDateFormat("MMMM  yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="591" y="39" width="69" height="13" forecolor="#000000" backcolor="#669900" uuid="70c9dc13-14ce-4e20-bb70-aef1992a7f23"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="130" y="39" width="51" height="13" forecolor="#000000" backcolor="#669900" uuid="b527c2ac-80ab-46d3-b620-64d3b93389fa"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Invoice Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="232" y="39" width="290" height="13" forecolor="#000000" backcolor="#669900" uuid="5ce6e42f-b65a-4770-821f-1e719e6e3482"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="522" y="39" width="69" height="13" forecolor="#000000" backcolor="#669900" uuid="e2f06a21-b018-4150-bd7c-240b3412d1b8"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="71" y="39" width="59" height="13" forecolor="#000000" backcolor="#669900" uuid="8df89ff5-472b-4a1b-aeb2-05e7958c969c"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Invoice #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="39" width="71" height="13" forecolor="#000000" backcolor="#669900" uuid="6ff9d399-15dc-49ff-af53-3fdd923b354a"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="660" y="39" width="60" height="13" forecolor="#000000" backcolor="#669900" uuid="361d8f57-2ce1-4581-9dc5-6cc2b821ebc5"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Amount Paid]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="720" height="13" uuid="1a81620a-ab36-4a71-806f-68dfe10e36e9"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Monthly Sales Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="181" y="39" width="51" height="13" forecolor="#000000" backcolor="#669900" uuid="70e27d3f-6293-4c1b-8b04-b29d5b6f00ef"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Due Date]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="130" y="0" width="51" height="13" forecolor="#000000" backcolor="#669900" uuid="c8f81052-d3cd-4cbc-b1ec-057472d5051d"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="522" y="0" width="69" height="13" forecolor="#000000" backcolor="#669900" uuid="ecadd43c-1b9c-4543-b4b6-292dc6d7dd78"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Total})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="71" y="0" width="59" height="13" forecolor="#000000" backcolor="#669900" uuid="d7277871-d2f5-49fa-950c-83d017012246"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Number-number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="232" y="0" width="290" height="13" forecolor="#000000" backcolor="#669900" uuid="c78ecfbc-8409-42f6-80ba-b608bb15af44"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name3}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="71" height="13" forecolor="#000000" backcolor="#669900" uuid="382844b8-3fe7-4c7d-a184-ad195cacb118"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Type-type} == "out_invoice" ? "Invoice" :
+$F{Type-type} == "in_invoice" ? "APV" :
+$F{Type-type} == "out_refund" ? "Credit Memo" :
+$F{Type-type} == "in_refund" ? "Credit Note" :
+""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="591" y="0" width="69" height="13" forecolor="#000000" backcolor="#669900" uuid="aa1751a9-1080-44cd-a7ed-81259172c72e"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Balance})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="660" y="0" width="60" height="13" forecolor="#000000" backcolor="#669900" uuid="cab08c07-97e7-422b-ab13-d97ed49898b8"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Amount_Paid})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="181" y="0" width="51" height="13" forecolor="#000000" backcolor="#669900" uuid="9567a331-5378-476d-aacd-655a11b31612"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{Due_Date-date_due})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="13" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="522" y="0" width="69" height="13" forecolor="#000000" backcolor="#669900" uuid="fd72ea50-c3f6-4f4d-9888-6e384849b161"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Grand_Total})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="232" y="0" width="290" height="13" forecolor="#000000" backcolor="#669900" uuid="4ee39465-2413-40f4-ba1d-2d325f46aae8"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="591" y="0" width="69" height="13" forecolor="#000000" backcolor="#669900" uuid="09750cc9-d83c-4c21-9f0e-9ff8587efbc3"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Balance_Total})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" mode="Transparent" x="660" y="0" width="60" height="13" forecolor="#000000" backcolor="#669900" uuid="5b3a1d9c-0dfe-4c3f-b912-1b7f507de175"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font size="9" isBold="false"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{Amount_Paid_Total})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

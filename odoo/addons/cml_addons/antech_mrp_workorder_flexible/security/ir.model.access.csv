@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+mrp_user_access_mrp_workorder_line,MRP User CRUD Workorder Line,antech_mrp_workorder_flexible.model_mrp_workorder_line,mrp.group_mrp_user,1,1,1,1

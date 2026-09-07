@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d7625200-52cb-49ac-b685-b3e24629e6fa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;invoice_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Number-number]]></fieldDescription>
+	</field>
+	<field name="Email-email" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Email-email]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Description-name]]></fieldDescription>
+	</field>
+	<field name="Tax_Amount-price_tax" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Tax_Amount-price_tax]]></fieldDescription>
+	</field>
+	<field name="Amount_Signed-price_subtotal_signed" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Amount_Signed-price_subtotal_signed]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Quantity-quantity]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="11" width="123" height="27" uuid="d03ad606-e787-4fb1-bd4d-28f23803a783"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[INVOICE BILLING]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="142" y="11" width="136" height="27" uuid="89032f37-b235-425c-a706-88053de76121"/>
+				<textFieldExpression><![CDATA[$F{Number-number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="13" width="185" height="25" uuid="f5906da7-6223-462c-a313-9147d53b3e54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Email :" + $F{Email-email}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="10" y="10" width="143" height="20" uuid="a995a83e-1345-4063-aac9-5df43d2addcf"/>
+				<text><![CDATA[ABCD]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="143" height="20" uuid="c97a1cda-6581-4b61-a5dd-cfe1d33e7a12"/>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="143" y="0" width="143" height="20" uuid="8d607883-9777-4232-95d1-461c2b9f8a54"/>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="0" width="143" height="20" uuid="19a9d180-9c08-4909-9a0e-de0ce84f8b57"/>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="0" width="143" height="20" uuid="2b9afbb2-3d02-4809-99c9-ad78d8eba6d5"/>
+				<text><![CDATA[Tax]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="143" height="20" uuid="fece7991-537d-4c42-b0b8-30bcdb0dcc63"/>
+				<textFieldExpression><![CDATA[$F{Description-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="143" y="0" width="143" height="20" uuid="69638707-3d68-4642-ad56-f9cf5414b3de"/>
+				<textFieldExpression><![CDATA[$F{Quantity-quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="143" height="20" uuid="c8514cee-957e-4fae-98dc-e488ffa34f4e"/>
+				<textFieldExpression><![CDATA[$F{Amount_Signed-price_subtotal_signed}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="0" width="143" height="20" uuid="8a0df65f-3751-4435-8f32-eab8dc87d8ef"/>
+				<textFieldExpression><![CDATA[$F{Tax_Amount-price_tax}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="17" width="80" height="20" uuid="36b89ea5-aed6-4e5f-a81f-e52b8fb203b2"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="80" y="17" width="40" height="20" uuid="ba47dfb1-6304-420e-a2df-b3d677801d6c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="472" y="17" width="100" height="20" uuid="87936e80-ca6b-44d6-a5d3-7e357fcac9cf"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="113" splitType="Stretch">
+			<textField>
+				<reportElement x="429" y="33" width="143" height="20" uuid="414bc460-3dcd-466d-87b3-e824e9c050f8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Total-amount_total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="306" y="33" width="123" height="20" uuid="ff1ae849-1717-4649-b2ce-fe94b7783dbf"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Total Amount : ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

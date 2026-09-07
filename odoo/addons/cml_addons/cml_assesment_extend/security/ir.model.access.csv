@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_assesment_pagewise_summary_all,access.assesment.pagewise.summary.all,model_assesment_pagewise_summary,,1,1,1,1

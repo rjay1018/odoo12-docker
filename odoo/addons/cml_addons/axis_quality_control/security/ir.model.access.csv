@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_quality_hazard,access_quality_hazard,model_quality_hazard,base.group_user,1,1,1,1
+access_quality_likelihood,access_quality_likelihood,model_quality_likelihood,base.group_user,1,1,1,1
+access_quality_severity,access_quality_severity,model_quality_severity,base.group_user,1,1,1,1
+access_quality_rating,access_quality_rating,model_quality_rating,base.group_user,1,1,1,1
+access_quality_routing_workcenter,access_quality_routing_workcenter,model_quality_routing_workcenter,base.group_user,1,1,1,1

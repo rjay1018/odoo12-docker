@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+conf_call_type,conf_call_type,model_call_type,,1,0,0,0
+conf_call_language,conf_call_language,model_call_language,,1,0,0,0
+conf_case_category,conf_case_category,model_case_category,,1,0,0,0
+all_helpline_sessions,all_helpline_sessions,model_helpline_sessions,cml_helpline.group_helpline_manager,1,1,1,1
+all_call_type,all_call_type,model_call_type,cml_helpline.group_helpline_manager,1,1,1,1
+all_call_language,all_call_language,model_call_language,cml_helpline.group_helpline_manager,1,1,1,1
+all_case_category,all_case_category,model_case_category,cml_helpline.group_helpline_manager,1,1,1,1
+ag_helpline_sessions,all_helpline_sessions,model_helpline_sessions,cml_helpline.group_helpline_agent,1,1,1,0
+st_helpline_sessions,all_helpline_sessions,model_helpline_sessions,cml_helpline.group_helpline_staff,1,1,1,0

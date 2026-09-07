@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="survey_user_input_form_inherit_tsi_export"
+            model="ir.ui.view">
+            <field name="name">survey_user_input_form.inherit.tsi.export</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//header" position="inside">
+                        <button name="action_export_tsi_report" type="object"
+                            string="Export TSI Excel" class="btn btn-primary" />
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+    
+    
+    <record model="ir.ui.view" id="assesment_report_excel_output_form">
+        <field name="name">assesment.report.excel.output.form</field>
+        <field name="model">assesment.report.excel.output</field>
+        <field name="arch" type="xml">
+            <form string="Report">
+                <group>
+                    <field name="filename" filename="name" />
+                    <field name="name" invisible="1" />
+                </group>
+                <footer>
+                    <button string="Cancel" class="btn-link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

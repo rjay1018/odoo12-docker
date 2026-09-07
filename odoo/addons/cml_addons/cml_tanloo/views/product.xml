@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		
+		<!-- VIEWS: "Tanloo Customized" -->
+		
+		<!-- Form view for "Product Profile" -->
+		<record id="product_form_view" model="ir.ui.view">
+			<field name="name">product_tanloo_form_view</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_only_form_view" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='categ_id']" position="before">
+				    <field name="product_department_id"/>
+				    <field name="product_section_id"/>
+				    <field name="product_division_id"/>
+				    <field name="product_model"/>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="product_department_tree_view" model="ir.ui.view">
+			<field name="name">product_department_tree_view</field>
+			<field name="model">product.department</field>
+			<field name="arch" type="xml">
+				<tree string="Product Department">
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+
+		<record id="product_department_view" model="ir.ui.view">
+			<field name="name">product_department_form_view</field>
+			<field name="model">product.department</field>
+			<field name="arch" type="xml">
+				<form string="Product Department">
+					<group>
+						<field name="name"/>
+		            	<field name="product_ids" invisible="1"/>
+					</group>
+            	</form>
+			</field>
+		</record>
+
+		<record id="product_section_tree_view" model="ir.ui.view">
+			<field name="name">product_section_tree_view</field>
+			<field name="model">product.section</field>
+			<field name="arch" type="xml">
+				<tree string="Product Section">
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+
+		<record id="product_section_view" model="ir.ui.view">
+			<field name="name">product_section_form_view</field>
+			<field name="model">product.section</field>
+			<field name="arch" type="xml">
+                <form string="Product Section">
+	                <group>
+						<field name="name"/>
+		            	<field name="product_ids" invisible="1"/>
+					</group>
+            	</form>
+			</field>
+		</record>
+
+		<record id="product_division_tree_view" model="ir.ui.view">
+			<field name="name">product_division_tree_view</field>
+			<field name="model">product.division</field>
+			<field name="arch" type="xml">
+				<tree string="Product Division">
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+
+		<record id="product_division_view" model="ir.ui.view">
+			<field name="name">product_division_form_view</field>
+			<field name="model">product.division</field>
+			<field name="arch" type="xml">
+                <form string="Product Division">
+	                <group>
+						<field name="name"/>
+		            	<field name="product_ids" invisible="1"/>
+					</group>
+            	</form>
+			</field>
+		</record>
+
+
+        <record id="product_department_action" model="ir.actions.act_window">
+            <field name="name">Product Department</field>
+            <field name="res_model">product.department</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="product_section_action" model="ir.actions.act_window">
+            <field name="name">Product Section</field>
+            <field name="res_model">product.section</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="product_division_action" model="ir.actions.act_window">
+            <field name="name">Product Division</field>
+            <field name="res_model">product.division</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--creating menus-->
+        <menuitem id="menu_department"
+                  parent="stock.menu_product_in_config_stock"
+                  name="Department"
+                  action="product_department_action"
+                  sequence="80"/>
+
+        <menuitem id="menu_section"
+                  parent="stock.menu_product_in_config_stock"
+                  name="Section"
+                  action="product_section_action"
+                  sequence="85"/>
+
+        <menuitem id="menu_division"
+                  parent="stock.menu_product_in_config_stock"
+                  name="Division"
+                  action="product_division_action"
+                  sequence="90"/>
+       
+	</data>
+</odoo>

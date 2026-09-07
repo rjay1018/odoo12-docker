@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="portal_my_details_ccc" inherit_id="cml_client_profile.portal_my_details_inherited">
+
+        </template>
+    </data>
+</odoo>
+

@@ -1,0 +1,20 @@
+<odoo>
+    <record id="action_change_invoice_journal" model="ir.actions.server">
+        <field name="name">Change Invoice Journal</field>
+        <field name="model_id" ref="account.model_account_invoice"/>
+        <field name="state">code</field>
+        <field name="binding_model_id" ref="account.model_account_invoice"/>
+        <field name="code">
+        action = {
+            "type": "ir.actions.act_window",
+            "name": "Change Invoice Journal",
+            "res_model": "change.invoice.journal.wizard",
+            "view_mode": "form",
+            "target": "new",
+            "context": {
+                "default_invoice_ids": [rec.id for rec in records]
+            }
+        }
+        </field>
+    </record>
+</odoo>

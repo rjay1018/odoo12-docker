@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="summary_partner_prod">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row mt32 mb32">
+                            <div class="col-4" t-if="o.agent">
+                                <strong>Agent:</strong>
+                                <p t-field="o.agent"/>
+                            </div>
+                            <div class="col-4" t-if="o.date_from and o.date_to">
+                                <strong>Commission From and To:</strong>
+                                <p><span t-field="o.date_from"/> - <span t-field="o.date_to"/></p>
+                            </div>
+                        </div>
+
+                        <h2>Commission Lines Details (Partner &amp; Product)</h2>
+                        
+                        <t t-set="grouped_data" t-value="get_grouped_lines(o)"/>
+
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Invoice Number</th>
+                                    <th>Product</th>
+                                    <th>UoM</th>
+                                    <th class="text-right">Quantity</th>
+                                    <th class="text-right">Unit Price</th>
+                                    <th class="text-right">Based Price</th>
+                                    <th class="text-right">Commission Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="grand_total_price" t-value="0.0"/>
+                                <t t-set="grand_total_amount" t-value="0.0"/>
+                                
+                                <t t-foreach="grouped_data" t-as="a">
+                                    <!-- Analytic Account Header -->
+                                    <tr class="bg-secondary" style="color: #000;">
+                                        <td colspan="7"><strong><span t-esc="a['analytic']"/></strong></td>
+                                    </tr>
+
+                                    <t t-foreach="a['partners']" t-as="p">
+                                        <!-- Partner Header -->
+                                        <tr class="bg-light">
+                                            <td colspan="7"><strong>&#160;&#160;&#160;<span t-esc="p['partner']"/></strong></td>
+                                        </tr>
+                                        <tr t-foreach="p['lines']" t-as="l">
+                                            <td><span t-esc="l['invoice']"/></td>
+                                            <td><span t-esc="l['product']"/></td>
+                                            <td><span t-esc="l['uom']"/></td>
+                                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(l['quantity'])"/></td>
+                                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(l['unit_price'])"/></td>
+                                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(l['price_subtotal'])"/></td>
+                                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(l['amount_subtotal'])"/></td>
+                                        </tr>
+                                        <!-- Partner Subtotal -->
+                                        <tr class="font-weight-bold">
+                                            <td colspan="5" class="text-right">Partner Subtotal :</td>
+                                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(p['total_price'])"/></td>
+                                            <td class="text-right"><span t-esc="'{0:,.2f}'.format(p['total_amount'])"/></td>
+                                        </tr>
+                                    </t>
+
+                                    <!-- Analytic Account Subtotal -->
+                                    <tr class="font-weight-bold bg-light">
+                                        <td colspan="5" class="text-right">Analytic Subtotal :</td>
+                                        <td class="text-right"><span t-esc="'{0:,.2f}'.format(a['total_price'])"/></td>
+                                        <td class="text-right"><span t-esc="'{0:,.2f}'.format(a['total_amount'])"/></td>
+                                    </tr>
+                                    <t t-set="grand_total_price" t-value="grand_total_price + a['total_price']"/>
+                                    <t t-set="grand_total_amount" t-value="grand_total_amount + a['total_amount']"/>
+                                </t>
+                                
+                                <tr class="font-weight-bold table-active">
+                                    <td colspan="5" class="text-right">Grand Total :</td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(grand_total_price)"/></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(grand_total_amount)"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_settlement_summary_partner_product"
+        model="sale.commission.settlement"
+        string="Settlement Summary Report (Partner/Product)"
+        report_type="qweb-pdf"
+        name="sale_commission_extended.summary_partner_prod"
+        file="sale_commission_extended.summary_partner_prod"/>
+
+</odoo>

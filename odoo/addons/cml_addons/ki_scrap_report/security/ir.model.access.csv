@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_scrap_report_wizard,access.scrap.report.wizard,model_scrap_report_wizard,,1,1,1,1
+access_scrap_reports_exel,access.scrap.reports.exel,model_scrap_reports_exel,,1,1,1,1

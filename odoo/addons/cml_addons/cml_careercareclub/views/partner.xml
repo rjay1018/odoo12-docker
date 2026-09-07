@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <!-- Inherit Form View -->
+    <record id="view_clinic_client_form_extend" model="ir.ui.view">
+        <field name="name">view_clinic_client_form_extend</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="cml_clinic.view_clinic_client_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_client']" position="attributes">
+                <attribute name="string">Is a Member</attribute>
+            </xpath>
+            <xpath expr="//page[@name='personal_information_page']" position="attributes">
+                <attribute name="string">Members Informations</attribute>
+            </xpath>
+            <xpath expr="//field[@name='source_id']" position="attributes">
+                <attribute name="string">Level/Section or Department</attribute>
+            </xpath>
+            <xpath expr="//page[@name='client_case_file']/separator[3]" position="attributes">
+                <attribute name="string">Incident Report</attribute>
+            </xpath>
+            <xpath expr="//page[@name='client_case_file']/separator[4]" position="attributes">
+                <attribute name="string">Members File Record</attribute>
+            </xpath>
+		</field>
+    </record>
+
+    <!-- Inherit Tree View -->
+    <!-- <record id="view_client_referrals_tree_extend" model="ir.ui.view">
+        <field name="name">view_client_referrals_tree_extend</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="cml_clinic.view_client_referrals_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="string">Reference ID</attribute>
+            </xpath>
+            <xpath expr="//field[@name='requested_date']" position="after">
+                <field name="reason" string="Narrative"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="string">Responsible</attribute>
+            </xpath>
+            <xpath expr="//field[@name='source']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record> -->
+
+    <!-- Inherit Action -->
+    <record id="cml_clinic.action_client_partner" model="ir.actions.act_window">
+            <field name="name">Members Information</field>
+    </record>
+
+    <!-- Inherit Menus -->
+    <record id="cml_clinic.clinic_root" model="ir.ui.menu">
+        <field name="name">Community</field>
+    </record>
+    <record id="cml_clinic.clinic_client" model="ir.ui.menu">
+        <field name="name">Members</field>
+    </record>
+    <record id="cml_clinic.menu_clinic_clients" model="ir.ui.menu">
+        <field name="name">Members</field>
+    </record>
+</odoo>

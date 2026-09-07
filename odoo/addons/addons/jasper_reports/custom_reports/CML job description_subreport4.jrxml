@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CML job description_subreport4" language="groovy" pageWidth="540" pageHeight="752" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.5937424601000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;contract_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Related_Contract-contract_ids/Employee-employee_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Start_Date-date_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Related_Contract-contract_ids/Start_Date-date_start]]></fieldDescription>
+	</field>
+	<field name="End_Date-date_end" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Related_Contract-contract_ids/End_Date-date_end]]></fieldDescription>
+	</field>
+	<field name="Status-state" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Related_Contract-contract_ids/Status-state]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="76" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="68" width="540" height="3"/>
+				<box>
+					<pen lineColor="#55555A"/>
+					<topPen lineColor="#55555A"/>
+					<leftPen lineColor="#55555A"/>
+					<bottomPen lineWidth="0.25" lineColor="#D6D6D8"/>
+					<rightPen lineColor="#55555A"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="252" y="49" width="104" height="19" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Start Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="49" width="248" height="19" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Employee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="468" y="49" width="72" height="19" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="540" height="26" forecolor="#55555A"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Previous Incumbents]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="360" y="49" width="104" height="19" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[End Date]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="360" y="0" width="104" height="15" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd-MMM-yy").format($F{End_Date-date_end})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="248" height="15" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="252" y="0" width="104" height="15" forecolor="#55555A"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd-MMM-yy").format($F{Start_Date-date_start})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="468" y="0" width="72" height="15" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Status-state}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

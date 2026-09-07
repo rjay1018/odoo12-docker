@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="yyy_hr_announcement_view_inherit">
+            <field name="name">yyy.hr.announcement.view.inherit</field>
+            <field name="model">hr.announcement</field>
+            <field name="inherit_id" ref="ph_payroll_reward_warning.view_hr_announcement_form"/>
+            <field name="arch" type="xml">
+                <field name="position_ids" position="after">
+                    <field name="announcement_type" invisible="1"/>
+                    <field name="user_ids" widget="many2many_tags" attrs="{'invisible': ['|',('is_announcement', '!=', False), ('announcement_type', '!=', 'user')]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

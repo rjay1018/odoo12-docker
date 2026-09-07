@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="clinic_email_invite" model="mail.template">
+            <field name="name">Appointment Invite: Send by email</field>
+            <field name="subject">Appointment Schedule (Ref ${object.sequence})</field>
+            <field name="email_from">${object.user_id.email |safe}</field>
+            <field name="email_to">${object.partner_id.email}</field>
+            <field name="model_id" ref="cml_clinic.model_clinic_appointment"/>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear ${object.partner_id.name}
+                        <br /><br />
+                        Thank you for registering at hello.mindwell.ph, you are schedule with our ${object.employee_id.job_title} on ${object.session_start}.
+                        <br /><br />
+                        Please complete your intake form available at <a href="https://www.surveymonkey.com/r/ECQintakeform">this Link</a> before your session po.
+                        <br /><br />
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

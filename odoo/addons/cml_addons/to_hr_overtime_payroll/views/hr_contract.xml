@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  	<data>
+      	<record model="ir.ui.view" id="view_contract_form">
+		    <field name="name">contract.form</field>
+		    <field name="model">hr.contract</field>
+		    <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/> 
+		    <field name="arch" type="xml">
+		        <xpath expr="//div[@name='wage']" position="after">
+		        	<label for="overtime_allowance"/>
+                    <div class="o_row" name="overtime_allowance">
+                        <field name="overtime_allowance" nolabel="1"/>
+                    </div>
+                </xpath>
+		   </field>
+		</record>
+  	</data>
+</odoo>

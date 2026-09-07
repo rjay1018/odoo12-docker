@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="material_cost_total_action" model="ir.actions.server">
+        <field name="name">Total Material</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_mrp_production"/>
+        <field name="binding_model_id" ref="model_mrp_production"/>
+        <field name="state">code</field>
+        <field name="code">
+            for rec in records:
+                rec._compute_total_cost()
+                rec._compute_total_all_cost()
+        </field>
+    </record>
+</odoo>

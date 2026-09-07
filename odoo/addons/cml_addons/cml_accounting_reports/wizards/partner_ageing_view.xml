@@ -1,0 +1,18 @@
+<odoo>
+    <!-- Extend the Partner Ageing Wizard Form View -->
+    <record id="ins_partner_ageing_wizard_inherit" model="ir.ui.view">
+        <field name="name">ins.partner.ageing.view.inherit</field>
+        <field name="model">ins.partner.ageing</field>
+        <field name="inherit_id" ref="account_dynamic_reports.ins_partner_ageing_wizard"/>
+        <field name="arch" type="xml">
+            <!-- Add the Exclude Empty Rows checkbox below the Include Details field -->
+            <xpath expr="//field[@name='include_details']" position="after">
+                <field name="exclude_empty_rows"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_category_ids']" position="after">
+                <field name="salesperson_ids" widget="many2many_tags"
+                       options="{'no_create_edit': True,'no_create': True, 'no_quick_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

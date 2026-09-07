@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree view for Client Information -->
+    <record id="view_clinic_client_tree" model="ir.ui.view">
+        <field name="name">view.clinic.client.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree string="Clients">
+                    <field name="display_name" string="Name"/>
+                    <field name="mobile"/>
+                    <field name="email"/>    
+                    <field name="specialist_jobtitle"/>
+                    <field name="employee_id"/>
+                    <field name="specialist_email"/>
+                </tree>
+            </xpath> 
+        </field>
+    </record>
+
+        
+    <!-- Form view for Client Information -->
+    <record id="view_clinic_client_form" model="ir.ui.view">
+        <field name="name">view.clinic.client.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before"> 
+                <header>                  
+                    <field name="case_stage_id" widget="statusbar" 
+                           clickable="True" groups="cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager"
+                           attrs="{'invisible': [('is_client','=',False)]}"/>
+                </header>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="string">Occupation</attribute>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                    <field name="is_client" attrs="{'invisible': [('is_company','=',True)]}"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='website']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_client','=',True)]}</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='lang']" position="attributes">
+                <attribute name="attrs">{'invisible': [('is_client','=',True)]}</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='toggle_active']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>        
+            </xpath>
+
+            <xpath expr="//field[@name='phone']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>        
+            </xpath>
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute> 
+            </xpath>
+
+            <xpath expr="//notebook/page[1]" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='internal_notes']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='accounting']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='internal_notes']" position="attributes">
+                <attribute name="groups">cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager</attribute>
+            </xpath>
+
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="personal_information_page" string="Personal Information"
+                    attrs="{'invisible': [('is_client','=',False)]}"
+                    groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                    <group>
+                        <group>
+                            <field name="birthday"/>
+                            <field name="age"/>
+                            <field name="sex"/>
+                            <field name="marital"/>
+                        </group>
+                        <group>
+                            <field name="hmo_id"/>
+                            <field name="hmo_no"/>
+                            <field name="clinic_visited"/>
+                            <field name="philhealthid"/>
+                        </group>
+                        <group>
+                            <field name="age_group"/>
+                            <field name="source_id"/>
+                            <field name="guardian"/>
+                            <field name="special_priority"/>
+                        </group>
+                        <group>
+                        </group>
+                        <separator string="Emergency Contacts" colspan="4"/>
+                        <field name="emergency_line_ids"> 
+                            <tree editable="top">
+                                <field name="name" required="1"/>
+                                <field name="contact_number" required="1"/>
+                                <field name="relationship"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+
+
+<!--                Hidden we will be using Assessment or Surveys for Intake Information-->
+
+<!--                <page name="intake" string="In-Take Form" attrs="{'invisible': [('is_client','=',False)]}"-->
+<!--                    groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">-->
+<!--                    <group>-->
+<!--                        <separator string="Area of Concern" colspan="4"/>-->
+<!--                            <group>-->
+<!--                                <field name="emotional" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="environmental" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="financial" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="intellectual" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="occupational" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="physical" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="social" widget="radio" options="{'horizontal': true}"/>-->
+<!--                                <field name="spiritual" widget="radio" options="{'horizontal': true}"/>-->
+<!--                            </group>-->
+<!--                        <separator string="Additional Information" colspan="6"/>-->
+<!--                            <table class="table table-striped" colspan="4">-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>Additional Questions</th>-->
+<!--                                        <th>Yes</th>-->
+<!--                                        <th>More Details</th>-->
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                    <tr>-->
+<!--                                        <td>Risk of Self Harm?</td>-->
+<!--                                        <td><field name="selfharm"/></td>-->
+<!--                                        <td><field name="selfharm_details"/></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>Currently Taking Medication?</td>-->
+<!--                                        <td><field name="taking_meds"/></td>-->
+<!--                                        <td><field name="taking_meds_details"/></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>Previous / On-going Treatment?</td>-->
+<!--                                        <td><field name="treatment"/></td>-->
+<!--                                        <td><field name="treatment_details"/></td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <td>Attending Legal Case?</td>-->
+<!--                                        <td><field name="legalcase"/></td>-->
+<!--                                        <td><field name="legalcase_details"/></td>-->
+<!--                                    </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        <separator string="Presenting Problem"/>-->
+<!--                            <group  colspan="6">-->
+<!--                                <field name="support_ids" widget="many2many_tags"/>-->
+<!--                                <field name="personal_preference"/>-->
+<!--                                <field name="problem"/>-->
+<!--                                <field name="other_info"/>-->
+<!--                            </group>-->
+<!--                    </group>-->
+<!--                </page>-->
+                
+                <page name="client_case_file" string="Case File"  
+                    attrs="{'invisible': [('is_client','=',False)]}">
+                        <group string="Specialist Information" colspan="4"
+                            groups="cml_clinic.group_clinic_specialist,
+                                    cml_clinic.group_clinic_nurse,
+                                    cml_clinic.group_clinic_manager">
+                            <group>
+                                <field name="employee_id"/>
+                                <field name="specialist_email"/>
+                                <field name="specialist_jobtitle"/>
+                            </group>
+                            <group>
+                                <field name="appointment_type"/>
+                                <field name="product_id"/>
+                                <button name="schedule_appointment" string="Create Appointment" type="object" class="oe_highlight" 
+                                        context="{'default_partner_id': active_id,
+                                            'default_duration': 1.00,
+                                            'default_employee_id': employee_id,
+                                            'default_appointment_type':appointment_type,
+                                            'default_product_id': product_id}"/>
+                            </group>
+                        </group>
+                    
+                    <separator string="Up-Coming Appointment" colspan="4" />
+                        <field name="appointment_ids" context="{'default_partner_id': active_id }" 
+                            groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                            <tree default_order="sequence desc">
+                                <field name="state" invisible="1"/>
+                                <field name="sequence" groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_nurse"/>
+                                <field name="session_start"/>
+                                <field name="employee_id"/>
+                                <field name="agreed_astep"/>
+                                <field name="notes" string="Session Notes"/>
+                            </tree>
+                        </field>
+
+                    <separator string="Appointment History" colspan="4" />
+                        <field name="appt_history_ids" context="{'default_partner_id': active_id }" 
+                            groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                            <tree default_order="sequence desc">
+                                <field name="state" invisible="1"/>
+                                <field name="sequence" groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_nurse"/>
+                                <field name="session_start"/>
+                                <field name="employee_id"/>
+                                <field name="agreed_astep"/>
+                                <field name="notes" string="Session Notes"/>
+                            </tree>
+                        </field>
+
+                    <separator string="Referral" colspan="4"/>
+                        <field name="referral_ids" context="{'default_partner_id': active_id }" 
+                            groups="cml_clinic.group_clinic_specialist,cml_website_registration.website_agent_rule">
+                            <tree> 
+                                <field name="name"/>
+                                <field name="user_id"/>
+                                <field name="support_id"/>
+                                <field name="state"/>
+                            </tree>	
+                        </field>
+                    <separator string="Client File Records" colspan="4"/>
+                        <field name="file_ids" context="{'default_partner_id': active_id }"  
+                            groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                            <tree>
+                                <field name="name"/>
+                                <field name="directory"/>
+                                <field name="content" filename="name"/>
+                                <field name="create_uid"/>
+                                <field name="write_date"/>
+                            </tree>
+                        </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <record id="action_client_partner" model="ir.actions.act_window">
+            <field name="name">Clients</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="base.view_res_partner_filter"/>
+            <field name="domain">[('is_client', '=', True)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new Client.
+              </p>
+            </field>
+        </record>
+    
+    <menuitem 
+        name="Clients"
+        id="clinic_client"
+        parent="clinic_root"
+        groups="cml_clinic.group_clinic_manager,cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_client"
+        sequence="25"/>
+    
+    <menuitem id="menu_clinic_clients"
+        name="Clients" 
+        parent="cml_clinic.clinic_client"
+        sequence="1"
+        action="action_client_partner"/>
+</odoo>

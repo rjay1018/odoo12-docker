@@ -1,0 +1,13 @@
+11/03/2021
+Version : 12.0.4.1
+
+Update Loans
+    -   add monthly-cutoff
+    -   auto compute loans input base on monthly-cutoff
+    -   change paid status from loan lines it will depend in loan line balance amount when equals to zero
+    
+    
+11/04/2021
+Update Fleet Fuel Logs
+    -   Add New Attach Document buttons linked directly to chatter
+    -   Add Chatter and Docs preview

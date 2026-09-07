@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='view_payment_report_wizard_form'>
+            <field name="name">payment.report.wizard.form</field>
+            <field name="model">payment.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Report Data">
+                    <group>
+                        <group>
+                            <field name="payment_start_date"/>
+                            <field name="journal_id" domain="[('type', 'in', ['cash', 'bank'])]"/>
+                        </group>
+                        <group>
+                            <field name="payment_end_date"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="export_payment_xls" type="object" default_focus="1"
+                                string="Print" class="oe_highlight"
+                                context="{'xls_export':1}" icon="fa-download"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model='ir.actions.act_window' id='action_payment_report_wizard'>
+            <field name="name">Payment Report</field>
+            <field name="res_model">payment.report.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_payment_report_wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.ui.view" id="payment_report_template_excel_report_views">
+            <field name="name">Payment Reports</field>
+            <field name="model">payment.reports.excel</field>  <!-- Fixed Typo Here -->
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="file_name" invisible="1"/>
+                        <field name="excel_file" filename="file_name"/>
+                    </group>
+                    <footer>
+                        <button name="cancel" special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <menuitem name="Payment Report"
+                  id="menu_payment_report_wizard" 
+                  action="action_payment_report_wizard"
+                  sequence="160" 
+                  parent="account.account_reports_management_menu"/>
+    </data>
+</odoo>

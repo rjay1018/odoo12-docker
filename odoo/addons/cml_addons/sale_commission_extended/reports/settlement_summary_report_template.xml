@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_settlement_summary">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row mt32 mb32">
+                            <div class="col-4" t-if="o.agent">
+                                <strong>Agent:</strong>
+                                <p t-field="o.agent"/>
+                            </div>
+                            <div class="col-4" t-if="o.date_from and o.date_to">
+                                <strong>Commission From and To:</strong>
+                                <p><span t-field="o.date_from"/> - <span t-field="o.date_to"/></p>
+                            </div>
+                        </div>
+
+                        <h2>Commission Lines Details</h2>
+                        
+                        <t t-set="grouped_lines" t-value="get_grouped_lines(o)"/>
+
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Analytic Account</th>
+                                    <th>Commission</th>
+                                    <th class="text-right">Based Price</th>
+                                    <th class="text-right">Commission Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_price_subtotal" t-value="0.0"/>
+                                <t t-set="total_amount_subtotal" t-value="0.0"/>
+                                <tr t-foreach="grouped_lines" t-as="g">
+                                    <td><span t-esc="g['analytic_account']"/></td>
+                                    <td><span t-esc="g['commission']"/></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(g['price_subtotal'])"/></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(g['amount_subtotal'])"/></td>
+                                    <t t-set="total_price_subtotal" t-value="total_price_subtotal + g['price_subtotal']"/>
+                                    <t t-set="total_amount_subtotal" t-value="total_amount_subtotal + g['amount_subtotal']"/>
+                                </tr>
+                                <tr class="font-weight-bold">
+                                    <td colspan="2" class="text-right">Total :</td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(total_price_subtotal)"/></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(total_amount_subtotal)"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_settlement_summary"
+        model="sale.commission.settlement"
+        string="Settlement Summary Report"
+        report_type="qweb-pdf"
+        name="sale_commission_extended.report_settlement_summary"
+        file="sale_commission_extended.report_settlement_summary"/>
+
+</odoo>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="rule_account_restriction" model="ir.rule">
+        <field name="name">Account Restriction</field>
+        <field name="model_id" ref="model_account_journal"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('user_restriction','=',False), ('user_restriction_ids.user_id', 'in', [user.id])]</field>
+    </record>
+
+</odoo>

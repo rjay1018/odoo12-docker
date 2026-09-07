@@ -1,0 +1,7 @@
+from odoo import fields, models, api
+
+
+class HrExpenseYYY(models.Model):  
+    _inherit = 'hr.expense'
+
+     department_id = One2Many

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report
+        id="report_contract"
+        string="Employee Contract"
+        model="hr.contract"
+        report_type="qweb-pdf"
+        name="cml_kso.report_contract"
+        file="cml_kso.report_contract"/>
+
+</odoo>

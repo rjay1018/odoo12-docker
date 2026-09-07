@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+      <template name="Main Frontend Layout" id="portal.frontend_layout">
+        <t t-call="web.layout">
+            <t t-set="head_website">
+                <script type="text/javascript">
+                    odoo.session_info = {
+                        is_admin: <t t-esc="json.dumps(request.env.user._is_admin())"/>,
+                        is_system: <t t-esc="json.dumps(request.env.user._is_system())"/>,
+                        is_website_user: <t t-esc="json.dumps(request.env.user._is_public())"/>,
+                        user_id: <t t-esc="json.dumps(request.env.user.id)"/>,
+                        is_frontend: true,
+                        translationURL: '/website/translations',
+                    };
+                </script>
+                <t t-call-assets="web.assets_common" t-js="false"/>
+                <t t-call-assets="web.assets_frontend" t-js="false"/>
+                <t t-call-assets="web.assets_common" t-css="false"/>
+                <t t-call-assets="web.assets_frontend" t-css="false"/>
+            </t>
+            <t t-set="head" t-value="head_website + (head or '')"/>
+            <t t-set="direction" t-value="request.env['res.lang'].search([('code', '=', request.env.lang)]).direction"/>
+            <div id="wrapwrap" t-attf-class="#{pageName or ''} #{direction == 'rtl' and 'o_rtl' or ''} #{'o_portal' if is_portal else ''}">
+            <header>
+                      <nav class="navbar navbar-expand-md navbar-light bg-light">
+                          <div class="container">
+                              <a href="/" class="navbar-brand logo">
+                                  <img t-att-src="'/logo.png?company=%s' % res_company.id" t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name"/>
+                              </a>
+                              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#top_menu_collapse">
+                                  <span class="navbar-toggler-icon"/>
+                              </button>
+                              <div class="collapse navbar-collapse" id="top_menu_collapse">
+                                  <!-- FIXME We want menu to open to the right by default (except cases handled in JS) -->
+                                  <ul class="nav navbar-nav ml-auto text-right" id="top_menu">
+                                      <li class="nav-item divider" t-ignore="true" t-if="not user_id._is_public()"/>
+                                      <li class="nav-item dropdown" t-ignore="true" t-if="not user_id._is_public()">
+                                          <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                              <b>
+                                                  <span t-esc="user_id.name[:23] + '...' if user_id.name and len(user_id.name) &gt; 25 else user_id.name"/>
+                                              </b>
+                                          </a>
+                                          <div class="dropdown-menu js_usermenu" role="menu">
+                                              <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/" role="menuitem">Logout</a>
+                                          </div>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </nav>
+                </header>
+                <main>
+                    <t t-raw="0"/>
+                </main>
+                <footer class="bg-light o_footer">
+                    <div class="container mt16 mb16" id="footer">
+                        <div class="float-right mb16" t-ignore="true" t-if="not editable">
+                            Powered by <a target="_blank" href="http://www.odoo.com?utm_source=db&amp;utm_medium=portal">Odoo</a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </t>
+    </template>
+    <template id="portal.portal_docs_entry" name="My Portal Docs Entry">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div t-att-class="color_caja" t-att-style="estilo if estilo else 'background-color: lightgreen;'">
+            <div class="inner">
+              <h3><span t-esc="count"/></h3>
+              <p><span t-esc="title"/></p>
+            </div>
+            <div class="icon">
+              <i t-att-class="icono"></i>
+            </div>
+            <a t-att-href="url" class="small-box-footer">More information <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </template>
+      <template id="portal.portal_my_home" name="My Portal">
+                <t t-call="binhex_dashboard_layout.layout">
+                    <t t-set="my_details" t-value="True"/>
+                  <style>
+                    .o_portal.container.mt-3{
+                    display:none;
+                    }
+                  </style>
+                  <!-- Content Header (Page header) -->
+                  <section class="content-header">
+                    <div class="container-fluid">
+                      <div class="row mb-2">
+                        <div class="col-sm-6">
+                          <h1 class="m-0 text-dark">My Documents</h1>
+                        </div><!-- /.col -->
+                      </div><!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                  </section>
+                  <!-- /.content-header -->
+
+                  <!-- Main content -->
+                  <section class="content">
+                    <div class="container-fluid">
+                      <!-- Small boxes (Stat box) -->
+                      <div class="row  o_portal_docs"></div>
+                      <!-- /.row (main row) -->
+                    </div><!-- /.container-fluid -->
+                  </section>
+            </t>
+      </template>
+    </data>
+</odoo>

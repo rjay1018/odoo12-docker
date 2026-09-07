@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--
+            Inherit the standard User form view to add a new "Journal Access" tab.
+            This allows admins to define exactly which journals each user can see.
+
+            The restriction ONLY applies if the user is placed in the
+            "Restricted Journal Access" security group.
+        -->
+        <record id="view_users_form_journal_access" model="ir.ui.view">
+            <field name="name">res.users.form.journal.access</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Journal Access" name="journal_access">
+                        <div class="alert alert-info" role="alert" style="margin-bottom: 20px;">
+                            <span>Assign allowed journals here. <br/><br/>
+                            <b>Note:</b> These restrictions will <i>only</i> be enforced if the 
+                            user belongs to the <b>"Accounting / Restricted Journal Access"</b> group.<br/>
+                            Unrestricted users will see all journals regardless of what is listed below.
+                            </span>
+                        </div>
+                        <group>
+                            <field name="journal_ids" nolabel="1" widget="many2many">
+                                <tree string="Journals">
+                                    <field name="name"/>
+                                    <field name="type"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

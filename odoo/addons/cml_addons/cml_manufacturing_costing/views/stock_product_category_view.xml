@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="product_category_account_cost_properties_views" model="ir.ui.view">
+        <field name="name">account.cost.properties.view.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='account_property']" position="after">
+                <group name="account_cost_property">
+                    <group string="Account Cost Properties">
+                        <field name="account_labour_cost_id" attrs="{'required':[ ('property_valuation', '=', 'real_time')]}"/>
+                        <field name="account_overhead_cost_id" attrs="{'required':[ ('property_valuation', '=', 'real_time')]}"/>
+                        <field name="account_cost_id" attrs="{'required':[ ('property_valuation', '=', 'real_time')]}"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+    
+    <record id="product_category_account_cost_properties_views_cost" model="ir.ui.view">
+        <field name="name">account.cost.properties.view.cost.form</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="stock_account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='property_valuation']" position="after">
+           	 <field name="cost_from_mo" attrs="{'invisible':[ ('property_cost_method', '!=', 'standard')]}"/>
+            </xpath>
+        </field>
+    </record>
+    
+    
+    
+    
+</odoo>

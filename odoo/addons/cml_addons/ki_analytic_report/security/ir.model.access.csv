@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_analytic_period_report.wizard,access.analytic.period.report.wizard,model_analytic_period_report_wizard,,1,1,1,1
+access_analytic_reports_exel,access.analytic.reports.exel,model_analytic_reports_exel,,1,1,1,1

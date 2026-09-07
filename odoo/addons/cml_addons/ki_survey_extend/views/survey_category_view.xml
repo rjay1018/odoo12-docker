@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="survey_user_category_tree_view">
+            <field name="name">survey.user.category.tree.inherit</field>
+            <field name="model">survey.user.category</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window"
+            id="action_survey_category">
+            <field name="name">Survey Category</field>
+            <field name="res_model">survey.user.category</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="survey_tags" name="Survey Category" sequence="91"
+            parent="survey.menu_surveys_configuration"
+            action="action_survey_category" />
+    </data>
+</odoo>

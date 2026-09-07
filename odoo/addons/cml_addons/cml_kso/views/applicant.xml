@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="applicant_refusal_form" model="ir.ui.view">
+		<field name="name">applicant_refusal_form</field>
+		<field name="model">hr.applicant</field>
+		<field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='reference']" position="after">
+			    <field name="refusal_reason_id" attrs="{'invisible': [('active','=',True)]}"/>
+			</xpath>
+		</field>
+	</record>
+	
+	<record id="refusal_reasons_tree" model="ir.ui.view">
+		<field name="name">refusal_reasons_tree</field>
+		<field name="model">refusal.reasons</field>
+		<field name="arch" type="xml">
+			<tree string="Refusal Reasons" editable="top">                                                             
+                <field name="name"/>
+            </tree>	
+		</field>
+	</record>
+
+	<record id="refusal_reasons_action" model="ir.actions.act_window">
+           <field name="name">Refusal Reasons</field>
+            <field name="res_model">refusal.reasons</field>
+            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="refusal_reasons_tree"/>
+        </record>
+
+     <!--creating menus-->
+    <menuitem id="menu_refusal"
+              name="Refusal Reasons" 
+              parent="hr_recruitment.menu_hr_recruitment_configuration"
+              sequence="50"
+              action="cml_kso.refusal_reasons_action"/>
+
+</odoo>
+    

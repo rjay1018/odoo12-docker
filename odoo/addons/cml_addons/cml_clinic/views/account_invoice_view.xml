@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="invoice_form_clinic_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='reference']" position="after">
+                    <field name="membership_state"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

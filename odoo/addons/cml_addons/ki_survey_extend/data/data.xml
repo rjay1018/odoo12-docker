@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+          <record id="mail_activity_type_survey_submission" model="mail.activity.type">
+            <field name="name">Survey Submission</field>
+        </record>
+    </data>
+</odoo>

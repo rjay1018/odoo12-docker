@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--      <record id="employee_form_inherit_employee_additional" model="ir.ui.view">
+          <field name="name">hr.employee.additinional.contact.inherit.form</field>
+          <field name="model">hr.employee</field>
+          <field name="inherit_id" ref="hr_employee_updation.hr_employee_inherit_form_view"/>
+          <field name="arch" type="xml">
+            <xpath expr="//page[@name='personal_information']//group/group[@name='emergency_contact']/field[@name='emergency_contact']/tree" position="replace">
+              <tree editable="bottom">
+                <field name="relation"/>
+                <field name="relationship"/>
+                <field name="number"/>
+              </tree>
+            </xpath>
+              <xpath expr="//page[@name='hr_settings']/group/group[@name='active_group']/field[@name='user_id']" position="attributes">
+              <attribute name="invisible">True</attribute>
+            </xpath> 
+          </field>
+      </record>
+-->
+      <record id="employee_form_inherit_employee_additional_checklist" model="ir.ui.view">
+          <field name="name">hr.employee.additinionalchecklist.inherit.form</field>
+          <field name="model">hr.employee</field>
+          <field name="inherit_id" ref="oh_employee_check_list.hr_employee_inherit_form_view"/>
+          <field name="arch" type="xml">
+            <xpath expr="//page[@name='checklist']/group/group[@name='entry_checklist']" position="attributes">
+              <attribute name="string">Requirement Checklist</attribute>
+            </xpath>
+            <xpath expr="//page[@name='checklist']/group/group[@name='exit_checklist']" position="attributes">
+              <attribute name="string">Separation Checklist</attribute>
+            </xpath>
+            <xpath expr="//field[@name='entry_progress']" position="attributes">
+        			<attribute name="invisible">True</attribute>
+        		</xpath>
+            <xpath expr="//field[@name='exit_progress']" position="attributes">
+        			<attribute name="invisible">True</attribute>
+        		</xpath>
+          </field>
+      </record>
+    </data>
+  </odoo>

@@ -1,0 +1,70 @@
+.editList {
+  padding: 40px;
+  &.showInvisible th.o_invisible_modifier {
+      display: flex !important;
+  }
+  table {
+    color: #bdbdbd;
+    border: 1px solid #494b4b;
+    border-left: 0px;
+    border-right: 0px;
+
+    tr {
+      th:first-child {
+        border-left: 1px solid #494b4b;
+      }
+      th:last-child {
+        padding-right: 0px;
+        border-right: 1px solid #494b4b;
+      }
+      th {
+        &.o_invisible_modifier {
+          .lblH {
+            background: #4a5f69;
+          }
+        }
+        border: 0px;
+        padding: 0px 0px 0px 1px;
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        .lblH {
+          padding: 5px 20px;
+          border: 1px solid #494b4b;
+          background: #3c3f41;
+          border-right-width: 0px;
+          border-left-width: 0px;
+          position: relative;
+          flex: 1;
+          ._sCl {
+            //background-image: url(/dynamic_odoo/static/src/img/close.png);
+            display: none;
+            width: 15px;
+            height: 15px;
+            background-size: 100%;
+            position: absolute;
+            top: 1px;
+            right: 0px;
+            color: #FF5722;
+          }
+        }
+        .lnRow {
+          min-height: 28px;
+          text-align: right;
+          padding: 5px 20px;
+          background: rgb(44, 54, 61);
+          font-weight: 100;
+          font-size: 12px;
+        }
+      }
+      th:active, th:hover {
+        cursor: pointer;
+        border-left: 1px dashed;
+        border-right: 1px dashed;
+        ._sCl {
+          display: block;
+        }
+      }
+    }
+  }
+}

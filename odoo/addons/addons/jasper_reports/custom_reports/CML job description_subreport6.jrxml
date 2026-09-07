@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CML job description_subreport6" language="groovy" pageWidth="540" pageHeight="752" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.143588810000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="53"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Job_Position-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Position-name]]></fieldDescription>
+	</field>
+	<field name="Department_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Department-department_id/Department_Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Recruitment_Responsible-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Job_Level-job_level" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Job_Level-job_level]]></fieldDescription>
+	</field>
+	<field name="Expected_New_Employees-no_of_recruitment" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Expected_New_Employees-no_of_recruitment]]></fieldDescription>
+	</field>
+	<field name="Reporting_To-reporting_to" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reporting_To-reporting_to]]></fieldDescription>
+	</field>
+	<field name="Reference_No.-reference_no" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reference_No.-reference_no]]></fieldDescription>
+	</field>
+	<field name="Career_Progression-career_prog" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Career_Progression-career_prog]]></fieldDescription>
+	</field>
+	<field name="Education_Level-ed_level" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Education_Level-ed_level]]></fieldDescription>
+	</field>
+	<field name="Course-course" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Course-course]]></fieldDescription>
+	</field>
+	<field name="Certification___License-cert_req" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Certification___License-cert_req]]></fieldDescription>
+	</field>
+	<field name="Years_of_Experience-yr_exp" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Years_of_Experience-yr_exp]]></fieldDescription>
+	</field>
+	<field name="Specialized_Training-special_training" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialized_Training-special_training]]></fieldDescription>
+	</field>
+	<field name="Shifting_Schedule-shift_sched" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Shifting_Schedule-shift_sched]]></fieldDescription>
+	</field>
+	<field name="Travel__Intl___Local_-travel" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Travel__Intl___Local_-travel]]></fieldDescription>
+	</field>
+	<field name="Oversees-job_oversees" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Oversees-job_oversees]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/HR_Responsible-hr_responsible_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Effectivity_Date-effective_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Effectivity_Date-effective_date]]></fieldDescription>
+	</field>
+	<field name="Revision_No.-revision_no" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Revision_No.-revision_no]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="400" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="540" height="46" forecolor="#55555A"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Job_Position-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="96" width="107" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Department]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="211" height="26" forecolor="#55555A"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Recruitment Pre-Qualifications]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="96" width="194" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Department_Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="131" width="107" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recruitment Responsible]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="131" width="194" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="107" y="96" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="131" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="166" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="166" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Job_Level-job_level} == "1" ? "Level 1" :
+$F{Job_Level-job_level} == "2" ? "Level 2" :
+$F{Job_Level-job_level} == "3" ? "Level 3" :
+$F{Job_Level-job_level} == "4" ? "Level 4" :
+$F{Job_Level-job_level} == "5" ? "Level 5" :
+$F{Job_Level-job_level} == "6" ? "Level 6" :
+$F{Job_Level-job_level} == "7" ? "Level 7" :
+""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="166" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Job Level]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="183" width="107" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expected New Employees]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="183" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="183" width="194" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Expected_New_Employees-no_of_recruitment}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="218" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reporting_To-reporting_to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="218" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporting To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="218" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="235" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Career_Progression-career_prog}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="235" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Career Progression]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="235" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="252" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Education Level]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="252" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="252" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Education_Level-ed_level} == "high" ? "Highschool" :
+$F{Education_Level-ed_level} == "vocational" ? "2 Years Vocational" :
+$F{Education_Level-ed_level} == "college" ? "Collage Graduate" :
+$F{Education_Level-ed_level} == "post" ? "Post Graduate" :
+""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="107" y="269" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="269" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Course-course}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="269" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Course]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="286" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Certification / License]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="286" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="286" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Certification___License-cert_req}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="107" y="303" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="303" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Years_of_Experience-yr_exp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="303" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Years of Experience]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="320" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Specialized Training]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="320" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="320" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Specialized_Training-special_training}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="337" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Shifting Schedule]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="337" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="337" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Shifting_Schedule-shift_sched}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="354" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Travel (Intl / Local)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="354" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Travel__Intl___Local_-travel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="107" y="354" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="371" width="107" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Oversees]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="371" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="113" y="371" width="194" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Oversees-job_oversees}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="58" width="218" height="26" forecolor="#55555A"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[HR Reference]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="403" y="95" width="137" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="397" y="95" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="95" width="75" height="35" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HR Responsible]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="403" y="129" width="137" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd-MMM-yy").format($F{Effectivity_Date-effective_date})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="397" y="129" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="129" width="75" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Effectivity Date]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="403" y="146" width="137" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Revision_No.-revision_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="146" width="75" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Revision No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="146" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="403" y="163" width="137" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reference_No.-reference_no}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="397" y="163" width="6" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="163" width="75" height="17" forecolor="#55555A"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reference No.]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Work Order_subreport1" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5115dae0-3d3d-4f7f-b743-b412d8b1cd47">
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.default.timezone" value="GMT+8"/>
+	<property name="ODOO_RELATIONS" value="[&apos;time_ids&apos;]"/>
+	<parameter name="Paramater1" class="java.text.DateFormat" isForPrompting="false">
+		<defaultValueExpression><![CDATA[$P{REPORT_FORMAT_FACTORY}.createDateFormat("MM/dd/yyyy HH:mm",$P{REPORT_LOCALE}, TimeZone.getTimeZone("UTC"))]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Start_Date-date_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Time-time_ids/Start_Date-date_start]]></fieldDescription>
+	</field>
+	<field name="End_Date-date_end" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Time-time_ids/End_Date-date_end]]></fieldDescription>
+	</field>
+	<field name="Duration-duration" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Time-time_ids/Duration-duration]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Time-time_ids/User-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Reason-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Time-time_ids/Loss_Reason-loss_id/Reason-name]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="238" y="16" width="194" height="16" uuid="796d142a-0bf6-4908-9ddb-2464d868572d"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Workers]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="16" width="58" height="16" uuid="02fe5542-6504-4ee9-84ae-a8945df36d86"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Duration]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="16" width="111" height="16" uuid="80722b83-e6c9-493b-a9f5-87093e001433"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Productivity]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="16" width="90" height="16" uuid="7c32dbf8-3167-403d-94ef-8a4d9d177507"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[End Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="90" height="16" uuid="e769ff31-871b-43ee-a4b0-b574a3fe608f"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Start Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="543" height="16" uuid="55459317-24d3-4166-b25d-cc898e8c03ed"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[WORKERS TIMESHEET]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="90" y="2" width="90" height="15" uuid="9d5a5929-42f4-43d1-af6e-d201fd16dfb0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").withZone(java.time.ZoneId.of("Asia/Manila")).format($F{End_Date-date_end}.toInstant())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="180" y="2" width="58" height="15" uuid="aa68b0fd-7d64-4102-a104-c0bea75b5c87"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Duration-duration} == "" ? "" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Duration-duration}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="238" y="2" width="194" height="15" uuid="4ee63143-c586-403f-9f49-8279750ad91d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="432" y="2" width="111" height="15" uuid="36363258-c9fc-4e0d-8e21-e09aedc9b1f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Reason-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="2" width="90" height="15" uuid="eab57efd-7b2f-42c5-b47d-0c100249feb5"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font size="8" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[java.time.format.DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").withZone(java.time.ZoneId.of("Asia/Manila")).format($F{Start_Date-date_start}.toInstant())]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

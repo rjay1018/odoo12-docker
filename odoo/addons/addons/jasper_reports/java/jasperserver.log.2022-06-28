@@ -1,0 +1,624 @@
+1    [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656430603772_409942: 828: unexpected char: '\' @ line 828, column 100.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656430603772_409942: 828: unexpected char: '\' @ line 828, column 100.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656430603772_409942: 828: unexpected char: '\' @ line 828, column 100.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656430603772_409942: 828: unexpected char: '\' @ line 828, column 100.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656430603772_409942: 828: unexpected char: '\' @ line 828, column 100.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:137)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+515273 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2549)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:791)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportContent(JRVerticalFiller.java:272)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:103)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: java.lang.IllegalArgumentException
+	at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at report1_billing_1656431118881_89768.evaluate(calculator_report1_billing_1656431118881_89768:801)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 28 more
+Caused by:
+net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2549)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:791)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportContent(JRVerticalFiller.java:272)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:103)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.IllegalArgumentException
+	at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at report1_billing_1656431118881_89768.evaluate(calculator_report1_billing_1656431118881_89768:801)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 28 more
+636418 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431240207_544383: 834: expecting ')', found 'toUpperCase' @ line 834, column 66.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431240207_544383: 834: expecting ')', found 'toUpperCase' @ line 834, column 66.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431240207_544383: 834: expecting ')', found 'toUpperCase' @ line 834, column 66.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431240207_544383: 834: expecting ')', found 'toUpperCase' @ line 834, column 66.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431240207_544383: 834: expecting ')', found 'toUpperCase' @ line 834, column 66.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+846763 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2549)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:791)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportContent(JRVerticalFiller.java:272)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:103)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: java.lang.IllegalArgumentException
+	at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at report1_billing_1656431267764_976796.evaluate(calculator_report1_billing_1656431267764_976796:803)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 28 more
+Caused by:
+net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2549)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:791)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportContent(JRVerticalFiller.java:272)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:103)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.IllegalArgumentException
+	at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at report1_billing_1656431267764_976796.evaluate(calculator_report1_billing_1656431267764_976796:803)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 28 more
+854718 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2549)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:791)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportContent(JRVerticalFiller.java:272)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:103)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: java.lang.IllegalArgumentException
+	at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at report1_billing_1656431267764_976796.evaluate(calculator_report1_billing_1656431267764_976796:803)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 28 more
+Caused by:
+net.sf.jasperreports.engine.fill.JRExpressionEvalException: Error evaluating expression for source text: new DecimalFormat("#,##0.00").format($F{Unit_Price-price_unit})
+	at net.sf.jasperreports.engine.fill.JREvaluator.handleEvaluationException(JREvaluator.java:287)
+	at net.sf.jasperreports.compilers.GroovyEvaluator.handleEvaluationException(GroovyEvaluator.java:98)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:319)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:672)
+	at net.sf.jasperreports.engine.fill.JRCalculator.evaluate(JRCalculator.java:640)
+	at net.sf.jasperreports.engine.fill.JRFillElement.evaluateExpression(JRFillElement.java:1164)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluateText(JRFillTextField.java:526)
+	at net.sf.jasperreports.engine.fill.JRFillTextField.evaluate(JRFillTextField.java:510)
+	at net.sf.jasperreports.engine.fill.JRFillElementContainer.evaluate(JRFillElementContainer.java:383)
+	at net.sf.jasperreports.engine.fill.JRFillBand.evaluate(JRFillBand.java:533)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillColumnBand(JRVerticalFiller.java:2549)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillDetail(JRVerticalFiller.java:791)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReportContent(JRVerticalFiller.java:272)
+	at net.sf.jasperreports.engine.fill.JRVerticalFiller.fillReport(JRVerticalFiller.java:103)
+	at net.sf.jasperreports.engine.fill.JRBaseFiller.fill(JRBaseFiller.java:609)
+	at net.sf.jasperreports.engine.fill.BaseReportFiller.fill(BaseReportFiller.java:405)
+	at net.sf.jasperreports.engine.fill.JRFiller.fill(JRFiller.java:140)
+	at net.sf.jasperreports.engine.JasperFillManager.fill(JasperFillManager.java:667)
+	at net.sf.jasperreports.engine.JasperFillManager.fillReport(JasperFillManager.java:983)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:221)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: java.lang.IllegalArgumentException
+	at sun.reflect.GeneratedMethodAccessor65.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoCachedMethodSite.invoke(PojoMetaMethodSite.java:189)
+	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:53)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at report1_billing_1656431267764_976796.evaluate(calculator_report1_billing_1656431267764_976796:803)
+	at net.sf.jasperreports.engine.fill.JREvaluator.evaluate(JREvaluator.java:305)
+	... 28 more
+919267 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431523051_852942: 832: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.String) field_Parent_name45parent_name.getValue()', is a bad expression as the left hand side of an assignment operator at line: 832 column: 83. File: calculator_mindwell_invoice_1656431523051_852942 @ line 832, column 83.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431523051_852942: 832: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.String) field_Parent_name45parent_name.getValue()', is a bad expression as the left hand side of an assignment operator at line: 832 column: 83. File: calculator_mindwell_invoice_1656431523051_852942 @ line 832, column 83.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431523051_852942: 832: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.String) field_Parent_name45parent_name.getValue()', is a bad expression as the left hand side of an assignment operator at line: 832 column: 83. File: calculator_mindwell_invoice_1656431523051_852942 @ line 832, column 83.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431523051_852942: 832: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.String) field_Parent_name45parent_name.getValue()', is a bad expression as the left hand side of an assignment operator at line: 832 column: 83. File: calculator_mindwell_invoice_1656431523051_852942 @ line 832, column 83.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431523051_852942: 832: 
+class org.codehaus.groovy.ast.expr.CastExpression, with its value '(java.lang.String) field_Parent_name45parent_name.getValue()', is a bad expression as the left hand side of an assignment operator at line: 832 column: 83. File: calculator_mindwell_invoice_1656431523051_852942 @ line 832, column 83.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:927)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+1353109 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcStreamServer - execute: Error while performing request
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431956894_496748: 834: expecting ')', found 'toUpperCase' @ line 834, column 67.
+1 error
+.
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:126)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431956894_496748: 834: expecting ')', found 'toUpperCase' @ line 834, column 67.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	... 6 more
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431956894_496748: 834: expecting ')', found 'toUpperCase' @ line 834, column 67.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431956894_496748: 834: expecting ')', found 'toUpperCase' @ line 834, column 67.
+1 error
+.
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:109)
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:203)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:357)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:273)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileToFile(JasperCompileManager.java:255)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReportToFile(JasperCompileManager.java:554)
+	at com.nantic.jasperreports.JasperServer.compile(JasperServer.java:107)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:146)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:130)
+	at sun.reflect.GeneratedMethodAccessor61.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:112)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:103)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:43)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:83)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:191)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:205)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+calculator_mindwell_invoice_1656431956894_496748: 834: expecting ')', found 'toUpperCase' @ line 834, column 67.
+1 error
+
+	at org.codehaus.groovy.control.ErrorCollector.failIfErrors(ErrorCollector.java:309)
+	at org.codehaus.groovy.control.ErrorCollector.addFatalError(ErrorCollector.java:149)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:119)
+	at org.codehaus.groovy.control.ErrorCollector.addError(ErrorCollector.java:131)
+	at org.codehaus.groovy.control.SourceUnit.addError(SourceUnit.java:359)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.transformCSTIntoAST(AntlrParserPlugin.java:142)
+	at org.codehaus.groovy.antlr.AntlrParserPlugin.parseCST(AntlrParserPlugin.java:108)
+	at org.codehaus.groovy.control.SourceUnit.parse(SourceUnit.java:236)
+	at org.codehaus.groovy.control.CompilationUnit$1.call(CompilationUnit.java:162)
+	at org.codehaus.groovy.control.CompilationUnit.applyToSourceUnits(CompilationUnit.java:912)
+	at org.codehaus.groovy.control.CompilationUnit.doPhaseOperation(CompilationUnit.java:574)
+	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:550)
+	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:527)
+	at net.sf.jasperreports.compilers.JRGroovyCompiler.compileUnits(JRGroovyCompiler.java:102)
+	... 18 more

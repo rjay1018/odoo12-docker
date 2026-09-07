@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="cml_mrp_production_costing" model="ir.ui.view">
+        <field name="name">mrp.prodution.costing.view.form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="bi_odoo_process_costing_manufacturing.mrp_production_material_cost_form_view"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='pro_material_cost_ids']//field[@name='operation_id']" position="attributes">
+                <attribute name="domain">[('routing_id', '=', parent.routing_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='pro_labour_cost_ids']//field[@name='operation_id']" position="attributes">
+                <attribute name="domain">[('routing_id', '=', parent.routing_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='pro_overhead_cost_ids']//field[@name='operation_id']" position="attributes">
+                <attribute name="domain">[('routing_id', '=', parent.routing_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='total_all_cost']" position="after">
+
+                <label for="product_uom_qty" string="Expected Qty"/>
+                <div class="o_row">
+                    <field name="product_uom_qty" string="Expected Qty"/>
+                    <field name="product_expected_uom_id" options="{'no_open':True,'no_create':True}" groups="uom.group_uom" attrs="{'readonly': [('has_moves', '=', True)]}"/>
+                </div>
+                <field name="expected_cost"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

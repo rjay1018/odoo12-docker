@@ -1,0 +1,25 @@
+<odoo>
+	<data>
+		
+	    <record id="ms_generic_excel_report_wizard_form_view" model="ir.ui.view">
+			<field name="name">ms.generic.excel.report.wizard.form</field>
+			<field name="model">ms.generic.excel.report.wizard</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<form string="Generic Excel Report">
+		        	
+					<group col="4" invisible="1">
+		        		<field name="report_id" options="{'no_create':True, 'no_open':True}" required="1" domain="[('state','=','active')]"/>
+		        		<field name="code" attrs="{'invisible': [('code','=',False)]}" readonly="1"/>
+		        	</group>
+	                <footer>
+	                    <button name="action_print" type="object" string="Print" class="oe_highlight"/> or 
+	                    <button string="Cancel" class="oe_link" special="cancel"/>
+	                </footer>
+		          	
+		        </form>
+	    	</field>
+	    </record>
+		
+	</data>
+</odoo>

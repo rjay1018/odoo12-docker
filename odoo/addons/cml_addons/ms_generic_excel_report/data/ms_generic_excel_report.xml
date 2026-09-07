@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="purchase_report" model="ms.generic.excel.report">
+            <field name="name">Purchase Order (Example)</field>
+            <field name="code">PO</field>
+            <field name="parent_menu_id" ref="purchase.purchase_report"/>
+            <field name="up_menu_id"></field>
+            <field name="groups_id" eval="[(6, 0, [ref('purchase.group_purchase_manager')])]"/>
+            <field name="query">
+                SELECT
+                    po.name AS purchase_number,
+                    po.date_order,
+                    rp.name AS supplier_name,
+                    pt.name AS product_name,
+                    pol.product_qty,
+                    pol.price_unit,
+                    pol.product_qty*price_unit as sub_total
+                FROM
+                    purchase_order_line pol
+                LEFT JOIN
+                    purchase_order po ON po.id = pol.order_id
+                LEFT JOIN
+                    product_product pp ON pp.id = pol.product_id
+                LEFT JOIN
+                    product_template pt ON pt.id = pp.product_tmpl_id
+                LEFT JOIN
+                    res_partner rp ON rp.id = po.partner_id
+                WHERE
+                    {DYNAMIC_WHERE}
+                    AND po.state != 'cancel'
+            </field>
+        </record>
+
+        <record id="purchase_report_filter_state" model="ms.generic.excel.report.filter">
+            <field name="report_id" ref="ms_generic_excel_report.purchase_report"/>
+            <field name="column_name">po.state</field>
+            <field name="name">State</field>
+            <field name="fields_type">selection</field>
+            <field name="selection">[('draft','Draft'),('purchase','Purchase'),('done','Done'),('purchase,done','Purchase and Done')]</field>
+            <field name="operator"></field>
+            <field name="model_id"/>
+            <field name="fields_domain"></field>
+        </record>
+        <record id="purchase_report_filter_product" model="ms.generic.excel.report.filter">
+            <field name="report_id" ref="ms_generic_excel_report.purchase_report"/>
+            <field name="column_name">pp.id</field>
+            <field name="name">Product</field>
+            <field name="fields_type">many2one</field>
+            <field name="selection"></field>
+            <field name="operator"></field>
+            <field name="model_id" ref="product.model_product_product"/>
+            <field name="fields_domain"></field>
+        </record>
+        <record id="purchase_report_filter_supplier" model="ms.generic.excel.report.filter">
+            <field name="report_id" ref="ms_generic_excel_report.purchase_report"/>
+            <field name="column_name">rp.id</field>
+            <field name="name">Supplier</field>
+            <field name="fields_type">many2many</field>
+            <field name="selection"></field>
+            <field name="operator"></field>
+            <field name="model_id" ref="base.model_res_partner"></field>
+            <field name="fields_domain">[('supplier','=',True)]</field>
+        </record>
+        <record id="purchase_report_filter_start_date" model="ms.generic.excel.report.filter">
+            <field name="report_id" ref="ms_generic_excel_report.purchase_report"/>
+            <field name="column_name">po.date_order</field>
+            <field name="name">Start Date</field>
+            <field name="fields_type">date</field>
+            <field name="selection"></field>
+            <field name="operator">start_date</field>
+            <field name="model_id"/>
+            <field name="fields_domain"></field>
+        </record>
+        <record id="purchase_report_filter_end_date" model="ms.generic.excel.report.filter">
+            <field name="report_id" ref="ms_generic_excel_report.purchase_report"/>
+            <field name="column_name">po.date_order</field>
+            <field name="name">End Date</field>
+            <field name="fields_type">date</field>
+            <field name="selection"></field>
+            <field name="operator">end_date</field>
+            <field name="model_id"/>
+            <field name="fields_domain"></field>
+        </record>
+
+    </data>
+</odoo>

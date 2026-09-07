@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="survey_user_input_form_inherit_summary_tag"
+			model="ir.ui.view">
+			<field name="name">survey_user_input_form.inherit.summary.tag</field>
+			<field name="model">survey.user_input</field>
+			<field name="inherit_id" ref="cml_assesment_extend.survey_user_input_form_inherit_summary" />
+			<field name="arch" type="xml">
+				<data>
+					<xpath expr="//field[@name='pagewise_summary_ids']"
+						position="after">
+						<separator string="Assesment Score Summary By Tag"
+							colspan="4" />
+						<field name="tagwise_summary_ids" nolabel="1">
+							<tree editable="bottom">
+								<field name="survey_tag_id" />
+								<field name="total_score" sum="total_score" />
+								<field name="average_score" sum="average_score" />
+							</tree>
+						</field>
+					</xpath>
+
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

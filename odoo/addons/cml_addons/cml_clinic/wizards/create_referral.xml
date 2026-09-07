@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="create_referral_form" model="ir.ui.view">
+        <field name="name">create.referral.wizard</field>
+        <field name="model">create.referral</field>
+        <field name="arch" type="xml">
+            <form string="Create Referral">
+                <group>
+                    <field name="source"/>
+                    <field name="partner_id"/>
+                    <field name="support_id"/>
+                    <field name="reason"/>
+                    <field name="user_id" readonly="1"/>
+                </group>
+                <footer>
+                    <button name="action_create" string="Create" type="object" class="btn btn-sm btn-primary"/>
+                    <button string="Cancel" class="btn btn-sm btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="create_referral" model="ir.actions.act_window">
+        <field name="name">Create Referral</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">create.referral</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="create_referral_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

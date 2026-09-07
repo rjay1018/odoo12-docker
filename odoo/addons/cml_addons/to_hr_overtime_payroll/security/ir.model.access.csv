@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_overtime_request_single_employee,hr.overtime.request_single.employee,model_hr_overtime_request_single,base.group_user,1,1,1,1
+access_hr_overtime_request_line_employee,hr.overtime.request.line.employee,model_hr_overtime_line,base.group_user,1,1,1,1
+access_hr_overtime_report_user,hr.overtime.report.user,model_hr_overtime_report,group_hr_overtime_user,1,0,0,0
+access_hr_overtime_report_manager,hr.overtime.report.manager,model_hr_overtime_report,group_hr_overtime_manager,1,1,1,1
+access_hr_payslip_overtime_line_employee,hr.payslip.overtime.line.employee,model_hr_payslip_overtime_line,base.group_user,1,1,1,1
+access_hr_overtime_rule_employee,hr.overtime.rule.employee,model_hr_overtime_rule,base.group_user,1,0,0,0
+access_hr_overtime_rule_hr_manager,hr.overtime.rule.hr_overtime_manager,model_hr_overtime_rule,group_hr_overtime_manager,1,1,1,1
+access_hr_overtime_rule_code_employee,hr.overtime.rule.code.employee,model_hr_overtime_rule_code,base.group_user,1,0,0,0
+access_hr_overtime_rule_code_hr_manager,hr.overtime.rule.code.hr_overtime_manager,model_hr_overtime_rule_code,group_hr_overtime_manager,1,1,1,1
+access_hr_overtime_reason_employee,hr.overtime.reason.employee,model_hr_overtime_reason,base.group_user,1,0,0,0
+access_hr_overtime_reason_hr_user,hr.overtime.reason.hr_overtime_user,model_hr_overtime_reason,group_hr_overtime_user,1,1,1,0
+access_hr_overtime_reason_hr_manager,hr.overtime.reason.hr_overtime_manager,model_hr_overtime_reason,group_hr_overtime_manager,1,1,1,1
+access_resource_calendar_employee,resource.calendar.ot_employee,model_resource_calendar,base.group_user,1,0,0,0
+access_resource_calendar_attendance_ot_employee,resource.calendar.attendance.ot_employee,resource.model_resource_calendar_attendance,base.group_user,1,0,0,0

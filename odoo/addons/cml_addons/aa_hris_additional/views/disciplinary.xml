@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="employee_form_inherit_disciplinary_additional_changes" model="ir.ui.view">
+          <field name="name">inherit.disciplinary.form.view</field>
+          <field name="model">disciplinary.action</field>
+          <field name="inherit_id" ref="hr_disciplinary_tracking.employee_disciplinary_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='joined_date']" position="attributes">
+              <attribute name="invisible">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='discipline_reason']" position="attributes">
+              <attribute name="string">Violation</attribute>
+            </xpath>
+            <xpath expr="//field[@name='action']" position="attributes">
+              <attribute name="string">Warning</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='department_name']" position="after">
+              <field name="position"/>
+            </xpath>
+            <xpath expr="//field[@name='discipline_reason']" position="after">
+              <field name="date_violation"/>
+              <field name="date_issued"/>
+            </xpath>
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_resignation_additional" model="ir.ui.view">
+          <field name="name">hr.resignation.inherit.form</field>
+          <field name="model">hr.resignation</field>
+          <field name="inherit_id" ref="hr_resignation.employee_resignation_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='department_id']" position="after">
+        			<field name="position"/>
+              <field name="employee_status"/>
+        		</xpath>
+            <xpath expr="//field[@name='expected_revealing_date']" position="before">
+        			<field name="filing_date"/>
+        		</xpath>
+          </field>
+      </record>
+
+      <record id="employee_form_inherit_employeecontract_additional" model="ir.ui.view">
+          <field name="name">hr.employee.additinional.contract.inherit.form</field>
+          <field name="model">hr.employee</field>
+          <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+          <field name="arch" type="xml">
+            <xpath expr="//page[@name='hr_settings']/group//group[2]" position="attributes">
+              <attribute name="invisible">True</attribute>
+            </xpath>
+          </field>
+      </record>
+<!--
+      <record id="employee_form_inherit_employeefilter_additional" model="ir.ui.view">
+          <field name="name">disciplinary.action.search</field>
+          <field name="model">disciplinary.action</field>
+          <field name="arch" type="xml">
+            <search>
+              <filter string="Employee" domain="[]" context="{'group_by':'employee_name'}"/>
+            </search>
+          </field>
+      </record>
+-->
+
+
+      <!-- <record id="hr_disciplinary_tracking.action_disciplinary_action_view" model="ir.actions.act_window">
+        <field name="name">Disciplinary Action View</field>
+        <field name="res_model">disciplinary.action</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">tree,form</field>
+         <field name="context">{'employee_name': active_id}</field>
+         <field name="domain">[('employee_name', '=', active_id)]</field>
+
+     </record> -->
+
+     <record id="employee_form_inherit_employee_discipline_button" model="ir.ui.view">
+         <field name="name">hr.employee.additinional.button.inherit.form</field>
+         <field name="model">hr.employee</field>
+         <field name="inherit_id" ref="hr_disciplinary_tracking.inherit_employee_form"/>
+         <field name="arch" type="xml">
+           <xpath expr="//button[@name='%(hr_disciplinary_tracking.action_disciplinary_action_view)d']" position="replace">
+             <button name="%(hr_disciplinary_tracking.action_disciplinary_action_view)d"
+                 class="oe_stat_button"
+                 icon="fa-info-circle"
+                 type="action"
+                 groups="hr.group_hr_manager"
+                 >
+                 <field name="discipline_count" widget="statinfo" string="Discipline"/>
+             </button>
+           </xpath>
+         </field>
+     </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_task_inventory_tree" model="ir.ui.view">
+            <field name="name">hr.job.funtions.tree</field>
+            <field name="model">hr.job.funtions</field>
+            <field name="arch" type="xml">
+               <tree string="Job Functions" editable="top">
+                    <field name="name"/>
+                    <field name="task_id"/>
+                    <field name="result_area"/>
+                    <field name="performance_indicator"/>
+                    <field name="work_tools"/>
+                    <field name="monitoring"/>
+                    <field name="jobs_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_hr_task_inventory" model="ir.actions.act_window">
+            <field name="name">Job Functions</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.job.funtions</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_hr_task_inventory"
+            parent="hr_recruitment.menu_hr_recruitment_configuration"
+            action="action_hr_task_inventory"
+            sequence="10"/>
+
+    </data>
+</odoo>

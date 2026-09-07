@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <record id="view_employee_form_kso_inherit" model="ir.ui.view">
+		<field name="name">hr.employee.kso.form</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr.view_employee_form"/>
+		<field name="priority">20</field>
+		<field name="arch" type="xml">
+			<!-- Work Information-->
+			<!-- <xpath expr="//field[@name='firstname']" position="attributes">
+				<attribute name="string">First Name</attribute>
+			</xpath>
+			<xpath expr="//field[@name='lastname']" position="attributes">
+				<attribute name="string">Last Name</attribute>
+			</xpath>
+			<xpath expr="//field[@name='lastname']" position="before">
+				<field name="middlename"/>
+			</xpath> -->
+
+			<xpath expr="//field[@name='work_location']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+
+			<xpath expr="//field[@name='work_location']" position="after">
+				<field name="kfamily_id"/>
+				<field name="sector_id"/>
+				<field name="unit_id"/>
+			</xpath>
+
+			<xpath expr="//field[@name='work_phone']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='coach_id']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='country_id']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='bank_account_id']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='passport_id']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='visa_no']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='permit_no']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='visa_expire']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='children']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//group[@name='work_permit']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//group[@name='passport_id']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='permit_no']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='tz']" position="attributes">
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//notebook/page[@name='personal_information']//group//group[1]" position="attributes"> 
+				<attribute name="string">Government Agencies Number</attribute>
+			</xpath>
+			<xpath expr="//notebook/page[@name='personal_information']" position="attributes">
+				<attribute name="string">Personal Information</attribute>
+			</xpath>
+			<xpath expr="//notebook/page[@name='hr_settings']" position="attributes">
+				<attribute name="string">Employment Details</attribute>
+			</xpath>
+			<xpath expr="//field[@name='joining_date']" position="before">
+				<field name="yrsofservice"/>
+			</xpath>
+
+		</field>
+    </record>
+
+		<!--Resume-->
+	<record id="hr_experience_custom_view" model="ir.ui.view">
+		<field name="name">hr.employee.form.inherit.kso</field>
+		<field name="model">hr.employee</field>
+		<field name="inherit_id" ref="hr_experience.view_employee_form_inherit" />
+		<field name="arch" type="xml">
+	    	<!--Academic Tree-->
+			<xpath expr="//page[last()]//group[1]" position="attributes">
+				<attribute name="string">Degree/Course</attribute>
+			</xpath>
+			<xpath expr="//field[@name='academic_ids']//tree//field[@name='start_date']" position="attributes"> 
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='academic_ids']//tree//field[@name='end_date']" position="attributes"> 
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='academic_ids']//tree//field[@name='partner_id']" position="attributes"> 
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<!--Academic Form-->
+			<xpath expr="//field[@name='academic_ids']//form//field[@name='partner_id']" position="attributes"> 
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			
+			<xpath expr="//field[@name='academic_ids']//form//field[@name='end_date']" position="attributes"> 
+				<attribute name="invisible">True</attribute>
+			</xpath>
+			<xpath expr="//field[@name='academic_ids']//form//field[@name='start_date']" position="attributes"> 
+				<attribute name="invisible">True</attribute>
+			</xpath>
+
+			<!-- Experience Tree--> 
+
+			<xpath expr="//group[@name='experience']" position="attributes"> <!--Manually add group name "experience" on inherited xml-->
+			  <attribute name="string">Professional Experiences / Transfer of Assignment</attribute>
+			</xpath>
+		</field>
+	</record>
+
+  </data>
+</odoo>

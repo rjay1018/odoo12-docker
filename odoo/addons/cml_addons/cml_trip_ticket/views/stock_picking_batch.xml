@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="stock_picking_batch_tripticket" model="ir.ui.view">
+            <field name="name">stock_picking_batch_tripticket</field>
+            <field name="model">stock.picking.batch</field>
+            <field name="inherit_id" ref="stock_picking_batch_extended.stock_batch_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+	                <attribute name="attrs">{'readonly':[('state','not in',['Done','Cancelled'])]}</attribute>
+				</xpath>
+                <xpath expr="//notebook/page[2]" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+                <xpath expr="//notebook/page[3]" position="attributes">
+					<attribute name="invisible">True</attribute>
+				</xpath>
+                <xpath expr="//notebook/page[4]"  position="after">
+                   <page string="Trip Ticket" name="trip_ticket">
+                       <group>
+                           <field name="fleet_id" attrs="{'readonly': [('state','not in',['Done','Cancelled'])]}"/>
+                           <field name="driver_id"/>
+                           <field name="helper_id" attrs="{'readonly': [('state','not in',['Done','Cancelled'])]}"/>
+                           <field name="odometer_value" invisible="1"/>
+                           <field name="calltime" widget="float_time" attrs="{'readonly': [('state','not in',['Done','Cancelled'])]}"/>
+                           <field name="odoometer_lines"
+                                  context="{'default_vehicle_id': fleet_id,
+                                            'default_batch_picking_id': id,
+                                            'default_value': odometer_value}">
+                               <tree String="Odometer Logs" editable="buttom">
+                                   <field name="vehicle_id" invisible="1"/>
+                                   <field name="batch_picking_id" invisible="1"/>
+                                   <field name="timelogs"/>
+                                   <field name="in_and_out"/>
+                                   <field name="value"/>
+                               </tree>
+                           </field>
+                       </group>
+                   </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

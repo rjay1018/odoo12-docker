@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="extract_answers" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0a21897-1ce4-49f9-9f25-f147d00ac41b">
+	<property name="ireport.zoom" value="1.9487171000000039"/>
+	<property name="ireport.x" value="37"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Question_Name-question" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Question-question_id/Question_Name-question]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User_Input-user_input_id/id]]></fieldDescription>
+	</field>
+	<field name="Status-state" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User_Input-user_input_id/Status-state]]></fieldDescription>
+	</field>
+	<field name="Identification_token-token" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User_Input-user_input_id/Identification_token-token]]></fieldDescription>
+	</field>
+	<field name="Text_answer-value_text" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Text_answer-value_text]]></fieldDescription>
+	</field>
+	<group name="group_by">
+		<groupExpression><![CDATA[$F{Identification_token-token}]]></groupExpression>
+		<groupHeader>
+			<band height="77">
+				<textField>
+					<reportElement x="0" y="12" width="313" height="20" uuid="246a6c3b-49eb-4d97-800c-e7e54fd8c62b"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Token ID : "+ $F{Identification_token-token}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="435" y="12" width="137" height="20" uuid="9a039b0b-4da1-449b-aa71-2aec7c573495"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Status : "+ $F{Status-state}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="51" width="365" height="20" uuid="04c23f87-d0ea-4b36-b19a-13de610cfc50"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Question"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="365" y="51" width="207" height="20" uuid="fd48e8a3-63bc-41f5-b865-05aa539b906a"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA["Answer"]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="71" width="572" height="1" uuid="88fb4c08-b4c1-42e8-9adf-b2ae8c86a20f"/>
+				</line>
+				<line>
+					<reportElement x="0" y="0" width="572" height="1" uuid="49303701-02cb-468a-a5cc-d7bcf2b46b3b"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="12">
+				<line>
+					<reportElement x="0" y="6" width="572" height="1" uuid="bb0546ae-356d-44c2-a7bb-645b1b9fb48a"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="286" height="20" uuid="3e3824f9-dde7-48ad-8db7-548832fa94e7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Extract  Answer Tools"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="365" height="20" isPrintWhenDetailOverflows="true" uuid="a14b11cc-7c09-4bee-a260-d6c90facfbfa"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Question_Name-question}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="365" y="0" width="207" height="20" isPrintWhenDetailOverflows="true" uuid="e86a335c-558f-4d19-89f9-1562469cb3d4"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Text_answer-value_text}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

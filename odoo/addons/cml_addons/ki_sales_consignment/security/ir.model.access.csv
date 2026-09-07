@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_consigments,access.stock.consigments,model_stock_consigments,,1,1,1,1
+access_stock_consigments_lines,access.stock.consigments.lines,model_stock_consigments_lines,,1,1,1,1

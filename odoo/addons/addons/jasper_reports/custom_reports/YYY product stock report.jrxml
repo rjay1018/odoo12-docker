@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Stock Report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.9487171000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Product_Code-default_code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product_Code-default_code]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Name-name]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Unit_of_Measure-uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<field name="Quantity_On_Hand-qty_available" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Quantity_On_Hand-qty_available]]></fieldDescription>
+	</field>
+	<field name="Public_Price-lst_price" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Public_Price-lst_price]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<variable name="sales_price" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Public_Price-lst_price} == "" ? 0.00 :$F{Public_Price-lst_price})]]></variableExpression>
+	</variable>
+	<variable name="Onhand" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Quantity_On_Hand-qty_available} == "" ? 0.00 :$F{Quantity_On_Hand-qty_available})]]></variableExpression>
+	</variable>
+	<variable name="total" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{sales_price} * $V{Onhand}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26">
+			<staticText>
+				<reportElement x="0" y="0" width="595" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCT STOCKS REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="322" height="13"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="13" width="64" height="13"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="13" width="52" height="13"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UoM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="13" width="59" height="13"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty on hand]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="497" y="13" width="98" height="13"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="497" y="0" width="98" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{total} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($V{total}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="438" y="0" width="59" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Quantity_On_Hand-qty_available} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Quantity_On_Hand-qty_available}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="374" y="0" width="64" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Public_Price-lst_price} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Public_Price-lst_price}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="322" y="0" width="52" height="13"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="322" height="13"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

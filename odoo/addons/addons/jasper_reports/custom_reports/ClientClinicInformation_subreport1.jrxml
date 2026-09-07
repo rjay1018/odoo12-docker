@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Client Clinic Information_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b15e79cc-2462-4df4-bde8-49f0079824c9">
+	<property name="ireport.zoom" value="1.7715610000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;appt_history_ids&apos;]"/>
+	<field name="Status-state" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Appointment-appt_history_ids/Status-state]]></fieldDescription>
+	</field>
+	<field name="Start-session_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Appointment-appt_history_ids/Start-session_start]]></fieldDescription>
+	</field>
+	<field name="Appointment_Number-sequence" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Appointment-appt_history_ids/Appointment_Number-sequence]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Appointment-appt_history_ids/Service-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Appointment-appt_history_ids/Specialist-employee_id/Name-name]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="75" height="20" uuid="24c9e371-e40a-4690-8e47-54d0b6fb209f"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Appointment No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="0" width="147" height="20" uuid="34efd5f8-f1fa-4c1e-8fac-d5e59aef7a00"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Service]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="196" height="20" uuid="a2eb8a71-2a40-4e71-8d18-7c47908d42bb"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Professional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="0" width="53" height="20" uuid="5a379eb6-711f-43a8-84c9-c961c72a6d76"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="471" y="0" width="84" height="20" uuid="497457a0-bd3f-4503-8f1a-d4f8a15c82b6"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="75" height="20" isPrintWhenDetailOverflows="true" uuid="189c490b-8f51-4d24-bb72-75759b4e108e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Appointment_Number-sequence}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="75" y="0" width="147" height="20" isPrintWhenDetailOverflows="true" uuid="7877190c-6598-4f9d-a0fd-a650a27b9f3f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="222" y="0" width="196" height="20" isPrintWhenDetailOverflows="true" uuid="c9f47337-25e6-4243-b1a9-a45bc6cc6b84"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name3}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="418" y="0" width="53" height="20" isPrintWhenDetailOverflows="true" uuid="237ffab5-38bc-4c6a-ba0b-52fb459c4ec7"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{Start-session_start})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="471" y="0" width="84" height="20" isPrintWhenDetailOverflows="true" uuid="59d55f0f-fdb5-4189-9ca8-19a025f2c72a"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Status-state}.equals("done") ? "DONE" :
+$F{Status-state}.equals("draft") ? "DRAFT" :
+$F{Status-state}.equals("cancel") ? "CANCELLED" :
+$F{Status-state}.equals("validated") ? "VALIDATED" :
+$F{Status-state}.equals("confirmed") ? "CONFIRMED" : ""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

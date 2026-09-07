@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="ye_dynamic_odoo" name="ye_dynamic_odoo templates" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/ye_dynamic_odoo/static/src/css/daterangepicker.css"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/menu_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/edit_view_controller.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/basic_field.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/list_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/form_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/calendar_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/pivot_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/kanban_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/graph_edit.scss"/>
+                <link rel="stylesheet" type="text/less" href="/ye_dynamic_odoo/static/src/scss/search.scss"/>
+
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/libs/daterangepicker.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/libs/jquery.stickytableheaders.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/list/list_renderer.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/search/search_view.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/form/form_view.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/form/form_controller.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/chrome/menu.js"></script>
+
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/basic_fields.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/edit_view.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/list/list_edit.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/list/list_content.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/list/list_property.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/form/form_edit.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/form/form_content.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/form/form_property.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/calendar/calendar_edit.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/calendar/calendar_content.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/calendar/calendar_property.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/pivot/pivot_edit.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/pivot/pivot_content.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/pivot/pivot_property.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/graph/graph_edit.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/graph/graph_content.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/graph/graph_property.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/kanban/kanban_edit.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/kanban/kanban_content.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/edit_views/kanban/kanban_property.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/abstract_controller.js"></script>
+                <script type="text/javascript" src="/ye_dynamic_odoo/static/src/js/views/base.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

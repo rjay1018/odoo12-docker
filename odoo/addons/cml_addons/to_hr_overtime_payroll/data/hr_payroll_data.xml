@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+		<record id="contrib_register_overtime_working" model="hr.contribution.register">
+            <field name="name">Overtime Working</field>
+            <field name="partner_id" eval="False"/>
+        </record>
+	</data>
+	<data noupdate="1">
+		<record id="hr_rule_overtime_working" model="hr.salary.rule">
+			<field name="name">Overtime Allowance Amount</field>
+			<field name="sequence" eval="60" />
+			<field name="code">OT</field>
+			<field name="category_id" ref="hr_payroll.ALW" />
+			<field name="condition_select">python</field>
+			<field name="condition_python">result = contract and payslip.payslip_ot_line_ids and len(payslip.payslip_ot_line_ids) &gt; 0 and worked_days.WORK100
+			</field>
+			<field name="amount_select">code</field>
+			<field name="appears_on_payslip" eval="True" />
+			<field name="amount_python_compute">
+total_hours = sum(line.number_of_hours for line in payslip.worked_days_line_ids)
+hour_cost = total_hours and contract.wage / total_hours or 0.0
+
+amount = 0.0
+for line in payslip.payslip_ot_line_ids:
+	if payslip.contract_id:
+		amount += hour_cost * line.number_of_hours * line.rate / 100
+result = amount
+			</field>
+			<field name="register_id" ref="contrib_register_overtime_working"/>
+		</record>
+		<record id="hr_payroll.structure_base" model="hr.payroll.structure">
+			<field eval="[(4,ref('hr_rule_overtime_working'))]" name="rule_ids" />
+			<field name="company_id" ref="base.main_company" />
+		</record>
+	</data>
+</odoo>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="eprescriptionv2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db04eb5f-3138-4c37-9998-4216cfb39da7">
+	<property name="ireport.zoom" value="1.6105100000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Consulation_Date-consulation_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Consulation_Date-consulation_date]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist-employee_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Medicine_Drug_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Prescription_Line-prescription_line_ids/Medicine_Drug_Name-name]]></fieldDescription>
+	</field>
+	<field name="Prescription-prescription" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Prescription_Line-prescription_line_ids/Prescription-prescription]]></fieldDescription>
+	</field>
+	<field name="Quantity-qty" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Prescription_Line-prescription_line_ids/Quantity-qty]]></fieldDescription>
+	</field>
+	<field name="Client_Age-client_age" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Client_Age-client_age]]></fieldDescription>
+	</field>
+	<field name="Street-street" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Street-street]]></fieldDescription>
+	</field>
+	<field name="Street2-street2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Street2-street2]]></fieldDescription>
+	</field>
+	<field name="City-city" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/City-city]]></fieldDescription>
+	</field>
+	<field name="PRC_Number-prc_number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/PRC_Number-prc_number]]></fieldDescription>
+	</field>
+	<field name="PTR_Number-ptr_number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/PTR_Number-ptr_number]]></fieldDescription>
+	</field>
+	<field name="S2_License-s2_license" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/S2_License-s2_license]]></fieldDescription>
+	</field>
+	<field name="valid_until-valid_until" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/valid_until-valid_until]]></fieldDescription>
+	</field>
+	<field name="Qty_in_words-num_word" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Prescription_Line-prescription_line_ids/Qty_in_words-num_word]]></fieldDescription>
+	</field>
+	<field name="No_Refill-no_refill" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Prescription_Line-prescription_line_ids/No_Refill-no_refill]]></fieldDescription>
+	</field>
+	<field name="Signature-doc_signature" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Signature-doc_signature]]></fieldDescription>
+	</field>
+	<field name="Units-uom" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Prescription_Line-prescription_line_ids/Units-uom]]></fieldDescription>
+	</field>
+	<field name="Prescription-prescription2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Prescription-prescription]]></fieldDescription>
+	</field>
+	<field name="Sex-sex" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Sex-sex]]></fieldDescription>
+	</field>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist-employee_id/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Age-age" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Client-partner_id/Age-age]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="120">
+			<staticText>
+				<reportElement x="0" y="66" width="268" height="38" uuid="67b52029-4058-4f78-8359-95acdc13b3d0"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[+63.917.182.9355
+clinic@mindwell.ph
+https://www.mindwell.ph/]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="268" height="66" uuid="a63c85f9-e9b4-4685-a696-420f6187c085"/>
+				<textElement>
+					<font size="10"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Clinic Offices ℅ Aventus Medical Clinics Nationwide
+
+DOH Accreditation Number:  *13-0971-12-PIBS-R
+*through Aventus Medical Care, Inc.
+PRC - CPD Accreditation Number: OGC- 2016-012]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="112" width="555" height="1" uuid="98c121c8-b17c-4156-ae2a-e05b3d7bcffc"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="268" y="66" width="287" height="38" uuid="e481fea6-d3bc-4eb1-8992-2dae632c023a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[E-PRESCRIPTION]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="268" y="0" width="287" height="66" uuid="27ba37b9-fbd9-43dd-ba56-48769a5fc2cd"/>
+				<imageExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/logo_landscape.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="57">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="359" y="29" width="196" height="19" uuid="55c64f14-abec-4a97-87ce-369244bc5b03"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date: " +new SimpleDateFormat("MM/dd/yyyy").format($F{Consulation_Date-consulation_date})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="10" width="359" height="19" uuid="1de29563-b058-49cb-9692-06e0d508457f"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Patient's Name: " + $F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="29" width="359" height="19" uuid="872929bd-e35e-4f1b-b012-4378def8e88c"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Address: " + $F{Street-street}+" "+$F{Street2-street2}+" "+$F{City-city}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="359" y="10" width="196" height="19" uuid="48d4e7e1-f286-464a-816a-8adb8bc9d38a"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Age: " + $F{Age-age}+" / Sex: " + $F{Sex-sex}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="344">
+			<elementGroup>
+				<elementGroup>
+					<elementGroup>
+						<staticText>
+							<reportElement x="2" y="0" width="59" height="80" uuid="577ab260-b356-48d3-91aa-a58fb599194c"/>
+							<textElement>
+								<font fontName="SansSerif" size="65"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<text><![CDATA[P]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="20" y="14" width="38" height="79" uuid="a83b1f3c-113b-4089-927a-e7022509b651"/>
+							<textElement>
+								<font fontName="SansSerif" size="67"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<text><![CDATA[x]]></text>
+						</staticText>
+					</elementGroup>
+				</elementGroup>
+			</elementGroup>
+			<textField pattern="">
+				<reportElement x="77" y="59" width="436" height="285" uuid="2254a690-a8da-48e1-b3fa-4bae5c9b272d"/>
+				<textElement markup="html">
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Prescription-prescription2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="163">
+			<image scaleImage="FillFrame" hAlign="Center">
+				<reportElement x="347" y="12" width="183" height="50" uuid="29e81549-2da3-4b71-82aa-1ee5bcdd801b"/>
+				<imageExpression><![CDATA[$F{Signature-doc_signature}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="309" y="62" width="71" height="79" uuid="7831081d-62ad-4925-aa52-130945dab0e7"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[""+"\n"+
+"PRC Number "+"\n"+
+"PTR Number "+"\n"+
+"S2 License "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="309" y="141" width="71" height="19" uuid="b7b0b5d5-d0a9-407c-b174-1b99b02ff6f7"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Valid Until"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="380" y="62" width="150" height="79" uuid="610ff18d-3397-435d-9346-6d9ca2c8d8b3"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+$F{Display_Name-display_name}+"\n"+
+": "+$F{PRC_Number-prc_number}+"\n"+
+": "+$F{PTR_Number-ptr_number}+"\n"+
+": "+$F{S2_License-s2_license}+"\n"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="380" y="141" width="150" height="19" uuid="24a48b60-4dfb-4e68-85f6-6c606a9d4cd7"/>
+				<textElement>
+					<font size="11"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[": "+new SimpleDateFormat("MMMM yyyy").format($F{valid_until-valid_until})]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="42"/>
+	</summary>
+</jasperReport>

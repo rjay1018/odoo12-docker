@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_equipment_checklist,access.equipment.checklist,model_equipment_checklist,base.group_user,1,1,1,1
+access_equipment_checklist_result,access.equipment.checklist.result,model_equipment_checklist_result,base.group_user,1,1,1,1
+access_maintenance_spare_parts,access.maintenance.spare.parts,model_maintenance_spare_parts,base.group_user,1,1,1,1

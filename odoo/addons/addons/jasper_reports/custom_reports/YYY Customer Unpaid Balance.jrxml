@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Customer Unpaid Balance" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.5937424601000028"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;balance_invoice_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Number-number]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Name-name]]></fieldDescription>
+	</field>
+	<field name="Type-type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Type-type]]></fieldDescription>
+	</field>
+	<field name="Reference_Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Reference_Description-name]]></fieldDescription>
+	</field>
+	<field name="Status-state" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Status-state]]></fieldDescription>
+	</field>
+	<field name="End_Date-end_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/End_Date-end_date]]></fieldDescription>
+	</field>
+	<field name="Start_Date-start_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Start_Date-start_date]]></fieldDescription>
+	</field>
+	<field name="Amount_Due-residual" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Amount_Due-residual]]></fieldDescription>
+	</field>
+	<sortField name="Name-name"/>
+	<sortField name="Type-type"/>
+	<sortField name="Invoice_Date-date_invoice"/>
+	<variable name="balance" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Amount_Due-residual} == "" ? 0.00 : $F{Amount_Due-residual})]]></variableExpression>
+	</variable>
+	<variable name="balance_group" class="java.lang.Double" resetType="Group" resetGroup="customer" calculation="Sum">
+		<variableExpression><![CDATA[$V{balance}]]></variableExpression>
+	</variable>
+	<group name="customer">
+		<groupExpression><![CDATA[$F{Name-name}]]></groupExpression>
+		<groupHeader>
+			<band height="13">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="90" y="0" width="203" height="13"/>
+					<textElement lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="13">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="90" y="0" width="203" height="13"/>
+					<textElement verticalAlignment="Top" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Total "+$F{Name-name}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement stretchType="RelativeToBandHeight" x="293" y="0" width="168" height="13"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{balance_group})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="572" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Company_Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="13" width="572" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Customer Unpaid Balance"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="39" width="90" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="39" width="97" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="39" width="106" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Num]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="39" width="168" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Open Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="39" width="111" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="26" width="572" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MMM-dd-yyyy").format($F{Start_Date-start_date})]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{Status-state} != "paid"]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Type-type} == "out_invoice" ? "Invoice" :
+$F{Type-type} == "out_refund" ? "Credit Memo" :
+""]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="90" y="0" width="97" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="187" y="0" width="106" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Number-number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="293" y="0" width="168" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Amount_Due-residual} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Amount_Due-residual}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="461" y="0" width="111" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Status-state} == "draft" ? "Draft" :
+$F{Status-state} == "open" ? "Unpaid" :
+$F{Status-state} == "paid" ? "Paid" :
+""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

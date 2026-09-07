@@ -1,0 +1,308 @@
+<odoo>
+
+    <template id="report_custom_delivery_slip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+                        <style>
+                            .row {
+                            font-size: 14px;
+                            color:black;
+                            }
+                            hr{
+                            border:1px dotted black;
+                            width:70%;
+                            margin-left:30px;
+                            margin-top:70px;
+                            }
+
+                        </style>
+                        <div class="row">
+                            <div class="col-8 mb4">
+                                <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
+                                     style="max-height: 100px;" alt="Logo"/>
+                                <br></br>
+                                <div>
+                                    <span t-field="o.company_id.street"/>
+                                    <span t-field="o.company_id.street2"/>
+                                    <span t-field="o.company_id.city"/>
+                                    <span t-field="o.company_id.state_id.name"/>
+                                    <span t-field="o.company_id.zip"/>
+                                    <span t-field="o.company_id.country_id.name"/>
+                                    <br></br>
+                                    <span t-field="o.company_id.phone"/>
+                                    <br></br>
+                                    VAT REG TIN :
+                                    <span t-field="o.company_id.vat"/>
+                                </div>
+                            </div>
+                            <div class="col-4 pt32" name="moto">
+                                <span>
+                                    <h4>
+                                        <b>DELIVERY RECEIPT</b>
+                                    </h4>
+                                </span>
+                                <div>
+                                    <label style="margin-right:20px;">D.R.#:</label>
+                                    <span t-field="o.name"/>
+                                    <br></br>
+                                    <label style="margin-right:20px;">DATE:</label>
+                                    <span t-field="o.scheduled_date" t-options='{"format": "dd-MM-yyyy"}'/>
+                                    <br></br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 pt16">
+                                <div style="border:1px dotted black;width:50%;padding-left:10px;">
+                                    <span>
+                                        <b>BILL TO:</b>
+                                    </span>
+                                </div>
+
+                                <div t-if="o.sale_id">
+                                    <span t-field="o.sale_id.partner_invoice_id.name"/>
+                                    <br></br>
+                                    <br></br>
+                                    <span t-field="o.sale_id.partner_invoice_id.street"/>,
+                                    <span t-field="o.sale_id.partner_invoice_id.street2"/>
+                                    <span t-field="o.sale_id.partner_invoice_id.city"/>
+                                    <br></br>
+                                    <span t-field="o.sale_id.partner_invoice_id.state_id.name"/>
+                                    <span t-field="o.sale_id.partner_invoice_id.country_id.name"/>
+                                </div>
+
+                                <div t-if="o.purchase_id">
+                                    <span t-field="o.company_id.name"/>
+                                    <br></br>
+                                    <br></br>
+                                    <span t-field="o.company_id.street"/>,
+                                    <span t-field="o.company_id.street2"/>
+                                    <span t-field="o.company_id.city"/>
+                                    <br></br>
+                                    <span t-field="o.company_id.state_id.name"/>
+                                    <span t-field="o.company_id.country_id.name"/>
+                                </div>
+
+                            </div>
+                            <div class="col-6 pt16">
+                                <div style="border:1px dotted black;width:50%;padding-left:10px;">
+                                    <span>
+                                        <b>SHIP TO:</b>
+                                    </span>
+                                </div>
+                                <div t-if="o.sale_id">
+                                    <span t-field="o.sale_id.partner_shipping_id.name"/>
+                                    <br></br>
+                                    <br></br>
+                                    <span t-field="o.sale_id.partner_shipping_id.street"/>,
+                                    <span t-field="o.sale_id.partner_shipping_id.street2"/>
+                                    <span t-field="o.sale_id.partner_shipping_id.city"/>
+                                    <br></br>
+                                    <span t-field="o.sale_id.partner_shipping_id.state_id.name"/>
+                                    <span t-field="o.sale_id.partner_shipping_id.country_id.name"/>
+                                </div>
+                                <div t-if="o.purchase_id">
+                                    <span t-field="o.company_id.name"/>
+                                    <br></br>
+                                    <br></br>
+                                    <span t-field="o.company_id.street"/>,
+                                    <span t-field="o.company_id.street2"/>
+                                    <span t-field="o.company_id.city"/>
+                                    <br></br>
+                                    <span t-field="o.company_id.state_id.name"/>
+                                    <span t-field="o.company_id.country_id.name"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pt32">
+                            <table class="table-bordered" border="0" style="width:100%; border: 1px dotted black;">
+                                <tr class="text-center" style="border: 1px dotted black;">
+                                    <th style="border: 1px dotted black;">ORDER DATE</th>
+                                    <th style="border: 1px dotted black;">P.O.#</th>
+                                    <th style="border: 1px dotted black;">S.O.#</th>
+                                    <th style="border: 1px dotted black;">DELIVERY DATE</th>
+                                    <th style="border: 1px dotted black;">SALES PERSON</th>
+                                </tr>
+                                <tr class="text-center" style="border: 1px dotted black;">
+                                    <t t-if="o.purchase_id">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-field="o.purchase_id.date_order"
+                                                  t-options='{"format": "MMMM-dd-yyyy"}'/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-field="o.sale_id.date_order"
+                                                  t-options='{"format": "MMMM-dd-yyyy"}'/>
+                                        </td>
+                                    </t>
+                                    <t t-if="o.purchase_id">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-field="o.purchase_id.name"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td style="border: 1px dotted black;">N/A</td>
+                                    </t>
+                                    <t t-if="o.sale_id">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-field="o.sale_id.name"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td style="border: 1px dotted black;">N/A</td>
+                                    </t>
+                                    <td style="border: 1px dotted black;">
+                                        <span t-field="o.scheduled_date" t-options='{"format": "MMMM-dd-yyyy"}'/>
+                                    </td>
+                                    <t t-if="o.sale_id">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-field="o.sale_id.user_id.name"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="o.purchase_id">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-field="o.purchase_id.user_id.name"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="row pt32">
+                            <table class="table-bordered" border="0" style="width:100%; border: 1px dotted black;">
+                                <tr class="text-center" style="width:100%; border: 1px dotted black;">
+                                    <th style="border: 1px dotted black;">ITEM CODE</th>
+                                    <th style="border: 1px dotted black;">DESCRIPTION</th>
+                                    <th style="border: 1px dotted black;">QTY</th>
+                                    <th style="border: 1px dotted black;">UOM</th>
+                                    <th style="border: 1px dotted black;">PRICE UNIT</th>
+                                </tr>
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <tr class="text-center" style="border: 1px dotted black;">
+                                        <td style="border: 1px dotted black;">
+                                            <span t-esc="line.product_id.default_code"></span>
+                                        </td>
+                                        <td style="border: 1px dotted black;">
+                                            <span t-esc="line.product_id.display_name"></span>
+                                        </td>
+                                        <td style="border: 1px dotted black;">
+                                            <span t-esc="line.product_uom_qty"></span>
+                                        </td>
+                                        <td style="border: 1px dotted black;">
+                                            <span t-esc="line.product_uom.name"></span>
+                                        </td>
+                                        <t t-if="o.sale_id">
+                                            <t t-foreach="o.sale_id.order_line" t-as="order">
+                                                <t t-if="order.product_id == line.product_id">
+                                                    <td style="border: 1px dotted black;">
+                                                        <span t-esc="'{:.2f}'.format(order.price_unit)"/>
+                                                    </td>
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <t t-if="o.purchase_id">
+                                            <t t-foreach="o.purchase_id.order_line" t-as="purchase">
+                                                <t t-if="purchase.product_id == line.product_id">
+                                                    <td style="border: 1px dotted black;">
+                                                        <span t-esc="'{:.2f}'.format(purchase.price_unit)"/>
+                                                    </td>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </table>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-8 pt64">
+                                <div class='text-center' style="border:1px dotted black;">
+                                    <span>
+                                        <b>DELIVERY INSTRUCTION</b>
+                                    </span>
+                                </div>
+                                <div style="border:1px dotted black;height:150px;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 text-center pt16">
+                                <div>
+                                    <span>
+                                        If you have any questions about this invoice, please contact
+                                    </span>
+                                </div>
+                                <div>
+                                    <span t-field="o.company_id.name"/>
+                                    <span t-field="o.company_id.phone"/>
+                                    <span t-field="o.company_id.email"/>
+                                </div>
+                                <div class="pt8">
+                                    <span>
+                                        <h5>
+                                            <b>Thank You for Your Business!</b>
+                                        </h5>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row table_signature pt16">
+                            <table class="table-bordered"
+                                   style="border:1px dotted black;width:100%;">
+                                <tr class="text-center" style="border:1px dotted black;">
+                                    <th style="border:1px dotted black;">PREPARED BY:</th>
+                                    <th style="border:1px dotted black;">CHECKED BY:</th>
+                                    <th style="border:1px dotted black;">APPROVED BY:</th>
+                                    <th style="border:1px dotted black;">RECEIVED BY:</th>
+                                </tr>
+                                <tr style="border:1px dotted black;">
+                                    <td style="height:90px;border:1px dotted black;">
+                                        <hr></hr>
+                                    </td>
+                                    <td style="height:90px;border:1px dotted black;">
+                                        <hr></hr>
+                                    </td>
+                                    <td style="height:90px;border:1px dotted black;">
+                                        <hr></hr>
+                                    </td>
+                                    <td style="height:90px;border:1px dotted black;">
+                                        <hr></hr>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_delivery_custom" model="report.paperformat">
+        <field name="name">Delivery Custom Report Papaerformat</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10.00</field>
+        <field name="margin_bottom">5.00</field>
+        <field name="margin_left">5.00</field>
+        <field name="margin_right">5.00</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">15</field>
+        <field name="dpi">90</field>
+    </record>
+
+
+    <report
+            id="action_report_custom_delivery_slip"
+            string="Custom Delivery Slip"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="ki_picking_report.report_custom_delivery_slip"
+            file="ki_picking_report.report_custom_delivery_slip"
+            print_report_name="'Delivery Slip - %s' % (object.partner_id.name)"
+            paperformat="ki_picking_report.paperformat_delivery_custom"
+    />
+</odoo>

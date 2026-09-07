@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.actions.act_window" id="emp_req_applications_action">
+        <field name="name">Applications</field>
+        <field name="res_model">hr.applicant</field>
+        <field name="view_mode">kanban,tree,form,pivot,graph,calendar,activity</field>
+        <field name="search_view_id" ref="hr_recruitment.view_crm_case_jobs_filter"/>
+        <field name="domain">[('emp_request_id', '=', active_id)]</field>
+    </record>
+
+    <record id="hr_employee_request_tree" model="ir.ui.view">
+        <field name="name">hr.employee.request.tree</field>
+        <field name="model">hr.employee.request</field>
+        <field name="arch" type="xml">
+            <tree string="Employee Request"
+                decoration-muted="state == 'draft'"
+                decoration-primary="state == 'confirm'"
+                decoration-info="state == 'approve'"
+                decoration-success="state == 'ongoing'">
+                <field name="name"/>
+                <field name="job_id"/>
+                <field name="job_address_id"/>
+                <field name="job_address_group_id"/>
+                <field name="job_level_id"/>
+                <field name="job_category_id"/>
+                <field name="request_type_id"/>
+                <field name="requested_by"/>
+                <field name="required_employee"/>
+                <field name="request_date"/>
+                <field name="request_approve"/>
+                <field name="recruit_start"/>
+                <field name="recruit_stop"/>
+                <field name="state"/>
+                <field name="applicant_ids" widget="many2many_tags"/>
+                <field name="request_duration"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="hr_employee_request_search" model="ir.ui.view">
+        <field name="name">hr.employee.request.search</field>
+        <field name="model">hr.employee.request</field>
+        <field name="arch" type="xml">
+            <search string="Employee Request">
+                <field name="name" string="Reference # or Job Position"
+                    filter_domain="['|', ('name', 'ilike', self), ('job_id', 'ilike', self)]"/>
+                <filter name="grp_job" string="Job Position" context="{'group_by': 'job_id'}"/>
+                <filter name="grp_job_addr" string="Job Location" context="{'group_by': 'job_address_id'}"/>
+                <filter name="grp_job_addr_group" string="Location Group" context="{'group_by': 'job_address_group_id'}"/>
+                <filter name="grp_job_level" string="Job Level" context="{'group_by': 'job_level_id'}"/>
+                <filter name="grp_job_categ" string="Job Category" context="{'group_by': 'job_category_id'}"/>
+                <filter name="grp_req_type" string="Request Type" context="{'group_by': 'request_type_id'}"/>
+                <filter name="grp_req_by" string="Requested By" context="{'group_by': 'requested_by'}"/>
+                <filter name="grp_state" string="State" context="{'group_by': 'state'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="hr_employee_request_form" model="ir.ui.view">
+        <field name="name">hr.employee.request.form</field>
+        <field name="model">hr.employee.request</field>
+        <field name="arch" type="xml">
+            <form string="Employee Request">
+                <header>
+                    <button type="object" name="action_confirm" string="Confirm" states="draft" class="oe_highlight"/>
+                    <button type="object" name="action_approve" string="Approve" states="confirm" class="oe_highlight"/>
+                    <button type="object" name="action_start" string="Start Recruitment" states="approve" class="oe_highlight"/>
+                    <button type="object" name="action_stop" string="Stop Recruitment" states="ongoing"/>
+                    <button type="object" name="action_draft" string="Set to Draft" states="confirm,approve,ongoing,stop"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button"
+                            icon="fa-address-card"
+                            name="%(emp_req_applications_action)d"
+                            context="{'default_emp_request_id': active_id}"
+                            type="action">
+                            <field name="application_count" widget="statinfo" string="Applications"/>
+                        </button>                
+                    </div>
+                    <div class="oe_edit_only">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <field name="request_type_replace" invisible="1"/>
+                        <group>
+                            <field name="job_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="job_desc"/>
+                            <field name="job_address_id"/>
+                            <field name="job_address_group_id"/>
+                            <field name="job_level_id"/>
+                            <field name="job_category_id"/>
+                        </group>
+                        <group>
+                            <field name="request_type_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="replacement_for_ids" widget="many2many_tags"
+                                attrs="{'invisible': [('request_type_replace', '=', False)], 'required': [('request_type_replace', '!=', False)], 'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="requested_by" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="required_employee" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="request_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="request_approve" readonly="1" force_save="1"/>
+                            <field name="recruit_start" readonly="1" force_save="1"/>
+                            <field name="recruit_stop" readonly="1" force_save="1"/>
+                            <field name="request_duration"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Applicants">
+                            <field name="applicant_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'ongoing')]}">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="partner_name"/>
+                                    <field name="email_from"/>
+                                    <field name="partner_phone"/>
+                                    <field name="stage_id"/>
+                                    <field name="source_id"/>
+                                    <field name="priority" widget="priority"/>
+                                    <field name="user_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="hr_employee_request_kanban" model="ir.ui.view">
+        <field name="name">hr.employee.request.kanban</field>
+        <field name="model">hr.employee.request</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_hr_recruitment_kanban">
+                <field name="name"/>
+                <field name="job_id"/>
+                <field name="request_type_id"/>
+                <field name="requested_by"/>
+                <field name="required_employee"/>
+                <field name="request_date"/>
+                <field name="request_approve"/>
+                <field name="recruit_start"/>
+                <field name="recruit_stop"/>
+                <field name="state"/>
+                <field name="color"/>
+                <field name="application_count"/>
+                <field name="request_duration"/>
+                <field name="job_address_id"/>
+                <field name="job_address_group_id"/>
+                <field name="job_level_id"/>
+                <field name="job_category_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+                            <div t-attf-class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary"><t t-esc="record.name.value"/></div>
+                                    <div t-if="record.job_id.value" class="o_secondary o_job_alias">
+                                        <medium>
+                                            <i class="fa fa-address-card" role="img" aria-label="Job Position" title="Job Position"></i>
+                                            <field name="job_id"/>
+                                        </medium>
+                                    </div>
+                                    <div><b>Location: </b><t t-esc="record.job_address_id.value"/></div>
+                                    <div><b>Group: </b><t t-esc="record.job_address_group_id.value"/></div>
+                                    <div><b>Level: </b><t t-esc="record.job_level_id.value"/></div>
+                                    <div><b>Category: </b><t t-esc="record.job_category_id.value"/></div>
+                                    <div><b>Request Type: </b><t t-esc="record.request_type_id.value"/></div>
+                                    <div><b>Requested By: </b><t t-esc="record.requested_by.value"/></div>
+                                    <hr style="border-top: 1px dashed #8c8b8b;"/>
+                                    <div>
+                                        <t t-if="record.request_duration.raw_value > 0">
+                                            <b>Recruitment Duration: </b><t t-esc="record.request_duration.value"/> day(s)
+                                        </t>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_manage_button_section">
+                                    <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content">
+                                <div class="row">
+                                    <div class="row pl-4">
+                                        <div class="col-12 o_kanban_primary_left">
+                                            <t t-if="record.state.raw_value == 'draft'">
+                                                <button class="btn btn-primary" name="action_confirm" type="object">Confirm</button>
+                                            </t>
+                                            <t t-if="record.state.raw_value == 'confirm'">
+                                                <button class="btn btn-primary" name="action_approve" type="object">Approve</button>
+                                            </t>
+                                            <t t-if="record.state.raw_value == 'approve'">
+                                                <button class="btn btn-primary" name="action_start" type="object">Start Recruitment</button>
+                                            </t>
+                                            <t t-if="record.state.raw_value == 'ongoing'">
+                                                <button class="btn btn-primary" name="action_stop" type="object">Stop Recruitment</button>
+                                            </t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div name="kanban_boxes" class="row o_recruitment_kanban_boxes">
+                                    <div class="o_recruitment_kanban_box o_kanban_primary_bottom bottom_block">
+                                        <div class="o_primary"><t t-esc="record.state.value"/></div>
+                                    </div>
+                                    <div class="o_recruitment_kanban_box o_kanban_primary_bottom bottom_block">
+                                        <a name="%(emp_req_applications_action)d" type="action">
+                                            <span title='View Application(s)'>
+                                                <i class='fa fa-folder-open' role="img" aria-label="View Application(s)"/>
+                                                <field name="application_count"/> Application(s)
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                    <div class="col-8" role="menuitem" aria-haspopup="true">
+                                        <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                    </div>
+                                    <div class="col-4">
+                                        <t t-if="record.state.raw_value != 'draft'">
+                                            <a role="menuitem" name="action_draft" type="object">Set to Draft</a>
+                                            <br role="separator"/>
+                                        </t>
+                                        <a role="menuitem" name="edit_emp_req" type="edit">Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="employee_request_action" model="ir.actions.act_window">
+        <field name="name">Employee Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">hr.employee.request</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add new employee request
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="employee_request_menu"
+        action="employee_request_action"
+        parent="hr_recruitment.menu_hr_recruitment_root"
+        sequence="0"/>
+
+
+
+    <record id="hr_job_form_inherit" model="ir.ui.view">
+        <field name="name">hr.job.form.inherit</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_form"/>
+        <field name="arch" type="xml">
+            <field name="description" position="after">
+                <separator string="Employee Requests"/>
+                <field name="emp_request_ids" nolabel="1" readonly="1">
+                    <tree string="Employee Request"
+                        decoration-muted="state == 'draft'"
+                        decoration-primary="state == 'confirm'"
+                        decoration-info="state == 'approve'"
+                        decoration-success="state == 'ongoing'">
+                        <field name="name"/>
+                        <field name="required_employee"/>
+                        <field name="request_date"/>
+                        <field name="request_approve"/>
+                        <field name="recruit_start"/>
+                        <field name="recruit_stop"/>
+                        <field name="state"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="hr_applicant_form_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.form.inherit</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+        <field name="arch" type="xml">
+            <field name="job_id" position="before">
+                <field name="emp_request_id" required="1" options="{'no_create': True}"/>
+            </field>
+            <field name="address_id" position="after">
+                <field name="job_offer_date"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_applicant_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.tree.inherit</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.crm_case_tree_view_job"/>
+        <field name="arch" type="xml">
+            <field name="job_id" position="before">
+                <field name="emp_request_id" required="1" options="{'no_create': True}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_applicant_search_inherit" model="ir.ui.view">
+        <field name="name">hr.applicant.search.inherit</field>
+        <field name="model">hr.applicant</field>
+        <field name="inherit_id" ref="hr_recruitment.view_crm_case_jobs_filter"/>
+        <field name="arch" type="xml">
+            <filter name="job" position="before">
+                <filter name="grp_emp_request" string="Employee Request" context="{'group_by': 'emp_request_id'}"/>
+            </filter>
+        </field>
+    </record>
+
+</odoo>

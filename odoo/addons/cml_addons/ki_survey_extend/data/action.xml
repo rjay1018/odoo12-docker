@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        <record id="action_survey_update_description" model="ir.actions.server">
+            <field name="name">Update Description</field>
+            <field name="model_id" ref="survey.model_survey_question"/>
+            <field name="binding_model_id" ref="survey.model_survey_question"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_update_description()</field>
+        </record>
+    </data>
+</odoo>

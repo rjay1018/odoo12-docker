@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Manufacturing Order" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.948717100000011"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="183"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\PC\\OneDrive\\Desktop\\Jason\\CML\\YYY\\jrxml\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter1" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport1.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter2" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport2.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter3" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport3.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter4" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport4.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter5" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport5.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter6" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport6.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter7" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport7.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter8" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/YYY Manufacturing Order_subreport8.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Reference-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reference-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Product_Code-default_code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product-product_id/Product_Code-default_code]]></fieldDescription>
+	</field>
+	<field name="Quantity_Produced-qty_produced" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Quantity_Produced-qty_produced]]></fieldDescription>
+	</field>
+	<field name="Source-origin" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Source-origin]]></fieldDescription>
+	</field>
+	<field name="Routing-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Routing-routing_id/Routing-name]]></fieldDescription>
+	</field>
+	<field name="Reference-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Routing-routing_id/Reference-code]]></fieldDescription>
+	</field>
+	<field name="Deadline_Start-date_planned_start" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Deadline_Start-date_planned_start]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Responsible-user_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Quantity_To_Produce-product_qty" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Quantity_To_Produce-product_qty]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product_Unit_of_Measure-product_uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<field name="Reference-code2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Bill_of_Material-bom_id/Reference-code]]></fieldDescription>
+	</field>
+	<field name="Total_Material_Cost-total_material_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Material_Cost-total_material_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Labour_Cost-total_labour_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Labour_Cost-total_labour_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Overhead_Cost-total_overhead_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Overhead_Cost-total_overhead_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Cost-total_all_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Cost-total_all_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Material_Cost-total_actual_material_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Material_Cost-total_actual_material_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Labour_Cost-total_actual_labour_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Labour_Cost-total_actual_labour_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Overhead_Cost-total_actual_overhead_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Overhead_Cost-total_actual_overhead_cost]]></fieldDescription>
+	</field>
+	<field name="Total_Actual_Cost-total_actual_all_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total_Actual_Cost-total_actual_all_cost]]></fieldDescription>
+	</field>
+	<field name="Product_Unit_Cost-product_unit_cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Product_Unit_Cost-product_unit_cost]]></fieldDescription>
+	</field>
+	<field name="Expected_Qty" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Expected_Qty-product_uom_qty]]></fieldDescription>
+	</field>
+	<field name="Expected_Cost" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Expected_Cost-expected_cost]]></fieldDescription>
+	</field>
+	<field name="Expected_UoM" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Expected_UoM-product_expected_uom_id]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="170">
+			<image scaleImage="FillFrame">
+				<reportElement x="13" y="0" width="251" height="63"/>
+				<imageExpression class="java.lang.String"><![CDATA[$F{Company_Logo-logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="51" width="275" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[439 Katipunan St., Brgy. Unang Sigaw, Balintawak, QC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="63" width="275" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[(02)82-852-270, (02)83-592-741, (02)89-280-098]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="75" width="275" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[VAT REG TIN: 208-918-559-000]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="13" height="47"/>
+				<textElement lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="27" width="189" height="20"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Manufacturing Orders]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="456" y="0" width="80" height="16"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="538" y="0" width="34" height="16"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="360" y="51" width="73" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[MFG Ref#]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="51" width="97" height="15"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reference-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="95" width="111" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Product :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="110" width="111" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantity To Produce :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="125" width="111" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Source :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="140" width="111" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Routing :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="110" width="86" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsible :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="125" width="86" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bill of Material :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="95" width="86" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deadline Start :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="115" y="110" width="245" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Quantity_To_Produce-product_qty} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Quantity_To_Produce-product_qty}))+" "+$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="115" y="125" width="245" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Source-origin}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="115" y="140" width="446" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reference-code}+" "+$F{Routing-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="115" y="95" width="245" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Product_Code-default_code}+" "+$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="437" y="110" width="124" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="437" y="125" width="124" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reference-code2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="437" y="95" width="124" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Deadline_Start-date_planned_start} == null ? "" : new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format($F{Deadline_Start-date_planned_start})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="13" y="87" width="548" height="8" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.0" lineColor="#808080"/>
+					<bottomPen lineWidth="0.0" lineColor="#808080"/>
+					<rightPen lineWidth="0.0" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter1}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter2}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter3}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport3.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter4}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport4.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter5}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport5.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter6}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport6.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<subreportParameter name="SUBREPORT_DIR"/>
+				<subreportParameter name="parameter1"/>
+				<dataSourceExpression><![CDATA[$P{parameter7}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport7.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="20">
+			<subreport>
+				<reportElement x="13" y="0" width="548" height="20"/>
+				<dataSourceExpression><![CDATA[$P{parameter8}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "YYY Manufacturing Order_subreport8.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="198">
+			<staticText>
+				<reportElement x="13" y="16" width="548" height="9"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="25" width="105" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Material Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="0" width="548" height="16"/>
+				<box>
+					<pen lineWidth="0.5" lineColor="#808080"/>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUMMARY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="40" width="105" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Labour Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="55" width="105" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Overhead Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="70" width="105" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="25" width="134" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Actual Material Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="40" width="134" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Actual Labour Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="55" width="134" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Actual Overhead Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="70" width="134" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Actual Cost]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="427" y="70" width="132" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Actual_Cost-total_actual_all_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Actual_Cost-total_actual_all_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="25" width="132" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Actual_Material_Cost-total_actual_material_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Actual_Material_Cost-total_actual_material_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="40" width="132" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Actual_Labour_Cost-total_actual_labour_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Actual_Labour_Cost-total_actual_labour_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="55" width="132" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Actual_Overhead_Cost-total_actual_overhead_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Actual_Overhead_Cost-total_actual_overhead_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="55" width="142" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Overhead_Cost-total_overhead_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Overhead_Cost-total_overhead_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="25" width="142" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Material_Cost-total_material_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Material_Cost-total_material_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="40" width="142" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Labour_Cost-total_labour_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Labour_Cost-total_labour_cost}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="134" y="70" width="142" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total_Cost-total_all_cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total_Cost-total_all_cost}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="128" y="25" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="40" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="55" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="70" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="40" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="55" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="25" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="70" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="85" width="105" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expected Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="85" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="85" width="142" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Expected_Qty} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Expected_Qty}))+" "+$F{Expected_UoM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="100" width="105" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expected Cost]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="100" width="6" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="100" width="142" height="15"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Expected_Cost} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Expected_Cost}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

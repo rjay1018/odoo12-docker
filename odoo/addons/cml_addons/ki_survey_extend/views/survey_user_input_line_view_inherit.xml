@@ -1,0 +1,125 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="survey_user_input_line_form_inherit">
+            <field name="name">survey_user_input_line_form_inherit</field>
+            <field name="model">survey.user_input_line</field>
+            <field name="inherit_id" ref="survey.survey_user_input_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet//group[last()]" position="after">
+                    <group>
+                        <field name="survey_tag_id"/>
+                        <field name="answer_tag_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="survey_user_input_form_inherit_user">
+            <field name="name">survey_user_input_form_user</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='quizz_score']" position="after">
+                    <field name="user_confirmation"/>
+                </xpath>
+                <xpath expr="//field[@name='deadline']" position="after">
+                    <field name="survey_category_id"/>
+                    <field name="relation_type"/>
+                </xpath>
+                <xpath expr="//field[@name='deadline']" position="attributes">
+                    <attribute name="attrs">{'invisible' : [('deadline','=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_input_line_ids']//tree//field[@name='page_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_input_line_ids']//tree//field[@name='date_create']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_input_line_ids']//tree//field[@name='quizz_mark']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_input_line_ids']//tree//field[@name='answer_type']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_input_line_ids']//tree//field[@name='question_id']" position="after">
+                    <field name="question_name"/>
+                    <field name="answer_name"/>
+                    <field name="x_user_input_state"/>
+                    <field name="survey_tag_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_partner_survey_extend_form_in">
+            <field name="name">view_partner_survey_extend_form_in</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="cml_clinic_assessment.view_partner_survey_extend"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='specialist_score']" position="after">
+                    <field name="new_specialist_score"/>
+                </xpath>
+                <xpath expr="//field[@name='specialist_score']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="survey_user_input_tree_inherit_user">
+            <field name="name">survey_user_input_tree_user</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='deadline']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='deadline']" position="after">
+                    <field name="survey_category_id"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="survey_user_input_search_inherit_user">
+            <field name="name">survey_user_input_search_user</field>
+            <field name="model">survey.user_input</field>
+            <field name="inherit_id" ref="survey.survey_user_input_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field" position="after">
+                    <field name="survey_category_id"/>
+                </xpath>
+                <xpath expr="//filter[@name='group_by_partner']" position="after">
+                    <filter string="Survey Category" name="group_by_survey_category" domain="[]"
+                            context="{'group_by': 'survey_category_id'}"/>
+                    <filter string="Relative" name="group_by_relative" domain="[]"
+                            context="{'group_by': 'relation_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="survey_question_form_tags">
+            <field name="name">survey.question.tag</field>
+            <field name="model">survey.question</field>
+            <field name="inherit_id" ref="survey.survey_question_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='labels_ids_2']//tree//field[@name='value']" position="after">
+                    <field name="survey_tag_id"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Description">
+                        <field name="description"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='validation_required']" position="before">
+                    <field name="link_partner"/>
+                    <field name="partner_field_name" attrs="{'invisible': [('link_partner', '=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

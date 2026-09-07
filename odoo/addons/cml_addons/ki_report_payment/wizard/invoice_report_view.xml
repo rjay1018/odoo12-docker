@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="report_print_invoice_form_view" model="ir.ui.view">
+            <field name="name">report.print.invoice.view.form</field>
+            <field name="model">report.print.invoice</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="report_id" options="{'no_create_edit': True}"
+                                   domain="[('model', '=', 'account.payment'), ('id', 'not in', wizard_report_ids)]"
+                                   string="Report Type"/>
+                            <field name="wizard_report_ids" string="Report" invisible="1"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_print_report" string="Print" type="object" default_focus="1"
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_print_invoice_report" model="ir.actions.act_window">
+            <field name="name">Report Print</field>
+            <field name="res_model">report.print.invoice</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+
+</odoo>

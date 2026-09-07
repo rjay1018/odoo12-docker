@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record model="ir.ui.view" id="mrp_production_form_view_inherit_inspection">
+			<field name="name">mrp_production_form_view_inherit_inspection</field>
+			<field name="model">mrp.production</field>
+			<field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='origin']" position="after">
+					<field name="is_quality_inspected" invisible="1"/>
+					<field name="is_quality_pass" invisible="1"/>
+				</xpath>
+				<xpath expr="//button[@name='button_mark_done']" position="replace">
+					<button name="button_mark_done" attrs="{'invisible': ['|','|', ('check_to_done', '=', False), ('consumed_less_than_planned', '=', True),('is_quality_inspected','=',False)]}" string="Mark as Done" type="object" class="oe_highlight"/>
+					<button name="button_mark_done" attrs="{'invisible': ['|', ('check_to_done', '=', False), ('consumed_less_than_planned', '=', False)]}" string="Mark as Done" type="object" class="oe_highlight" confirm="You have consumed less material than what was planned. Are you sure you want to close this MO?"/>
+				</xpath>
+                <xpath expr="//field[@name='finished_move_line_ids']/tree/field[@name='lots_visible']" position="after">
+                    <button name="quality_inspection"
+                        type="object" 
+                        class="oe_highlight oe_right" 
+                        string="Quality Inspection" 
+                        attrs="{'invisible': ['|',('state','in', ('done')),('inspect_id','!=',False)]}"/>
+                    <field name="inspect_id" invisible="1"/>
+                    <button class="fa fa-check" name="quality_inpected" type="object" attrs="{'invisible': [('inspect_id','=',False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='location_src_id']" position="replace">
+                	<field name="location_src_id" attrs="{'readonly': [('has_moves', '=', True)]}"/>
+                </xpath>
+	        </field>
+		</record> 
+		
+		<record model="ir.ui.view" id="view_move_line_form_inherit_inspection">
+			<field name="name">view_move_line_form_inherit_inspection</field>
+			<field name="model">stock.move.line</field>
+			<field name="inherit_id" ref="stock.view_move_line_form"/>
+			<field name="arch" type="xml">
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="inspect_id"/>
+                </xpath>
+	        </field>
+		</record> 
+</odoo>

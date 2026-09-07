@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY soa report_subreport1" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.5937424601000028"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Amount_Due-residual" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Amount_Due-residual]]></fieldDescription>
+	</field>
+	<variable name="residual" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Amount_Due-residual} == "" ? 0.00 : $F{Amount_Due-residual})]]></variableExpression>
+	</variable>
+	<variable name="residual_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{residual}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="119" y="17" width="75" height="14"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="31" width="75" height="14"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineColor="#808080"/>
+					<leftPen lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="3" y="47" width="116" height="14" backcolor="#D6D6D8"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Balance Due:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="0" width="3" height="15" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<leftPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="3" y="0" width="112" height="15" forecolor="#000000" backcolor="#669900"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACCOUNT SUMMARY]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="119" y="47" width="75" height="14" backcolor="#D6D6D8"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#808080"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{residual_total})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="3" y="17" width="116" height="14"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Invoice/Debit:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="31" width="116" height="14"/>
+				<box>
+					<pen lineColor="#808080"/>
+					<topPen lineColor="#808080"/>
+					<leftPen lineColor="#808080"/>
+					<bottomPen lineWidth="0.5" lineColor="#808080"/>
+					<rightPen lineColor="#808080"/>
+				</box>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Payment/Credit:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

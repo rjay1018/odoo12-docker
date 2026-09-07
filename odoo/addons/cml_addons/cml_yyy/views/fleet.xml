@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_log_fuel_form_yyy" model="ir.ui.view">
+            <field name="name">fleet.vehicle.log.fuel.view</field>
+            <field name="model">fleet.vehicle.log.fuel</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_log_fuel_view_form"/>
+            <field name="arch" type="xml">
+            <xpath expr="/form/*" position="before">
+                <header>
+                    <widget name="attach_document" string="Attach Document" action="message_post" highlight="1" />
+                </header>
+            </xpath>
+                <!-- <xpath expr="//field[@name='notes']" position="before">
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                    </group>
+                </xpath> -->
+                <sheet position="after">
+                    <div class="o_attachment_preview"/>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </field>
+        </record>
+    </data>
+</odoo>

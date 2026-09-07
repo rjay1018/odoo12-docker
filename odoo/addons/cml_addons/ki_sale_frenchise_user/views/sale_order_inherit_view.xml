@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="ki_sale_frenchise_user_inherit_form" model="ir.ui.view">
+        <field name="name">ki.sale.frenchise.user.inherit.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button type="object" name="franchise_confirmed" string="Sent To Office"
+                        attrs="{'invisible': [('state', '!=', 'draft')]}" groups="cml_yyy.group_franchise_user"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

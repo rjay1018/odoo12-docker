@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="view_payslip_form">
+			<field name="name">payslip.form</field>
+			<field name="model">hr.payslip</field>
+			<field name="inherit_id" ref="hr_payroll.view_hr_payslip_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='worked_days_line_ids']" position="after">
+					<notebook attrs="{'invisible':[('payslip_ot_line_ids','=',[]),('hr_overtime_line_ids','=',[])]}">
+						<page string="Overtime Summary">
+							<field name="payslip_ot_line_ids">
+								<tree string="Overtime Summary">
+									<field name="overtime_rule_id" />
+									<field name="work_day_type_id" />
+									<field name="code" />
+									<field name="number_of_days" string="Total Working Days" />
+									<field name="number_of_hours" />
+									<field name="rate" />
+									<field name="contract_id" />
+								</tree>
+							</field>
+						</page>
+						<page string="Overtime Details">
+							<field name="hr_overtime_line_ids">
+								<tree string="Overtime Details">
+									<field name="payslip_id" invisible="1" />
+									<field name="start_time" />
+									<field name="end_time" />
+									<field name="worked_hours" />
+									<field name="overtime_rule_id" />
+									<field name="work_day_type_id" />
+									<field name="rate" />
+									<field name="state" />
+								</tree>
+							</field>
+						</page>
+
+					</notebook>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

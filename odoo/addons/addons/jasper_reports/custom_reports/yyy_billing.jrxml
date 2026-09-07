@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="yyy_billing" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b78f95bc-023a-40cf-a965-38406050b2d1">
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;invoice_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Description-name]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Quantity-quantity]]></fieldDescription>
+	</field>
+	<field name="Unit_Price-price_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Unit_Price-price_unit]]></fieldDescription>
+	</field>
+	<field name="Amount__with_Taxes_-price_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Amount__with_Taxes_-price_total]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Reference_Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Reference_Description-name]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoice_Lines-invoice_line_ids/Unit_of_Measure-uom_id/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="420" y="27" width="152" height="20" uuid="e74e1f71-d5c1-4fe2-aff4-176b5303cf5d"/>
+				<textFieldExpression><![CDATA["REF : "+$F{Reference_Description-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="46" width="264" height="20" uuid="ca89391d-337b-4908-acf2-861959f69a17"/>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="267" height="20" uuid="3b163c84-623b-45c9-97a4-edcd4508f041"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="267" y="0" width="47" height="20" uuid="58decb79-2754-4ea1-8693-c0f02b4df8f9"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[UoM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="0" width="47" height="20" uuid="3df24b8f-ebb0-41f1-aa97-48bf69fb7e3f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="0" width="95" height="20" uuid="0e56bcd1-3845-4952-86f7-7338023d4e08"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="456" y="0" width="114" height="20" uuid="251cfeb3-c1bc-47fe-a3d3-0db418bf6680"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="267" height="20" uuid="9e881117-e4ff-4ad0-a6fd-99551cc8e393"/>
+				<textFieldExpression><![CDATA[$F{Description-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="0" width="47" height="20" uuid="f5fdee3b-2247-415e-8de3-2a8f4e0a3b03"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="47" height="20" uuid="33fa03d9-e308-4819-a137-6bd2c6dccff5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Quantity-quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="361" y="0" width="95" height="20" uuid="a9a4c92b-5475-4445-8128-9aeff1626050"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Unit_Price-price_unit}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="0" width="114" height="20" uuid="515ece7e-da2e-4896-b638-0986f5f86bb7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{Amount__with_Taxes_-price_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

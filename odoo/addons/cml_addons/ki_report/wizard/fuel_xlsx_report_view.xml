@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_fleet_vehicle_log_fuel_inherit" model="ir.ui.view">
+        <field name="name">view_fleet_vehicle_log_fuel_inherit</field>
+        <field name="model">fleet.vehicle.log.fuel</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_log_fuel_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_row')]" position="after">
+                <field name="odometer_start"/>
+                <field name="used_km"/>
+                <field name="total_km_liter"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_fuel_report_wizard_form" model="ir.ui.view">
+        <field name="name">Fuel Report Wizard</field>
+        <field name="model">fleet.fuel.report.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="fleet_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="xlsx_fuel_report" string="Print XLSX" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fuel_report_wizards" model="ir.actions.act_window">
+        <field name="name">Diesel Report Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fleet.fuel.report.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record model="ir.ui.view" id="fuel_report_template_excel_report_views">
+        <field name="name">Fuel Report Exel</field>
+        <field name="model">fuel.report.exel</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="file_name" invisible="1"/>
+                    <field name="excel_file" filename="file_name"/>
+                </group>
+                <footer>
+                    <button name="cancel" special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="fuel_report_menu"
+              name="Diesel Report"
+              parent="fleet.menu_fleet_reporting"
+              action="action_fuel_report_wizards"/>
+
+</odoo>

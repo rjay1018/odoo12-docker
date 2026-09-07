@@ -1,0 +1,155 @@
+.izi_view_scrcard_container{
+    min-width: 500px;
+    max-width: 50%;
+    max-height: 100px;
+    border-radius: 5px;
+    align-self: center;
+    /* box-shadow: 0px 2px 2px rgb(0 0 0 / 5%); old style */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    /* padding: 10px !important; */
+    background-color: white;
+    color: black;
+}
+
+/* Scorecard Background Colors */
+.scorecard.scorecard-bg-default {
+    background-color: #FFFFFF !important;
+    color: #333333;
+}
+
+.scorecard.scorecard-bg-primary {
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%) !important;
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-primary .scorecard-title,
+.scorecard.scorecard-bg-primary .scorecard-value,
+.scorecard.scorecard-bg-primary .scorecard-particle {
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%) !important;
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-success .scorecard-title,
+.scorecard.scorecard-bg-success .scorecard-value,
+.scorecard.scorecard-bg-success .scorecard-particle {
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #ab2c35 100%) !important;
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-danger .scorecard-title,
+.scorecard.scorecard-bg-danger .scorecard-value,
+.scorecard.scorecard-bg-danger .scorecard-particle {
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%) !important;
+    color: #333333;
+}
+
+.scorecard.scorecard-bg-warning .scorecard-title,
+.scorecard.scorecard-bg-warning .scorecard-value,
+.scorecard.scorecard-bg-warning .scorecard-particle {
+    color: #333333;
+}
+
+.scorecard.scorecard-bg-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #0f7281 100%) !important;
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-info .scorecard-title,
+.scorecard.scorecard-bg-info .scorecard-value,
+.scorecard.scorecard-bg-info .scorecard-particle {
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-dark {
+    background: linear-gradient(135deg, #343a40 0%, #1f2124 100%) !important;
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-dark .scorecard-title,
+.scorecard.scorecard-bg-dark .scorecard-value,
+.scorecard.scorecard-bg-dark .scorecard-particle {
+    color: #FFFFFF;
+}
+
+/* Scorecard Icon Styling (Font Awesome 4.7.0) */
+.scorecard-icon {
+    font-size: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-left: auto;
+    line-height: 1;
+}
+
+/* Icon Colors */
+.scorecard-icon.scorecard-icon-primary {
+    color: #007BFF;
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.scorecard-icon.scorecard-icon-success {
+    color: #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.scorecard-icon.scorecard-icon-danger {
+    color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.scorecard-icon.scorecard-icon-warning {
+    color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+.scorecard-icon.scorecard-icon-info {
+    color: #17a2b8;
+    background-color: rgba(23, 162, 184, 0.1);
+}
+
+/* Icon inside colored backgrounds */
+.scorecard.scorecard-bg-primary .scorecard-icon {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-success .scorecard-icon {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-danger .scorecard-icon {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-warning .scorecard-icon {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+.scorecard.scorecard-bg-info .scorecard-icon {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
+}
+
+.scorecard.scorecard-bg-dark .scorecard-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+}

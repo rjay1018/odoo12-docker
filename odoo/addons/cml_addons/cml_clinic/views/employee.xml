@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Tree view for Specialist -->
+    <record id="view_hr_specialist_tree" model="ir.ui.view">
+        <field name="name">view.hr.specialist.tree</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+              <tree string="Specialist">
+                <field name="name"/>
+                <field name="category_ids" widget="many2many_tags"/>
+                <field name="job_id"/>
+                <field name="specialty_ids" widget="many2many_tags"/>
+                <field name="mobile_phone"/>
+                <field name="work_email"/>
+              </tree>
+            </xpath>            
+        </field>
+    </record>
+
+    <!-- Form view for Specialist -->
+    <record id="view_hr_specialist_form" model="ir.ui.view">
+        <field name="name">view.hr.specialist.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='toggle_active']" position="before">
+                    <button name="open_specialist_appointments" 
+                            class="oe_stat_button" 
+                            icon="fa-calendar" 
+                            type="object">
+                            <field string="Appointments" name="appointment_count" widget="statinfo"/>
+                    </button>                    
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="before">
+                  <field name="is_specialist"/>
+            </xpath>
+            
+            <xpath expr="//field[@name='work_phone']" position="after">
+                  <field name="extension" widget="phone"/>
+            </xpath>
+
+            
+            <xpath expr="//page[@name='hr_settings']" position="before">
+              <page name="clinic_schedule" string="Clinic Information" attrs="{'invisible': [('is_specialist','=',False)]}">
+                <group>
+                  <field name="summary"/>
+                  <field name="specialty_ids" widget="many2many_tags"/>
+                  <field name="nonpreference" widget="many2many_tags"/>
+                  <!-- <field name="support_ids">
+                    <tree string="Support Type Comfortability" editable="top">
+                      <field name="support_id"/>
+                      <field name="selfrate"/>                                                                               
+                    </tree>
+                  </field>	 -->
+                  <field name="pseudonym"/>
+                </group>
+                <group string="Availability Schedule">
+                  <field name="schedule_line_ids" nolabel="1" context = "{
+                                         'default_job_id': job_id,
+                                         'default_specialty_ids':specialty_ids}">
+                    <!-- <tree string="Specialist Schedule"> -->
+                    <tree string="Specialist Schedule" editable="top">                                                                               
+                      <field name="day"/>                                                                               
+                      <field name="availability_ids" widget="many2many_tags"/>
+                      <field name="appointment_type"/>
+                      <field name="escalation"/>
+                      <field name="debrief_ok"/>                                                                               
+                      <field name="job_id"/>
+                      <field name="specialty_ids" widget="many2many_tags"/>
+                    </tree>	
+                  </field>
+                </group>
+              </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_specialist_licenses_form" model="ir.ui.view">
+        <field name="name">view.specialist.licenses.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr_employee_updation.hr_employee_inherit_form_view" />
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='identification_id']" position="after">
+                <field name="prc_number" attrs="{'invisible': [('is_specialist','=',False)]}"/>
+                <field name="ptr_number" attrs="{'invisible': [('is_specialist','=',False)]}"/>
+                <field name="s2_license" attrs="{'invisible': [('is_specialist','=',False)]}"/>
+          </xpath>
+        </field>
+    </record>
+    
+    
+    <record id="view_hr_specialist_search" model="ir.ui.view">
+        <field name="name">view.hr.specialist.search</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='name']" position="after">
+              <field name="availability_ids"/>
+          </xpath>
+        </field>
+    </record>
+    
+    
+    
+    <record id="action_specialist" model="ir.actions.act_window">
+            <field name="name">Specialist</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="hr.hr_kanban_view_employees"/>
+            <field name="domain">[('is_specialist', '=', True)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new employee.
+              </p>
+            </field>
+        </record>
+        
+    <menuitem 
+            name="Specialist"
+            id="clinic_specialist" 
+            parent="clinic_root"
+            action="action_specialist"
+            groups="cml_clinic.group_clinic_specialist"
+            sequence="35"/>
+
+    <menuitem 
+            name="Specialist"
+            id="submenu_clinic_specialist" 
+            parent="clinic_specialist"
+            action="action_specialist"
+            sequence="10"/>
+</odoo>

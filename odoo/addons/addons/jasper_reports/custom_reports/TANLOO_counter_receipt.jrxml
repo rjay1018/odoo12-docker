@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TANLOO_counter_receipt" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.948717100000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;line_ids&apos;]"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\PC\\Desktop\\Jason\\CML\\TANLOO\\jrxml\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter1" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12/custom/addons/jasper_reports/custom_reports/TANLOO_counter_receipt_subreport1.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Total-amount_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Payment_Ref.-reference" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Payment_Ref.-reference]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Number-number]]></fieldDescription>
+	</field>
+	<field name="Source_Document-origin" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Source_Document-origin]]></fieldDescription>
+	</field>
+	<field name="Number-number3" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Refund_Invoices-refund_invoice_ids/Number-number]]></fieldDescription>
+	</field>
+	<field name="Debit-debit" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Journal_Entry-move_id/Journal_Items-line_ids/Debit-debit]]></fieldDescription>
+	</field>
+	<field name="Credit-credit" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Journal_Entry-move_id/Journal_Items-line_ids/Credit-credit]]></fieldDescription>
+	</field>
+	<field name="Payment_Amount-amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Payments-payment_ids/Payment_Amount-amount]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Amount_Due-residual" class="java.lang.Double">
+		<fieldDescription><![CDATA[/data/record/Amount_Due-residual]]></fieldDescription>
+	</field>
+	<sortField name="Number-number"/>
+	<variable name="Total-amount_total_1" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{Total-amount_total}]]></variableExpression>
+	</variable>
+	<variable name="Payment_Ref.-reference_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{Payment_Ref.-reference}]]></variableExpression>
+	</variable>
+	<variable name="Debit-debit_1" class="java.lang.Double" resetType="Page" calculation="Sum">
+		<variableExpression><![CDATA[$F{Debit-debit}]]></variableExpression>
+	</variable>
+	<variable name="Credit-credit_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Credit-credit}]]></variableExpression>
+	</variable>
+	<variable name="Counter_Amount" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{Debit-debit_1}-$V{Credit-credit_1}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="164" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="15" width="238" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TANLLOO TRADING CORPORATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="15" width="152" height="20"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Counter Receipt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="51" width="81" height="20"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Counter To]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="71" width="106" height="20"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Period Covered]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="104" width="572" height="16"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Received the following original copies of delivery receipt for verification and payment processing:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="81" y="71" width="88" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MMMM-yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="62" y="51" width="257" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="420" y="51" width="74" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Counter No.:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="81" height="18"/>
+				<textElement verticalAlignment="Bottom" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sales Invoice]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="143" width="45" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="143" width="64" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="109" y="143" width="93" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[D.R.No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="143" width="93" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[P.O.No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="143" width="93" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="143" width="93" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="143" width="91" height="21"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<printWhenExpression><![CDATA[$F{Payment_Ref.-reference}.contains("SIA")]]></printWhenExpression>
+			<textField>
+				<reportElement x="295" y="0" width="93" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Number-number}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="93" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="0" width="93" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Payment_Ref.-reference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="0" width="93" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Debit-debit} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Debit-debit}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="45" y="0" width="64" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="45" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{Payment_Ref.-reference_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="0" width="91" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="89">
+			<staticText>
+				<reportElement x="0" y="19" width="74" height="14"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prepared by:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="33" width="74" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="33" width="166" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="19" width="200" height="14"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Original Documents Received by:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="53" width="166" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Print name over signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="53" width="64" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="272" y="33" width="64" height="20"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="333" y="19" width="140" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL COUNTER AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="36" width="122" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL AMOUNT PAID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="53" width="122" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURRENT BALANCE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="481" y="18" width="91" height="17"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{Counter_Amount} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($V{Counter_Amount}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="35" width="91" height="17"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="481" y="52" width="91" height="17"/>
+				<box>
+					<bottomPen lineWidth="1.5" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="81" splitType="Stretch">
+			<textField>
+				<reportElement x="481" y="0" width="91" height="15"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{Debit-debit_1} == "" ? "0.00" : new DecimalFormat("#,##0.00").format(Double.valueOf($V{Debit-debit_1}))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="78" height="15"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Total:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="0" width="403" height="15"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="27" width="572" height="54"/>
+				<dataSourceExpression><![CDATA[$P{parameter1}]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "TANLOO_counter_receipt_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

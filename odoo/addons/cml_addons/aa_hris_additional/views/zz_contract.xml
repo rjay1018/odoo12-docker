@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <odoo>
+    <data>
+      <record id="employee_form_inherit_employee_additional_contractcash" model="ir.ui.view">
+          <field name="name">hr.contract.additinionalcashmonth.inherit.form</field>
+          <field name="model">hr.contract</field>
+          <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//group[@name='salary_and_advantages']" position="after">
+              <group string="Others">
+                <field name="ecola"/>
+                <field name="days_year"/>
+                <label for="leave_allo"/>
+                <div class="o_row">
+                  <field name="leave_allo"/>
+                  <!--<span>/month</span>-->
+                </div>
+              </group>
+            </xpath>
+
+          </field>
+      </record> 
+
+      <record id="employee_form_inherit_employee_additional_applicantinterview" model="ir.ui.view">
+          <field name="name">hr.applicant.interview.inherit.form</field>
+          <field name="model">hr.applicant</field>
+          <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job"/>
+          <field name="arch" type="xml">
+            <xpath expr="//form/sheet/separator[last()]" position="attributes">
+              <attribute name="string">Interview Feedback</attribute>
+            </xpath>
+
+          </field>
+      </record>
+    </data>
+  </odoo>

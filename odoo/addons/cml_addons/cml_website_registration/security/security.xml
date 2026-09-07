@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="website_agent_rule" model="res.groups">
+        <field name="name">Website Agent</field>
+        <field name="category_id" ref="base.module_category_website"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- Generic "Restricted Journal Access" group -->
+        <record id="group_restrict_journal_access" model="res.groups">
+            <field name="name">Restricted Journal Access</field>
+            <field name="category_id" ref="base.module_category_accounting_accounting"/>
+            <field name="comment">Members of this group can ONLY see the journals explicitly assigned to them on their User Profile (under the Journal Access tab).</field>
+        </record>
+
+    </data>
+</odoo>

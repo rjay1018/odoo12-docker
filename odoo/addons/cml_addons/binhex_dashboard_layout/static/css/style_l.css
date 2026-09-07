@@ -1,0 +1,21 @@
+#oe_main_menu_navbar{
+display:none !important;
+}
+     .o_affix_enabled{
+         display:none !important;
+    }
+body.o_connected_user{
+padding-top: 0px!important !important;
+}
+.o_footer{
+     display:none !important;
+}
+.navbar navbar-expand-md navbar-light bg-light{
+display:none !important;
+}
+.o_header_affix affix affixed{
+display:none!important;
+}
+#oe_main_menu_navbar + #wrapwrap .o_header_affix{
+display:none !important;
+}

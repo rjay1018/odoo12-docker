@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record model="client.stage" id="client_stage_01">
+        <field name="name">NEW</field>
+        <field name="sequence">1</field>
+    </record>
+    <record model="client.stage" id="client_stage_02">
+        <field name="name">FOR SCHEDULING</field>
+        <field name="sequence">2</field>
+    </record>
+    <record model="client.stage" id="client_stage_03">
+        <field name="name">SCHEDULED</field>
+        <field name="sequence">3</field>
+    </record>
+    <record model="client.stage" id="client_stage_04">
+        <field name="name">SESSIONS ON-GOING</field>
+        <field name="sequence">4</field>
+    </record>
+    <record model="client.stage" id="client_stage_05">
+        <field name="name">CLOSED CASE</field>
+        <field name="sequence">5</field>
+    </record>
+
+
+    <record model="res.partner" id="case_stage">
+        <field name="case_stage_id" ref="client_stage_01"</field>
+    </record>
+
+</odoo>

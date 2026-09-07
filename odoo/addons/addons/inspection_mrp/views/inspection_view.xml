@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<odoo>
+
+	<record id="view_quality_inspection_tree" model="ir.ui.view">
+		<field name="name">quality.inspection.tree</field>
+		<field name="model">quality.inspection</field>
+		<field name="priority">2</field>
+		<field name="arch" type="xml">
+			<tree string="Quality Inspection" create="false" delete="false">
+				<field name="name"/>
+				<field name="stock_line_id"/>
+				<field name="product_id"/>
+			</tree>
+		</field>
+	</record>
+	<record id="view_quality_inspection_form" model="ir.ui.view">
+		<field name="name">quality.inspection.form</field>
+		<field name="model">quality.inspection</field>
+		<field name="arch" type="xml">
+			<form string="Quality Inspection" create="false" delete="false">
+				<header>
+					<button name="chg_done" string="Pass" type="object" attrs="{'invisible':[('state','in',('pass','fail'))]}"/>
+					<button name="chg_fail" string="Fail" type="object" attrs="{'invisible':[('state','in',('pass','fail'))]}"/>
+				 	<button name="chg_partial" string="Partial" type="object" attrs="{'invisible':[('state','in',('pass','fail','partial'))]}"/>
+	                <field name="state" widget="statusbar"/>
+				</header>	
+				<sheet>
+					 <h1 class="hidden-xs">
+                        <field name="name" readonly="1"/>
+                    </h1>
+					<group>
+						<group>
+							<field name="stock_line_id" readonly="1"/>
+							<field name='product_id' readonly="1"/>
+						</group>
+					</group>
+					<notebook>
+						<page string="Inspection">
+							<field name="inspect_ids">
+								<tree editable="bottom" create="false">
+									<field name="inspect_id" invisible="1"/>
+									<field name="product_id" invisible="1"/>
+									<field name="inspection_id" attrs="{'readonly':[('parent.state','in', ('pass','fail'))]}"/>
+									<field name="type" invisible="1"/>
+									<field name="max_value" attrs="{'invisible':[('type','!=','numeric')],'required':[('type','=','numeric')],'readonly':[('parent.state','in', ('pass','fail'))]}" />
+									<field name="min_value" attrs="{'invisible':[('type','!=','numeric')],'required':[('type','=','numeric')],'readonly':[('parent.state','in', ('pass','fail'))]}"/>
+									<field name="image" widget="image" attrs="{'invisible':[('type','!=','image')],'required':[('type','=','image')],'readonly':[('parent.state','in', ('pass','fail'))]}" style="height:100px;width:170px"/>
+									<field name="inspect_value" attrs="{'invisible':[('type','!=','numeric')],'required':[('type','=','numeric')],'readonly':[('parent.state','in', ('pass','fail'))]}"/>
+									<field name="description" attrs="{'invisible':[('type','!=','descriptive')],'required':[('type','=','descriptive')],'readonly':[('parent.state','in', ('pass','fail'))]}"/>
+									<field name="test" attrs="{'invisible':[('type','!=','image')],'required':[('type','=','image')],'readonly':[('parent.state','in', ('pass','fail'))]}"/>
+									<field name="remarks" attrs="{'readonly':[('parent.state','in', ('pass','fail'))]}"/>
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="action_quality_inspection_menu"
+		model="ir.actions.act_window">
+		<field name="name">Quality Inspection</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">quality.inspection</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">
+				Click here to create a record
+			</p>
+		</field>
+	</record>
+
+
+		<menuitem id="menu_quality_inspection_view" name="Quality Inspection"
+		action="action_quality_inspection_menu" parent="mrp.menu_mrp_manufacturing"
+		sequence="6" />
+		
+
+        <!-- Sequences for Checklist Main -->
+        <record id="seq_mrp_inspection" model="ir.sequence">
+            <field name="name">Quality Inspection</field>
+            <field name="code">quality.inspection</field>
+            <field name="prefix">MRP-INS</field>
+            <field name="padding">2</field>
+        </record>
+</odoo>	
+			
+			
+			
+			

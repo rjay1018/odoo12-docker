@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Category-->
+    <record model="ir.module.category" id="module_category_eprescription">
+        <field name="name">E-Prescription</field>
+        <field name="description">Category For E-Prescription</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="eprescription_user" model="res.groups">
+        <field name="name">See Own Prescription</field>
+        <field name="category_id" ref="module_category_eprescription"/>
+    </record>
+
+    <record id="eprescription_mngr" model="res.groups">
+        <field name="name">See All Prescription</field>
+        <field name="category_id" ref="module_category_eprescription"/>
+        <field name="implied_ids" eval="[(4, ref('eprescription_user'))]"/>
+    </record>
+
+
+    <!--Record Rules-->
+    <!--Appointment Rules-->
+
+    <record model="ir.rule" id="eprescription_user_rule">
+        <field name="name">Own Prescription</field>
+        <field name="model_id" ref="model_clinic_eprescription"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('eprescription_user'))]"/>
+    </record>
+    
+    <record model="ir.rule" id="eprescription_user_rule">
+        <field name="name">All Prescription</field>
+        <field name="model_id" ref="model_clinic_eprescription"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('eprescription_mngr'))]"/>
+    </record>
+    
+
+
+</odoo>

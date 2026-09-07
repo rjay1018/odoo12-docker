@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Top menu item -->
+    <menuitem 
+            id="clinic_root"
+            name="Clinic Management"
+            sequence="5"/>
+    <!-- Operations -->
+
+    <menuitem 
+            id="clinic_reporting"
+            name="Configuration"
+            parent="clinic_root"
+            sequence="40"/>
+
+    <menuitem 
+            id="clinic_configuration"
+            name="Configuration"
+            groups="cml_clinic.group_clinic_manager"
+            parent="clinic_root"
+            sequence="50"/>
+
+<!--    
+    <menuitem 
+        name="Appointments"
+        id="clinic_appointment"
+        parent="clinic_root"
+        sequence="15"/> 
+ 
+    <menuitem 
+        name="Clients"
+        id="clinic_client"
+        parent="clinic_root"
+        groups="cml_clinic.group_clinic_manager"
+        action="action_client_partner"
+        sequence="25"/> 
+    
+    <menuitem 
+        name="Specialist"
+        id="clinic_specialist" 
+        parent="clinic_root"
+        action="action_specialist"
+        sequence="35"/>
+-->
+    <!-- Master Data -->
+    <!-- Reporting -->
+</odoo>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="crm_case_form_view_job_inherit_website" model="ir.ui.view">
+            <field name="name">hr.applicant.form.inherit.website</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.crm_case_form_view_job" />
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//h2[@class='o_row']" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                    </xpath>
+                    <xpath expr="//h2[@class='o_row']" position="after">
+                        <h3 class='o_row'>
+                            <div>
+                                <field name="firstname" placeholder="First Name"/>
+                            </div>
+                            <div>
+                                <field name="middlename" placeholder="Middle Name"/>
+                            </div>
+                            <div>
+                                <field name="lastname" placeholder="Last Name"/>
+                            </div>
+                        </h3>
+                    </xpath>
+
+                    <xpath expr="//group[last()]" position="after">
+                            <separator string="Personal Details"/>
+                            <group name="personal_details">
+                                <group>
+                                        <field name="contact_street" placeholder="Street..."   attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                        <field name="contact_street2" placeholder="Street 2..."  attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                            <field name="contact_city" placeholder="City"  attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                            <field name="contact_zone" placeholder="Zone" options="{&quot;no_open&quot;: True}"  attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                            <field name="contact_zip" placeholder="ZIP" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                            <field name="contact_country_id" placeholder="Country"  options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"  attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                </group>
+                                <group>
+                                        <field name="birthday" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                        <field name="marital" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                        <field name="gender" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                        <field name="age" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                        <field name="children" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                </group>
+                            </group>
+                            <separator string="Education Attaintment"/>
+                            <group name="education_attaintment">
+                                <group>
+                                    <field name="edu_schoolname" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                    <field name="edu_coursename" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="edu_graduate_year" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                    <field name="edu_level_year" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                </group>
+                            </group>
+                            <separator string="Work Experience"/>
+                            <group name="work_experience">
+                                <group>
+                                    <field name="work_position" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                    <field name="work_employer" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                    <field name="work_supervisor" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="work_contact_number" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                    <field name="work_start_date" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                    <field name="work_end_date" attrs="{'readonly': [('emp_id', '!=', False)]}"/>
+                                </group>
+                            </group>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+        
+
+    </data>
+</odoo>

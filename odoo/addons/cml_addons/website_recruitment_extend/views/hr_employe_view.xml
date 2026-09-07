@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_form_inherit_web_job" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit.website</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr_experience.view_employee_form_inherit" />
+            <field name="arch" type="xml">
+                <data>
+
+                    <xpath expr="//field[@name='academic_ids']//tree//field[@name='partner_id']" position="after">
+                        <field name="edu_schoolname"/>
+                        <field name="edu_graduate_year"/>
+                        <field name="edu_level_year"/>
+                    </xpath>
+                    <xpath expr="//field[@name='academic_ids']//form//field[@name='partner_id']" position="after">
+                        <field name="edu_schoolname"/>
+                        <field name="edu_graduate_year"/>
+                        <field name="edu_level_year"/>
+                    </xpath>
+
+                    <xpath expr="//field[@name='experience_ids']//tree//field[@name='partner_id']" position="after">
+                        <field name="work_supervisor"/>
+                        <field name="work_contact_number"/>
+                    </xpath>
+                    <xpath expr="//field[@name='experience_ids']//form//field[@name='partner_id']" position="after">
+                        <field name="work_supervisor"/>
+                        <field name="work_contact_number"/>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+        
+
+    </data>
+</odoo>

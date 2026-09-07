@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <record id="view_partner_form_firstname" model="ir.ui.view">
+            <field name="name">Add firstname and surnames</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <field name="insurance_agency_id"/>
+                </xpath>
+                 <xpath expr="//field[@name='vat']" position="after">
+                    <field name="is_respondent" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--        <record id="view_partner_inherit_is_respondent" model="ir.ui.view">-->
+<!--            <field name="name">res.partner</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='vat']" position="after">-->
+<!--                    <field name="is_respondent" invisible="1"/>-->
+<!--                </xpath>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+        <record id="action_respondent_partner" model="ir.actions.act_window">
+            <field name="name">Respondent</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="base.view_res_partner_filter"/>
+            <field name="domain">[('is_respondent', '=', True)]</field>
+            <field name="context">{'default_is_respondent': True}</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a new Client.
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="menu_respondent_clients"
+                  name="Respondent"
+                  parent="cml_clinic.clinic_client"
+                  sequence="1"
+                  action="action_respondent_partner"/>
+    </data>
+</odoo>

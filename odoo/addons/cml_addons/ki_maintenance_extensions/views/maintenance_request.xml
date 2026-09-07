@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="maintenance_request_inherit_menu">
+              <field name="name">maintenance.request.inherit.menu</field>
+              <field name="model">maintenance.request</field>
+              <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+              <field name="arch" type="xml">
+                  <xpath expr="//button[@name='archive_equipment_request']" position="after">
+                    <button name="%(ki_maintenance_extensions.request_partner_wizard_action_menu)d" string="Generate PO" type="action"/>
+                  </xpath>
+                  <xpath expr="//field[@name='description']" position="before">
+                      <notebook>
+                          <page string="Additional Spare Parts">
+                              <h5>Add spare part to be add in purchase request</h5>
+                              <field name="additional_spare_part_id">
+                                 <tree editable="bottom" >
+                                     <field name ="part_id" invisible="1"/>
+                                     <field name="spare_part_id"
+                                        domain="[('usage_type', '=', 'spare_Part'), ('maintenance_equipment_id', '=',parent.equipment_id)]"/>
+                                     <field name="price" />
+                                     <field name="quantity" />
+                                     <field name="po_line_id" invisible="0"/>
+                                 </tree>
+                            </field>
+                          </page>
+                          <page string="Checklist Result">
+                             <field name="checklist_result_id">
+                                 <tree editable="bottom" >
+                                     <field name ="request_id" invisible="1"/>
+                                     <field name="checklist_id" />
+                                     <field name="is_pass" />
+                                 </tree>
+                            </field>
+                          </page>
+                      </notebook>
+                  </xpath>
+              </field>
+        </record>
+    </data>
+</odoo>

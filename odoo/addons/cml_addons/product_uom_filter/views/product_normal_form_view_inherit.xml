@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="product_from_view_inherit" model="ir.ui.view">
+            <field name="name">product.from.view.inherit</field>
+            <field name="model">product.product</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[last()]" position="after">
+                    <page string = "Allowed UOMs">
+                        <field name="uom_ids" nolabel="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

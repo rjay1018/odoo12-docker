@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+        <record id="view_partner_survey_extend" model="ir.ui.view">
+            <field name="name">Partner Form with Assessment Answers</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="partner_survey.view_partner_form"/>
+            <field name="priority" eval="10" />
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//field[@name='survey_input_count']" position="attributes">
+                    <attribute name="string">Assessment</attribute>
+                </xpath> -->
+                
+                <xpath expr="//button/field[@name='survey_input_count']" position="attributes">
+                    <attribute name="string">Assessment</attribute>
+                </xpath>
+                
+            </field>
+        </record>
+        
+
+        <record id="view_partner_consent_page" model="ir.ui.view">
+            <field name="name">Consent Page</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="cml_clinic.view_clinic_client_form"/>
+            <field name="priority" eval="10" />
+            <field name="arch" type="xml">
+                
+	            <xpath expr="//page[1]" position="before">
+	            	<page string="Terms and Conditions" class="oe_page_consent" accesskey="C"
+                          attrs="{'invisible': [('is_client', '=', False)]}">	                    
+                        <field name="consent_info"/>
+                        <group>
+                            <field name="consent" string="Yes, I Agree." attrs="{'readonly': [('consent', '=', True)]}" force_save="1"/>
+                        </group>
+                    </page>
+	            </xpath>
+
+                <xpath expr="//page[2]" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//page[@name='personal_information_page']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('consent','=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//page[@name='client_case_file']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('consent','=',False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

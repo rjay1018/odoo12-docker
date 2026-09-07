@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+     <!--tree view of the appointment model-->
+        <record id="appointment_tree" model="ir.ui.view">
+            <field name="name">clinic.appointment.tree</field>
+            <field name="model">clinic.appointment</field>
+            <field name="arch" type="xml">
+                <tree string="Appointments" default_order="session_start desc">
+                    <!-- <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'"
+                    decoration-success="state == 'done'" decoration-danger="state == 'confirm'"/> -->
+                    <field name="sequence"/>
+                    <field name="partner_id"/>
+                    <field name="employee_id"/>
+                    <field name="session_start"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+     <!--form view of the appointment model-->
+        <record id="appointment_form" model="ir.ui.view">
+            <field name="name">clinic.appointment.form</field>
+            <field name="model">clinic.appointment</field>
+            <field name="arch" type="xml">
+                <form string="Appointments">
+                    <header>
+                        <button name="%(cml_clinic.create_appointment)d" string="Create Appointment" type="action" 
+                                states="confirmed" class="oe_highlight" 
+                                context="{'default_partner_id': partner_id,
+                                         'default_duration': 1.00,
+                                         'default_employee_id': employee_id,
+                                         'default_appointment_type':appointment_type
+                                         }"/>
+                        <button name="action_send_appointment" type="object" states="draft" string="Send By Email" class="oe_highlight"/> 
+                        <button name="action_confirm" string="Confirm" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_done" string="Done" states="confirmed" type="object" class="oe_highlight" groups="cml_clinic.group_clinic_specialist"/>
+                        <button name="action_draft" string="Reset to Draft" states="confirmed" type="object" class="oe_highlight" groups="cml_clinic.group_clinic_nurse,cml_clinic.group_clinic_manager"/>
+                        <button name="action_draft" string="Reset to Draft" states="done" type="object" class="oe_highlight" groups="cml_clinic.group_clinic_manager"/>
+                        <button name="action_validated" string="Validated" states="done" type="object" class="oe_highlight" groups="cml_clinic.group_clinic_supervisor"/>
+                        <button name="action_cancel" string="Cancel" states="confirmed" type="object" class="oe_highlight"/>
+                        <field name="state" statusbar_visible="draft,confirmed,done,validated,cancel" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="sequence"/>
+                            </h1>
+                            <h2>
+                                <field name="name"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="appointment_type"/>
+                                <field name="product_id"/>
+                                <field name="partner_id"/>
+                                <field name="is_member"/>
+                            </group>
+                            <group>
+                                <field name="duration" widget="float_time"/>
+                                <field name="session_start"/>
+                                <field name="session_end"/>
+                            </group>
+                        </group>
+                        <group string='Specialist Information'>
+                            <group>
+                                <field name="employee_id" domain="[('is_specialist', '=', True)]"/>
+                                <field name="user_id"/>
+
+                            </group>
+                        </group>
+                        <group string='Session Information'>
+                            <group>
+                                <field name="meeting_link" widget="url"/>
+                                <field name="apt_start"/>
+                                <field name="apt_stop"/>
+                                <!-- <field name="apt_duration"/> -->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Session Notes">
+                                <group>
+                                    <field name="context" string="Purpose of Evaluation and Chief Complaint"
+                                        placeholder="Please write here the reason for clients to be recommended for professional help. How the person was referred. Who recommended and what were the identified concern/s and/or observed difficulty of the client. What are the specific purposes of the session and/or needed evaluation? What are the questions to be answered? "/>
+                                    <field name="presenting_problem" string="Client Background / History"
+                                        placeholder="Include here the following information related to family history, family-social interactions, developmental history, presenting illness and its history (if any), medical history (including mental health), and/or school / work history (including attendance and discipline records) gathered through a comprehensive intake interview with the client’s and significant care-giver.  You may also include the following: (1)  Objective (review of systems, pertinent symptoms, other clinical findings), (2) Assessment (working impression or diagnosis), (3) Consider the 5P Factors (Predisposing, Precipitating, Presenting, Perpetuating, and Protective)"/>
+                                    <field name="assessment" string="Assessment/s Administration"
+                                        placeholder="Include assessment scores and interpretation.(Mental Status Examination, Well-being Scale, and/or TICES-S)"/>
+                                    <field name="interventions" string="Diagnostic Impression and Recommendation"
+                                        placeholder="For recommendation, include at least 1 month management and/or treatment plan (medical and non-medical)"/>
+                                    <field name="agreed_astep" string="Conclusion"
+                                        placeholder="What was the agreed steps with the  client? Please include referrals"/>
+                                    <field name="notes" placeholder="Other Notes..."/>
+                                </group>
+                                <button name="%(cml_clinic.create_referral)d" string="Request for Referral" 
+                                        type="action" class="oe_highlight" states="confirmed"
+                                        context="{'default_partner_id': partner_id, 'default_source': sequence}"/>
+                            </page>
+                            <page string="Supervisor Notes" groups="cml_clinic.group_clinic_supervisor">
+                                <field name="supervisor_notes" placeholder="Supervisor Notes..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+     <!--Calendar view of the appointment model-->
+        <record id="appointment_calendar" model="ir.ui.view">
+            <field name="name">clinic.appointment.calendar</field>
+            <field name="model">clinic.appointment</field>
+            <field name="arch" type="xml">
+                <calendar string="Appointment Calendar" date_start="session_start" date_stop="session_end" color="state" mode="week" quick_add="True">
+                    <field name="sequence"/>
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+    
+    <!--Search View for the Appointment-->
+
+        <record id="clinic_appointment_search" model="ir.ui.view">
+        <field name="name">clinic.appointment.search</field>
+        <field name="model">clinic.appointment</field>
+        <field name="arch" type="xml">
+            <search string="Search Appointments">
+                <field name="employee_id"/>
+                <field name="partner_id"/>
+                <field name="sequence" string="Appointment Number"/>
+                <filter string="My Schedules" name="my_schedules" domain="[('employee_id.user_id', '=', uid)]"/>
+                <filter string="Today's Schedules" name="today_schedule" 
+                        domain="[('session_start','&gt;=', context_today().strftime('%Y-%m-%d')),
+                                 ('session_start','&lt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <filter string="Up-Coming Schedules" name="upcoming_schedule" 
+                        domain="[('session_start','&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <separator />
+                <filter string="For Validation" name="for_validation" domain="[('state','=','done')]"/>
+                <filter string="Scheduled" name="Scheduled" domain="[('state','=','confirmed')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Specialist" name="specialist" context="{'group_by':'employee_id'}"/>
+                    <filter string="Clients" name="clients" context="{'group_by':'partner_id'}"/>
+                    <filter string="State" name="states" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+     <!--Calendar view of the appointment model-->
+        
+        <!-- <record id="kanban_appointment" model="ir.ui.view">
+            <field name="name">clinic.appointment.kanban/field>
+            <field name="model">clinic.appointment</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="product_id"/>
+                    
+                </kanban>    
+            </field>
+        </record> -->
+    
+
+     <!--action of the appointment menu-->
+        <record id="action_appointment" model="ir.actions.act_window">
+            <field name="name">Appointments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clinic.appointment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="context">{"search_default_upcoming_schedule":1}</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your First Appointment !
+            </p>
+            </field>
+        </record>
+
+        <record id="action_appointment_myapt" model="ir.actions.act_window">
+            <field name="name">My Appointment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">clinic.appointment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">calendar,tree,form</field>
+            <field name="domain">[('employee_id.user_id.id', '=', uid)]</field>
+            <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your First Appointment !
+            </p>
+            </field>
+        </record>
+        
+        <menuitem 
+            name="Appointments"
+            id="clinic_appointment"
+            parent="clinic_root"
+            groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_supervisor,cml_clinic.group_clinic_nurse"
+            sequence="10"/>
+
+        <menuitem 
+            name="My Appointments"
+            id="clinic_appointment_myapt"
+            parent="clinic_appointment"
+            action="action_appointment_myapt"
+            groups="cml_clinic.group_clinic_specialist"
+            sequence="10"/>
+
+        <menuitem 
+            name="All Appointments"
+            id="clinic_appointment_all"
+            parent="clinic_appointment"
+            action="action_appointment"
+            groups="cml_clinic.group_clinic_supervisor,cml_clinic.group_clinic_nurse"
+            sequence="15"/>
+
+
+    </data>
+</odoo>

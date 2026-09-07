@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_work_day_type_user,work.day.type.user,model_work_day_type,base.group_user,1,0,0,0
+access_work_day_type_manager,work.day.type.manager,model_work_day_type,hr.group_hr_manager,1,1,1,1

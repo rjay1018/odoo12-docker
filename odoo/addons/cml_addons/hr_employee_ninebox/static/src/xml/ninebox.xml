@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="NineBox">
+        <t t-if="ratio == '0X0'">
+            <img src="/hr_employee_ninebox/static/src/img/0x0.png"/>
+        </t>
+        <t t-if="ratio == '1X1'">
+            <img src="/hr_employee_ninebox/static/src/img/1x1.png"/>
+        </t>        
+        <t t-if="ratio == '1X2'">
+            <img src="/hr_employee_ninebox/static/src/img/1x2.png"/>
+        </t>        
+        <t t-if="ratio == '1X3'">
+            <img src="/hr_employee_ninebox/static/src/img/1x3.png"/>
+        </t>
+        <t t-if="ratio == '2X1'">
+            <img src="/hr_employee_ninebox/static/src/img/2x1.png"/>
+        </t>        
+        <t t-if="ratio == '2X2'">
+            <img src="/hr_employee_ninebox/static/src/img/2x2.png"/>
+        </t>        
+        <t t-if="ratio == '2X3'">
+            <img src="/hr_employee_ninebox/static/src/img/2x3.png"/>
+        </t>
+        <t t-if="ratio == '3X1'">
+            <img src="/hr_employee_ninebox/static/src/img/3x1.png"/>
+        </t>        
+        <t t-if="ratio == '3X2'">
+            <img src="/hr_employee_ninebox/static/src/img/3x2.png"/>
+        </t>        
+        <t t-if="ratio == '3X3'">
+            <img src="/hr_employee_ninebox/static/src/img/3x3.png"/>
+        </t>    
+    </t>
+</templates>

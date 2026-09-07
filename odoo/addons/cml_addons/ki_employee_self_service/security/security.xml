@@ -1,0 +1,162 @@
+<odoo>
+<data>
+
+    <record id="rule_hr_employee_internal_officer" model="ir.rule">
+        <field name="name">hr_employee: Officer and Employee</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user')), (4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="rule_hr_employee_manager" model="ir.rule">
+        <field name="name">hr_employee: Manager</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+    </record>
+    
+    
+    <record id="rule_hr_contract_internal_officer" model="ir.rule">
+        <field name="name">HR Contract : Officer and Employee</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user')), (4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="rule_hr_contract_manager" model="ir.rule">
+        <field name="name">HR Contract : Manager</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+    </record>
+    
+    <record id="rule_hr_payroll_internal_officer" model="ir.rule">
+        <field name="name">HR Payslip : Officer and Employee</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user')), (4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="rule_account_analytic_line_internal_officer" model="ir.rule">
+        <field name="name">Timesheet : Officer and Employee</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user')), (4, ref('base.group_user'))]"/>
+    </record>
+    
+</data>
+
+    <!-- 
+    <record id="hr_employee_officer" model="ir.rule">
+        <field name="name">hr_employee: Officer</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+     -->
+    
+    <!-- record id="hr_contract__employee_officer" model="ir.rule">
+        <field name="name">hr_contract: Officer</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record-->
+    
+    <!-- record id="internal_user_manpower" model="ir.rule">
+        <field name="name">manpower_request: Internal Users</field>
+        <field name="model_id" ref="ki_employee_self_service.model_manpower_recruit_request"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('base.group_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record-->
+    
+    <!-- 
+    <record id="officer_user_manpower" model="ir.rule">
+        <field name="name">manpower_request: Officer</field>
+        <field name="model_id" ref="ki_employee_self_service.model_manpower_recruit_request"/>
+        <field name="domain_force">[('state','=','request')]</field>
+        <field name="groups" eval="[(4, ref('hr_recruitment.group_hr_recruitment_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="manager_user_manpower" model="ir.rule">
+        <field name="name">manpower_request: Manager</field>
+        <field name="model_id" ref="ki_employee_self_service.model_manpower_recruit_request"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('hr_recruitment.group_hr_recruitment_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+        
+    <record id="hr_payslip_officer" model="ir.rule">
+        <field name="name">hr_payslip: Officer</field>
+        <field name="model_id" ref="hr_payroll.model_hr_payslip"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="hr_leave_officer" model="ir.rule">
+        <field name="name">hr_leave: Officer</field>
+        <field name="model_id" ref="hr_holidays.model_hr_leave"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="hr_attendance_officer" model="ir.rule">
+        <field name="name">hr_attendance: Officer</field>
+        <field name="model_id" ref="hr_attendance.model_hr_attendance"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="hr_timesheet_officer" model="ir.rule">
+        <field name="name">hr_timesheet: Officer</field>
+        <field name="model_id" ref="account.model_account_analytic_line"/>
+        <field name="domain_force">[('employee_id.user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    
+    <record id="hr_employee_manager" model="ir.rule">
+        <field name="name">hr_employee: Manager</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[(1,'=',1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+     -->
+</odoo>

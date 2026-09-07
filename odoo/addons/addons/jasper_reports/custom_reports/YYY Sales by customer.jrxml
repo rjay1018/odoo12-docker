@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Sales by customer" language="groovy" pageWidth="756" pageHeight="612" columnWidth="716" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.3579476910000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;balance_invoice_ids/invoice_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Name-name]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Number-number" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Number-number]]></fieldDescription>
+	</field>
+	<field name="Amount__with_Taxes_-price_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Amount__with_Taxes_-price_total]]></fieldDescription>
+	</field>
+	<field name="Product-product_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Quantity-quantity" class="java.lang.Number">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Quantity-quantity]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-uom_id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Unit_of_Measure-uom_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Unit_Price-price_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Unit_Price-price_unit]]></fieldDescription>
+	</field>
+	<field name="Product-product_id2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Product-product_id/Category-categ_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Type-type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Type-type]]></fieldDescription>
+	</field>
+	<field name="Product Code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Customer_move_lines-balance_invoice_ids/Invoice_Lines-invoice_line_ids/Product-product_id/Code-default_code]]></fieldDescription>
+	</field>
+	<sortField name="Product Code" order="Descending"/>
+	<sortField name="Number-number"/>
+	<sortField name="Invoice_Date-date_invoice"/>
+	<variable name="Amount_01" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Amount__with_Taxes_-price_total} == "" ? 0.00 : $F{Amount__with_Taxes_-price_total})]]></variableExpression>
+	</variable>
+	<variable name="Amount_02" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Type-type} == "out_refund" ? -$V{Amount_01} : $V{Amount_01}]]></variableExpression>
+	</variable>
+	<variable name="Amount_Group" class="java.lang.Double" resetType="Group" resetGroup="product code" calculation="Sum">
+		<variableExpression><![CDATA[$V{Amount_02}]]></variableExpression>
+	</variable>
+	<variable name="Price_01" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Unit_Price-price_unit} == "" ? 0.00 : $F{Unit_Price-price_unit})]]></variableExpression>
+	</variable>
+	<variable name="Price_02" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{Type-type} == "out_refund" ? -$V{Price_01} : $V{Price_01}]]></variableExpression>
+	</variable>
+	<variable name="Amount_Group_total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{Amount_02}]]></variableExpression>
+	</variable>
+	<group name="product code">
+		<groupExpression><![CDATA[$F{Product Code}]]></groupExpression>
+		<groupHeader>
+			<band height="13">
+				<textField isBlankWhenNull="true">
+					<reportElement x="62" y="0" width="406" height="13"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Product Code}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="13">
+				<textField isBlankWhenNull="true">
+					<reportElement x="62" y="0" width="406" height="13"/>
+					<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["Total  "+$F{Product Code}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="468" y="0" width="248" height="13"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{Amount_Group})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39">
+			<textField>
+				<reportElement x="0" y="0" width="716" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Company_Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="13" width="716" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Sale By Customer Details"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="62" y="26" width="57" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="26" width="258" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Item Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="468" y="26" width="44" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="512" y="26" width="60" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[UoM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="572" y="26" width="72" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sale Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="26" width="91" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inv #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="644" y="26" width="72" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="62" height="13"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Type]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="468" y="0" width="44" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Quantity-quantity}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="62" y="0" width="57" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="119" y="0" width="91" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Number-number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="644" y="0" width="72" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{Amount_02})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="258" height="13"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Product-product_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="512" y="0" width="60" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Unit_of_Measure-uom_id}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="572" y="0" width="72" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{Price_02})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="62" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single" markup="none">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Type-type} == "out_invoice" ? "Invoice" :
+$F{Type-type} == "out_refund" ? "Credit Memo" :
+""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="13">
+			<textField>
+				<reportElement x="62" y="0" width="406" height="13"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Grand Total"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="0" width="248" height="13"/>
+				<box>
+					<topPen lineWidth="0.5" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{Amount_Group_total})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

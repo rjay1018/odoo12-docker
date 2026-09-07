@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY PO shoot template" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.6105100000000014"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="288"/>
+	<property name="ODOO_RELATIONS" value="[&apos;order_line&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Vendor-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Description-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Description-name]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Product-product_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Unit_Price-price_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Unit_Price-price_unit]]></fieldDescription>
+	</field>
+	<field name="Quantity-product_qty" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Quantity-product_qty]]></fieldDescription>
+	</field>
+	<field name="Unit_of_Measure-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Product_Unit_of_Measure-product_uom/Unit_of_Measure-name]]></fieldDescription>
+	</field>
+	<field name="Total-price_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Lines-order_line/Total-price_total]]></fieldDescription>
+	</field>
+	<field name="Order_Date-date_order" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Order_Date-date_order]]></fieldDescription>
+	</field>
+	<field name="Scheduled_Date-date_planned" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Scheduled_Date-date_planned]]></fieldDescription>
+	</field>
+	<field name="Order_Reference-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Order_Reference-name]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Total-amount_total]]></fieldDescription>
+	</field>
+	<background>
+		<band height="752">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="471" y="310" width="83" height="20"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total-amount_total} == "" ? "" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total-amount_total}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="28" y="99" width="205" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="66" width="112" height="16"/>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{Order_Date-date_order})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="82" width="112" height="16"/>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM/dd/yyyy").format($F{Scheduled_Date-date_planned})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="34" width="136" height="20"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Order_Reference-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="86" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="86" y="0" width="212" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Description-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="298" y="0" width="53" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Quantity-product_qty} == "" ? "" : new DecimalFormat("#,##0").format(Double.valueOf($F{Quantity-product_qty}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="351" y="0" width="52" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Unit_of_Measure-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="403" y="0" width="68" height="20"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Unit_Price-price_unit} == "" ? "" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Unit_Price-price_unit}))]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="471" y="0" width="83" height="20"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Total-price_total} == "" ? "" : new DecimalFormat("#,##0.00").format(Double.valueOf($F{Total-price_total}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="5" width="554" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[* * * Nothings Follow * * *]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

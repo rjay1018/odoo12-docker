@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window"
+            id="action_survey_answer_tag_view">
+            <field name="name">Survey Tags</field>
+            <field name="res_model">survey.answer.tag</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="survey_tags" name="Survey Tags" sequence="90"
+            parent="survey.menu_surveys_configuration"
+            action="action_survey_answer_tag_view" />
+
+    </data>
+</odoo>

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Quotation Lines -->
+        <!-- Form Views -->
+        <record id="sh_sol_sale_quotation_line_form_view_inherit" model="ir.ui.view">
+            <field name="name">Quotation Line Form</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" />
+                        <group>
+                            <group>
+                                <field name="order_id" string="Order" />
+                                <field name="product_id" />
+                                <field name="product_uom" />
+                                <field name="product_uom_qty" string="Ordered Qty" />
+                                <field name="tax_id" widget="many2many_tags" />
+                                <field name="price_subtotal" />
+                            </group>
+                            <group>
+                                <field name="order_partner_id" />
+                                <field name="name" />
+                                <field name="price_unit" />
+                                <field name="discount" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Quotation Tree View -->
+        <record id="sh_sol_sale_quotation_line_tree_view_inherit" model="ir.ui.view">
+            <field name="name">Quotation Line Tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_id" string="Order" />
+                    <field name="order_partner_id" />
+                    <field name="image" widget="image" width="10%%" />
+                    <field name="product_id" />
+                    <field name="name" />
+                    <field name="product_uom" />
+                    <field name="product_uom_qty" string="Ordered Qty" />
+                    <field name="price_unit" />
+                    <field name="tax_id" widget="many2many_tags" />
+                    <field name="discount" />
+                    <field name="price_subtotal" />
+                    <field name="so_state" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Quotation Kanban View -->
+        <record id="sh_sol_sale_quotation_line_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">Quotation Line Kanban</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="order_partner_id">
+                    <field name="product_id" />
+                    <field name="id" />
+                    <field name="image" />
+                    <field name="product_uom_qty" string="Qty" />
+                    <field name="order_id" string="Order" />
+                    <field name="so_state" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img t-att-src="kanban_image('sale.order.line', 'image', record.id.raw_value)" role="img" alt="Product" class="o_kanban_image_fill_left o_kanban_image_full" />
+                                </div>
+                                <div class="o_kanban_details">
+                                    <strong>Order : <field name="order_id" /> </strong>
+                                    <br />
+                                    Product : <field name="product_id" />
+                                    <br />
+                                    Qty : <field name="product_uom_qty" />
+                                </div>
+                                <div class="oe_kanban_bottom_right">
+                                    <span class="float-right text-right">
+                                        <field
+                                            name="so_state"
+                                            widget="label_selection"
+                                            options="{'classes': {'draft': 'default', 'cancel': 'default', 'none': 'danger', 'open': 'warning',                                             'paid': 'success'}}"
+                                        />
+                                    </span>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Quotation Search View -->
+        <record id="sh_sol_sale_quotation_line_search_view_inherit" model="ir.ui.view">
+            <field name="name">Quotation Line Search</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Quotation Order Line">
+                    <field name="order_partner_id" filter_domain="['|','|',('order_partner_id','ilike',self),('order_id','ilike',self),('product_id','ilike',self)]" />
+                    <field name="order_id" string="Order" />
+                    <field name="product_id" />
+                    <field name="category_id"/>
+                    <field name="so_order_date" />
+                    <separator />
+
+                    <filter string="Order Date" name="filter_order_date" date="so_order_date" />
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_order_partner_id" domain="[]" string="Customer" context="{'group_by':'order_partner_id'}" />
+                        <filter name="group_by_order_id" domain="[]" string="Order" context="{'group_by':'order_id'}" />
+                        <filter name="group_by_product_id" domain="[]" string="Product" context="{'group_by':'product_id'}" />
+                        <filter name="group_by_category_id" domain="[]" string="Product Category" context="{'group_by':'category_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Quotation Pivot View -->
+        <record model="ir.ui.view" id="view_quotation_pivot">
+            <field name="name">sale.quotation.pivot</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Sales Quotation">
+                    <field name="so_state" type="row" />
+                    <field name="order_id" type="row" />
+                    <field name="product_id" type="row" />
+                    <field name="price_subtotal" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Quotation Graph View -->
+        <record model="ir.ui.view" id="view_sale_line_quotation_graph">
+            <field name="name">sale.line.quotation.graph</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <graph string="Sales Quotation">
+                    <field name="product_id" />
+                    <field name="order_partner_id" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_sale_quotation_calendar" model="ir.ui.view">
+            <field name="name">sale.quotation.calendar</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <calendar string="Sales Quotation" date_start="create_date">
+                    <field name="order_partner_id" />
+                    <field name="price_subtotal" widget="monetary" />
+                </calendar>
+            </field>
+        </record>
+
+        <record id="sh_action_sale_quotation_lines" model="ir.actions.act_window">
+            <field name="name">Quotation Line</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field name="domain">[('state','=',('draft','sent'))]</field>
+            <field name="view_id" ref="sh_sol_sale_quotation_line_tree_view_inherit" />
+        </record>
+
+        <!-- Sale Order Lines -->
+
+        <!-- Sale Order Form View -->
+        <record id="sh_sol_sale_order_line_form_view_inherit" model="ir.ui.view">
+            <field name="name">Sale Order Line Form</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" />
+                        <group>
+                            <group>
+                                <field name="order_id" string="Order" />
+                                <field name="product_id" />
+                                <field name="product_uom" />
+                                <field name="product_uom_qty" string="Ordered Qty" />
+                                <field name="qty_delivered" />
+                                <field name="tax_id" widget="many2many_tags" />
+                                <field name="price_subtotal" />
+                            </group>
+                            <group>
+                                <field name="order_partner_id" />
+                                <field name="name" />
+                                <field name="qty_invoiced" />
+                                <field name="price_unit" />
+                                <field name="discount" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Sale Order Tree View -->
+        <record id="sh_sol_sale_order_line_tree_view_inherit" model="ir.ui.view">
+            <field name="name">Sale Order Line Tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="order_id" string="Order" />
+                    <field name="order_partner_id" />
+                    <field name="image" widget="image" width="10%%" />
+                    <field name="product_id" />
+                    <field name="name" />
+                    <field name="product_uom" />
+                    <field name="product_uom_qty" string="Ordered Qty" />
+                    <field name="qty_delivered" />
+                    <field name="qty_invoiced" />
+                    <field name="price_unit" />
+                    <field name="tax_id" widget="many2many_tags" />
+                    <field name="discount" />
+                    <field name="price_subtotal" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Sale Order Kanban View -->
+        <record id="sh_sol_sale_order_line_kanban_view_inherit" model="ir.ui.view">
+            <field name="name">Sale Order Line Kanban</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="order_partner_id">
+                    <field name="product_id" />
+                    <field name="product_uom_qty" string="Qty" />
+                    <field name="order_id" string="Order" />
+                    <field name="order_partner_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('sale.order.line', 'image', record.id.raw_value)" role="img" alt="Product" class="o_kanban_image_fill_left o_kanban_image_full" />
+                            </div>
+                            <div class="o_kanban_details">
+                                <strong>Order : <field name="order_id" /> </strong>
+                                <br />
+                                Customer : <field name="order_partner_id" string="product_id :" />
+                                <br />
+                                Product : <field name="product_id" />
+                                <br />
+                                Qty : <field name="product_uom_qty" />
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="sh_sol_sale_order_line_search_view_inherit" model="ir.ui.view">
+            <field name="name">Sale Order Line Search</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Sales Order Line">
+                    <field name="order_partner_id" filter_domain="['|','|',('order_partner_id','ilike',self),('order_id','ilike',self),('product_id','ilike',self)]" />
+                    <field name="order_id" string="Order" />
+                    <field name="product_id" />
+                    <field name="so_order_date" />
+                    <separator />
+
+                    <filter string="Order Date" name="filter_order_date" date="so_order_date" />
+
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_order_partner_id" domain="[]" string="Customer" context="{'group_by':'order_partner_id'}" />
+                        <filter name="group_by_order_id" domain="[]" string="Order" context="{'group_by':'order_id'}" />
+                        <filter name="group_by_product_id" domain="[]" string="Product" context="{'group_by':'product_id'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Sale Order Line Pivot View -->
+        <record model="ir.ui.view" id="view_sale_order_line_pivot">
+            <field name="name">sale.order.line.pivot</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Sales Orders Line">
+                    <field name="so_state" type="row" />
+                    <field name="order_id" type="row" />
+                    <field name="product_id" type="row" />
+                    <field name="price_subtotal" type="measure" />
+                </pivot>
+            </field>
+        </record>
+
+        <!-- Sale Order Line Graph View -->
+        <record model="ir.ui.view" id="view_sale_order_line_graph">
+            <field name="name">sale.order.line.graph</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <graph string="Sales Orders Lines">
+                    <field name="order_partner_id" />
+                    <field name="price_subtotal" type="measure" />
+                </graph>
+            </field>
+        </record>
+
+        <record id="view_sale_order_line_calendar" model="ir.ui.view">
+            <field name="name">sale.order.line.calendar</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <calendar string="Sales Order Line" date_start="create_date">
+                    <field name="order_partner_id" />
+                    <field name="price_subtotal" widget="monetary" />
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Sale Order Action -->
+        <record id="sh_action_sale_order_lines" model="ir.actions.act_window">
+            <field name="name">Sale Order Line</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban,pivot,graph,calendar</field>
+            <field name="domain">[('state','in',('sale','done'))]</field>
+            <field name="view_id" ref="sh_sol_sale_order_line_tree_view_inherit" />
+        </record>
+    </data>
+
+    <menuitem id="sh_sol_quotation_line" name="Quotation Lines" action="sh_action_sale_quotation_lines" groups="sales_team.group_sale_manager" parent="sale.sale_order_menu" />
+
+    <menuitem id="sh_sol_order_line" name="Order Lines" action="sh_action_sale_order_lines" groups="sales_team.group_sale_manager" parent="sale.sale_order_menu" />
+</odoo>

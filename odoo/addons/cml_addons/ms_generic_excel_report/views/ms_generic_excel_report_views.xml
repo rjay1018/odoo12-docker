@@ -1,0 +1,158 @@
+<odoo>
+    <data>
+		
+    	<record id="ms_generic_excel_report_search_view" model="ir.ui.view">
+            <field name="name">ms.generic.excel.report.search</field>
+            <field name="model">ms.generic.excel.report</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Search Generic Excel Report">
+		            <field name="name"/>
+		            <field name="code"/>
+		            <field name="query"/>
+		            <field name="state"/>
+		            <filter name="state_active" string="Active" domain="[('state','=','active')]"/>
+		            <filter name="state_non_active" string="Non Active" domain="[('state','=','non_active')]"/>
+		            <filter name="group_state" string="Group State" context="{'group_by':'state'}"/>
+                </search>
+            </field>
+        </record>
+
+		<record id="ms_generic_excel_report_tree_view" model="ir.ui.view">
+		    <field name="name">ms.generic.excel.report.tree</field>
+		    <field name="model">ms.generic.excel.report</field>
+		    <field name="type">tree</field>
+		    <field name="arch" type="xml">
+		        <tree string="Generic Excel Report">
+		            <field name="name"/>
+		            <field name="code"/>
+		            <field name="state"/>
+		        </tree>
+		     </field>
+		</record>
+		
+        <record model="ir.ui.view" id="ms_generic_excel_report_form_view">
+		    <field name="name">ms.generic.excel.report.form</field>
+		    <field name="model">ms.generic.excel.report</field>
+		    <field name="type">form</field>
+		    <field name="arch" type="xml">
+		    	
+		    	<form string="Generic Excel Report">
+		    		<header>
+		    			<button name="action_active" string="Activate" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','non_active')]}"/>
+		    			<button name="action_non_active" string="Deactivate" type="object" class="oe_highlight" attrs="{'invisible': [('state','!=','active')]}"/>
+		    			<field name="state" widget="statusbar"/>
+		    		</header>
+		    		<sheet>
+		    			<div class="oe_title">
+		                    <label for="name" class="oe_edit_only"/>
+		                    <h1><field name="name" placeholder="e.g. Report Stock"/></h1>
+		                </div>
+						<group>
+							<group>
+								<field name="code" attrs="{'readonly': [('state','!=','non_active')]}"/>
+								<field name="up_menu_id" attrs="{'readonly': [('state','!=','non_active')]}" domain="[('parent_id','=',parent_menu_id)]"/>
+							</group>
+							<group>
+								<field name="parent_menu_id" attrs="{'readonly': [('state','!=','non_active')]}"/>
+								<field name="menu_id" readonly="1" attrs="{'invisible': [('menu_id','=',False)]}"/>
+							</group>
+						</group>
+	                    <notebook>
+							<page string="Query">
+								<group>
+									<field name="query" widget="html" attrs="{'readonly': [('state','!=','non_active')]}" nolabel="1"/>
+								</group>
+							</page>
+							<page string="Configuration">
+								<group col="4" name="config" string="Style">
+									<field name="font_name" required="1"/>
+									<field name="background_color" placeholder="e.g #A3E4D7"/>
+								</group>
+							</page>
+							<page string="Columns">
+								<field name="report_line">
+									<tree string="Column Name" editable="bottom" create="false" delete="false">
+										<field name="name"/>
+									</tree>
+									<form>
+										<group>
+											<group>
+												<field name="name"/>
+											</group>
+											<group></group>
+										</group>
+									</form>
+								</field>
+							</page>
+							<page string="Filters">
+								<field name="report_filter" attrs="{'readonly': [('state','!=','non_active')]}">
+									<tree>
+										<field name="column_name"/>
+										<field name="name"/>
+										<field name="fields_type"/>
+										<field name="selection"/>
+										<field name="model_id"/>
+										<field name="fields_domain"/>
+										<field name="operator"/>
+									</tree>
+									<form>
+										<group col="4">
+											<field name="column_name"/>
+											<field name="name"/>
+											<field name="fields_type"/>
+										</group>
+										<group string="Selection" attrs="{'invisible': [('fields_type','!=','selection')]}">
+											<group>
+												<field name="selection" attrs="{'required': [('fields_type','=','selection')]}"/>
+											</group>
+											<group></group>
+										</group>
+										<group string="Relation Details" attrs="{'invisible': [('fields_type','not in',['many2one','many2many'])]}" col="4">
+											<field name="model_id" attrs="{'required': [('fields_type','in',['many2one','many2many'])]}"/>
+											<field name="fields_domain" attrs="{'required': [('fields_type','in',['many2one','many2many'])]}"/>
+										</group>
+										<group string="Operator" attrs="{'invisible': [('fields_type','not in',['date','datetime'])]}">
+											<group>
+												<field name="operator" attrs="{'required': [('fields_type','in',['date','datetime'])]}"/>
+											</group>
+										</group>
+									</form>
+								</field>
+							</page>
+							<page string="Access Rights">
+								<field name="groups_id"/>
+							</page>
+						</notebook>
+		    		</sheet>
+		    	</form>
+		    	
+			</field>
+		</record>
+        
+		<record id="ms_generic_excel_report_action" model="ir.actions.act_window">
+            <field name="name">Generic Excel Report</field>
+            <field name="res_model">ms.generic.excel.report</field>
+            <field name="view_mode">tree</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+        </record>
+        
+        <record id="ms_generic_excel_report_action_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="ms_generic_excel_report_tree_view"/>
+            <field name="act_window_id" ref="ms_generic_excel_report_action"/>
+        </record>
+        
+        <record id="ms_generic_excel_report_action_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="ms_generic_excel_report_form_view"/>
+            <field name="act_window_id" ref="ms_generic_excel_report_action"/>
+        </record>
+        
+        <menuitem id="ms_generic_excel_report_menu" action="ms_generic_excel_report_action" name="Generic Excel Report" parent="base.reporting_menuitem" sequence="5"/>
+    	
+    </data>
+</odoo>

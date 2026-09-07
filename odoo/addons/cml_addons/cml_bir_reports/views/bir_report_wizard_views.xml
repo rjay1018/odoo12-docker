@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Wizard Form View -->
+    <record id="view_bir_report_wizard_form" model="ir.ui.view">
+        <field name="name">bir.report.wizard.form</field>
+        <field name="model">bir.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="BIR Report Wizard">
+                <sheet>
+                    <group>
+                        <field name="template_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                    </group>
+                    <footer>
+                        <button name="action_generate_excel_report"
+                                string="Generate Report"
+                                type="object"
+                                class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard Action -->
+    <record id="action_bir_report_wizard" model="ir.actions.act_window">
+        <field name="name">BIR Report Wizard</field>
+        <field name="res_model">bir.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

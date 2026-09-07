@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Form view for "hr.employee" -->
+        <record id="helpline_partner_form" model="ir.ui.view">
+            <field name="name">helpline_partner_form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="cml_clinic.view_clinic_client_form" />
+            <field name="arch" type="xml">
+
+				<xpath expr="//field[@name='referral_ids']" position="after"> 
+					<separator string="Helpline Call Records" colspan="4" groups="cml_clinic.group_clinic_specialist,cml_helpline.group_helpline_agent"/>
+                     <field name="helpline_ids" context="{'default_partner_id': active_id }" groups="cml_clinic.group_clinic_specialist,cml_helpline.group_helpline_agent">
+                            <tree>
+                                <field name="name"/>
+                                <field name="case_category_ids"/>
+                                <field name="date_of_seassion"/>
+                                <field name="start_time"/>
+                                <field name="end_time"/>
+                            </tree>	
+                    </field>
+				</xpath>
+				
+            </field>
+        </record>
+    </data>
+</odoo>

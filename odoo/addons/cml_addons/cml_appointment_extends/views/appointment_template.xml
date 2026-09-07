@@ -1,0 +1,228 @@
+<odoo>
+    <data>
+
+        <template id="portal_my_home_menu_appoint"
+                    name="Portal layout : My Appointments"
+                    inherit_id="portal.portal_breadcrumbs"
+                    priority="20">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]"
+                    position="inside">
+                <li t-if="page_name == 'appointment_history_list'"
+                    t-attf-class="breadcrumb-item #{'active ' if not docs else ''}">
+                    <a t-if="docs" t-attf-href="/my/appointments/history/list">My Appointments History</a>
+                    <t t-else="">My Appointments History</t>
+                </li>
+                <li t-if="page_name == 'appointment_upcoming_list'"
+                    t-attf-class="breadcrumb-item #{'active ' if not docs else ''}">
+                    <a t-if="docs" t-attf-href="/my/upcoming/appointments/list">My Up-Coming Appointments</a>
+                    <t t-else="">My Up-Coming Appointments</t>
+                </li>
+            </xpath>
+        </template>
+
+        <template id="portal_my_home_menu_appointment"
+                    name="Portal My Home : My Appointments"
+                    inherit_id="portal.portal_my_home"
+                    priority="20">
+            <xpath expr="//div[hasclass('o_portal_docs')]"
+                    position="inside">
+                <t t-if="my_appointments_upcoming_count" t-call="portal.portal_docs_entry">
+                    <t t-set="title">Up-Coming Appointments</t>
+                    <t t-set="estilo">background-color: lightgreen;</t>
+                    <t t-set="url" t-value="'/my/upcoming/appointments/list'" />
+                    <t t-set="count" t-value="my_appointments_upcoming_count" />
+                </t>
+                <t t-if="my_appointments_history_count" t-call="portal.portal_docs_entry">
+                    <t t-set="title">Appointments History</t>
+                    <t t-set="estilo">background-color: lightblue;</t>
+                    <t t-set="url" t-value="'/my/appointments/history/list'" />
+                    <t t-set="count" t-value="my_appointments_history_count" />
+                </t>
+            </xpath>
+        </template>
+
+        <template id="template_portal_my_home_menu_upcoing_appointments_lists" name="My Upcoming Appointments">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True" />
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">My Upcoming Appointments</t>
+                </t>
+                <t t-if="not docs">
+                    <p>You Don`t have any Upcoming Appointments.</p>
+                </t>
+                <t t-if="docs" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Appointment Number</th>
+                            <th>Start</th>
+                            <th>Specialist</th>
+                            <th>Meeting Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="doc">
+                            <td>
+                                <span t-field="doc.sequence"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.session_start"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                            <td>
+                                <span t-if="not doc.meeting_link">
+                                    Not Available
+                                </span>
+                                <a t-if="doc.meeting_link" class="btn btn-sm btn-primary text-white" t-att-href="doc.meeting_link" target="_blank">
+                                    <span>Join Now</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </t>
+        </template>
+        <template id="template_portal_my_home_menu_history_appointments_lists" name="My Appointments History">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True" />
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">My Appointments History</t>
+                </t>
+                <t t-if="not docs">
+                    <p>You Don`t have any Appointments History.</p>
+                </t>
+
+                <t t-if="docs" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Appointment Number</th>
+                            <th>Start</th>
+                            <th>Specialist</th>
+                            <th>Agreed Action Step</th>
+                            <th>Session Notes</th>
+                            <th>Rating</th>
+                            <th>Feedback</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="doc">
+                            <div class="modal fade" t-att-id="'modal_pop_' + str(doc.id)" tabindex="-1" role="dialog" >
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <form
+                                        t-att-action="'/my/appointments/popup/' + str(doc.id)"
+                                        method="post" class=''>
+                                        <input type="hidden"
+                                            name="csrf_token"
+                                            t-att-value="request.csrf_token()" />
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">
+                                                    Feedback
+                                                </h5>
+                                                <button
+                                                    type="button"
+                                                    class="close"
+                                                    data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span>&amp;times;
+                                                    </span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="1"/>
+                                                    <label class="form-check-label" for="inlineRadio1">1</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="2"/>
+                                                    <label class="form-check-label" for="inlineRadio2">2</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="3" />
+                                                    <label class="form-check-label" for="inlineRadio3">3</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="4" />
+                                                    <label class="form-check-label" for="inlineRadio3">4</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="5" />
+                                                    <label class="form-check-label" for="inlineRadio3">5</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="6" />
+                                                    <label class="form-check-label" for="inlineRadio3">6</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="7" />
+                                                    <label class="form-check-label" for="inlineRadio3">7</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="8" />
+                                                    <label class="form-check-label" for="inlineRadio3">8</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="9" />
+                                                    <label class="form-check-label" for="inlineRadio3">9</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="feedback_radio_option" value="10" />
+                                                    <label class="form-check-label" for="inlineRadio3">10</label>
+                                                </div>
+                                                <textarea
+                                                    class="form-control"
+                                                    name="feedback_message"
+                                                    placeholder="Feedback....."/>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-primary"
+                                                    aria-label="Confirm"
+                                                    title="Confirm">
+                                                    Confirm
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <td>
+                                <span t-field="doc.sequence"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.session_start"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.employee_id.name"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.agreed_astep"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.notes"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.feedback_radio_option"/>
+                            </td>
+                            <td>
+                                <t t-if="doc.feedback_message or doc.feedback_radio_option">
+                                    <span t-if="doc.feedback_message or doc.feedback_radio_option" t-field="doc.feedback_message"/>
+                                </t>
+                                <t t-else="">
+                                    <a class="btn btn-sm btn-primary text-white" href="#"
+                                        data-toggle="modal"
+                                        t-att-data-target="'#modal_pop_' + str(doc.id)">
+                                        <span>Feedback</span>
+                                    </a>
+                                </t>
+                            </td>
+                        </tr>
+                    </tbody>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

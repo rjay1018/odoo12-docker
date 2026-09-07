@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- 
+    <record id="menu_hello_regstration" model="website.menu">
+        <field name="name">Registration</field>
+        <field name="url">/hello</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">50</field>
+    </record>
+     -->
+    <template id="create_client" name="Hello Registration">
+        <t t-call="website.layout">
+            <div id="wrap" class="container">
+                <h1 class="text-center mt-2">Hello Registration</h1>
+                <section id="forms" class="col">
+                    <form role="form" action="/create/client" method="POST">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="is_client" value="1" checked="checked"/>
+                        <div>
+                            <label for="name" class="control-label">Full Name: (First Middle Last Name)</label> 
+                            <input  type="text" name="name" t-att-value="name" id="name" class="form-control" required="required"/>
+                        </div>
+                        <div>
+                            <label for="mobile" class="control-label">Contact Number</label> 
+                            <input  type="phone" name="mobile" t-att-value="mobile" id="mobile" class="form-control"/>
+                        </div>
+                        <div>
+                            <label for="email" class="control-label">Email</label> 
+                            <input  type="email" name="email" t-att-value="email" id="email" class="form-control"/>
+                        </div>
+                        <div>
+                            <label for="source_id" class="control-label">How did you know about us</label> 
+                            <!-- <select  type="source" name="source" t-att-value="source" id="source" class="form-control"/> -->
+                            <select  class="form-control link-style" name="source_id">
+                                <t t-foreach="sources" t-as="source">
+                                    <option t-att-value="source.id" t-esc="source.name"/>
+                                </t>
+                            </select>        
+                        </div>
+                        <div>
+                            <label for="hmo_provider" class="control-label">Do you have an HMO? Write none if you do not have and if yes, kindly specify:</label> 
+                            <input  type="text" name="hmo_provider" t-att-value="hmo_provider" id="hmo_provider" class="form-control"/>
+                        </div>
+                        <div>
+                            <label for="clinic_visited" class="control-label">Which clinic do you visit or most likely to visit?:</label> 
+                            <input  type="text" name="clinic_visited" t-att-value="clinic_visited" id="clinic_visited" class="form-control"/>
+                        </div>
+                        <div>
+                            <label for="guardian" class="control-label">Full Name of Guardian If Client is a Minor: (First Middle Last Name) Please note that all the following questions are pertaining to the client who is the minor.:</label> 
+                            <input  type="text" name="guardian" t-att-value="guardian" id="guardian" class="form-control"/>
+                        </div>
+
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="special_priority">
+                                <span>
+                                    Are you eligible for priority pass in scheduling? (Please remember to bring your ID on your scheduled visit.):
+                                </span>
+                            </label>
+                            <select name="special_priority" class="form-control o_website_form_input">
+                                <option value="false">
+                                
+                                </option>
+                                <option value="pwd">
+                                        Republic Act No. 10754 for Persons With Disability (PWD).
+                                    </option>
+                                <option value="senior">
+                                        Republic Act No. 9994 for Senior Citizens
+                                    </option>
+                                <option value="no">
+                                        No
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="emotional">
+                                <span>
+                                    Emotional - Being aware and managing your feelings, being at peace with who you are, 
+                                                and having the tools you need to weather life's ups and downs.
+                                </span>
+                            </label>
+                            <select name="emotional" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="environmental">
+                                <span>
+                                    Environmental - Reflects the impact your environment (home, school, city, planet) 
+                                                    has on you and the impact you have on the environment.
+                                </span>
+                            </label>
+                            <select name="environmental" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="financial">
+                                <span>
+                                    Financial - Your relationship with money and skills for managing resources, 
+                                                as well as your ability to make good consumer choices and seek out appropriate financial opportunities.:
+                                </span>
+                            </label>
+                            <select name="financial" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="intellectual">
+                                <span>
+                                    Intellectual - Feeling stimulated and engaged with learning and staying open to new ideas and perspectives.:   
+                                </span>
+                            </label>
+                            <select name="intellectual" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="occupational">
+                                <span>
+                                    Occupational - The work you choose to do and how it contributes to your community and fulfills you.:
+                            </span>
+                            </label>
+                            <select name="occupational" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="physical">
+                                <span>
+                                    Physical - The role that you take in maintaining your body for strength, vitality and energy.:
+                                </span>
+                            </label>
+                            <select name="physical" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="social">
+                                <span>
+                                    Social - How you choose to define and connect with your community and the people around you.
+                                </span>
+                            </label>
+                            <select name="social" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group form-field  form-field-selection" data-model-field="true" data-optional="true">
+                            <label class="control-label" for="spiritual">
+                                <span>
+                                    Spiritual - Your understanding of your place and purpose, 
+                                    how you make meaning of what happens to you, and what your mind goes to for comfort or relief.
+                                </span>
+                            </label>
+                            <select name="spiritual" class="form-control o_website_form_input">
+                                <option value="vu">
+                                        Very Unhealthy
+                                    </option>
+                                <option value="su">
+                                        Somewhat Unhealthy
+                                    </option>
+                                <option value="sh">
+                                        Somewhat Healthy
+                                    </option>
+                                <option value="vh" selected="selected">
+                                        Very Healthy
+                                    </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="support_ids" class="control-label">What type of support are you needing?</label> 
+                            <select  class="form-control link-style" name="support_ids">
+                                <t t-foreach="support" t-as="support">
+                                    <option t-att-value="support.id" t-esc="support.name"/>
+                                </t>
+                            </select>        
+                        </div>
+                        <table class="table table-striped" colspan="4">
+                                <thead>
+                                    <tr>
+                                        <th>Additional Questions</th>
+                                        <th>Check if Yes</th>
+                                        <th>More Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Risk of Self Harm?</td>
+                                        <td>
+                                            <input type="checkbox" name="selfharm" t-att-value="selfharm"/>
+                                        </td>
+                                        <td>
+                                            <input  type="text" name="selfharm_details" t-att-value="selfharm_details" id="selfharm_details" class="form-control"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Currently Taking Medication?</td>
+                                        <td>
+                                            <input type="checkbox" name="taking_meds" t-att-value="taking_meds"/>
+                                        </td>
+                                        <td>
+                                            <input  type="text" name="taking_meds_details" t-att-value="taking_meds_details" id="taking_meds_details" class="form-control"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Previous / On-going Treatment?</td>
+                                        <td>
+                                            <input type="checkbox" name="treatment" t-att-value="treatment"/>
+                                        </td>
+                                        <td>
+                                            <input  type="text" name="treatment_details" t-att-value="treatment_details" id="treatment_details" class="form-control"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Attending Legal Case?</td>
+                                        <td>
+                                            <input type="checkbox" name="legalcase" t-att-value="legalcase"/>
+                                        </td>
+                                        <td>
+                                            <input  type="text" name="legalcase_details" t-att-value="legalcase_details" id="legalcase_details" class="form-control"/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <div>
+                            <label for="personal_preference" class="control-label">Do you have any preference of the professional?:</label>
+                            <select name="personal_preference" class="form-control o_website_form_input">
+                                <option value="male">
+                                        Male
+                                    </option>
+                                <option value="female">
+                                        Female
+                                    </option>
+                                <option value="lgbtq">
+                                        LGBTQ+
+                                    </option>
+                                <option value="none" selected="selected">
+                                        No Preference
+                                    </option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="problem" class="control-label">In your own words, describe your present problems.</label> 
+                            <input type="text"  t-att-value="problem" id="problem" class="form-control"/>
+                        </div>
+                        <div>
+                            <label for="other_info" class="control-label">Are there any other information you may wish to share 
+                            that you feel is relevant to consider for our counseling session?</label> 
+                            <input type="text" name="other_info" t-att-value="other_info" id="other_info" class="form-control"/>
+                        </div>
+
+                            <div class="clearfix oe_login_buttons text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">SUBMIT</button>
+                            </div>
+                    </form> 
+                </section>
+            </div>
+        </t>
+    </template>
+    
+    
+    <record id="registartion_thanks" model="website.page">
+        <field name="name">Thank You</field>
+        <field name="type">qweb</field>
+        <field name="url">/registration-thank-you</field>
+        <field name="website_published">True</field>
+        <field name="key">cml_clinic.registartion_thanks</field>
+        <field name="arch" type="xml">
+            <t t-name="cml_clinic.registartion_thanks-name">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="alert alert-success" role="status">
+                                            Thank you for completing our registration.
+                                        </div>
+                                        <p>
+                                            We will get back to you for your appointment schedule.
+                                        </p>
+                                    </div>
+                                </div>
+                            </h1>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </field>
+    </record>
+</odoo>

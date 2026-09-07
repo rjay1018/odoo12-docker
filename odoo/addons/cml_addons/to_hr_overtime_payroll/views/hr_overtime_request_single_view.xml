@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<!-- Form view -->
+		<record id="view_overtime_request_record_form" model="ir.ui.view">
+			<field name="name">hr.overtime.request_single.form</field>
+			<field name="model">hr.overtime.request_single</field>
+			<field name="arch" type="xml">
+				<form string="Overtime Request">
+					<header>
+						<button name="action_confirm" states="draft" string="Confirm"
+							type="object" class="oe_highlight" attrs="{'invisible':[('can_confirm', '=', False)]}" />
+						<button name="action_refuse" states="confirmed,approved"
+							string="Refuse" type="object"
+							attrs="{'invisible':[('can_approve', '=', False)]}" groups="to_hr_overtime_payroll.group_hr_overtime_user"/>
+						<button name="action_reconfirm" states="refused" string="Resubmit"
+							type="object" class="oe_highlight" attrs="{'invisible':[('can_reconfirm', '=', False)]}" />
+						<button name="action_approve" states="confirmed" string="Approve"
+							type="object" class="oe_highlight"
+							attrs="{'invisible':[('can_approve', '=', False)]}" groups="to_hr_overtime_payroll.group_hr_overtime_user" />
+						<button name="action_draft" states="canceled"
+							string="Set to Draft" type="object" groups="base.group_user" />
+						<button name="action_cancel" states="confirmed,refused,approved" string="Cancel"
+							type="object" groups="base.group_user" />
+						<field name="state" widget="statusbar" statusbar_visible="draft,confirmed,approved" />
+						<field name="can_approve" invisible="1" />
+						<field name="can_confirm" invisible="1" />
+						<field name="can_reconfirm" invisible="1" />
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name" readonly="1" />
+							</h1>
+
+						</div>
+						<group>
+							<group>
+								<field name="employee_id" />
+								<field name="hr_contract_id" invisible="1" />
+							</group>
+							<group>
+								<field name="approving_user_id" />
+								<field name="approved_by" attrs="{'invisible':[('approved_by','=', False)]}" />
+								<field name="company_id" groups="base.group_multi_company"
+									options="{'no_create': True}" />
+							</group>
+						</group>
+
+						<notebook>
+							<page string="Overtime Request Lines">
+								<field name="request_line_ids">
+									<tree string="Overtime Request Lines" editable="bottom">
+										<field name="employee_id" invisible="1" />
+										<field name="start_time" />
+										<field name="end_time" />
+										<field name="reason_id" />
+										<field name="description" />
+										<field name="hr_contract_id" groups="base.group_no_one" />
+										<field name="resource_calendar_id" groups="base.group_no_one" />
+										<field name="work_day_type_id" groups="base.group_no_one"/>
+										<field name="overtime_rule_id" groups="base.group_no_one" />
+										<field name="worked_hours" widget="float_time" />
+										<field name="worked_hours" groups="base.group_no_one" digits="[2,10]"/>
+										<field name="rate" />
+										<field name="state" invisible="1" />
+									</tree>
+								</field>
+
+							</page>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="activity_ids" widget="mail_activity" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<!-- tree (list) view -->
+		<record id="view_overtime_request_tree" model="ir.ui.view">
+			<field name="name">hr.overtime.request.tree</field>
+			<field name="model">hr.overtime.request_single</field>
+			<field name="arch" type="xml">
+				<tree string="Overtime Requests">
+					<field name="name" />
+					<field name="employee_id" />
+					<field name="department_id" />
+					<field name="job_id" />
+					<field name="state" />
+					<field name="approving_user_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="view_overtime_request_search">
+			<field name="name">hr.overtime.request.search</field>
+			<field name="model">hr.overtime.request_single</field>
+			<field name="arch" type="xml">
+				<search>
+					<field name="employee_id" />
+					<field name="department_id" />
+					<field name="job_id" />
+					<field name="state" />
+					<filter name="my_request" string="My Request"
+						domain="[('employee_id', '=', uid)]" />
+					<separator />
+					<filter name="ftr_draft" string="Draft"
+						domain="[('state', '=', 'draft')]" />
+					<filter name="ftr_confirmed" string="Submitted"
+						domain="[('state', '=', 'confirmed')]" />
+					<filter name="ftr_refused" string="Refused"
+						domain="[('state', '=', 'refused')]" />
+					<filter name="done_request" string="Done"
+						domain="[('state', '=', 'done')]" />
+					<filter name="ftr_cancelled" string="Cancelled"
+						domain="[('state', '=', 'canceled')]" />
+					<group string="Group By">
+						<filter name="group_by_employee" string="Employee"
+							context="{'group_by': 'employee_id'}" />
+						<filter name="group_by_department" string="Department"
+							context="{'group_by': 'department_id'}" />
+						<filter name="group_by_job" string="Job" context="{'group_by': 'job_id'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="single_overtime_request_action">
+			<field name="name">Overtime Requests</field>
+			<field name="res_model">hr.overtime.request_single</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[]</field>
+			<field name="context">{'search_default_ftr_draft': 1,'search_default_ftr_refused': 1,'search_default_ftr_cancelled': 1}</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Create the first record
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="single_overtime_request_to_approve_action">
+			<field name="name">To Appove</field>
+			<field name="res_model">hr.overtime.request_single</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state', '=', 'confirmed')]</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Create the first record
+				</p>
+			</field>
+		</record>
+		<record model="ir.actions.act_window" id="single_overtime_request_approved_action">
+			<field name="name">To Appove</field>
+			<field name="res_model">hr.overtime.request_single</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state', '=', 'approved')]</field>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Create the first record
+				</p>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="single_overtime_request_done_action">
+			<field name="name">My Overtime Requests</field>
+			<field name="res_model">hr.overtime.request_single</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="domain">[('state', '=', 'done')]</field>
+			<field name="help" type="html">
+				<p>Done Requests which have been reported in payslips will be listed
+					here
+				</p>
+			</field>
+		</record>
+
+
+		<menuitem id="single_overtime_request_menu" name="Requests/Declarations"
+			parent="overtime_requests_menu" action="single_overtime_request_action"
+			sequence="1" groups="base.group_user" />
+
+		<menuitem id="single_overtime_request_to_approve_menu" name="To Approve"
+			parent="overtime_requests_menu" action="single_overtime_request_to_approve_action"
+			sequence="2" groups="base.group_user" />
+
+		<menuitem id="single_overtime_request_approved_menu" name="Approved Requests"
+			parent="overtime_requests_menu" action="single_overtime_request_approved_action"
+			sequence="3" groups="base.group_user" />
+
+		<menuitem id="single_overtime_request_done_menu" name="Reported in Payslips"
+			parent="overtime_requests_menu" action="single_overtime_request_done_action"
+			sequence="4" groups="base.group_user" />
+
+	</data>
+</odoo>

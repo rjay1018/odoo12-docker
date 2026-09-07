@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CML job description_subreport5" language="groovy" pageWidth="540" pageHeight="752" columnWidth="540" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="2.5937424601000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;succession_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Candidate_Name-candidate_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Job_Title-job_title" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Job_Title-job_title]]></fieldDescription>
+	</field>
+	<field name="Interim_Successor-interim_successor" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Interim_Successor-interim_successor]]></fieldDescription>
+	</field>
+	<field name="Candidate_Since-candidate_since" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Candidate_Since-candidate_since]]></fieldDescription>
+	</field>
+	<field name="Ranking-ranking" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Ranking-ranking]]></fieldDescription>
+	</field>
+	<field name="Readiness-readiness" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Readiness-readiness]]></fieldDescription>
+	</field>
+	<field name="Nine_Box_Rating-nbox_rating" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Succession_Plan-succession_ids/Nine_Box_Rating-nbox_rating]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="89" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="81" width="540" height="3"/>
+				<box>
+					<pen lineColor="#55555A"/>
+					<topPen lineColor="#55555A"/>
+					<leftPen lineColor="#55555A"/>
+					<bottomPen lineWidth="0.25" lineColor="#D6D6D8"/>
+					<rightPen lineColor="#55555A"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="331" y="49" width="42" height="32" forecolor="#55555A"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ranking]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="487" y="49" width="53" height="32" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nine Box Rating]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="49" width="103" height="32" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Candidate Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="275" y="49" width="52" height="32" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Candidate Since]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="540" height="26" forecolor="#55555A"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Succession Planning]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="107" y="49" width="91" height="32" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Job Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="202" y="49" width="69" height="32" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Interim Successor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="377" y="49" width="106" height="32" forecolor="#55555A"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Readyness]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="103" height="26" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="275" y="0" width="52" height="26" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd-MMM-yy").format($F{Candidate_Since-candidate_since})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="202" y="0" width="69" height="26" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Interim_Successor-interim_successor}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="487" y="0" width="53" height="26" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nine_Box_Rating-nbox_rating}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="107" y="0" width="91" height="26" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Job_Title-job_title}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="331" y="0" width="42" height="26" forecolor="#55555A"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Ranking-ranking}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="377" y="0" width="106" height="26" forecolor="#55555A"/>
+				<textElement lineSpacing="Single">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Readiness-readiness} == "rdnw" ? "Ready Now" :
+$F{Readiness-readiness} == "rdly" ? "Less than One Year" :
+$F{Readiness-readiness} == "rd12" ? "1 to 2 Years Readiness" :
+$F{Readiness-readiness} == "rd34" ? "3 to 4 Years Readiness" :
+$F{Readiness-readiness} == "rdnr" ? "NOt Ready" :
+""]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

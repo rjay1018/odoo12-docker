@@ -1,0 +1,133 @@
+<odoo>
+    <data>
+
+        <template id="portal_my_home_menu_assesst"
+                    name="Portal layout : My Assessment"
+                    inherit_id="portal.portal_breadcrumbs"
+                    priority="20">
+            <xpath expr="//ol[hasclass('o_portal_submenu')]"
+                    position="inside">
+                <li t-if="page_name == 'assessment_list'" class="breadcrumb-item">
+                    <t>Assessments</t>
+                </li>
+                <li t-if="page_name == 'upcoming_assessment_list'" class="breadcrumb-item">
+                    <t>Upcoming Assessments</t>
+                </li>
+            </xpath>
+        </template>
+
+        <template id="portal_my_home_menu_assessment"
+                    name="Portal My Home : Assessments"
+                    inherit_id="portal.portal_my_home"
+                    priority="20">
+            <xpath expr="//div[hasclass('o_portal_docs')]"
+                    position="inside">
+                <t t-if="assessment_count" t-call="portal.portal_docs_entry">
+                    <t t-set="title">Assessments</t>
+                    <t t-set="estilo">background-color: lightyellow;</t>
+                    <t t-set="url" t-value="'/assessments/list'" />
+                    <t t-set="count" t-value="assessment_count" />
+                </t>
+                <t t-if="upcoming_assessment_count" t-call="portal.portal_docs_entry">
+                    <t t-set="title">Upcoming Assessments</t>
+                    <t t-set="estilo">background-color: lightgreen;</t>
+                    <t t-set="url" t-value="'/upcoming/assessments/list'" />
+                    <t t-set="count" t-value="upcoming_assessment_count" />
+                </t>
+            </xpath>
+        </template>
+
+
+        <template id="template_portal_my_home_menu_assessments_lists" name="Assessment List">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True" />
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Assessments</t>
+                </t>
+                <t t-if="not docs">
+                    <p>You Don`t have any Assessments.</p>
+                </t>
+                <t t-if="docs" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Survey</th>
+                            <th>Creation Date</th>
+                            <th>Status</th>
+                            <!-- th class="text-right">Average Score</th>
+                            <th class="text-right">Total Score</th-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="doc">
+                            <td>
+                                <span t-field="doc.survey_id.title"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.date_create"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.state"/>
+                            </td>
+                            <!-- td class="text-right">
+                                <span t-field="doc.average_score"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_score"/>
+                            </td-->
+                        </tr>
+                    </tbody>
+                </t>
+            </t>
+        </template>
+
+        <template id="template_portal_my_home_menu_upcoming_assessments_lists" name="Upcoming Assessment List">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True" />
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Up-coming Assessments</t>
+                </t>
+                <t t-if="not docs">
+                    <p>You Don`t have any Up-coming Assessments.</p>
+                </t>
+                <t t-if="docs" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Survey</th>
+                            <th>Creation Date</th>
+                            <th>Status</th>
+                            <!-- th class="text-right">Average Score</th>
+                            <th class="text-right">Total Score</th-->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="docs" t-as="doc">
+                            <td>
+                                <span t-field="doc.survey_id.title"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.date_create"/>
+                            </td>
+                            <td>
+                                <span t-field="doc.state"/>
+                            </td>
+                            <td>
+                                <span t-if="not doc.survey_id.public_url">
+                                    Not Available
+                                </span>
+                                <a t-if="doc.survey_id.print_url" class="btn btn-sm btn-primary text-white" t-att-href="doc.survey_id.public_url" target="_blank">
+                                    <span>Answer Assesment</span>
+                                </a>
+                            </td>
+                            <!-- td class="text-right">
+                                <span t-field="doc.average_score"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="doc.total_score"/>
+                            </td-->
+                        </tr>
+                    </tbody>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="hr_overtime_rule_tree_view" model="ir.ui.view">
+			<field name="name">hr.overtime.rule.tree</field>
+			<field name="model">hr.overtime.rule</field>
+			<field name="arch" type="xml">
+				<tree string="Overtime Rules">
+					<field name="name" />
+					<field name="dayofweek" />
+					<field name="hour_from" widget="float_time" />
+					<field name="hour_to" widget="float_time" />
+					<field name="code_id" />
+					<field name="rate" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="hr_overtime_rule_form_view" model="ir.ui.view">
+			<field name="name">hr.overtime.rule.form</field>
+			<field name="model">hr.overtime.rule</field>
+			<field name="arch" type="xml">
+				<form string="Overtime Rule">
+					<sheet>
+						<group>
+							<field name="name" />
+							<field name="dayofweek" />
+							<label for="hour_from" string="Hours" />
+							<div>
+								<field name="hour_from" widget="float_time" class="oe_inline" />
+								-
+								<field name="hour_to" widget="float_time" class="oe_inline" />
+							</div>
+							<field name="code_id" />
+							<field name="code" />
+							<field name="rate" />
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_hr_overtime_rules">
+			<field name="name">Overtime Rules</field>
+			<field name="res_model">hr.overtime.rule</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem action="action_hr_overtime_rules" name="Overtime Rules"
+			id="hr_overtime_rule_menu" parent="hr_overtime_config_menu" sequence="10"
+			groups="to_hr_overtime_payroll.group_hr_overtime_manager" />
+	</data>
+</odoo>

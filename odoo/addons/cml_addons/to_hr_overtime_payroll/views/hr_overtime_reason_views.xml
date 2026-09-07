@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="hr_overtime_reason_tree_view" model="ir.ui.view">
+			<field name="name">hr.overtime.reason.tree</field>
+			<field name="model">hr.overtime.reason</field>
+			<field name="arch" type="xml">
+				<tree string="Overtime Reasons">
+					<field name="name" />
+					<field name="description" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="hr_overtime_reason_form_view" model="ir.ui.view">
+			<field name="name">hr.overtime.reason.form</field>
+			<field name="model">hr.overtime.reason</field>
+			<field name="arch" type="xml">
+				<form string="Overtime Reason" delete="false">
+					<sheet>
+						<group>
+							<field name="name" />
+							<field name="allow_working_schedule_overlap" />
+							<label for="description" />
+							<div>
+								<field name="description" />
+							</div>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_hr_overtime_reason">
+			<field name="name">Overtime Reason</field>
+			<field name="res_model">hr.overtime.reason</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<menuitem name="Overtime Reasons" action="action_hr_overtime_reason"
+			id="hr_overtime_reason_menu" parent="hr_overtime_config_menu"
+			sequence="50" groups="to_hr_overtime_payroll.group_hr_overtime_manager" />
+	</data>
+</odoo>

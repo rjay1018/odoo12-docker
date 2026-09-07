@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.actions.server" id="sh_landed_cost_cancel_multi_action">
+        <field name="name">Cancel</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_stock_landed_cost" />
+        <field name="binding_model_id" ref="model_stock_landed_cost" />
+        <field name="state">code</field>
+        <field name="code">
+            records.action_landed_cost_cancel()
+        </field>
+    </record>
+    <record model="ir.actions.server" id="sh_landed_cost_cancel_draft_multi_action">
+        <field name="name">Cancel &amp; Reset Draft</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_stock_landed_cost" />
+        <field name="binding_model_id" ref="model_stock_landed_cost" />
+        <field name="state">code</field>
+        <field name="code">
+            records.action_landed_cost_cancel_draft()
+        </field>
+    </record>
+    <record model="ir.actions.server" id="sh_landed_cost_cancel_delete_multi_action">
+        <field name="name">Cancel &amp; Delete</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_stock_landed_cost" />
+        <field name="binding_model_id" ref="model_stock_landed_cost" />
+        <field name="state">code</field>
+        <field name="code">
+            records.action_landed_cost_cancel_delete()
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="membership_extension_products_form">
+        <field name="name">Add membership category field</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="membership.membership_products_form"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="is_apply_free_session"/>
+                <field name="free_session_number"
+                       attrs="{'invisible': [('is_apply_free_session', '=', False)]}"/>
+                <field name="free_product_id"
+                       attrs="{'invisible': [('is_apply_free_session', '=', False)], 'required': [('is_apply_free_session', '=', False)]}"/>
+                <field name="allow_free_session_product_ids">
+                    <tree>
+                        <field name="default_code"/>
+                        <field name="name"/>
+                        <field name="lst_price"/>
+                    </tree>
+                </field>
+            </field>
+        </field>
+    </record>
+
+
+</odoo>

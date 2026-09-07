@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="manpower_recruit_request_form_view">
+            <field name="name">Manpower Recruit Request Form</field>
+            <field name="model">manpower.recruit.request</field>
+            <field name="arch" type="xml">
+                <form string="Manpower Recruit Request Form">
+                    <header>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                        <button class="oe_highlight" string="Send Request" name="send_request_state" 
+                            type="object" attrs="{'invisible': [('state', 'not in', ('draft'))]}"
+                            groups="base.group_user"/>
+                        <button class="oe_highlight" string="Validate" name="validate_state" 
+                            type="object" attrs="{'invisible': [('state', 'not in', ('request'))]}"
+                            groups="hr_recruitment.group_hr_recruitment_user"/>
+                        <button class="oe_highlight" string="Approve" name="approve_state" 
+                            type="object" attrs="{'invisible': [('state', 'not in', ('validate'))]}"
+                            groups="hr_recruitment.group_hr_recruitment_manager"/>
+                        <button class="oe_highlight" string="Cancel" name="cancel_state" 
+                            type="object" attrs="{'invisible': [('state', 'not in', ('request'))]}"
+                            groups="hr_recruitment.group_hr_recruitment_user"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="sequence"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" 
+                                    attrs="{'readonly':[('state','!=','draft')]}" placeholder="Enter Name"/>
+                                <field name="manpower" 
+                                    attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="department_id" 
+                                    attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="description" 
+                                    attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="operation_type" required ="1" attrs="{'readonly':[('state','!=','draft')]}"/>
+                                <field name="job_position" attrs="{'readonly':[('state','!=','draft')],'required':[('operation_type','=','update')],'invisible':[('operation_type','!=','update')]}"/>
+                                <field name="job_location_id" 
+                                    attrs="{'readonly':[('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" 
+                            groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="manpower_recruit_request_tree_view">
+            <field name="name">Manpower Recruit Request Tree</field>
+            <field name="model">manpower.recruit.request</field>
+            <field name="arch" type="xml">
+                <tree string="Manpower Recruit Request Tree">
+                    <field name="name"/>
+                    <field name="manpower"/>
+                    <field name="description"/>
+                    <field name="job_location_id"/>
+                    <field name="department_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="manpower_recruit_request_action">
+            <field name="name">Manpower Recruit Request</field>
+            <field name="res_model">manpower.recruit.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face"> Manpower Recruit Request </p>
+            </field>
+        </record>
+        
+        <record model="ir.ui.menu" id="hr_recruitment.menu_hr_recruitment_root">
+            <field name="groups_id" eval="[(6,0,[ref('base.group_user')])]"/>
+        </record>
+
+        <menuitem id="manpower_request" name="Manpower Recruitment Request"
+            parent="hr_recruitment.menu_hr_recruitment_configuration"
+            groups="base.group_user" action="manpower_recruit_request_action"/>
+
+    </data>
+</odoo>

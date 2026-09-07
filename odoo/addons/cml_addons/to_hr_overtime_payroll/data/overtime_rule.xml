@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+		<!-- Overtime Rules for Monday -->
+		<record model="hr.overtime.rule" id="rule_monday_midnight_to_morning">
+			<field name="name">Monday Early Morning</field>
+			<field name="dayofweek">0</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_ot0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_monday_daytime">
+			<field name="name">Monday Daytime</field>
+			<field name="dayofweek">0</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_ot0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_monday_evening">
+			<field name="name">Monday Evening</field>
+			<field name="dayofweek">0</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_ot1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_monday_night">
+			<field name="name">Monday Night</field>
+			<field name="dayofweek">0</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_ot2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+		<!-- Overtime Rules for Tuesday -->
+		<record model="hr.overtime.rule" id="rule_tuesday_midnight_to_morning">
+			<field name="name">Tuesday Early Morning</field>
+			<field name="dayofweek">1</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_ot0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_tuesday_daytime">
+			<field name="name">Tuesday Daytime</field>
+			<field name="dayofweek">1</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_ot0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_tuesday_evening">
+			<field name="name">Tuesday Evening</field>
+			<field name="dayofweek">1</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_ot1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_tuesday_night">
+			<field name="name">Tuesday Night</field>
+			<field name="dayofweek">1</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_ot2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+		<!-- Overtime Rules for Websday -->
+		<record model="hr.overtime.rule" id="rule_wednesday_midnight_to_morning">
+			<field name="name">Wednesday Early Morning</field>
+			<field name="dayofweek">2</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_ot0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_wednesday_daytime">
+			<field name="name">Wednesday Daytime</field>
+			<field name="dayofweek">2</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_ot0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_wednesday_evening">
+			<field name="name">Wednesday Evening</field>
+			<field name="dayofweek">2</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_ot1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_wednesday_night">
+			<field name="name">Wednesday Night</field>
+			<field name="dayofweek">2</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_ot2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+		<!-- Overtime Rules for Thursday -->
+		<record model="hr.overtime.rule" id="rule_thursday_midnight_to_morning">
+			<field name="name">Thursday Early Morning</field>
+			<field name="dayofweek">3</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_ot0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_thursday_daytime">
+			<field name="name">Thursday Daytime</field>
+			<field name="dayofweek">3</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_ot0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_thursday_evening">
+			<field name="name">Thursday Evening</field>
+			<field name="dayofweek">3</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_ot1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_thursday_night">
+			<field name="name">Thursday Night</field>
+			<field name="dayofweek">3</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_ot2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+		<!-- Overtime Rules for Friday -->
+		<record model="hr.overtime.rule" id="rule_friday_midnight_to_morning">
+			<field name="name">Friday Early Morning</field>
+			<field name="dayofweek">4</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_ot0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_friday_daytime">
+			<field name="name">Friday Daytime</field>
+			<field name="dayofweek">4</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_ot0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_friday_evening">
+			<field name="name">Friday Evening</field>
+			<field name="dayofweek">4</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_ot1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_friday_night">
+			<field name="name">Friday Night</field>
+			<field name="dayofweek">4</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_ot2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+		<!-- Overtime Rules for Saturday -->
+		<record model="hr.overtime.rule" id="rule_saturday_midnight_to_morning">
+			<field name="name">Saturday Early Morning</field>
+			<field name="dayofweek">5</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_otsat0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_saturday_morning">
+			<field name="name">Saturday Morning</field>
+			<field name="dayofweek">5</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">12</field>
+			<field name="code_id" ref="rule_code_otsat0612" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_saturday_afternoon">
+			<field name="name">Saturday Afternoon</field>
+			<field name="dayofweek">5</field>
+			<field name="hour_from">12</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_otsat1218" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_saturday_evening">
+			<field name="name">Saturday Evening</field>
+			<field name="dayofweek">5</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_otsat1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_saturday_night">
+			<field name="name">Saturday Night</field>
+			<field name="dayofweek">5</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_otsat2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+		<!-- Overtime Rules for Sunday -->
+		<record model="hr.overtime.rule" id="rule_sunday_midnight_to_morning">
+			<field name="name">Sunday Early Morning</field>
+			<field name="dayofweek">6</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_otsun0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_sunday_daytime">
+			<field name="name">Sunday Daytime</field>
+			<field name="dayofweek">6</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_otsun0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_sunday_evening">
+			<field name="name">Sunday Evening</field>
+			<field name="dayofweek">6</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_otsun1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_sunday_night">
+			<field name="name">Sunday Night</field>
+			<field name="dayofweek">6</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_otsun2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+
+		<!-- Overtime Rules for Holiday from Monday to Friday-->
+		<record model="hr.overtime.rule" id="rule_holiday_midnight_to_morning">
+			<field name="name">Holiday Early Morning</field>
+			<field name="dayofweek">-1</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_othol0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_daytime">
+			<field name="name">Holiday Daytime</field>
+			<field name="dayofweek">-1</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_othol0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_evening">
+			<field name="name">Holiday Evening</field>
+			<field name="dayofweek">-1</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_othol1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_night">
+			<field name="name">Holiday Night</field>
+			<field name="dayofweek">-1</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_othol2224" />
+			<field name="company_id" eval="False" />
+		</record>
+		
+		<!-- Overtime Rules for Holiday on Saturday-->
+		<record model="hr.overtime.rule" id="rule_holiday_sat_midnight_to_morning">
+			<field name="name">Holiday Early Morning (on SAT)</field>
+			<field name="dayofweek">-2</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_otholsat0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sat_morning">
+			<field name="name">Holiday Morning (on SAT)</field>
+			<field name="dayofweek">-2</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">12</field>
+			<field name="code_id" ref="rule_code_otholsat0612" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sat_afernoon">
+			<field name="name">Holiday Afternoon (on SAT)</field>
+			<field name="dayofweek">-2</field>
+			<field name="hour_from">12</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_otholsat1218" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sat_evening">
+			<field name="name">Holiday Evening (on SAT)</field>
+			<field name="dayofweek">-2</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_otholsat1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sat_night">
+			<field name="name">Holiday Night (on SAT)</field>
+			<field name="dayofweek">-2</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_otholsat2224" />
+			<field name="company_id" eval="False" />
+		</record>
+		
+		<!-- Overtime Rules for Holiday on Sunday-->
+		<record model="hr.overtime.rule" id="rule_holiday_sun_midnight_to_morning">
+			<field name="name">Holiday Early Morning (on SUN)</field>
+			<field name="dayofweek">-3</field>
+			<field name="hour_from">0</field>
+			<field name="hour_to">6</field>
+			<field name="code_id" ref="rule_code_otholsun0006" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sat_daytime">
+			<field name="name">Holiday Daytime (on SUN)</field>
+			<field name="dayofweek">-3</field>
+			<field name="hour_from">6</field>
+			<field name="hour_to">18</field>
+			<field name="code_id" ref="rule_code_otholsun0618" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sun_evening">
+			<field name="name">Holiday Evening (on SUN)</field>
+			<field name="dayofweek">-3</field>
+			<field name="hour_from">18</field>
+			<field name="hour_to">22</field>
+			<field name="code_id" ref="rule_code_otholsun1822" />
+			<field name="company_id" eval="False" />
+		</record>
+		<record model="hr.overtime.rule" id="rule_holiday_sun_night">
+			<field name="name">Holiday Night (on SUN)</field>
+			<field name="dayofweek">-3</field>
+			<field name="hour_from">22</field>
+			<field name="hour_to">23.9933333333333</field>
+			<field name="code_id" ref="rule_code_otholsun2224" />
+			<field name="company_id" eval="False" />
+		</record>
+
+	</data>
+</odoo>

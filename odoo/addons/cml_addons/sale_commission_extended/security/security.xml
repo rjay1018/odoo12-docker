@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- New group for Commission Management -->
+        <record id="group_commission_management" model="res.groups">
+            <field name="name">Commission Management</field>
+            <field name="category_id" ref="base.module_category_sales_management"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="comment">Users with this group can access the Commission Management menus.</field>
+        </record>
+    </data>
+
+    <data>
+        <!-- Restrict the main Commission menu from base module to this new group.
+             This effectively removes access from Sales Managers unless they are explicitly
+             added to this new Commission Management group. -->
+        <record id="sale_commission.menu_sale_commissions_management" model="ir.ui.menu">
+            <field name="groups_id" eval="[(6, 0, [ref('sale_commission_extended.group_commission_management')])]"/>
+        </record>
+    </data>
+</odoo>

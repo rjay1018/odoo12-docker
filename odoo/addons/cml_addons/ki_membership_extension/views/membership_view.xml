@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+         <record model="ir.ui.view" id="view_partner_form_inherit_membership_line">
+            <field name="name">view_partner_form_inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="membership.view_partner_form"/>
+            <field name="arch" type="xml">
+               <xpath expr="//field[@name='member_lines']//tree//field[@name='membership_id']" position="after">
+                    <field name="is_apply_free_session"/>
+                    <field name="free_session_number"/>
+                    <field name="used_free_session"/>
+                </xpath>
+            </field>
+         </record>
+    </data>
+</odoo>

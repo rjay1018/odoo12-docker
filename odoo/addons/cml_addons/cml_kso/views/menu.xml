@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="hr_kfamily_view" model="ir.ui.view">
+			<field name="name">hr_kfamily_view</field>
+			<field name="model">hr.kfamily</field>
+			<field name="arch" type="xml">
+				<tree string="K-Family">
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+
+		<record id="hr_sector_view" model="ir.ui.view">
+			<field name="name">hr_sector_view</field>
+			<field name="model">hr.sector</field>
+			<field name="arch" type="xml">
+				<tree string="Sector">
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+
+
+		<record id="hr_unit_view" model="ir.ui.view">
+			<field name="name">hr_unit_view</field>
+			<field name="model">hr.sector</field>
+			<field name="arch" type="xml">
+				<tree string="Sector">
+                    <field name="name"/>
+                </tree>
+			</field>
+		</record>
+
+		<!-- Action -->
+
+
+        <record id="kfamily_action" model="ir.actions.act_window">
+            <field name="name">K-Family</field>
+            <field name="res_model">hr.kfamily</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="sector_action" model="ir.actions.act_window">
+            <field name="name">Sector</field>
+            <field name="res_model">hr.sector</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		
+        <record id="unit_action" model="ir.actions.act_window">
+            <field name="name">Unit</field>
+            <field name="res_model">hr.unit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Menu -->
+		<menuitem id="menu_kso_group"
+                  parent="hr.menu_human_resources_configuration"
+                  name="KSO Grouping"
+                  sequence="90"/>
+
+        <menuitem id="menu_kfamily"
+                  parent="menu_kso_group"
+                  name="K-Family"
+                  action="kfamily_action"
+                  sequence="90"/>
+
+        <menuitem id="menu_sector"
+                  parent="menu_kso_group"
+                  name="Sector"
+                  action="sector_action"
+                  sequence="91"/>
+
+        <menuitem id="menu_unit"
+                  parent="menu_kso_group"
+                  name="Unit"
+                  action="unit_action"
+                  sequence="92"/>
+
+	</data>
+</odoo>

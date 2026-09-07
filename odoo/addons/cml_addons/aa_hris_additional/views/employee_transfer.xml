@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+      <record id="employee_form_inherit_employee_additional_transfer" model="ir.ui.view">
+          <field name="name">hr.employee.additinional.transfer.inherit.form</field>
+          <field name="model">employee.transfer</field>
+          <field name="inherit_id" ref="hr_employee_transfer.employee_transfer"/>
+          <field name="arch" type="xml">
+            <xpath expr="//field[@name='employee_id']" position="after">
+        			<field name="kso"/>
+              <field name="supervisor"/>
+              <field name="department_id"/>
+        		</xpath>
+
+          </field>
+      </record>
+
+
+    </data>
+  </odoo>

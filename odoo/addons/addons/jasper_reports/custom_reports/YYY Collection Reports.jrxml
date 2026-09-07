@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Collection Report" language="groovy" pageWidth="1008" pageHeight="612" orientation="Landscape" columnWidth="1008" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.6105100000000023"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;invoice_ids&apos;]"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\PC\\Desktop\\Jason\\RELIABLE & RL\\jrxml\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="parameter1" class="java.lang.Object">
+		<defaultValueExpression><![CDATA["/opt/odoo12Enterprise/custom/addons/Jasperreports_odoo-12.0/jasper_reports/custom_reports/RELIABLE & RL Collection Report_subreport1.jrxml"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Name-name]]></fieldDescription>
+	</field>
+	<field name="Payment_Date-payment_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Payment_Date-payment_date]]></fieldDescription>
+	</field>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Invoice_Date-date_invoice" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Invoice_Date-date_invoice]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Partner-partner_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Payment_Ref.-reference" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Payment_Ref.-reference]]></fieldDescription>
+	</field>
+	<field name="Tax-amount_tax" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Tax-amount_tax]]></fieldDescription>
+	</field>
+	<field name="Untaxed_Amount-amount_untaxed" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Untaxed_Amount-amount_untaxed]]></fieldDescription>
+	</field>
+	<field name="Total-amount_total" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Total-amount_total]]></fieldDescription>
+	</field>
+	<field name="Official_Receipt_No.-official_receipt_no" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Official_Receipt_No.-official_receipt_no]]></fieldDescription>
+	</field>
+	<field name="Amount_Due-residual" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Invoices-invoice_ids/Amount_Due-residual]]></fieldDescription>
+	</field>
+	<variable name="sales" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Untaxed_Amount-amount_untaxed} == "" ? 0.00 : $F{Untaxed_Amount-amount_untaxed})]]></variableExpression>
+	</variable>
+	<variable name="vat" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Tax-amount_tax} == "" ? 0.00 : $F{Tax-amount_tax})]]></variableExpression>
+	</variable>
+	<variable name="inv_total" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Total-amount_total} == "" ? 0.00 : $F{Total-amount_total})]]></variableExpression>
+	</variable>
+	<variable name="inv_balance" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Amount_Due-residual} == "" ? 0.00 : $F{Amount_Due-residual})]]></variableExpression>
+	</variable>
+	<variable name="inv_total_group" class="java.lang.Double" resetType="Group" resetGroup="OR #" calculation="Sum">
+		<variableExpression><![CDATA[$V{inv_total}]]></variableExpression>
+	</variable>
+	<variable name="inv_balance_group" class="java.lang.Double" resetType="Group" resetGroup="OR #" calculation="Sum">
+		<variableExpression><![CDATA[$V{inv_balance}]]></variableExpression>
+	</variable>
+	<group name="OR #">
+		<groupExpression><![CDATA[$F{Official_Receipt_No.-official_receipt_no}]]></groupExpression>
+		<groupFooter>
+			<band height="13">
+				<textField>
+					<reportElement x="692" y="0" width="83" height="13"/>
+					<box>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{inv_total_group})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="616" y="0" width="76" height="13"/>
+					<box>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["TOTAL"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="923" y="0" width="85" height="13"/>
+					<box>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{inv_balance_group})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83">
+			<textField>
+				<reportElement x="108" y="0" width="432" height="13"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Company_Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="13" width="432" height="13"/>
+				<textElement lineSpacing="Single" markup="none">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MMMM-yyyy").format($F{Payment_Date-payment_date})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="70" width="108" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="775" y="70" width="73" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[OR NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="923" y="70" width="85" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BALANCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="616" y="70" width="76" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="70" width="246" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="70" width="92" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INV NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="540" y="70" width="76" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="848" y="70" width="75" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATE PAID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="692" y="70" width="83" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INV. AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="13" width="108" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOR THE MONTH OF :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="108" height="13"/>
+				<textElement lineSpacing="Single">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPANY :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="70" width="94" height="13"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAY REF #]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="923" y="0" width="85" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date(new java.util.Date().getTime()+28800000)]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="692" y="0" width="83" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{inv_total})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="0" width="76" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{sales})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="202" y="0" width="246" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="616" y="0" width="76" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{vat})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="0" width="92" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Payment_Ref.-reference}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="108" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Invoice_Date-date_invoice})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="775" y="0" width="73" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Official_Receipt_No.-official_receipt_no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="848" y="0" width="75" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM-dd-yyyy").format($F{Payment_Date-payment_date})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="923" y="0" width="85" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{inv_balance})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="0" width="94" height="13"/>
+				<box>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single" markup="none">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

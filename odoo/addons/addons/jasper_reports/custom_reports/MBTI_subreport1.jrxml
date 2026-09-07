@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MBTI_subreport1" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c62b7e84-b0b9-4f6f-bdd8-757326d3ec5a">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;user_input_line_ids&apos;]"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Display_Name-display_name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Survey_Tag-survey_tag_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Score_for_this_choice-quizz_mark" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Score_for_this_choice-quizz_mark]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Suggested_answer-value_suggested/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Question_Name-question" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Question-question_id/Question_Name-question]]></fieldDescription>
+	</field>
+	<field name="Answer_Type-answer_type" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Answer_Type-answer_type]]></fieldDescription>
+	</field>
+	<variable name="Col1" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Question_Name-question}.contains("1. At a party do you:") ||
+$F{Question_Name-question}.contains("8. At parties, do you:") ||
+$F{Question_Name-question}.contains("15. In your social groups do you:") ||
+$F{Question_Name-question}.contains("22. In phoning do you:") ||
+$F{Question_Name-question}.contains("29. In company do you:") ||
+$F{Question_Name-question}.contains("36. Does new and non-routine interaction with others:") ||
+$F{Question_Name-question}.contains("43. Do you prefer:") ||
+$F{Question_Name-question}.contains("50. Do you:") ||
+$F{Question_Name-question}.contains("57. When the phone rings do you:") ||
+$F{Question_Name-question}.contains("64. Are you more inclined to be:")]]></variableExpression>
+	</variable>
+	<variable name="variable1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{Col1Group_COUNT}]]></variableExpression>
+	</variable>
+	<variable name="Score_for_this_choice-quizz_mark_1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{Display_Name-display_name2}=="A" ? $F{Score_for_this_choice-quizz_mark} : 0]]></variableExpression>
+	</variable>
+	<group name="Col1Group">
+		<groupExpression><![CDATA[$V{Col1}]]></groupExpression>
+		<groupFooter>
+			<band height="20"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="73" y="59" width="36" height="20" uuid="2b96d7f0-4572-46f4-9a23-c415026d1399"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["B"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="39" width="72" height="20" uuid="595615a7-6d45-41d7-b9b1-fa60ec0f5420"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["COL 1"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="59" width="36" height="20" uuid="4b177a4f-e280-4a43-b762-572225856123"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA["A"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{Col1}=="true"]]></printWhenExpression>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="5" y="0" width="32" height="20" uuid="142c1508-4a67-4074-98d9-3935f7baff6c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Question_Name-question}.substring( 0, 3 )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="37" y="0" width="36" height="20" uuid="b208fada-88f8-47a5-a48d-bc2fff6bff68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name2}=="A" ? $F{Score_for_this_choice-quizz_mark} : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement stretchType="RelativeToTallestObject" x="73" y="0" width="36" height="20" uuid="c08a2e94-b8f0-4cc6-96ad-b1b483ac8bf1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Display_Name-display_name2}=="B" ? $F{Score_for_this_choice-quizz_mark} : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="109" y="0" width="100" height="20" uuid="558eb8bf-5005-4fd7-b048-e75064d1c61b"/>
+				<textFieldExpression><![CDATA[$V{Col1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50" splitType="Immediate">
+			<textField evaluationTime="Report">
+				<reportElement x="109" y="0" width="100" height="20" uuid="6b9bddb9-debb-4947-861a-f8847c619e1e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{variable1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="34" y="23" width="100" height="20" uuid="a2df3c72-a47d-4953-9f7b-d39b65d74c46"/>
+				<textFieldExpression><![CDATA[$V{Score_for_this_choice-quizz_mark_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

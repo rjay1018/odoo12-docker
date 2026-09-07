@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="view_account_payment_form_inherit" model="ir.ui.view">
+            <field name="name">view.account.payment.form.inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_transaction_id']" position="after">
+                    <field name="is_insurance_agency" string="By Insurance"/>
+                </xpath>
+                <xpath expr="//group" position="after">
+                    <notebook>
+                        <page string="Invoices">
+                            <field name="agen_invoice_ids" options="{'no_create': True}">
+                                <tree editable="bottom">
+                                    <field name="number" string="Number"/>
+                                    <field name="insurance_agency_id" attrs="{'column_invisible': [('parent.is_insurance_agency', '=', False)]}"/>
+                                    <field name="partner_id"/>
+                                    <field name="date_due"/>
+                                    <field name="total_insurance_amount" sum="total_insurance_amount" attrs="{'column_invisible': [('parent.is_insurance_agency', '=', False)]}"/>
+                                    <field name="residual" string="Total Residual Amount" sum="residual" attrs="{'column_invisible': [('parent.is_insurance_agency', '=', True)]}"/>
+                                    <field name="state" invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <field name="payment_notes"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

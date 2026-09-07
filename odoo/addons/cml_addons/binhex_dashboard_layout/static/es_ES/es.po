@@ -1,0 +1,83 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* binhex_dashboard
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20190516\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-25 08:15+0000\n"
+"PO-Revision-Date: 2020-09-25 09:18+0100\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "<i class=\"fa fa-pencil\"/> Edit"
+msgstr "<i class=“fa fa-pencil”/> Editar"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "<strong><i class=\"far fa-envelope mr-1\"/> Email</strong>"
+msgstr "<strong><i class=“far fa-envelope mr-1”/> Correo electrónico</strong>"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "<strong><i class=\"fas fa-map-marker-alt mr-1\"/> Location</strong>"
+msgstr "<strong><i class=“fas fa-map-marker-alt mr-1”/> Ubicación</strong>"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "<strong><i class=\"fas fa-phone-alt mr-1\"/> Telephone</strong>"
+msgstr "<strong><i class=\"fas fa-phone-alt mr-1\"/> Teléfono</strong>"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba2
+msgid "Close"
+msgstr "Cerrar"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba2
+msgid "Exit"
+msgstr "Salir"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba2
+msgid "Home"
+msgstr "Inicio"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "My details"
+msgstr "Mis detalles"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba2
+msgid "My profile"
+msgstr "Mi perfil"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "Profile"
+msgstr "Perfil"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.prueba2
+msgid "User Image"
+msgstr "Imagen de usuario"
+
+#. module: binhex_dashboard
+#: model_terms:ir.ui.view,arch_db:binhex_dashboard.myprofile
+msgid "User profile picture"
+msgstr "Foto de perfil de usuario"

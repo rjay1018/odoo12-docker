@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="view_order_form_inherit" model="ir.ui.view">
+            <field name="name">view.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom']" position="after">
+                    <field name="uom_ids" invisible="1" widget="many2many_tags"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']//tree//field[@name='product_uom']" position="attributes">
+                    <attribute name="domain">[('id','in',uom_ids)]</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

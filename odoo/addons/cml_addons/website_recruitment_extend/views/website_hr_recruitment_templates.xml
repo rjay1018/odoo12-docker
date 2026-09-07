@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="assets_frontend" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+
+            <link type="text/css" rel="stylesheet" href="/website_recruitment_extend/static/scss/website2.scss"/>
+            <script type="text/javascript" src="/website_recruitment_extend/static/js/website.js"></script>
+
+        </xpath>
+    </template>
+
+<template id="apply_extend">
+    <t t-call="website.layout">
+        <t t-set="additional_title">Apply Job</t>
+
+        <div id="wrap" class="container">
+            <h1 class="text-center mt-2">
+                Job Application Form
+            </h1>
+            <h2 t-if="job" class="text-center text-muted">
+                <span t-field="job.name"/>
+            </h2>
+
+            <!--V12 Format-->
+            <div class="row mt-3">
+                <section id="forms">
+                    <span class="hidden" data-for="hr_recruitment_form" t-att-data-values="{'department_id': job and job.department_id.id or '', 'job_id': job and job.id or ''}"/>
+                    <form id="hr_recruitment_form" action="/website_form/" method="post" class="s_website_form" enctype="multipart/form-data" data-model_name="hr.applicant" data-success_page="/job-thank-you" hide-change-model="true">
+                        <!-- <div class="form-group row form-field o_website_form_required_custom">
+                            <div class="col-lg-3 col-md-4 text-right">
+                                <label class="col-form-label" for="partner_name">Your Name</label>
+                            </div>
+                            <div class="col-lg-7 col-md-8">
+                                <input type="text" class="form-control o_website_form_input" name="partner_name" required=""/>
+                            </div>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group row form-field o_website_form_required_custom col-md-12" id="partner_name">
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" placeholder="First Name" class="form-control o_website_form_input" name="firstname" required=""/>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" placeholder="Middle Name" class="form-control o_website_form_input" name="middlename" required=""/>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <input type="text" placeholder="Last Name" class="form-control o_website_form_input" name="lastname" required=""/>
+                                        </div>
+                                    </div>
+                                </div>
+                               <div class="form-group form-field  o_website_form_required_custom col-md-12" id="partner_phone">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4">
+                                        <label class="control-label" for="partner_phone">Contact Number</label>
+                                    </div>
+                                    <div class="col-md-8 col-sm-8">
+                                        <input type="text" class="form-control o_website_form_input" name="partner_phone" required=""/>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-group form-field  o_website_form_required_custom col-md-12" id="email_from">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 ">
+                                            <label class="control-label" for="email_from">Your Email</label>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8">
+                                            <input type="email" class="form-control o_website_form_input" name="email_from" required=""/>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="form-group form-field o_website_form_required_custom col-md-12" id="birthday">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 ">
+                                            <label class="control-label" for="birthday">Birth Date</label>
+                                        </div>
+                                        <div class="col-md-8 col-sm-8">
+                                            <input type="date" class="form-control o_website_form_input" date-format="dd/mm/yyyy" name="birthday" required=""/>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                            <div class="col-md-6">
+                                    <div class="form-group form-field o_website_form_required_custom col-md-12 col-sm-12">
+                                        <div class="row col-md-6 col-sm-12">
+                                            <label class="control-label" for="contact_street">Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-field o_website_form_required_custom col-md-12 col-sm-12">
+                                        <div >
+                                            <input type="text" name="contact_street" placeholder="Street.." class="form-control o_website_form_input"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-field o_website_form_required_custom col-md-12 col-sm-12">
+                                        <div >
+                                            <input type="text" name="contact_zone" placeholder="Zone/Brgy" class="form-control o_website_form_input"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-field o_website_form_required_custom col-md-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-12">
+                                                <input type="text" name="contact_city" placeholder="City" class="form-control o_website_form_input"/>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12">
+                                                <select class="form-control" name="contact_country_id">
+                                                    <t t-foreach="countries" t-as="country">
+                                                        <option t-att-value="country.id" t-esc="country.name" t-att-selected="country.code == 'PH'"/>
+                                                    </t>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"/>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group col-md-12" id="source_id">
+                                    <label class="control-label" for="source_id">How Did You Know About Opening?</label>
+                                    <!-- input type="text" name="source_id" class="form-control"/-->
+                                    <select class="form-control" name="source_id">
+                                        <t t-foreach="sources" t-as="source">
+                                            <option t-att-value="source.id" t-esc="source.name"/>
+                                        </t>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12" id="reference">
+                                    <label class="control-label" style="text-align:left;" for="reference">Who are the employees or CB(member) of the Kasagana-Ka who you know or your relative?</label>
+                                    <input type="text" name="reference" class="form-control"/>
+                            </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row cs_row">
+                                    <div class="form-group col-md-12" id="description">
+                                        <label class="control-label" for="description">Affiliation or work experience in any Financial Institution?</label>
+                                        <textarea class="form-control o_website_form_input" name="description"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <h4 class="col-md-12"><strong>Educational Attaintment</strong></h4>
+                        </div>
+                        <div class="clearfix"/>
+
+                        <div class="col-md-12">
+                            <div class="row cs_row1">
+                                <div class="form-group col-md-3 col-sm-12 cs_margin">
+                                    <label for="edu_schoolname">School</label>
+                                    <input type="text" placeholder="School Name" name="edu_schoolname" class="form-control"/>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12 cs_margin">
+                                    <label for="edu_coursename">Course</label>
+                                    <input type="text" placeholder="Course Name" name="edu_coursename" class="form-control"/>
+                                </div>
+                                <div class="form-group col-md-2 col-sm-12 cs_margin text-center">
+                                    <label for="graduated">Graduated?</label>
+                                    <input type="checkbox" id="graduated" class="form-control"/>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12 cs_margin" id="edu_graduate_year">
+                                    <label for="edu_graduate_year">Year Graduated</label>
+                                    <input type="text" placeholder="2012" name="edu_graduate_year" class="form-control"/>
+                                </div>
+                                <div class="form-group col-md-3 col-sm-12 cs_margin " id="edu_level_year">
+                                    <label for="edu_level_year">Year Level Attain (If not graduated)</label>
+                                    <input type="text" placeholder="2nd" name="edu_level_year" class="form-control"/>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h4 class="col-md-12"><strong>Work Experience</strong></h4>
+                        </div>
+                        <div class="col-md-12">
+                        <div class="row cs_row2">
+                            
+                            <div class="form-group col-md-2 col-sm-12 ">
+                                <label for="work_position">Position</label>
+                                <input type="text" placeholder="Position" name="work_position" class="form-control"/>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12 ">
+                                <label for="work_employer">Employer</label>
+                                <input type="text" placeholder="Employer" name="work_employer" class="form-control"/>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12 ">
+                                <label for="work_supervisor">Supervisor</label>
+                                <input type="text" placeholder="Supervisor" name="work_supervisor" class="form-control"/>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12 ">
+                                <label for="work_contact_number">Contact Number</label>
+                                <input type="text" placeholder="Contact Number" name="work_contact_number" class="form-control"/>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12 n">
+                                <label for="work_start_date">Employment Date</label>
+                                <input type="date" placeholder="Start Date" name="work_start_date" class="form-control"/>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12">
+                                <label for="work_end_date">Separation Date</label>
+                                <input type="date" placeholder="End Date" name="work_end_date" class="form-control"/>
+                            </div>
+                            
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-md-12 text-center">
+                                <span class="btn btn-primary btn-lg o_website_form_send">Submit</span>
+                                <span id="o_website_form_result"/>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </t>
+</template>
+
+
+</odoo>

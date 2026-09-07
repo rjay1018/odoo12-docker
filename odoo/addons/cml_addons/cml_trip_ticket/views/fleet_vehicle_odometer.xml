@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="fleet_vehicle_odometer_extend" model="ir.ui.view">
+            <field name="name">fleet_vehicle_odometer_extend</field>
+            <field name="model">fleet.vehicle.odometer</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_odometer_view_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="batch_picking_id"/>
+                    <field name="timelogs"/>
+                    <field name="in_and_out"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

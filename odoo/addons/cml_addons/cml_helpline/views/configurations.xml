@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Tree view for "call_type" -->
+        <record id="view_call_type_tree" model="ir.ui.view">
+            <field name="name">view.call.type.tree</field>
+            <field name="model">call.type</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree string="Call Type" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Tree view for "call_language" -->
+        <record id="view_call_language_tree" model="ir.ui.view">
+            <field name="name">view.call.language.tree</field>
+            <field name="model">call.language</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree string="Call Type" editable="top">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Tree view for "case_category" -->
+        <record id="view_case_category_tree" model="ir.ui.view">
+            <field name="name">view.case.category.tree</field>
+            <field name="model">case.category</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree string="Case Category" editable="bottom">
+                    <field name="sequence" widget="handle"/>
+                    <field name="client_support_id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Tree view for "case_category" -->
+        <record id="view_case_category_form" model="ir.ui.view">
+            <field name="name">view.case.category.form</field>
+            <field name="model">case.category</field>
+            <field name="type">form</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <form string="Case Category">
+                    <field name="sequence"/>
+                    <field name="client_support_id"/>
+                    <field name="name"/>
+                    <field name="description"/>
+                </form>
+            </field>
+        </record>
+        
+        
+        
+        
+        <!-- Main window action for "call_type" -->
+        <record id="action_case_category" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Case Category</field>
+            <field name="res_model">case.category</field>
+            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+        </record>     
+        
+        <!-- Main window action for "call_type" -->
+        <record id="action_call_type" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Call Type</field>
+            <field name="res_model">call.type</field>
+            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+        </record>     
+
+        <!-- Main window action for "call_language" -->
+        <record id="action_call_language" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Call Language</field>
+            <field name="res_model">call.language</field>
+            <field name="view_mode">tree</field>
+            <field name="view_type">form</field>
+        </record>     
+
+
+    </data>
+</odoo>

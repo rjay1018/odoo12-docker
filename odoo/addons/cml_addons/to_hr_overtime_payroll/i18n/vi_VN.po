@@ -1,0 +1,1596 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* to_hr_overtime_payroll
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-04-21 06:54+0000\n"
+"PO-Revision-Date: 2019-04-21 06:54+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: to_hr_overtime_payroll
+#: model:mail.template,body_html:to_hr_overtime_payroll.email_template_overtime_request_confirm
+msgid "\n"
+"    <p>Dear ${object.approving_user_id.partner_id.name},</p>\n"
+"    <p>There is an overtime request <strong>${object.name}</strong> from the employee: ${object.employee_id.name}.</p>\n"
+"    <p>Please review and approve / refuse.</p>\n"
+"    <p>Best Regard,</p>\n"
+"            "
+msgstr "\n"
+"    <p>Dear ${object.approving_user_id.partner_id.name},</p>\n"
+"    <p>Có một khai báo tăng ca <strong>${object.name}</strong> cho người lao động: ${object.employee_id.name}.</p>\n"
+"    <p>Vui lòng xem xét và phê duyệt hoặc từ chối.</p>\n"
+"    <p>Best Regard,</p>\n"
+"            "
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_abstract_hr_overtime_request_line
+msgid "Abstract Hr Overtime Request Line is used to share business logics between requests line for single and ones for multiple"
+msgstr "Abstract Hr Overtime Request Line được sử dụng để chia sẻ các logic nghiệp vụ giữa request line for single và multiple"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction
+msgid "Action Needed"
+msgstr "Cần có Hành động"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_ids
+msgid "Activities"
+msgstr "Các hoạt động"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_state
+msgid "Activity State"
+msgstr "Trạng thái Hoạt động"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_reason.py:27
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__allow_working_schedule_overlap
+#, python-format
+msgid "Allow Overlap Working Schedule"
+msgstr "Cho phép Trùng Giờ Làm việc Bình thường"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__hr_contract_id
+msgid "Applied Contract"
+msgstr "Hợp đồng được Áp dụng"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Approve"
+msgstr "Duyệt"
+
+#. module: to_hr_overtime_payroll
+#: model:mail.template,subject:to_hr_overtime_payroll.email_template_overtime_request_confirm
+msgid "Approve Overtime Request (Ref ${object.employee_id.name_related or 'n/a' })"
+msgstr "Phê duyệt Khai báo Tăng ca (Ref ${object.employee_id.name_related or 'n/a' })"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Approved"
+msgstr "Đã chấp thuận"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__approved_by
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__approved_by
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__approved_by
+msgid "Approved By"
+msgstr "Được duyệt bởi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_employee__overtime_line_ids
+msgid "Approved Overtime Declaration Lines"
+msgstr "Dòng Khai báo Tăng ca Được duyệt"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_employee__unpaid_overtime_line_ids
+msgid "Approved Overtime Declaration Lines those have not been included in any payslip yet"
+msgstr "Các chi tiết khai bao tăng ca đã được duyệt nhưng chưa được tính trong phiếu lương nào"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_approved_menu
+msgid "Approved Requests"
+msgstr "Đã Duyệt"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__approving_user_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__approving_user_id
+msgid "Approver"
+msgstr "Người duyệt"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_attachment_count
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_attachment_count
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_attachment_count
+msgid "Attachment Count"
+msgstr "Số đính kèm"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_hr_overtime_request_graph
+msgid "Attendance"
+msgstr "Có mặt"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__can_approve
+msgid "Can Approve"
+msgstr "Có thể Phê duyệt"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__can_confirm
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__can_reconfirm
+msgid "Can Confirm"
+msgstr "Có thể Xác nhận"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.request_single,state:0
+msgid "Canceled"
+msgstr "Hủy"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.report,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Cancelled"
+msgstr "Hủy"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__code
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__code
+msgid "Code"
+msgstr "Mã"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__company_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__company_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_config_menu
+msgid "Configuration"
+msgstr "Cấu hình"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+msgid "Confirmed"
+msgstr "Đã xác nhận"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__hr_contract_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__hr_contract_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__contract_id
+msgid "Contract"
+msgstr "Hợp đồng"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_action
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_approved_action
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_to_approve_action
+msgid "Create the first record"
+msgstr "Tạo bản ghi đầu tiên"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__create_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__create_uid
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__create_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__create_date
+msgid "Created on"
+msgstr "Được tạo vào"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__create_date
+msgid "Date Created"
+msgstr "Ngày tạo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__dayofweek
+msgid "Day of Week"
+msgstr "Ngày trong tuần"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__department_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__department_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__department_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Department"
+msgstr "Phòng/Ban"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__description
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__description
+msgid "Description"
+msgstr "Mô tả"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__display_name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Done"
+msgstr "Hoàn thành"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.actions.act_window,help:to_hr_overtime_payroll.single_overtime_request_done_action
+msgid "Done Requests which have been reported in payslips will be listed\n"
+"					here"
+msgstr "Các Khai báo đã duyệt và đã được tính vào phiếu lương sẽ được liệt\n"
+"                   kê ở đây"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Draft"
+msgstr "Dự thảo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_employee
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__employee_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__employee_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__employee_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__employee_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Employee"
+msgstr "Nhân viên"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_contract
+msgid "Employee Contract"
+msgstr "Hợp đồng Lao động"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__end_time
+msgid "End Time"
+msgstr "Thời gian kết thúc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_follower_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_follower_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_follower_ids
+msgid "Followers"
+msgstr "Người dõi theo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_channel_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_channel_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_channel_ids
+msgid "Followers (Channels)"
+msgstr "Người theo dõi (Các kênh)"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_partner_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_partner_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Các đối tác)"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Friday"
+msgstr "Thứ Sáu"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_daytime
+msgid "Friday Daytime"
+msgstr "Ban ngày Ngày Thứ Sáu"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_midnight_to_morning
+msgid "Friday Early Morning"
+msgstr "Sáng sớm Thứ Sáu"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_evening
+msgid "Friday Evening"
+msgstr "Tối Thứ Sáu"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_friday_night
+msgid "Friday Night"
+msgstr "Đêm Thứ Sáu"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Group By"
+msgstr "Nhóm theo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_department
+msgid "HR Department"
+msgstr "Phòng/Ban (HR)"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.module.category,name:to_hr_overtime_payroll.module_category_hr_overtime
+msgid "HR Overtime"
+msgstr "Tăng ca Nhân sự"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_line
+msgid "HR Overtime Line"
+msgstr "Chi tiết Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.module.category,description:to_hr_overtime_payroll.module_category_hr_overtime
+msgid "Helps you manage overtime working of your employees"
+msgstr "Giúp bạn quản lý làm việc tăng ca cho toàn bộ người lao động"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Holiday"
+msgstr "Ngày lễ"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_afernoon
+msgid "Holiday Afternoon (on SAT)"
+msgstr "Chiều ngày Lễ (vào Thứ 7)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_daytime
+msgid "Holiday Daytime"
+msgstr "Ban ngày Ngày lễ"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_daytime
+msgid "Holiday Daytime (on SUN)"
+msgstr "Ban ngày Ngày lễ (vào CN)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_midnight_to_morning
+msgid "Holiday Early Morning"
+msgstr "Sáng sớm Ngày lễ"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_midnight_to_morning
+msgid "Holiday Early Morning (on SAT)"
+msgstr "Sáng sớm Ngày lễ (vào Thứ 7)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sun_midnight_to_morning
+msgid "Holiday Early Morning (on SUN)"
+msgstr "Sáng sớm Ngày lễ (vào CN)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_evening
+msgid "Holiday Evening"
+msgstr "Tối Ngày lễ"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_evening
+msgid "Holiday Evening (on SAT)"
+msgstr "Tối Ngày lễ (vào Thứ 7)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sun_evening
+msgid "Holiday Evening (on SUN)"
+msgstr "Tối Ngày lễ (vào CN)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_morning
+msgid "Holiday Morning (on SAT)"
+msgstr "Sáng Ngày lễ (vào Thứ 7)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_night
+msgid "Holiday Night"
+msgstr "Đêm Ngày lễ"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sat_night
+msgid "Holiday Night (on SAT)"
+msgstr "Đêm Ngày lễ (vào Thứ 7)"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_holiday_sun_night
+msgid "Holiday Night (on SUN)"
+msgstr "Đêm Ngày lễ (vào CN)"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Holiday on SAT"
+msgstr "Ngày lễ vào Thứ 7"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Holiday on SUN"
+msgstr "Ngày lễ vào CN"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_line_form_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_form_view
+msgid "Hours"
+msgstr "Giờ"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__id
+msgid "ID"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__company_id
+msgid "If a company is set, this rule will be valid for that company only"
+msgstr "Nếu công ty được thiết lập, quy tắc này sẽ chỉ hợp lệ đối với công ty đó"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread
+msgid "If checked new messages require your attention."
+msgstr "Nếu đánh dấu chọn, các thông điệp mới yêu cầu sự có mặt của bạn."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_reason__allow_working_schedule_overlap
+msgid "If checked, an overtime declaration that overlaps the employee's working schedule will be allowed. This is helpful for some use cases (working on compensatory leave days, etc)"
+msgstr "Nếu đánh dấu, khai báo tăng ca với lý do này có thể được phép chồng lấn với khung giờ làm việc bình thường. Việc này hữu ích trong một số tình huống, ví dụ như khai báo tăng ca vào ngày nghỉ bù."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Nếu đánh dấu chọn, các thông điệp mới yêu cầu sự có mặt của bạn."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu chọn, sẽ hiển thị thông báo lỗi."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_is_follower
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_is_follower
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_is_follower
+msgid "Is Follower"
+msgstr "Là người theo dõi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__job_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Job"
+msgstr "Chức vụ"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__job_id
+msgid "Job Position"
+msgstr "Chức vụ"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__job_id
+msgid "Job Title"
+msgstr "Chức danh Công việc"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Last 30 Days"
+msgstr "30 Ngày trước"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code____last_update
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line____last_update
+msgid "Last Modified on"
+msgstr "Sửa lần cuối"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__write_uid
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__write_date
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__write_date
+msgid "Last Updated on"
+msgstr "Cập nhật lần cuối"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Last Year"
+msgstr "Năm Ngoái"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__hr_contract_id
+msgid "Latest contract of the employee"
+msgstr "Hợp đồng gần nhất của nhân viên"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Đính kèm chính"
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,name:to_hr_overtime_payroll.group_hr_overtime_manager
+msgid "Manager"
+msgstr "Quản lý"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error
+msgid "Message Delivery error"
+msgstr "Thông báo gửi đi gặp lỗi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_ids
+msgid "Messages"
+msgstr "Thông điệp"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Monday"
+msgstr "Thứ Hai"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_daytime
+msgid "Monday Daytime"
+msgstr "Ban ngày Thứ Hai"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_midnight_to_morning
+msgid "Monday Early Morning"
+msgstr "Sáng sớm Thứ Hai"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_evening
+msgid "Monday Evening"
+msgstr "Tối Thứ Hai"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_monday_night
+msgid "Monday Night"
+msgstr "Đêm Thứ Hai"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_done_action
+msgid "My Overtime Requests"
+msgstr "Đề nghị của tôi"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "My Request"
+msgstr "Yêu cầu của Tôi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__name
+msgid "Name"
+msgstr "Tên"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_date_deadline
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Hạn chót lần hành động kế tiếp"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_summary
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_summary
+msgid "Next Activity Summary"
+msgstr "Tóm tắt hoạt động tiếp theo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_type_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_type_id
+msgid "Next Activity Type"
+msgstr "Kiểu hành động kế tiếp"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:53
+#, python-format
+msgid "No Overtime Approval User found for this overtime approval request. It's probably the employee profile has not been setup fully (i.e. no department specified, no manager specified).\n"
+"In case this is for an employee without any manager, he must be granted with Overtime Manager rights to declare an overtime request."
+msgstr "Không tìm thấy người duyệt tăng ca phù hợp cho bản kê tăng ca này. Có thể Hồ sơ Nhân viên này vẫn chưa được thiết lập đầy đủ (cụ thể: chưa thiết lập phòng ban hoặc/và chưa thiết lập người quản lý).\n"
+"Trong trường hợp nhân viên này không có người quản lý cao hơn, hãy phân quyền cho người này là người Quản lý Tăng ca."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:104
+#, python-format
+msgid "No request found."
+msgstr "Chưa có yêu cầu được tạo."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_reason.py:29
+#, python-format
+msgid "Not Allow Overlap Working Schedule"
+msgstr "Không cho Trùng Giờ Làm việc Bình thường"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số lượng Hành động"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__number_of_days
+msgid "Number of Days"
+msgstr "Số ngày"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__number_of_hours
+msgid "Number of Hours"
+msgstr "Số giờ"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error_counter
+msgid "Number of error"
+msgstr "Số lỗi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_needaction_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_needaction_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Số thông điệp cần có hành động"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_has_error_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_has_error_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số tin gửi đi bị lỗi"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread_counter
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Số thông điệp chưa đọc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__overtime_rule_id
+msgid "OT Rule"
+msgstr "Quy tắc Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,name:to_hr_overtime_payroll.group_hr_overtime_user
+msgid "Officer"
+msgstr "Cán bộ"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:94
+#, python-format
+msgid "Only Overtime Managers or the one who approved this request can refuse it after its approval"
+msgstr "Chỉ có người được phân quyền Quản lý Tăng ca hoặc người đã duyệt kê khai tăng ca này mới có thể từ chối kê khai tăng ca mà đã được duyệt trước đó"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,activity_state:0
+#: selection:hr.overtime.request_single,activity_state:0
+msgid "Overdue"
+msgstr "Quá hạn"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_employee__overtime_line_ids
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.overtime_payroll_root_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_hr_overtime_request_pivot
+msgid "Overtime"
+msgstr "Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_contract__overtime_allowance
+msgid "Overtime Allowance"
+msgstr "Phụ cấp tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.salary.rule,name:to_hr_overtime_payroll.hr_rule_overtime_working
+msgid "Overtime Allowance Amount"
+msgstr "Phụ cấp Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_request_graph
+msgid "Overtime Analysis"
+msgstr "Thống kê tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_employee__overtime_approving_user_id
+msgid "Overtime Approver"
+msgstr "Người duyệt Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_hr_overtime_request_calendar
+msgid "Overtime Calendar"
+msgstr "Lịch Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_rule_codes
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_rule_code_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_code_tree_view
+msgid "Overtime Codes"
+msgstr "Mã Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip__hr_overtime_line_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__overtime_line_ids
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_payslip_form
+msgid "Overtime Details"
+msgstr "Chi tiết Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_lines
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_line_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_line_form_view
+msgid "Overtime Lines"
+msgstr "Chi tiết Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_reason
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_reason
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_reason_form_view
+msgid "Overtime Reason"
+msgstr "Lý do Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_reason_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_reason_tree_view
+msgid "Overtime Reasons"
+msgstr "Lý do Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__overtime_request_id
+msgid "Overtime Reference"
+msgstr "Tham chiếu Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_report
+msgid "Overtime Report"
+msgstr "Báo cáo tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Overtime Request"
+msgstr "Đề nghị Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__request_line_ids
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Overtime Request Lines"
+msgstr "Chi tiết Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_action
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_tree
+msgid "Overtime Requests"
+msgstr "Đề nghị Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__overtime_rule_id
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_form_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Overtime Rule"
+msgstr "Quy tắc Cấu trúc Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.action_hr_overtime_rules
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.hr_overtime_rule_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_line_tree_view
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.hr_overtime_rule_tree_view
+msgid "Overtime Rules"
+msgstr "Quy tắc Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_payslip_form
+msgid "Overtime Summary"
+msgstr "Tóm tắt Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.contribution.register,name:to_hr_overtime_payroll.contrib_register_overtime_working
+msgid "Overtime Working"
+msgstr "Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_payslip
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__payslip_id
+msgid "Pay Slip"
+msgstr "Phiếu lương"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__payslip_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__payslip_id
+msgid "Payslip"
+msgstr "Phiếu lương"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip__payslip_ot_line_ids
+msgid "Payslip Overtime"
+msgstr "Phiếu lương tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_payslip_overtime_line
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__payslip_ot_line_id
+msgid "Payslip Overtime Line"
+msgstr "Chi tiết Tăng ca trên Phiếu lương"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,activity_state:0
+#: selection:hr.overtime.request_single,activity_state:0
+msgid "Planned"
+msgstr "Đã hoạch định"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:101
+#, python-format
+msgid "Please select an employee first!"
+msgstr "Vui lòng chọn Nhân viên trước!"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__rate
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__rate
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule_code__rate
+msgid "Rate (%)"
+msgstr "Tỷ lệ (%)"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__rate
+msgid "Rate(%)"
+msgstr "Tỷ lệ(%)"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__reason_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__reason_id
+msgid "Reason"
+msgstr "Lý do"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Refuse"
+msgstr "Từ chối"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,state:0
+#: selection:hr.overtime.line,state:0
+#: selection:hr.overtime.report,state:0
+#: selection:hr.overtime.request_single,state:0
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Refused"
+msgstr "Bị từ chối"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Reported in Payslip"
+msgstr "Đã tính trong Phiếu lương"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_done_menu
+msgid "Reported in Payslips"
+msgstr "Đã tính trong Phiếu lương"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.menu_hr_overtime_report_main
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.menu_hr_overtime_request_report
+msgid "Reports"
+msgstr "Báo cáo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__name
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__name
+msgid "Request Number"
+msgstr "Số Yêu cầu"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_root_menu
+msgid "Requests for Single"
+msgstr "Đề nghị cho một người"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.overtime_requests_menu
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_menu
+msgid "Requests/Declarations"
+msgstr "Đề nghị/Khai báo"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_resource_calendar
+msgid "Resource Working Time"
+msgstr "Lịch làm việc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_user_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_user_id
+msgid "Responsible User"
+msgstr "Người chịu trách nhiệm"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Resubmit"
+msgstr "Trình lại"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__overtime_rule_id
+msgid "Rule"
+msgstr "Quy tắc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__code_id
+msgid "Rule Code"
+msgstr "Mã Quy tắc"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Saturday"
+msgstr "Thứ Bảy"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_afternoon
+msgid "Saturday Afternoon"
+msgstr "Chiều Thứ Bảy"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_midnight_to_morning
+msgid "Saturday Early Morning"
+msgstr "Sáng sớm Thứ Bảy"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_evening
+msgid "Saturday Evening"
+msgstr "Tối Thứ Bảy"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_morning
+msgid "Saturday Morning"
+msgstr "Sáng Thứ Bảy"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_saturday_night
+msgid "Saturday Night"
+msgstr "Đêm Thứ Bảy"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_record_form
+msgid "Set to Draft"
+msgstr "Đặt về dự thảo"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Show overtime data in the current year"
+msgstr "Hiển thị dữ liệu năm hiện hành"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "Show overtime data in the last year"
+msgstr "Hiển thị dữ liệu năm trước"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__start_time
+msgid "Start Time"
+msgstr "Thời gian bắt đầu"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__hour_from
+msgid "Start and End time of overtime working."
+msgstr "Thời gian bắt đầu và kết thúc tăng ca."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__state
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__state
+msgid "Status"
+msgstr "Tình trạng"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__activity_state
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__activity_state
+msgid "Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr "Trạng thái dựa trên hoạt động\n"
+"Quá hạn: Ngày đến hạn đã trôi qua\n"
+"Hôm nay: Hôm nay là ngày phải thực hiện\n"
+"Đã hoạch định: Các hoạt động trong tương lai."
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_overtime_request_search
+msgid "Submitted"
+msgstr "Đã trình"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__user_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__user_id
+msgid "Submitted By"
+msgstr "Trình bởi"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Sunday"
+msgstr "Chủ Nhật"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_daytime
+msgid "Sunday Daytime"
+msgstr "Ban ngày Ngày Chủ Nhật"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_midnight_to_morning
+msgid "Sunday Early Morning"
+msgstr "Sáng sớm Chủ Nhật"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_evening
+msgid "Sunday Evening"
+msgstr "Tối Chủ Nhật"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_sunday_night
+msgid "Sunday Night"
+msgstr "Đêm Chủ Nhật"
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.rule:0
+msgid "The Work From must be anterior to the Work To."
+msgstr "Thời gian Bắt đầu phải trước Thời gian Kết thúc."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__rate
+msgid "The allowance rate in percentage which is computed automatically based on the corresponding Overtime Rule's rate. In case no rate defined for the Overtime Rule, 100% will be applied."
+msgstr "Tỷ lệ Phụ cấp tính theo phần trăm mà được lấy tự động từ tỷ lệ của Quy tắc Tăng ca tương ứng. Trong trường hợp Quy tắc Tăng ca không khai báo tỷ lệ, 100% sẽ được áp dụng."
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.rule.code:0
+msgid "The code must be unique"
+msgstr "Mã phải là duy nhất"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__employee_id
+msgid "The employee for whom this request is"
+msgstr "Nhân viên mà khai báo tăng ca này thuộc về"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__rate
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule_code__rate
+msgid "The extra pay in percentage (of basic wage, for example) which can be used in payroll computation."
+msgstr "Phụ cấp bổ sung theo phần trăm (vd: của lương cơ bản) mà có thể được sử dụng trong việc tính toán lương."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:171
+#, python-format
+msgid "The input overtime interval specified by '%s' and '%s' is overlapping the normal working schedule '%s' of the employee '%s'.\n"
+"The following working hours are overlapped:\n"
+"%s\n"
+"You may need to select a reason that allows overlapping to bypass the check."
+msgstr "Khoảng thời gian tăng ca giữa '%s' và '%s' chồng lấn với khung giờ làm việc bình thường '%s' của nhân viên '%s'.\n"
+"Giờ bị chồng lấn:\n"
+"%s\n"
+"Bạn có thể cần phải chọn một lý do tăng ca mà cho phép trùng thời gian tăng ca với khung giờ làm việc bình thường"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:29
+#, python-format
+msgid "The method _generate_name() has not been implementation. This could be a programming error."
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:323
+#, python-format
+msgid "The overtime declaration %s ~ %s must be in the state of Approved before it can be set as Done."
+msgstr "Khải báo tăng ca từ %s ~ %s phải ở trạng thái đã được duyệt trước khi có thể đánh dấu Hoàn thành."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__code_id
+msgid "The predefined code to be used in overtime payroll computation"
+msgstr "Mã số định trước được sử dụng trong tính toán lương"
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.reason:0
+msgid "The reason title must be unique"
+msgstr "Tiêu đề của Lý do phải duy nhất"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:75
+#, python-format
+msgid "The request %s must be in the status of 'Confirmed' before it can be approved!"
+msgstr "Khai báo tăng ca %s phải ở trạng thái Xác nhận trước khi có thể được duyệt!"
+
+#. module: to_hr_overtime_payroll
+#: sql_constraint:hr.overtime.line:0
+msgid "The start time must be anterior to the end time."
+msgstr "Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__code
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule_code__name
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_payslip_overtime_line__code
+msgid "The unique code to be used in conjunction with Overtime Rule for overtime payroll computation"
+msgstr "Mã số duy nhất được sử dụng gắn liền với Quy tắc tăng ca trong tính toán lương"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__approving_user_id
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__approving_user_id
+msgid "The user who is assigned to take approval action on this record"
+msgstr "Người được phân công phê duyệt bản ghi này"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__approved_by
+msgid "The user who took approval action"
+msgstr "Người đã duyệt bản ghi này"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__approved_by
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__approved_by
+msgid "The user who took approval action on this record"
+msgstr "Người đã phê duyệt bản ghi này"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_employee__overtime_approving_user_id
+msgid "The user who will be the default user to take approval action for his subordinate"
+msgstr "Người dùng mà sẽ là người mặc định để thực hiện hành động phê duyệt cho cấp dưới"
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,comment:to_hr_overtime_payroll.group_hr_overtime_manager
+msgid "The user will have all rights to do anything within this application and the HR application as it also inherits HR Manager Group."
+msgstr "Người dùng có mọi quyền hạn ở Ứng dụng Quản lý Tăng ca và ứng dụng Nhân viên (vì nhóm này kế thừa nhóm Quản lý ỏ Nhân viên)"
+
+#. module: to_hr_overtime_payroll
+#: model:res.groups,comment:to_hr_overtime_payroll.group_hr_overtime_user
+msgid "The user will have the right to approve overtime requests submitted by his subordinate. This group also inherits HR Officer group"
+msgstr "Người dùng sẽ có quyền phê duyệt các khai báo tăng ca cho cấp dưới. Nhóm này thừa kế quyền hạn của nhóm Cán bộ ở ứng dụng Nhân viên"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:124
+#, python-format
+msgid "There is no overtime declaration for approval."
+msgstr "Không có khai báo tăng ca để duyệt."
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "This Year"
+msgstr "Năm nay"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_line__work_day_type_id
+msgid "This field provides additional information on the work day type that the overtime is on. It is helpful when you want to consider work day type is an additional factor for overtime allowance calculation."
+msgstr "Trường này cung cấp thông tin bổ sung về kiểu ngày làm việc mà tăng ca liên quan. Thông tin này sẽ hữu ích khi tính phụ cấp tăng ca hoặc một chỉ số liên quan nào đó mà cần thêm thông tin về kiểu ngày làm việc."
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Thursday"
+msgstr "Thứ Năm"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_daytime
+msgid "Thursday Daytime"
+msgstr "Ban ngày Thứ Năm"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_midnight_to_morning
+msgid "Thursday Early Morning"
+msgstr "Sáng sớm Thứ Năm"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_evening
+msgid "Thursday Evening"
+msgstr "Tối Thứ Năm"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_thursday_night
+msgid "Thursday Night"
+msgstr "Đêm Thứ Năm"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__start_time
+msgid "Time From"
+msgstr "Thời gian từ"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__end_time
+msgid "Time To"
+msgstr "Thời gian đến"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_reason__name
+msgid "Title"
+msgstr "Tiêu đề"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_approved_action
+#: model:ir.actions.act_window,name:to_hr_overtime_payroll.single_overtime_request_to_approve_action
+msgid "To Appove"
+msgstr "Chờ Duyệt"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.ui.menu,name:to_hr_overtime_payroll.single_overtime_request_to_approve_menu
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.overtime_report_search_view
+msgid "To Approve"
+msgstr "Chờ Duyệt"
+
+#. module: to_hr_overtime_payroll
+#: selection:abstract.hr.overtime.request,activity_state:0
+#: selection:hr.overtime.request_single,activity_state:0
+msgid "Today"
+msgstr "Hôm nay"
+
+#. module: to_hr_overtime_payroll
+#: model_terms:ir.ui.view,arch_db:to_hr_overtime_payroll.view_payslip_form
+msgid "Total Working Days"
+msgstr "Tổng số ngày làm việc"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Tuesday"
+msgstr "Thứ Ba"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_daytime
+msgid "Tuesday Daytime"
+msgstr "Ban ngày Ngày Thứ Ba"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_midnight_to_morning
+msgid "Tuesday Early Morning"
+msgstr "Sáng sớm Thứ Ba"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_evening
+msgid "Tuesday Evening"
+msgstr "Tối Thứ Ba"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_tuesday_night
+msgid "Tuesday Night"
+msgstr "Đêm Thứ Ba"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_employee__unpaid_overtime_line_ids
+msgid "Unpaid Overtime"
+msgstr "Tăng ca chưa Thanh toán"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread
+msgid "Unread Messages"
+msgstr "Tin chưa đọc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__message_unread_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__message_unread_counter
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Bộ đếm Thông điệp chưa đọc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_abstract_hr_overtime_request__website_message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_request_single__website_message_ids
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__website_message_ids
+msgid "Website Messages"
+msgstr "Thông điệp Website"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_abstract_hr_overtime_request__website_message_ids
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_request_single__website_message_ids
+#: model:ir.model.fields,help:to_hr_overtime_payroll.field_hr_overtime_rule__website_message_ids
+msgid "Website communication history"
+msgstr "Lịch sử thông tin liên lạc website"
+
+#. module: to_hr_overtime_payroll
+#: selection:hr.overtime.rule,dayofweek:0
+msgid "Wednesday"
+msgstr "Thứ Tư"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_daytime
+msgid "Wednesday Daytime"
+msgstr "Ban ngày Thứ Tư"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_midnight_to_morning
+msgid "Wednesday Early Morning"
+msgstr "Sáng sớm Thứ Tư"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_evening
+msgid "Wednesday Evening"
+msgstr "Tối Thứ Tư"
+
+#. module: to_hr_overtime_payroll
+#: model:hr.overtime.rule,name:to_hr_overtime_payroll.rule_wednesday_night
+msgid "Wednesday Night"
+msgstr "Đêm Thứ Tư"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__work_day_type_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__work_day_type_id
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_payslip_overtime_line__work_day_type_id
+msgid "Work Day Type"
+msgstr "Kiểu Ngày làm việc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__hour_from
+msgid "Work From"
+msgstr "Giờ bắt đầu"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_rule__hour_to
+msgid "Work To"
+msgstr "Giờ Kết thúc"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__worked_hours
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_report__worked_hours
+msgid "Worked Hours"
+msgstr "Số giờ đã làm"
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model.fields,field_description:to_hr_overtime_payroll.field_hr_overtime_line__resource_calendar_id
+msgid "Working Schedule"
+msgstr "Thời gian làm việc"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:137
+#, python-format
+msgid "You are not allowed to input an overtime interval that crossing more than one day. Please re-input the line having the following information:\n"
+"* Employee: %s\n"
+"* Start Time: %s\n"
+"* End Time: %s\n"
+""
+msgstr "Bạn không được phép nhập khoảng thời gian tăng ca mà xuyên qua hơn 1 ngày (vd: từ 22h đến 01h). Vui lòng nhập lại dòng có thông tin dưới đây:\n"
+"* Nhân viên: %s\n"
+"* Giờ bắt đầu: %s\n"
+"* Giờ Kết thúc: %s\n"
+""
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:152
+#, python-format
+msgid "You are not allowed to submit the overtime interval (%s ~ %s) which is overlapping with an existed one (%s ~ %s) that was declared in the request %s. Please re-input the line having the following information:\n"
+"* Employee: %s\n"
+"* Start Time: %s\n"
+"* End Time: %s"
+msgstr "Bạn không thể trình tăng ca (%s ~ %s) mà bị chống lấn với khoảng tăng ca (%s ~ %s) mà đã được kê khai ở phiếu %s. Vui lòng nhập khai dòng khai báo mà đang có thông tin sau:\n"
+"* Nhân viên: %s\n"
+"* Giờ bắt đầu: %s\n"
+"* Giờ kết thúc: %s"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:119
+#, python-format
+msgid "You are not authorised to approve this request. Only the following people can approve it:\n"
+"* Your direct manager %s\n"
+"* The head/manager of your human resource management"
+msgstr "Bạn không có quyền phê duyệt khai báo tăng ca này. Chỉ những người sau đây mới có quyền:\n"
+"* Quản lý của bạn %s\n"
+"* Người được phân quyền quản lý ở ứng dụng Tăng ca"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:108
+#, python-format
+msgid "You can only Set to Draft the requests whose state is either 'confirmed' or 'refused' or 'Canceled'."
+msgstr "Bạn chỉ có thể Đặt về Dự thảo các khai báo mà ở trạng thái 'xác nhận' hoặc 'bị từ chối' hoặc 'bị huỷ'"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:100
+#, python-format
+msgid "You can only either confirm your own overtime requests or your direct subordinate's requests. Or, you must be a manager of this application to confirm every request you want"
+msgstr "Bạn chỉ có thể xác nhận khai báo tăng ca của chính bạn hoặc cấp dưới của bạn. Hoặc bạn phải được phân quyền quản lý ở ứng dụng này để có thể làm mọi thứ bạn muốn."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:90
+#, python-format
+msgid "You can only refuse the requests whose state is either 'Confirmed' or 'Approved'."
+msgstr "Bạn chỉ có thể từ chối các khai báo mà ở trạng thái 'Xác nhận' hoặc 'Được duyệt'."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:338
+#, python-format
+msgid "You cannot cancel the overtime interval specified by '%s' and '%s' and for the employee %s while it is still referred by the payslip %s."
+msgstr "Bạn không thể huỷ khai báo tăng ca bắt đầu từ '%s' đến '%s' khi mà nó đang được sử dụng trong phiếu lương %s."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:334
+#, python-format
+msgid "You cannot cancel the overtime interval specified by '%s' and '%s' and for the employee %s while its state is neither Confirmed nor Approved nor Refused."
+msgstr "Bạn không thể huỷ khai báo tăng ca bắt đầu từ '%s' đến '%s' cho nhân viên %s khi mà trạng thái của nó không phải là Xác nhận hay Đã duyệt hay Bị từ chối."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:60
+#, python-format
+msgid "You cannot cancel the overtime request %s while its state is neither Confirmed nor Approved nor Refused."
+msgstr "Bạn không thể huỷ khai báo tăng ca %s khi mà trạng thái của nó không phải là Xác nhận hay Đã duyệt hay Bị từ chối."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:52
+#, python-format
+msgid "You cannot confirm while the request %s while its status is not Refused."
+msgstr "Bạn không thể xác nhận khai báo tăng ca %s khi mà trạng thái của nó không phải là Bị từ chối."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:274
+#, python-format
+msgid "You cannot confirm while the status is not Draft."
+msgstr "Bạn không thể xác nhận khi trạng thái khác Dự thảo."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:281
+#, python-format
+msgid "You cannot confirm while the status is not Refused."
+msgstr "Bạn không thể xác nhận khi trạng thái khác Bị từ chối."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:348
+#, python-format
+msgid "You cannot delete a request which is not in draft state"
+msgstr "Bạn không được xoá các khai báo mà không ở trạng thái dự thảo"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:35
+#, python-format
+msgid "You cannot delete a request which is not in draft state!"
+msgstr "Bạn không được xoá khai báo mà không ở trạng thái dự thảo!"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:68
+#, python-format
+msgid "You cannot mark the overtime request %s as Done while it is not in Approved state"
+msgstr "Bạn không thể đặt khai báo tăng ca %s về trạng thái Hoàn thành khi mà nó không ở trạng thái 'Được duyệt'"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:288
+#, python-format
+msgid "You cannot refuse a request line whose state is other than 'approved'"
+msgstr "Không thể từ chối một yêu cầu mà trạng thái của yêu cầu này không phải 'Đã chấp thuận'"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:291
+#, python-format
+msgid "You cannot refuse an overtime line while it is linked to a payslip"
+msgstr "Bạn không thể từ chối một khai báo tăng ca mà đã có tính vào phiếu lương"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:314
+#, python-format
+msgid "You cannot set the overtime interval specified by '%s' and '%s' for the employee %s to Draft state while it is not in Cancelled state"
+msgstr "Bạn không thể thiết lập khai báo tăng ca từ '%s' đến '%s' đối với nhân viên %s về trạng thái Dự thảo khi mà nó không đang ở trạng thái Huỷ"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_rule.py:77
+#, python-format
+msgid "You have entered an interval that is overlapping the interval of an existing rule (%s)!"
+msgstr "Bạn đã nhập một khoảng thời gian mà chồng lấn với một quy tắc đã có (%s)!"
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/abstract_hr_overtime_request.py:86
+#, python-format
+msgid "You must create request first."
+msgstr "Bạn phải tạo Đề nghị Tăng ca trước."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_request_single.py:97
+#, python-format
+msgid "You must declare your overtime before you can confirm the request."
+msgstr "Bạn phải khai báo chi tiết tăng ca trước khi bạn có thể xác nhận."
+
+#. module: to_hr_overtime_payroll
+#: code:addons/to_hr_overtime_payroll/models/hr_overtime_line.py:180
+#, python-format
+msgid "You've inputed an overtime interval specified by %s and %s that is crossing the following overtime rules:\n"
+"* %s\n"
+"* %s\n"
+"Please split the interval into multiple ones to ensure that each will not be crossing two or more overtime rules"
+msgstr "Bạn vừa nhập một khoảng thời gian từ %s đến %s mà chồng chéo xuyên qua nhiều quy tắc tăng ca:\n"
+"* %s\n"
+"* %s\n"
+"Vui lòng tách khoảng thời gian này ra làm nhiều khoảng nhỏ ứng với từng quy tắc tăng ca."
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_abstract_hr_overtime_request
+msgid "abstract.hr.overtime.request"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_line_multiple
+msgid "hr.overtime.line.multiple"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_line_single
+msgid "hr.overtime.line.single"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_request_multiple
+msgid "hr.overtime.request_multiple"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_request_single
+msgid "hr.overtime.request_single"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_rule
+msgid "hr.overtime.rule"
+msgstr ""
+
+#. module: to_hr_overtime_payroll
+#: model:ir.model,name:to_hr_overtime_payroll.model_hr_overtime_rule_code
+msgid "hr.overtime.rule.code"
+msgstr ""
+

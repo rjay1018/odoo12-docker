@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="assessment_report_mindwell" language="groovy" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e597bf4e-e00c-4cd6-b057-c41968254f30">
+	<property name="ireport.zoom" value="5.054470284992956"/>
+	<property name="ireport.x" value="865"/>
+	<property name="ireport.y" value="539"/>
+	<property name="ODOO_RELATIONS" value="[&apos;tagwise_summary_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Company_Logo-logo" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User-User/Company-company_id/Company_Logo-logo]]></fieldDescription>
+	</field>
+	<field name="Company_Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/User-User/Company-company_id/Company_Name-name]]></fieldDescription>
+	</field>
+	<field name="Average_Score-average_score" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tag_Wise_Summary-tagwise_summary_ids/Average_Score-average_score]]></fieldDescription>
+	</field>
+	<field name="Total_Score-total_score" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tag_Wise_Summary-tagwise_summary_ids/Total_Score-total_score]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Tag_Wise_Summary-tagwise_summary_ids/Survey_Tag-survey_tag_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Specialist_Notes-specialist_notes" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist_Notes-specialist_notes]]></fieldDescription>
+	</field>
+	<field name="Specialist_Score-specialist_score" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Specialist_Score-specialist_score]]></fieldDescription>
+	</field>
+	<field name="PartnerName" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Birthday-birthday" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Partner-partner_id/Birthday-birthday]]></fieldDescription>
+	</field>
+	<field name="Created_on-create_date" class="java.util.Date">
+		<fieldDescription><![CDATA[/data/record/Created_on-create_date]]></fieldDescription>
+	</field>
+	<field name="SurveyName" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Survey-survey_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Name-name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Survey-survey_id/Survey_Category-survey_category_id/Name-name]]></fieldDescription>
+	</field>
+	<variable name="AvgDouble" class="java.lang.String">
+		<variableExpression><![CDATA[$F{Average_Score-average_score} == "" ? 0.00 : $F{Average_Score-average_score}]]></variableExpression>
+	</variable>
+	<variable name="AverageScore" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.parseDouble($V{AvgDouble})]]></variableExpression>
+	</variable>
+	<variable name="InterpretationVar" class="java.lang.String">
+		<variableExpression><![CDATA[$V{AverageScore} <= 0.49 ? "No manifestation of any symptoms related to "+$F{Name-name} :
+$V{AverageScore} <= 1.49 ? "At risk of psychological disturbance related to "+$F{Name-name} :
+$V{AverageScore} <= 2.49 ? "Manifests mild symptoms of "+$F{Name-name} :
+$V{AverageScore} <= 3.49 ? "Manifests moderate symptoms of "+$F{Name-name} :
+$V{AverageScore} <= 4.00 ? "Manifests severe symptoms of "+$F{Name-name}: "Unknowned"]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<pageHeader>
+		<band height="151">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+			<image>
+				<reportElement x="0" y="0" width="179" height="70" uuid="4c38ccd7-edbe-4a8c-94eb-f4f14301a927"/>
+				<imageExpression><![CDATA[$F{Company_Logo-logo}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="226" y="7" width="345" height="16" uuid="794d5c31-8146-4b1f-a839-7a43f5ae25e2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isBold="true" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Accessible.Complete.Quality Mental Health Care - Guaranteed!"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="226" y="23" width="345" height="16" isPrintWhenDetailOverflows="true" uuid="2529dbf1-2551-4a3f-813c-6a98e31502ef"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["+63.917.182.9355 | clinic@mindwell.ph | https://www.mindwell.ph"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="70" width="256" height="23" uuid="7ea19603-fbe9-4a10-83b3-3d3ee8d40dbf"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Client Name : "+$F{PartnerName}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="93" width="256" height="23" uuid="84f0ff74-ec78-46ef-ab32-770d2b56d94b"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date of Birth : "+new SimpleDateFormat("MM/dd/yyyy").format($F{Birthday-birthday})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="70" width="273" height="23" uuid="fd7e7b87-2ace-421e-b2d6-b830e161c4a2"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report Type : "+$F{Name-name2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="93" width="273" height="23" uuid="42499e9b-7609-4f2c-b877-b1886fd95ad5"/>
+				<textElement verticalAlignment="Middle" markup="html">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Date of Report : "+new SimpleDateFormat("MM/dd/yyyy").format($F{Created_on-create_date})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="14" y="131" width="542" height="12" uuid="141f9ffd-16ff-40f6-a2bf-e9f2bc092fcf"/>
+				<textElement>
+					<font size="8"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Please note that this is only a preliminary screening tool and do not assume that a particular “score” means the client has a particular mental disorder. Many people have symptoms like those described in this screening tool, but do not have a “disorder.” Remember that diagnoses should be made only by a trained clinician after a thorough assessment. "
++ "\n"+ "\n"+
+"OVERALL SUMMARY & RECOMMENDATION : "
++ "\n" +
+$F{Specialist_Notes-specialist_notes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="211" height="20" uuid="136bc412-9006-4d33-a404-53fe8e513a75"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Symptoms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="0" width="66" height="20" uuid="4e4508a4-1b94-4fa0-8f3c-b5821e02f6f6"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Average Score]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="0" width="294" height="20" uuid="ad804041-2e2c-4585-833a-74fdf8fd0239"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Interpretaton]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="211" height="20" uuid="3f81c92d-22cd-474c-b133-703d4ed19d73"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single" rightIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Name-name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="0" width="66" height="20" uuid="f41d791c-cbb7-461c-88ed-65983d05fcb8"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,##0.00").format($V{AverageScore})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="294" height="20" uuid="19945c8f-4dd3-495f-a934-4282f21e8938"/>
+				<box>
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{InterpretationVar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="46">
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="7" width="571" height="34" uuid="4a479d8c-75b6-4edf-b1a5-0cb53c2c63bb"/>
+				<textElement>
+					<font size="6"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["This report was reviewed by :  Candy DLC. Mauricio, CMC., CMHFR-T., CSFP, RGC, RPm with License Number 0000377 & 0010856 Valid until November 2023."
++"\n"+"\n"+
+"Disclaimer:  This report is issued as part of MindWell Care Club Membership and shall not be used in any way that is discriminatory and/or prejudicial to the client and/or requestor.  This is not valid for medico-legal and/or other related purposes."]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="31">
+			<staticText>
+				<reportElement x="1" y="0" width="571" height="20" uuid="b1887414-1308-4eb8-ac91-f96d1da1c24a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ - - - - -  N O T H I N G   F O L L O W S - - - - - ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

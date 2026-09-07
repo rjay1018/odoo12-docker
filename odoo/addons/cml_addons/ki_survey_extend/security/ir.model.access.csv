@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_survey_answer_tag,access.survey.answer.tag,model_survey_answer_tag,base.group_user,1,1,1,1
+access_res_partner_relative,access.res.partner.relative,model_res_partner_relative,base.group_user,1,1,1,1
+access_survey_user_category,access.survey.user.category,model_survey_user_category,base.group_user,1,1,1,1

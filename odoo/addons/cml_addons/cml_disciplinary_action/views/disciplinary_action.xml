@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+      <record id="employee_disciplinary_form_cml" model="ir.ui.view">
+          <field name="name">inherit.disciplinary.form.view</field>
+          <field name="model">disciplinary.action</field>
+          <field name="inherit_id" ref="hr_disciplinary_tracking.employee_disciplinary_form"/>
+          <field name="arch" type="xml">
+            <xpath expr="//group[2]" position="before">
+              <group>
+                <field name="incident_note"/>
+              </group>
+            </xpath>
+            <xpath expr="//field[@name='joined_date']" position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            
+          </field>
+      </record>
+    </data>
+</odoo>

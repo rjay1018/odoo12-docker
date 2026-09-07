@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets_backend_inherit_ninebox" inherit_id="web.assets_backend" name="Employees Asset">        
+        <xpath expr="script[last()]" position="after">            
+            <script type="text/javascript" src="/hr_employee_ninebox/static/src/js/ninebox.js"></script>
+            <link href="/hr_employee_ninebox/static/src/css/ninebox.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+</odoo>

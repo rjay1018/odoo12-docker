@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_omna_integration,access_omna_integration,model_omna_integration,omna.group_omna_manager,1,1,1,1
+access_omna_integration_channel,access_omna_integration_channel,model_omna_integration_channel,omna.group_omna_manager,1,0,0,0
+access_omna_webhook,access_omna_webhook,model_omna_webhook,omna.group_omna_manager,1,1,1,1
+access_omna_flow,access_omna_flow,model_omna_flow,omna.group_omna_manager,1,1,1,1
+access_omna_filters,access_omna_filters,model_omna_filters,omna.group_omna_manager,1,1,1,1
+access_omna_task,access_omna_task,model_omna_task,omna.group_omna_manager,1,0,0,1
+access_omna_task_execution,access_omna_task_execution,model_omna_task_execution,omna.group_omna_manager,1,1,1,1
+access_omna_task_notification,access_omna_task_notification,model_omna_task_notification,omna.group_omna_manager,1,1,1,1
+access_omna_tenant,access_omna_tenant,model_omna_tenant,omna.group_omna_manager,1,1,1,1
+access_omna_collection,access_omna_collection,model_omna_collection,omna.group_omna_manager,1,1,1,1
+access_omna_integration_product,access_omna_integration_product,model_omna_integration_product,omna.group_omna_manager,1,1,1,1
+access_omna_template_integration_external_id,access_omna_template_integration_external_id,model_omna_template_integration_external_id,omna.group_omna_manager,1,1,1,1
+access_product_category,access_product_category,model_product_category,omna.group_omna_manager,1,1,1,1
+access_product_brand,access_product_brand,model_product_brand,omna.group_omna_manager,1,1,1,1
+access_sale_order,access_sale_order,sale.model_sale_order,omna.group_omna_manager,1,1,1,1
+access_board_board,access_board_board,board.model_board_board,omna.group_omna_manager,1,1,1,1

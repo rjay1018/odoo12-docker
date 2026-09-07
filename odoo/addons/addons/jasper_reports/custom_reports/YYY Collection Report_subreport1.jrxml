@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="YYY Collection Report_subreport1" language="groovy" pageWidth="752" pageHeight="572" orientation="Landscape" columnWidth="752" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.7715610000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;move_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Code-code" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Move_Line-move_line_ids/Account-account_id/Code-code]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Move_Line-move_line_ids/Account-account_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Credit-credit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Move_Line-move_line_ids/Credit-credit]]></fieldDescription>
+	</field>
+	<field name="Debit-debit" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Move_Line-move_line_ids/Debit-debit]]></fieldDescription>
+	</field>
+	<sortField name="Code-code"/>
+	<variable name="debit" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Debit-debit} == "" ? 0.00 : $F{Debit-debit})]]></variableExpression>
+	</variable>
+	<variable name="credit" class="java.lang.Double">
+		<variableExpression><![CDATA[Double.valueOf($F{Credit-credit} == "" ? 0.00 : $F{Credit-credit})]]></variableExpression>
+	</variable>
+	<variable name="debit_group" class="java.lang.Double" resetType="Group" resetGroup="code" calculation="Sum">
+		<variableExpression><![CDATA[$V{debit}]]></variableExpression>
+	</variable>
+	<variable name="credit_group" class="java.lang.Double" resetType="Group" resetGroup="code" calculation="Sum">
+		<variableExpression><![CDATA[$V{credit}]]></variableExpression>
+	</variable>
+	<variable name="debit_sum" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{debit}]]></variableExpression>
+	</variable>
+	<variable name="credit_sum" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$V{credit}]]></variableExpression>
+	</variable>
+	<group name="code">
+		<groupExpression><![CDATA[$F{Code-code}]]></groupExpression>
+		<groupFooter>
+			<band height="17">
+				<textField>
+					<reportElement x="0" y="0" width="245" height="17"/>
+					<box>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Code-code}+" "+$F{Name-name}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="245" y="0" width="89" height="17"/>
+					<box>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{debit_group})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="334" y="0" width="89" height="17"/>
+					<box>
+						<leftPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+						<font size="9" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{credit_group})]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="245" height="17"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACCOUNT CODE & NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="0" width="89" height="17"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEBIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="0" width="89" height="17"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CREDIT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="17" splitType="Stretch">
+			<textField>
+				<reportElement x="334" y="0" width="89" height="17"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{credit_sum})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="0" width="89" height="17"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[new DecimalFormat("#,##0.00").format($V{debit_sum})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

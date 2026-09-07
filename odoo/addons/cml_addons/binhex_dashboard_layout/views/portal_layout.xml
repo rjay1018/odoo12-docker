@@ -1,0 +1,339 @@
+<odoo>
+<data>
+  <template name="Sidebar" id="portal.portal_sidebar">
+  <t t-call="binhex_dashboard_layout.layout2">
+                <div class="container o_portal_sidebar"></div>
+                <div class="oe_structure mb32" id="oe_structure_portal_sidebar_1"/>
+  </t>
+  </template>
+
+<template id="layout2">
+     <t t-call="portal.frontend_layout">
+<style>
+#oe_main_menu_navbar{
+display:none !important;
+}
+     .o_affix_enabled{
+         display:none !important;
+    }
+body.o_connected_user{
+padding-top: 0px!important !important;
+}
+.o_footer{
+     display:none !important;
+}
+.navbar navbar-expand-md navbar-light bg-light{
+display:none !important;
+}
+.o_header_affix affix affixed{
+display:none!important;
+}
+#oe_main_menu_navbar + #wrapwrap .o_header_affix{
+display:none !important;
+}
+.navbar.navbar-expand-md.navbar-light.bg-light{
+display:none;
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/fontawesome-free/css/all.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"/>
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/jqvmap/jqvmap.min.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/css/adminlte.min.css"/>
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/css/style_l.css"/>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/daterangepicker/daterangepicker.css"/>
+    <!-- summernote -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/summernote/summernote-bs4.min.css"/>
+              <t t-set="is_portal" t-value="True"/>
+
+              <div t-if="o_portal_fullwidth_alert" class="alert alert-info alert-dismissible rounded-0 fade show d-print-none css_editable_mode_hidden">
+                  <div class="container">
+                      <t t-raw="o_portal_fullwidth_alert"/>
+                  </div>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"> × </button>
+              </div>
+
+              <div t-if="not no_breadcrumbs and not my_details and not breadcrumbs_searchbar" style="margin-bottom:1rem!important;" class="o_portal container mt-3">
+                  <div class="row align-items-center bg-white no-gutters border rounded">
+                      <div class="col">
+                          <t t-call="portal.portal_breadcrumbs"/>
+                      </div>
+                      <div t-if="prev_record or next_record" class="col flex-grow-0">
+                          <t t-call="portal.record_pager"/>
+                      </div>
+                  </div>
+              </div>
+              <div id="wrap" class="o_portal_wrap">
+                <body class="hold-transition sidebar-mini layout-fixed">
+                <div class="wrapper">
+                  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                      </li>
+                    </ul>
+                  </nav>
+                  <!-- Main Sidebar Container -->
+                  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                    <!-- Sidebar -->
+                    <div class="sidebar">
+                      <!-- Sidebar user panel (optional) -->
+                      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                          <img t-attf-src="data:image/*;base64,{{user_id.partner_id.image}}" class="img-circle elevation-2" alt="User Image"/>
+                        </div>
+                        <div class="info">
+                          <a href="#" class="d-block"><t t-esc="user_id.partner_id.name"/></a>
+                        </div>
+                      </div>
+                      <!-- Sidebar Menu -->
+                      <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                          <!-- Add icons to the links using the .nav-icon class
+                               with font-awesome or any other icon font library -->
+                               <li class="nav-item">
+                                      <a href="/my" class="nav-link">
+                                        <i class="nav-icon fa fa-home"></i>
+                                        <p>
+	                                  Home
+                                        </p>
+                                      </a>
+                               </li>
+                          <li class="nav-item">
+                            <a href="/my/profile" class="nav-link">
+                              <i class="nav-icon far fa-user"></i>
+                              <p>
+                                My profile
+                              </p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/" class="nav-link">
+                              <i class="nav-icon fas fa-sign-out-alt"></i>
+                              <p>
+                                Exit
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                      <!-- /.sidebar-menu -->
+                    </div>
+                    <!-- /.sidebar -->
+                  </aside>
+
+                  <!-- Content Wrapper. Contains page content -->
+                  <div class="content-wrapper">
+                    <t t-raw="0"/>
+                  </div>
+                  <!-- /.content-wrapper -->
+
+                  <!-- Control Sidebar -->
+                  <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                  </aside>
+                  <!-- /.control-sidebar -->
+                </div>
+                <!-- ./wrapper -->
+
+                <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+                <script>
+                  $.widget.bridge('uibutton', $.ui.button)
+                </script>
+                <!-- Bootstrap 4 -->
+                <script src="/binhex_dashboard_layout/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- ChartJS -->
+                <script src="/binhex_dashboard_layout/static/plugins/chart.js/Chart.min.js"></script>
+                <!-- Sparkline -->
+                <script src="/binhex_dashboard_layout/static/plugins/sparklines/sparkline.js"></script>
+                <!-- JQVMap -->
+
+                <!-- daterangepicker -->
+                <script src="/binhex_dashboard_layout/static/plugins/moment/moment.min.js"></script>
+                <script src="/binhex_dashboard_layout/static/plugins/daterangepicker/daterangepicker.js"></script>
+                <!-- Tempusdominus Bootstrap 4 -->
+                <script src="/binhex_dashboard_layout/static/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+                <!-- Summernote -->
+                <script src="/binhex_dashboard_layout/static/plugins/summernote/summernote-bs4.min.js"></script>
+                <!-- overlayScrollbars -->
+                <!-- AdminLTE App -->
+                <script src="/binhex_dashboard_layout/static/js/adminlte.js"></script>
+                <!-- AdminLTE for demo purposes -->
+                <script src="/binhex_dashboard_layout/static/js/demo.js"></script>
+                <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+                <script src="/binhex_dashboard_layout/static/js/pages/dashboard.js"></script>
+                </body>
+              </div>
+</t>
+</template>
+
+<template id="layout">
+<!--        <t t-call="portal.frontend_layout">-->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/fontawesome-free/css/all.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"/>
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css"/>
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/jqvmap/jqvmap.min.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/css/adminlte.min.css"/>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css"/>
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/daterangepicker/daterangepicker.css"/>
+    <!-- summernote -->
+    <link rel="stylesheet" href="/binhex_dashboard_layout/static/plugins/summernote/summernote-bs4.min.css"/>
+              <t t-set="is_portal" t-value="True"/>
+
+              <div t-if="o_portal_fullwidth_alert" class="alert alert-info alert-dismissible rounded-0 fade show d-print-none css_editable_mode_hidden">
+                  <div class="container">
+                      <t t-raw="o_portal_fullwidth_alert"/>
+                  </div>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"> × </button>
+              </div>
+
+              <div t-if="not no_breadcrumbs and not my_details and not breadcrumbs_searchbar" style="margin-bottom:1rem!important;" class="o_portal container mt-3">
+                  <div class="row align-items-center bg-white no-gutters border rounded">
+                      <div class="col">
+                          <t t-call="portal.portal_breadcrumbs"/>
+                      </div>
+                      <div t-if="prev_record or next_record" class="col flex-grow-0">
+                          <t t-call="portal.record_pager"/>
+                      </div>
+                  </div>
+              </div>
+              <div id="wrap" class="o_portal_wrap">
+                <body class="hold-transition sidebar-mini layout-fixed">
+                <div class="wrapper">
+                  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                      </li>
+                    </ul>
+
+                  </nav>
+                  <!-- Main Sidebar Container -->
+                  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                    <!-- Sidebar -->
+                    <div class="sidebar">
+                      <!-- Sidebar user panel (optional) -->
+                      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                          <img t-attf-src="data:image/*;base64,{{user_id.partner_id.image}}" class="img-circle elevation-2" alt="User Image"/>
+                        </div>
+                        <div class="info">
+                          <a href="#" class="d-block"><t t-esc="user_id.partner_id.name"/></a>
+                        </div>
+                      </div>
+                      <!-- Sidebar Menu -->
+                      <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                          <!-- Add icons to the links using the .nav-icon class
+                               with font-awesome or any other icon font library -->
+                               <li class="nav-item">
+                                      <a href="/my" class="nav-link">
+                                        <i class="nav-icon fa fa-home"></i>
+                                        <p>
+                                         Home
+                                        </p>
+                                      </a>
+                               </li>
+                          <li class="nav-item">
+                            <a href="/my/profile" class="nav-link">
+                              <i class="nav-icon far fa-user"></i>
+                              <p>
+                                My profile
+                              </p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/" class="nav-link">
+                              <i class="nav-icon fas fa-sign-out-alt"></i>
+                              <p>
+                                Exit
+                              </p>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                      <!-- /.sidebar-menu -->
+                    </div>
+                    <!-- /.sidebar -->
+                  </aside>
+
+                  <!-- Content Wrapper. Contains page content -->
+                  <div class="content-wrapper">
+                    <t t-raw="0"/>
+                  </div>
+                  <!-- /.content-wrapper -->
+
+                  <!-- Control Sidebar -->
+                  <aside class="control-sidebar control-sidebar-dark">
+                    <!-- Control sidebar content goes here -->
+                  </aside>
+                  <!-- /.control-sidebar -->
+                </div>
+                <!-- ./wrapper -->
+                <!-- jQuery -->
+                <script src="/binhex_dashboard_layout/static/plugins/jquery/jquery.min.js"></script>
+                <!-- jQuery UI 1.11.4 -->
+                <script src="/binhex_dashboard_layout/static/plugins/jquery-ui/jquery-ui.min.js"></script>
+                <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+                <script>
+                  $.widget.bridge('uibutton', $.ui.button)
+                </script>
+                <!-- Bootstrap 4 -->
+                <script src="/binhex_dashboard_layout/static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <!-- ChartJS -->
+                <script src="/binhex_dashboard_layout/static/plugins/chart.js/Chart.min.js"></script>
+                <!-- Sparkline -->
+                <script src="/binhex_dashboard_layout/static/plugins/sparklines/sparkline.js"></script>
+                <!-- JQVMap -->
+                <script src="/binhex_dashboard_layout/static/plugins/jqvmap/jquery.vmap.min.js"></script>
+                <script src="/binhex_dashboard_layout/static/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+                <!-- jQuery Knob Chart -->
+                <script src="/binhex_dashboard_layout/static/plugins/jquery-knob/jquery.knob.min.js"></script>
+                <!-- daterangepicker -->
+                <script src="/binhex_dashboard_layout/static/plugins/moment/moment.min.js"></script>
+                <script src="/binhex_dashboard_layout/static/plugins/daterangepicker/daterangepicker.js"></script>
+                <!-- Tempusdominus Bootstrap 4 -->
+                <script src="/binhex_dashboard_layout/static/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+                <!-- Summernote -->
+                <script src="/binhex_dashboard_layout/static/plugins/summernote/summernote-bs4.min.js"></script>
+                <!-- overlayScrollbars -->
+                <script src="/binhex_dashboard_layout/static/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+                <!-- AdminLTE App -->
+                <script src="/binhex_dashboard_layout/static/js/adminlte.js"></script>
+                <!-- AdminLTE for demo purposes -->
+                <script src="/binhex_dashboard_layout/static/js/demo.js"></script>
+                <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+                <script src="/binhex_dashboard_layout/static/js/pages/dashboard.js"></script>
+                </body>
+              </div>
+</template>
+</data>
+</odoo>

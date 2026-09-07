@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    
+        <!-- Tree view for "helpline_sessions" -->
+        <record id="view_helpline_sessions_tree" model="ir.ui.view">
+            <field name="name">view.helpline.sessions.tree</field>
+            <field name="model">helpline.sessions</field>
+            <field name="type">tree</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <tree string="model_tree" create="true" delete="true" edit="true">
+                    <field name="name"/>
+                    <field name="date_of_seassion"/>
+                    <field name="summary"/>
+                    <field name="for_debrief"/>
+                    <field name="followup_call"/>
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <!-- Form view for "helpline_sessions" -->
+        <record id="view_helpline_sessions_form" model="ir.ui.view">
+            <field name="name">view.helpline.sessions.form</field>
+            <field name="model">helpline.sessions</field>
+            <field name="type">form</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="16" />
+            <field name="active" eval="True" />
+            <field name="arch" type="xml">
+                <form string="Helpline Sessions">
+                    <header>
+                        <button name="action_done" string="Completed" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_drop" string="Drop" states="draft" type="object" class="oe_highlight"/>
+                        <button name="action_validated" string="Validated" states="done" type="object" class="oe_highlight" groups="cml_helpline.group_helpline_supervisor"/>
+                        <button name="action_draft" string="Reset to Draft" states="done" type="object" class="oe_highlight" groups="cml_helpline.group_helpline_staff,cml_helpline.group_helpline_manager,cml_helpline.group_helpline_agent"/>
+                        <field name="state" statusbar_visible="draft,done,validated,drop" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                                <h1>
+                                    <field name="name" class="oe_inline" placeholder="name" readonly="1"/>
+                                </h1>
+                                <group>
+                                    <field name="is_client"/>
+                                </group>
+                        </div>
+                        <div>
+                            <group>
+                                <group>
+                                    <field name="partner_id"
+                                            attrs="{'invisible': [('is_client','=',False)]}" 
+                                            widget="res_partner_many2one" 
+                                            context="{'search_default_customer':1, 'show_address': 1, 'default_is_client':True, 'default_is_company': False, 'show_vat': True}" 
+                                            options="{&quot;always_reload&quot;: True, &quot;no_quick_create&quot;: True}" 
+                                            domain="[('is_client', '=', True)]"/>
+                                    <field name="client_name" attrs="{'invisible': [('is_client','=',True)]}"/>
+                                    <field name="age" attrs="{'invisible': [('is_client','=',True)]}"/>
+                                    <field name="organization" attrs="{'invisible': [('is_client','=',True)]}"/>
+                                    <field name="caller_type_id"/>
+                                </group>
+                                <group>
+                                    <field name="date_of_seassion" string="Call Date"/>
+                                    <field name="start_time" string="Call Start" widget="float_time" required="1"/>
+                                    <field name="end_time" string="Call End" widget="float_time" required="1"/>
+                                </group>
+                            </group>
+                        </div>
+
+                        <separator string="Call Logs"/>
+                            <group>
+                                <field name="case_category_ids" widget="many2many_tags" string="Call Category"
+                                       options="{'color_field': 'color', 'no_create_edit': True}" required="1"/>
+                            </group>
+
+                            <label for="summary"/>
+                                <p>
+                                  <field name="summary" required="1"/>
+                                </p>
+                            <label for="oars"/>
+                                <p>
+                                  <field name="oars"/>
+                                </p>
+                            <label for="conclusion"/>
+                                <p>
+                                  <field name="conclusion"/>
+                                </p>
+                            <label for="notes"/>
+                                <p>
+                                  <field name="notes"/>
+                                </p>
+                            
+                            <group>
+                                <group>
+                                    <field name="language"/>
+                                    <field name="followup_call"/>
+                                    <field name="contact" attrs="{'invisible': [('followup_call','!=',True)]}"/>    
+                                    <field name="schedule_followup" attrs="{'invisible': [('followup_call','!=',True)]}"/>    
+                                </group>
+                                <group>
+                                    <field name="for_debrief"/>
+                                    <field name="user_id" readonly="1"/>
+                                    <field name="extension"/>
+                                </group>
+                            </group>
+                        <separator string="Supervisor Notes" colspan="4" groups="cml_helpline.group_helpline_supervisor"/>
+                            <field name="sup_notes" groups="cml_helpline.group_helpline_supervisor"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Search view for "helpline_sessions" -->
+        <record id="view_helpline_sessions_search" model="ir.ui.view">
+            <field name="name">view.helpline.sessions.search</field>
+            <field name="model">helpline.sessions</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Helpline Session Search">
+                        <filter string="For Debriefing" name="for_debrief" domain="[('for_debrief', '=', True)]"/>
+                        <filter string="For Validation" name="for_validation" domain="[('state','=','done')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="State" name="states" context="{'group_by':'state'}"/>
+                        <filter string="Agents" name="user_id" context="{'group_by':'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_helpline" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Call Sessions</field>
+            <field name="res_model">helpline.sessions</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Log your Call Sessions !
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

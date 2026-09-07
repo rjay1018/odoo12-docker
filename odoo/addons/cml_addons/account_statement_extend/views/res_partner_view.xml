@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- followup of customers views -->
+
+        <record id="view_partner_inherit_filter_customer_statement" model="ir.ui.view">
+            <field name="name">res.partner.inherit.filter</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='statement_button']" position="before">
+                    <div class="oe_left">
+                        <label for="start_date_cust"/>
+                        <field name="start_date_cust"/>
+                        <label for="end_date_cust"/>
+                        <field name="end_date_cust"/>
+                        <br/>
+                        <br/>
+                        <label for="status_paid"/>
+                        <field name="status_paid"/>
+                        <br/>
+                        <br/>
+                        <button name="action_apply_filter" type="object" string="Apply Filter" class="btn-primary"/>
+                        <button name="action_remove_filter" type="object" string="Clear Filter"/>
+
+
+                    </div>
+                </xpath>
+                <xpath expr="//div[@name='statement_button1']" position="before">
+                    <div class="oe_left">
+                        <label for="start_date_vendor"/>
+                        <field name="start_date_vendor"/>
+                        <label for="end_date_vendor"/>
+                        <field name="end_date_vendor"/>
+                        <br/>
+                        <br/>
+                        <label for="status_paid_vendor"/>
+                        <field name="status_paid_vendor"/>
+                        <br/>
+                        <br/>
+                        <button name="action_apply_filter_vendor" type="object" string="Apply Filter"
+                                class="btn-primary"/>
+                        <button name="action_remove_filter_vendor" type="object" string="Clear Filter"/>
+
+                    </div>
+
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

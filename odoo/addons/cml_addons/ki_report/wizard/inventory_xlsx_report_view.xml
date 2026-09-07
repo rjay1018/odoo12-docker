@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_stock_inventory_wizard_form" model="ir.ui.view">
+        <field name="name">Stock Inventory Wizard</field>
+        <field name="model">stock.inventory.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="category_id" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="end_date"/>
+<!--                        <field name="product_id" widget="many2many_tags"/>-->
+                    </group>
+                </group>
+                <footer>
+                    <button name="xlsxreport" string="Print XLSX" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_inventory_wizardss" model="ir.actions.act_window">
+        <field name="name">Stock Inventory Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.inventory.wizard</field>
+        <field name="target">new</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record model="ir.ui.view" id="stock_inventory_template_excel_report_viewss">
+        <field name="name">Stock Inventory Exel</field>
+        <field name="model">stock.inventory.exel</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="file_name" invisible="1"/>
+                    <field name="excel_file" filename="file_name"/>
+                </group>
+                <footer>
+                    <button name="cancel" special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <menuitem id="inventory_report_menu"
+              name="Monthly Sale Report"
+              parent="stock.menu_warehouse_report"
+              action="action_stock_inventory_wizardss"/>
+
+</odoo>

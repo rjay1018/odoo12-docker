@@ -1,0 +1,64 @@
+.wrapEdit[view-type='kanban'] {
+  ._wMainView {
+    background: #F7F7F7;
+    padding: 10px;
+    ._addView {
+      color: #80c1de;
+      margin-right: 10px;
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
+      }
+      &[replace-type='img'] {
+        float: right;
+        margin: 0px;
+      }
+      &[replace-type='title'] {
+        display: block;
+        font-weight: bold;
+      }
+      &[replace-type='color'] {
+        float: right;
+        margin: 0px;
+        font: normal normal normal 14px/1 FontAwesome;
+        &:before {
+          content: "\f0ca";
+        }
+      }
+    }
+  }
+  .templateItem {
+    margin-bottom: 10px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.o_kanban_view {
+  .oe_kanban_card, .o_kanban_record {
+    ._wPriority {
+      margin-right: 5px;
+      padding: 3px 0px;
+    }
+    .o_dropdown_kanban {
+      position: absolute;
+      top: 8px;
+      left: auto;
+      bottom: auto;
+      right: 8px;
+      visibility: hidden;
+      margin: -8px -8px 0 0;
+      &:hover {
+        visibility: inherit;
+      }
+      .o_kanban_manage_toggle_button {
+        padding: 4px 8px;
+        border: none;
+        border-left: 1px solid transparent;
+        vertical-align: top;
+        color: #666666;
+      }
+    }
+  }
+}

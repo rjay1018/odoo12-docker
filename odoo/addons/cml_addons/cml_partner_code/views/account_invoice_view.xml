@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="invoice_supplier_form_partner_ref" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form.partner_ref</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_ref"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="invoice_form_partner_ref" model="ir.ui.view">
+        <field name="name">account.invoice.form.partner_ref</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_ref"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter_partner_ref" model="ir.ui.view">
+        <field name="name">account.invoice.select.partner_ref</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <field name="number" position="after">
+                <field name="partner_ref" string="Partner Reference" filter_domain="[('partner_ref', 'ilike', self)]"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

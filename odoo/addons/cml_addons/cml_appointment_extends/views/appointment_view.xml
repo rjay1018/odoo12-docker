@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="appointment_form_inherit">
+        <field name="name">appointment_form_inherit</field>
+        <field name="model">clinic.appointment</field>
+        <field name="inherit_id" ref="cml_clinic.appointment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/div[1]" position="inside">
+                <div class="oe_button_box" name="button_box">
+                    <button name="action_view_invoice"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o"
+                            attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                        <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                    </button>
+                    <button name="action_survey_input"
+                            type="object"
+                            class="oe_stat_button oe_inline"
+                            icon="fa-list-alt">
+                        <field name="survey_input_count"
+                               widget="statinfo"
+                               string="Surveys"/>
+                    </button>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="invoice_status"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">['|',('is_respondent', '=', True),('is_client','=',True)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='apt_stop']" position="after">
+                <field name="start_date" readonly="False"/>
+                <field name="stop_date" readonly="False"/>
+                <field name="with_prescription"/>
+                <field name="with_medcert"/>
+                <field name="invoice_type" invisible="1"/>
+                <field name="invoice_ids" invisible="1"/>
+                <field name="was_rescheduled"/>
+            </xpath>
+            <xpath expr="//field[@name='apt_stop']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='apt_start']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='is_member']" position="after">
+                <field name="clinic_id" attrs="{'invisible': [('appointment_type', '!=', 'inclinic')]}"/>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="%(action_multi_invoice)d" type="action"
+                        attrs="{'invisible': [('state','not in',['book','confirmed'])]}" string="Create Invoice"
+                        class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button name="action_book" type="object" string="Book" class="oe_highlight"
+                        attrs="{'invisible': [('state', 'not in', ['draft'])]}"></button>
+                <button name="action_start" type="object" string="Start" class="btn btn-success"
+                        attrs="{'invisible': ['|', ('state', 'not in', ('confirmed')), ('start_date', '!=', False)]}"/>
+                <button name="action_stop" type="object" string="Stop" class="btn btn-danger"
+                        attrs="{'invisible': ['|',('start_date', '=', False),('stop_date', '!=', False)]}"/>
+            </xpath>
+            <xpath expr="//button[@name='action_done']" position="after">
+                <button name="action_rescheduled" string="Rescheduled" states="confirmed" type="object" class="oe_highlight"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">draft,book,confirmed,done,validated,cancel</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_send_appointment']" position="attributes">
+                <attribute name="states">book</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <attribute name="states">book</attribute>
+            </xpath>
+            <!--            <xpath expr="//button[@name='%(cml_clinic.create_appointment)d']" position="attributes">-->
+            <!--                <attribute name="attrs">book</attribute>-->
+            <!--            </xpath>-->
+            <xpath expr="//page[last()]" position="after">
+                <page string="Multi Services">
+                    <!--                    <button name="action_apply_free_session" string="Apply Free Session" type="object"-->
+                    <!--                            class="oe_highlight"/>-->
+                    <field name="multi_service_ids" nolabel="1">
+                        <tree editable="bottom">
+                            <field name="service_id"/>
+                            <field name="qty"/>
+                            <field name="invoiced_qty" readonly="1"/>
+                            <field name="unit_price"/>
+                            <field name="total_price" sum="total_price"/>
+                            <field name="is_from_appoint" invisible="1"/>
+                        </tree>
+                    </field>
+                </page>
+                <page string="Feedback">
+                    <group>
+                        <field name="show_create_invoice" invisible="1"/>
+                        <field name="feedback_radio_option" widget="radio" options="{'horizontal': true}"/>
+                        <field name="feedback_message"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="client_case_file" string="Case File">
+                    <group string="Specialist Information" colspan="4"
+                           groups="cml_clinic.group_clinic_specialist,
+                                    cml_clinic.group_clinic_nurse,
+                                    cml_clinic.group_clinic_manager">
+                        <group>
+                            <field name="partner_employee_id"/>
+                            <field name="specialist_email"/>
+                            <field name="specialist_jobtitle"/>
+                        </group>
+                        <group>
+                            <field name="appointment_type"/>
+                            <field name="product_id"/>
+                        </group>
+                    </group>
+
+                    <!--                        <separator string="Up-Coming Appointment" colspan="4"/>-->
+                    <!--                        <field name="appointment_ids"-->
+                    <!--                               groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">-->
+                    <!--                        </field>-->
+
+                    <separator string="Appointment History" colspan="4"/>
+                    <field name="appt_history_ids"
+                           groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                    </field>
+
+                    <separator string="Referral" colspan="4"/>
+                    <field name="referral_ids"
+                           groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                    </field>
+
+                    <separator string="Helpline Call Records" colspan="4"/>
+                    <field name="helpline_ids"
+                           groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                    </field>
+                    <separator string="Client File Records" colspan="4"/>
+                    <field name="file_ids"
+                           groups="cml_clinic.group_clinic_specialist,cml_clinic.group_clinic_client">
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_appointment_invoice_filter" model="ir.ui.view">
+        <field name="name">appointment.invoice.filter</field>
+        <field name="model">clinic.appointment</field>
+        <field name="inherit_id" ref="cml_clinic.clinic_appointment_search"/>
+        <field name="arch" type="xml">
+            <search>
+                <filter name="paid" string="Paid" domain="[('invoice_type', '=', 'paid')]"/>
+                <filter name="invoice" string="Invoice" domain="[('invoice_type', '=', 'invoice')]"/>
+                <filter name="not_invoice" string="Not Invoice" domain="[('invoice_type', '=', 'not_invoice')]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_manpower_recruit_request,access.manpower.recruit.request,model_manpower_recruit_request,base.group_user,1,1,1,0
+access_employee_profile_update,access.employee.profile.update.public,model_employee_profile_update,base.group_user,1,1,1,1
+hr.access_hr_employee_user,hr.employee user,hr.model_hr_employee,hr.group_hr_user,1,0,1,0
+access_manpower_recruit_request_officer,access.manpower.recruit.request.officer,model_manpower_recruit_request,hr_recruitment.group_hr_recruitment_user,1,1,1,0
+access_manpower_recruit_request_manager,access.manpower.recruit.request.manager,model_manpower_recruit_request,hr_recruitment.group_hr_recruitment_manager,1,1,1,1
+access_employee_profile_contract,access.employee.contract,hr_contract.model_hr_contract,base.group_user,1,0,0,0
+access_hr_payroll_internal_officer,access.hr.employee.internal.officer,hr_payroll.model_hr_payslip,base.group_user,1,0,0,0
+access_hr_payroll_timesheet_officer,access.hr.timesheet.internal.officer,analytic.model_account_analytic_line,base.group_user,1,0,0,0
+hr.access_hr_employee_manager,hr.employee manager,hr.model_hr_employee,hr.group_hr_manager,1,1,1,1
+hr_employee_updation.access_hr_employee_emergency_contact,hr.emergency.contact,hr_employee_updation.model_hr_emergency_contact,base.group_user,1,1,1,1
+access_ki_hr_applicant_stage,access.ki.hr.applicant.stage,model_ki_hr_applicant_stage,base.group_user,1,1,1,1

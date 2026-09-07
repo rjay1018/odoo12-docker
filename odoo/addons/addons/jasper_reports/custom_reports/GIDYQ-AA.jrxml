@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="GIDYQ-AA" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e8fd09c9-9acf-46e8-a319-4f5cd2f3320d">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ODOO_RELATIONS" value="[&apos;user_input_line_ids&apos;]"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="Question_Name-question_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Question_Name-question_name]]></fieldDescription>
+	</field>
+	<field name="Score_given_for_this_choice-quizz_mark" class="java.lang.Integer">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Score_given_for_this_choice-quizz_mark]]></fieldDescription>
+	</field>
+	<field name="Name-name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Answer_Tag-answer_tag_id/Name-name]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Answer_Tag-answer_tag_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="Display_Name-display_name2" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Page-page_id/Display_Name-display_name]]></fieldDescription>
+	</field>
+	<field name="ID-id" class="java.lang.String">
+		<fieldDescription><![CDATA[/data/record/Answers-user_input_line_ids/Answer_Tag-answer_tag_id/ID-id]]></fieldDescription>
+	</field>
+	<sortField name="Display_Name-display_name"/>
+	<variable name="Score_given_for_this_choice-quizz_mark_1" class="java.lang.Integer" resetType="Group" resetGroup="AnswerTagsId" calculation="Sum">
+		<variableExpression><![CDATA[$F{Score_given_for_this_choice-quizz_mark}]]></variableExpression>
+	</variable>
+	<group name="AnswerTagsId">
+		<groupExpression><![CDATA[$F{ID-id}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<textField>
+					<reportElement x="235" y="0" width="100" height="20" uuid="edba1b8e-8f5f-45f1-bef1-7e445b94927a"/>
+					<textFieldExpression><![CDATA[$F{Display_Name-display_name}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="AnswerTagsId">
+					<reportElement x="443" y="0" width="112" height="20" uuid="bb0755a0-2c50-441d-a4e2-0db7db5487b8"/>
+					<textFieldExpression><![CDATA[$V{Score_given_for_this_choice-quizz_mark_1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="66" uuid="dca8b426-2aa3-482d-8f16-f7338c4f9f41"/>
+				<textElement textAlignment="Center">
+					<font size="36"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TEST"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="443" height="20" uuid="4dc79087-8022-4159-8be0-6bd15f897f80"/>
+				<text><![CDATA[Answer Tags]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="0" width="112" height="20" uuid="68fc8227-4382-47e3-9ae1-006cbffbe7d0"/>
+				<text><![CDATA[Score]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="20" uuid="d0be2b47-060c-4c6f-9023-27ea0d1cee72"/>
+				<textFieldExpression><![CDATA[$F{Question_Name-question_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="45" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
