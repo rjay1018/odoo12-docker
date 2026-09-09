@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     dirmngr \
     fonts-noto-cjk \
     gnupg \
+    libreoffice \
     libssl-dev \
     node-less \
     npm \
