@@ -13,6 +13,8 @@ if [ -z "$DB_NAME" ]; then
 fi
 
 read -p "Enter the base path where your backups are stored (e.g. /root/backups or .): " BASE_PATH
+# Expand tilde (~) to the user's home directory so ~/ works properly
+BASE_PATH="${BASE_PATH/#\~/$HOME}"
 BASE_PATH=$(realpath "$BASE_PATH")
 
 read -p "Enter the exact SQL file name (e.g. yyy_backup.sql): " SQL_FILENAME
@@ -28,6 +30,7 @@ if [ ! -d "$FILESTORE_PATH" ]; then
     echo "⚠️  Warning: Filestore directory '$FILESTORE_PATH' not found!"
     read -p "Do you want to provide a custom path for the filestore? (leave blank to skip filestore restore): " CUSTOM_FS
     if [ -n "$CUSTOM_FS" ]; then
+        CUSTOM_FS="${CUSTOM_FS/#\~/$HOME}"
         FILESTORE_PATH=$(realpath "$CUSTOM_FS")
         if [ ! -d "$FILESTORE_PATH" ]; then
             echo "❌ Error: Custom filestore directory '$FILESTORE_PATH' not found!"
