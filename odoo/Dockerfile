@@ -54,7 +54,9 @@ RUN pip3 install \
     pandas \
     numpy \
     plotly \
-    sqlparse
+    sqlparse \
+    && sed -i 's/import urllib/import urllib.parse/' /usr/local/lib/python3.8/dist-packages/aeroolib/plugins/opendocument.py \
+    && sed -i 's/urllib.unquote/urllib.parse.unquote/g' /usr/local/lib/python3.8/dist-packages/aeroolib/plugins/opendocument.py
 
 # Setup extra-addons directory
 RUN mkdir -p /opt/odoo12/custom \
