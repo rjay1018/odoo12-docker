@@ -23,6 +23,7 @@ if ! docker ps | grep -q odoo-db; then
     docker run -d \
       --name odoo-db \
       --network odoo_internal-db \
+      --network-alias db \
       -e POSTGRES_DB=yyy \
       -e POSTGRES_USER=odoo \
       -e POSTGRES_PASSWORD=odoo \
