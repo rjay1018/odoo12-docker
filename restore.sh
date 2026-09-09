@@ -54,7 +54,7 @@ fi
 echo ""
 
 echo "==> 🛑 Stopping Odoo web container to release database locks..."
-cd ~/odoo12-docker
+cd "$(dirname "$0")"
 docker rm -f odoo-web 2>/dev/null || true
 
 echo "==> 🗑️ Dropping existing database '$DB_NAME'..."

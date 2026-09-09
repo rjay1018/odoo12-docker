@@ -1,15 +1,30 @@
 #!/bin/bash
 # Odoo 12 Docker Deployment Script
-# Run this after adding new modules or updating config on the server
+# Fully self-healing and path-independent
 
 set -e
 
+# Ensure we are running from the directory where the script is located
+cd "$(dirname "$0")"
+
 echo "==> Pulling latest changes from GitHub..."
-cd ~/odoo12-docker/odoo
 git pull
 
+echo "==> Ensuring Database Container and Networks are running..."
+cd odoo
+docker-compose up -d db
+cd ..
+
+# Build the custom docker image if it doesn't exist
+if ! docker image inspect odoo12-py37 >/dev/null 2>&1; then
+    echo "==> Custom Docker image 'odoo12-py37' not found. Building it now..."
+    cd odoo
+    docker-compose build
+    cd ..
+fi
+
 echo "==> Fixing addon file permissions (UID 101 = odoo user inside container)..."
-sudo chown -R 101:101 ~/odoo12-docker/odoo/addons/
+sudo chown -R 101:101 $(pwd)/odoo/addons/ 2>/dev/null || echo "⚠️ Warning: Could not chown addons. You may need to run this script with sudo."
 
 echo "==> Restarting Odoo container..."
 # Remove the old container if it exists
@@ -25,8 +40,8 @@ docker run -d \
   -e USER=odoo \
   -e PASSWORD=odoo \
   -v odoo_odoo-web-data:/var/lib/odoo \
-  -v $(pwd)/config:/etc/odoo \
-  -v $(pwd)/addons:/opt/odoo12/custom \
+  -v $(pwd)/odoo/config:/etc/odoo \
+  -v $(pwd)/odoo/addons:/opt/odoo12/custom \
   --restart always \
   odoo12-py37
 
@@ -37,4 +52,4 @@ echo "==> Last 20 lines of Odoo log:"
 docker logs --tail 20 odoo-web
 
 echo ""
-echo "✅ Done! Open http://$(curl -s ifconfig.me):8069 in your browser."
+echo "✅ Done! Open your browser to access Odoo."
