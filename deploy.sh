@@ -26,7 +26,7 @@ docker run -d \
   -e PASSWORD=odoo \
   -v odoo_odoo-web-data:/var/lib/odoo \
   -v $(pwd)/config:/etc/odoo \
-  -v $(pwd)/addons:/opt/odoo12/custom/addons \
+  -v $(pwd)/addons:/opt/odoo12/custom \
   --restart always \
   odoo12-py37
 

@@ -57,9 +57,9 @@ RUN pip3 install \
     sqlparse
 
 # Setup extra-addons directory
-RUN mkdir -p /opt/odoo12/custom/addons \
+RUN mkdir -p /opt/odoo12/custom \
     && useradd -ms /bin/bash odoo 2>/dev/null || true \
-    && chown -R odoo /opt/odoo12/custom/addons \
+    && chown -R odoo /opt/odoo12/custom \
     && mkdir -p /var/lib/odoo && chown -R odoo /var/lib/odoo \
     && mkdir -p /etc/odoo && chown -R odoo /etc/odoo
 
@@ -67,7 +67,7 @@ RUN mkdir -p /opt/odoo12/custom/addons \
 COPY custom_entrypoint.sh /custom_entrypoint.sh
 RUN chmod +x /custom_entrypoint.sh
 
-VOLUME ["/var/lib/odoo", "/opt/odoo12/custom/addons"]
+VOLUME ["/var/lib/odoo", "/opt/odoo12/custom"]
 EXPOSE 8069 8071 8072
 
 ENV ODOO_RC=/etc/odoo/odoo.conf
