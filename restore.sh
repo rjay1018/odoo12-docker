@@ -100,9 +100,6 @@ docker exec -i odoo-db dropdb -U odoo -w --if-exists "$DB_NAME"
 echo "==> 🆕 Creating fresh database '$DB_NAME'..."
 docker exec -i odoo-db createdb -U odoo -w "$DB_NAME"
 
-# Create postgres role just in case the SQL dump tries to assign ownership to it
-docker exec -i odoo-db psql -U odoo -c "CREATE ROLE postgres;" 2>/dev/null || true
-
 echo "==> ⏳ Restoring SQL dump into '$DB_NAME' (this may take a few minutes)..."
 cat "$SQL_FILE" | docker exec -i odoo-db psql -U odoo -d "$DB_NAME" -q
 
