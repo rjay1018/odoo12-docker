@@ -17,7 +17,7 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - ./addons:/opt/odoo12/custom
     networks:
       - internal-db
       - nginx-proxy-network
