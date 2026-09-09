@@ -22,11 +22,15 @@ AUTO_FS=$(find "$BASE_PATH" -maxdepth 1 -mindepth 1 -type d | head -n 1)
 AUTO_FS=$(basename "$AUTO_FS" 2>/dev/null)
 
 FS_PROMPT="2. Enter the filestore folder name"
-[ -n "$AUTO_FS" ] && FS_PROMPT+=" [default: $AUTO_FS]"
-read -p "$FS_PROMPT (leave blank to skip): " FS_DIRNAME
+if [ -n "$AUTO_FS" ]; then
+    FS_PROMPT+=" [default: $AUTO_FS] (type 'skip' to ignore filestore)"
+else
+    FS_PROMPT+=" (leave blank to skip)"
+fi
+read -p "$FS_PROMPT: " FS_DIRNAME
 FS_DIRNAME="${FS_DIRNAME:-$AUTO_FS}"
 
-if [ -n "$FS_DIRNAME" ]; then
+if [ -n "$FS_DIRNAME" ] && [ "$FS_DIRNAME" != "skip" ]; then
     FILESTORE_PATH="$BASE_PATH/$FS_DIRNAME"
     if [ ! -d "$FILESTORE_PATH" ]; then
         echo "❌ Error: Filestore directory '$FILESTORE_PATH' not found!"
