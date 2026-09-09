@@ -24,10 +24,17 @@ if [ ! -f "$SQL_FILE" ]; then
     exit 1
 fi
 
-# The user requested the filestore name to always be the same as the database name
-FILESTORE_PATH="$BASE_PATH/filestore/$DB_NAME"
-if [ ! -d "$FILESTORE_PATH" ]; then
-    echo "⚠️  Warning: Filestore directory '$FILESTORE_PATH' not found!"
+# Try to auto-detect the filestore path
+if [ -d "$BASE_PATH/filestore/$DB_NAME" ]; then
+    FILESTORE_PATH="$BASE_PATH/filestore/$DB_NAME"
+elif [ -d "$BASE_PATH/$DB_NAME" ]; then
+    FILESTORE_PATH="$BASE_PATH/$DB_NAME"
+else
+    FILESTORE_PATH=""
+fi
+
+if [ -z "$FILESTORE_PATH" ]; then
+    echo "⚠️  Warning: Could not automatically find the filestore directory in '$BASE_PATH'!"
     read -p "Do you want to provide a custom path for the filestore? (leave blank to skip filestore restore): " CUSTOM_FS
     if [ -n "$CUSTOM_FS" ]; then
         CUSTOM_FS="${CUSTOM_FS/#\~/$HOME}"
