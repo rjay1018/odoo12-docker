@@ -6,46 +6,69 @@ echo "    Odoo 12 Interactive Restore       "
 echo "======================================"
 echo ""
 
-read -p "Enter the database name to restore (e.g. yyy): " DB_NAME
-if [ -z "$DB_NAME" ]; then
-    echo "❌ Error: Database name cannot be empty."
-    exit 1
-fi
-
-read -p "Enter the base path where your backups are stored (e.g. /root/backups or .): " BASE_PATH
+# 1. Ask for the base path
+read -p "1. Enter the base path containing your backups (e.g. ~/yyy_0909): " BASE_PATH
 # Expand tilde (~) to the user's home directory so ~/ works properly
 BASE_PATH="${BASE_PATH/#\~/$HOME}"
 BASE_PATH=$(realpath "$BASE_PATH")
+if [ ! -d "$BASE_PATH" ]; then
+    echo "❌ Error: Directory '$BASE_PATH' not found!"
+    exit 1
+fi
 
-read -p "Enter the exact SQL file name (e.g. yyy_backup.sql): " SQL_FILENAME
+# 2. Ask for the filestore folder
+# Try to auto-detect a directory inside the base path
+AUTO_FS=$(find "$BASE_PATH" -maxdepth 1 -mindepth 1 -type d | head -n 1)
+AUTO_FS=$(basename "$AUTO_FS" 2>/dev/null)
+
+FS_PROMPT="2. Enter the filestore folder name"
+[ -n "$AUTO_FS" ] && FS_PROMPT+=" [default: $AUTO_FS]"
+read -p "$FS_PROMPT (leave blank to skip): " FS_DIRNAME
+FS_DIRNAME="${FS_DIRNAME:-$AUTO_FS}"
+
+if [ -n "$FS_DIRNAME" ]; then
+    FILESTORE_PATH="$BASE_PATH/$FS_DIRNAME"
+    if [ ! -d "$FILESTORE_PATH" ]; then
+        echo "❌ Error: Filestore directory '$FILESTORE_PATH' not found!"
+        exit 1
+    fi
+else
+    FILESTORE_PATH=""
+fi
+
+# 3. Ask for the SQL file
+# Try to auto-detect a .sql file
+AUTO_SQL=$(ls -1 "$BASE_PATH"/*.sql 2>/dev/null | head -n 1)
+AUTO_SQL=$(basename "$AUTO_SQL" 2>/dev/null)
+
+SQL_PROMPT="3. Enter the exact SQL file name"
+[ -n "$AUTO_SQL" ] && SQL_PROMPT+=" [default: $AUTO_SQL]"
+read -p "$SQL_PROMPT: " SQL_FILENAME
+SQL_FILENAME="${SQL_FILENAME:-$AUTO_SQL}"
+
+if [ -z "$SQL_FILENAME" ]; then
+    echo "❌ Error: No SQL file specified."
+    exit 1
+fi
+
 SQL_FILE="$BASE_PATH/$SQL_FILENAME"
 if [ ! -f "$SQL_FILE" ]; then
     echo "❌ Error: SQL file '$SQL_FILE' not found!"
     exit 1
 fi
 
-# Try to auto-detect the filestore path
-if [ -d "$BASE_PATH/filestore/$DB_NAME" ]; then
-    FILESTORE_PATH="$BASE_PATH/filestore/$DB_NAME"
-elif [ -d "$BASE_PATH/$DB_NAME" ]; then
-    FILESTORE_PATH="$BASE_PATH/$DB_NAME"
-else
-    FILESTORE_PATH=""
+# 4. Ask for the new database name
+DEFAULT_DB="${FS_DIRNAME:-${SQL_FILENAME%.sql}}"
+if [ "$DEFAULT_DB" == "filestore" ]; then
+    DEFAULT_DB="${SQL_FILENAME%.sql}"
 fi
 
-if [ -z "$FILESTORE_PATH" ]; then
-    echo "⚠️  Warning: Could not automatically find the filestore directory in '$BASE_PATH'!"
-    read -p "Do you want to provide a custom path for the filestore? (leave blank to skip filestore restore): " CUSTOM_FS
-    if [ -n "$CUSTOM_FS" ]; then
-        CUSTOM_FS="${CUSTOM_FS/#\~/$HOME}"
-        FILESTORE_PATH=$(realpath "$CUSTOM_FS")
-        if [ ! -d "$FILESTORE_PATH" ]; then
-            echo "❌ Error: Custom filestore directory '$FILESTORE_PATH' not found!"
-            exit 1
-        fi
-    else
-        FILESTORE_PATH=""
-    fi
+read -p "4. Enter the new database name [default: $DEFAULT_DB]: " DB_NAME
+DB_NAME="${DB_NAME:-$DEFAULT_DB}"
+
+if [ -z "$DB_NAME" ]; then
+    echo "❌ Error: Database name cannot be empty."
+    exit 1
 fi
 
 echo ""
