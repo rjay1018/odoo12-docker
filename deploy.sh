@@ -10,17 +10,31 @@ cd "$(dirname "$0")"
 echo "==> Pulling latest changes from GitHub..."
 git pull
 
-echo "==> Ensuring Database Container and Networks are running..."
-cd odoo
-docker-compose up -d db
-cd ..
+echo "==> Ensuring Docker networks and volumes exist..."
+docker network create odoo_internal-db 2>/dev/null || true
+# Note: nginx-proxy-network is external, but we try to create it just in case
+docker network create nginx-proxy-network 2>/dev/null || true
+docker volume create odoo_odoo-db-data 2>/dev/null || true
+docker volume create odoo_odoo-web-data 2>/dev/null || true
+
+echo "==> Ensuring Database Container is running..."
+if ! docker ps | grep -q odoo-db; then
+    docker rm -f odoo-db 2>/dev/null || true
+    docker run -d \
+      --name odoo-db \
+      --network odoo_internal-db \
+      -e POSTGRES_DB=yyy \
+      -e POSTGRES_USER=odoo \
+      -e POSTGRES_PASSWORD=odoo \
+      -v odoo_odoo-db-data:/var/lib/postgresql/data \
+      --restart always \
+      postgres:12
+fi
 
 # Build the custom docker image if it doesn't exist
 if ! docker image inspect odoo12-py37 >/dev/null 2>&1; then
     echo "==> Custom Docker image 'odoo12-py37' not found. Building it now..."
-    cd odoo
-    docker-compose build
-    cd ..
+    docker build -t odoo12-py37 odoo/
 fi
 
 echo "==> Fixing addon file permissions (UID 101 = odoo user inside container)..."
