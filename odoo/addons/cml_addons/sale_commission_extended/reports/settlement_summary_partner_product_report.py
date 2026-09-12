@@ -54,13 +54,19 @@ class SettlementSummaryPartnerProductReport(models.AbstractModel):
             # Line level
             l_key = (invoice.id if invoice else False, product.id if product else False)
             if l_key not in p_dict['lines_dict']:
-                inv_name = invoice.name if invoice and invoice.name else (invoice.number if invoice else 'No Invoice')
+                # Odoo 12: invoice.number is the actual invoice reference (e.g. INV/2024/0001)
+                # invoice.name is the internal description field which is usually empty
+                if invoice:
+                    inv_name = invoice.number or invoice.name or 'No Invoice'
+                else:
+                    inv_name = 'No Invoice'
+                inv_line = line.invoice_line
                 p_dict['lines_dict'][l_key] = {
                     'invoice': inv_name,
                     'product': product.name if product else 'No Product',
-                    'uom': line.invoice_line.uom_id.name if line.invoice_line.uom_id else '',
-                    'quantity': line.invoice_line.quantity,
-                    'unit_price': line.invoice_line.price_unit,
+                    'uom': inv_line.uom_id.name if inv_line and inv_line.uom_id else '',
+                    'quantity': inv_line.quantity if inv_line else 0.0,
+                    'unit_price': inv_line.price_unit if inv_line else 0.0,
                     'price_subtotal': 0.0,
                     'amount_subtotal': 0.0,
                     '_processed_inv_lines': set(),
