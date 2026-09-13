@@ -1,0 +1,4 @@
+[submodule "odoo/addons/submodule/web"]
+	path = odoo/addons/submodule/web
+	url = https://github.com/OCA/web.git
+	branch = 12.0
