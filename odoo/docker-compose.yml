@@ -8,9 +8,10 @@ services:
     ports:
       - "8069:8069"
     environment:
-      # - VIRTUAL_HOST=odoo.example.com
-      # - LETSENCRYPT_HOST=odoo.example.com
-      # - LETSENCRYPT_EMAIL=admin@example.com
+      - VIRTUAL_HOST=yyy-staging.on-cloud.io
+      - VIRTUAL_PORT=8069
+      - LETSENCRYPT_HOST=yyy-staging.on-cloud.io
+      - LETSENCRYPT_EMAIL=renato@cml-intl.com
       - HOST=db
       - USER=odoo
       - PASSWORD=odoo
