@@ -11,7 +11,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-8-jdk \
     dirmngr \
     fonts-noto-cjk \
+    fonts-urw-base35 \
     gnupg \
+    gsfonts \
     libreoffice \
     libssl-dev \
     node-less \
