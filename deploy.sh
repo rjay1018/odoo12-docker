@@ -17,6 +17,17 @@ docker network create nginx-proxy-network 2>/dev/null || true
 docker volume create odoo_odoo-db-data 2>/dev/null || true
 docker volume create odoo_odoo-web-data 2>/dev/null || true
 
+# Determine compose command
+COMPOSE_CMD="docker compose"
+if ! docker compose version >/dev/null 2>&1; then
+    COMPOSE_CMD="docker-compose"
+fi
+
+echo "==> Ensuring Nginx reverse proxy & SSL companion are running..."
+if [ -d "proxy" ]; then
+    $COMPOSE_CMD -f proxy/docker-compose.yml up -d
+fi
+
 echo "==> Ensuring Database Container is running..."
 if ! docker ps | grep -q odoo-db; then
     docker rm -f odoo-db 2>/dev/null || true
@@ -51,6 +62,10 @@ docker run -d \
   --network odoo_internal-db \
   --network nginx-proxy-network \
   -p 8069:8069 \
+  -e VIRTUAL_HOST=yyy-staging.on-cloud.io \
+  -e VIRTUAL_PORT=8069 \
+  -e LETSENCRYPT_HOST=yyy-staging.on-cloud.io \
+  -e LETSENCRYPT_EMAIL=renato@cml-intl.com \
   -e HOST=db \
   -e USER=odoo \
   -e PASSWORD=odoo \
@@ -67,4 +82,4 @@ echo "==> Last 20 lines of Odoo log:"
 docker logs --tail 20 odoo-web
 
 echo ""
-echo "✅ Done! Open your browser to access Odoo."
+echo "✅ Done! Access Odoo at https://yyy-staging.on-cloud.io"
