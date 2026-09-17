@@ -4,7 +4,7 @@ services:
     image: odoo12-py37
     container_name: odoo-web
     ports:
-      - "8069:8069"
+      - "127.0.0.1:8069:8069"
     environment:
       - VIRTUAL_HOST=yyy-staging.on-cloud.io
       - VIRTUAL_PORT=8069
