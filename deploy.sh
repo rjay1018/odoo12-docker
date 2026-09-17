@@ -11,10 +11,8 @@ echo "==> Pulling latest changes from GitHub..."
 git pull
 
 echo "==> Ensuring Docker networks and volumes exist..."
-docker network create odoo_internal-db 2>/dev/null || true
 # Note: nginx-proxy-network is external, but we try to create it just in case
 docker network create nginx-proxy-network 2>/dev/null || true
-docker volume create odoo_odoo-db-data 2>/dev/null || true
 docker volume create odoo_odoo-web-data 2>/dev/null || true
 
 # Determine compose command
@@ -28,19 +26,18 @@ if [ -d "proxy" ]; then
     $COMPOSE_CMD -f proxy/docker-compose.yml up -d
 fi
 
-echo "==> Ensuring Database Container is running..."
-if ! docker ps | grep -q odoo-db; then
+echo "==> Ensuring Host PostgreSQL is running..."
+if command -v systemctl >/dev/null 2>&1; then
+    if ! systemctl is-active --quiet postgresql; then
+        echo "Starting PostgreSQL on host..."
+        sudo systemctl start postgresql
+    fi
+fi
+
+# Clean up retired odoo-db container if still running
+if docker ps | grep -q odoo-db; then
+    echo "==> Stopping retired odoo-db Docker container..."
     docker rm -f odoo-db 2>/dev/null || true
-    docker run -d \
-      --name odoo-db \
-      --network odoo_internal-db \
-      --network-alias db \
-      -e POSTGRES_DB=yyy \
-      -e POSTGRES_USER=odoo \
-      -e POSTGRES_PASSWORD=odoo \
-      -v odoo_odoo-db-data:/var/lib/postgresql/data \
-      --restart always \
-      postgres:12
 fi
 
 # Build the custom docker image if it doesn't exist
@@ -59,19 +56,19 @@ docker rm -f odoo-web 2>/dev/null || true
 # Run the new container
 docker run -d \
   --name odoo-web \
-  --network odoo_internal-db \
   --network nginx-proxy-network \
   -p 8069:8069 \
   -e VIRTUAL_HOST=yyy-staging.on-cloud.io \
   -e VIRTUAL_PORT=8069 \
   -e LETSENCRYPT_HOST=yyy-staging.on-cloud.io \
   -e LETSENCRYPT_EMAIL=renato@cml-intl.com \
-  -e HOST=db \
+  -e HOST=False \
   -e USER=odoo \
-  -e PASSWORD=odoo \
+  -e PASSWORD=2bund2nc3+ \
   -v odoo_odoo-web-data:/var/lib/odoo \
   -v $(pwd)/odoo/config:/etc/odoo \
   -v $(pwd)/odoo/addons:/opt/odoo12/custom \
+  -v /var/run/postgresql:/var/run/postgresql \
   --restart always \
   odoo12-py37
 

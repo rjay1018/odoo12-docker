@@ -95,13 +95,16 @@ cd "$(dirname "$0")"
 docker rm -f odoo-web 2>/dev/null || true
 
 echo "==> 🗑️ Dropping existing database '$DB_NAME'..."
-docker exec -i odoo-db dropdb -U odoo -w --if-exists "$DB_NAME"
+sudo -u postgres dropdb --if-exists "$DB_NAME"
 
 echo "==> 🆕 Creating fresh database '$DB_NAME'..."
-docker exec -i odoo-db createdb -U odoo -w "$DB_NAME"
+sudo -u postgres createdb -O odoo "$DB_NAME"
 
 echo "==> ⏳ Restoring SQL dump into '$DB_NAME' (this may take a few minutes)..."
-cat "$SQL_FILE" | docker exec -i odoo-db psql -U odoo -d "$DB_NAME" -q
+sudo -u postgres psql -d "$DB_NAME" -q < "$SQL_FILE"
+
+echo "==> 🔑 Ensuring schema permissions on public..."
+sudo -u postgres psql -d "$DB_NAME" -c "GRANT ALL ON SCHEMA public TO odoo;" 2>/dev/null || true
 
 if [ -n "$FILESTORE_PATH" ]; then
     echo "==> 📂 Restoring filestore into Docker volume..."

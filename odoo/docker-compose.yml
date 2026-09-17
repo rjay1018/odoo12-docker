@@ -3,8 +3,6 @@ services:
     build: .
     image: odoo12-py37
     container_name: odoo-web
-    depends_on:
-      - db
     ports:
       - "8069:8069"
     environment:
@@ -12,36 +10,21 @@ services:
       - VIRTUAL_PORT=8069
       - LETSENCRYPT_HOST=yyy-staging.on-cloud.io
       - LETSENCRYPT_EMAIL=renato@cml-intl.com
-      - HOST=db
+      - HOST=False
       - USER=odoo
-      - PASSWORD=odoo
+      - PASSWORD=2bund2nc3+
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/opt/odoo12/custom
+      - /var/run/postgresql:/var/run/postgresql
     networks:
-      - internal-db
       - nginx-proxy-network
-    restart: always
-
-  db:
-    image: postgres:12
-    container_name: odoo-db
-    environment:
-      - POSTGRES_DB=yyy
-      - POSTGRES_PASSWORD=odoo
-      - POSTGRES_USER=odoo
-    volumes:
-      - odoo-db-data:/var/lib/postgresql/data
-    networks:
-      - internal-db
     restart: always
 
 volumes:
   odoo-web-data:
-  odoo-db-data:
 
 networks:
-  internal-db:
   nginx-proxy-network:
     external: true
