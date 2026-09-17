@@ -8,6 +8,7 @@ services:
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
+      - ./vhost.d/yyy-staging.on-cloud.io:/etc/nginx/vhost.d/yyy-staging.on-cloud.io:ro
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro

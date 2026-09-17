@@ -24,6 +24,7 @@ fi
 echo "==> Ensuring Nginx reverse proxy & SSL companion are running..."
 if [ -d "proxy" ]; then
     $COMPOSE_CMD -f proxy/docker-compose.yml up -d
+    docker exec nginx-proxy nginx -s reload 2>/dev/null || true
 fi
 
 echo "==> Ensuring Host PostgreSQL is running..."
