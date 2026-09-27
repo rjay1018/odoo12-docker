@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_order_form_overdue_block" model="ir.ui.view">
+        <field name="name">sale.order.form.overdue.block</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="before">
+                <div class="alert alert-warning" role="alert"
+                     style="margin-bottom:0px; font-size:13px;"
+                     attrs="{'invisible': [('has_overdue_invoices', '=', False)]}">
+                    <strong>
+                        <i class="fa fa-exclamation-triangle"/>
+                        Warning:
+                    </strong>
+                    This customer has overdue invoice(s). Confirmation of this Sales Order is blocked until all overdue invoices are settled.
+                </div>
+                <field name="has_overdue_invoices" invisible="1"/>
+                <field name="overdue_invoices_message" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
