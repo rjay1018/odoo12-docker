@@ -2,3 +2,7 @@
 	path = odoo/addons/submodule/web
 	url = https://github.com/OCA/web.git
 	branch = 12.0
+[submodule "odoo/addons/submodule/stock-logistics-warehouse"]
+	path = odoo/addons/submodule/stock-logistics-warehouse
+	url = https://github.com/OCA/stock-logistics-warehouse.git
+	branch = 12.0

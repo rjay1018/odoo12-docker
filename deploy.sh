@@ -9,6 +9,7 @@ cd "$(dirname "$0")"
 
 echo "==> Pulling latest changes from GitHub..."
 git pull
+git submodule update --init --recursive
 
 echo "==> Ensuring Docker networks and volumes exist..."
 # Note: nginx-proxy-network is external, but we try to create it just in case
