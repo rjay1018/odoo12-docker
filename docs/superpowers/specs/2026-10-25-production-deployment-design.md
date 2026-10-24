@@ -21,33 +21,33 @@ The architecture follows the established hybrid model:
 ## 2. Architecture & Container Specifications
 
 ```mermaid
-graph TD
+flowchart TD
     subgraph Host ["Ubuntu 24.04 Host"]
         subgraph NativeLayer ["Native Host Services"]
-            PG["🐘 PostgreSQL 16 (Bare Metal)<br>• UNIX Socket: /var/run/postgresql<br>• DBs: yyy_staging & yyy_prod<br>• OOMScoreAdjust=-1000"]
+            PG["PostgreSQL 16 - Bare Metal<br/>UNIX Socket: /var/run/postgresql<br/>DBs: yyy_staging and yyy_prod<br/>OOMScoreAdjust=-1000"]
         end
 
-        subgraph DockerLayer ["Docker Containers (nginx-proxy-network)"]
-            Proxy["🌐 nginx-proxy + acme-companion<br>• Ports: 80, 443<br>• Auto Let's Encrypt SSL"]
+        subgraph DockerLayer ["Docker Containers - nginx-proxy-network"]
+            Proxy["nginx-proxy and acme-companion<br/>Ports 80, 443<br/>Auto Lets Encrypt SSL"]
             
             subgraph StagingEnv ["Staging Environment"]
-                OdooStaging["🧪 odoo-web<br>• Domain: yyy-staging.on-cloud.io<br>• Host Port: 127.0.0.1:8069<br>• Vol: odoo_odoo-web-data<br>• Config: odoo.conf"]
+                OdooStaging["odoo-web<br/>Domain: yyy-staging.on-cloud.io<br/>Host Port: 127.0.0.1:8069<br/>Volume: odoo_odoo-web-data<br/>Config: odoo.conf"]
             end
 
             subgraph ProdEnv ["Production Environment"]
-                OdooProd["🚀 odoo-web-prod<br>• Domain: yyy.on-cloud.io<br>• Host Port: 127.0.0.1:8079<br>• Vol: odoo_odoo-web-prod-data<br>• Config: odoo.prod.conf"]
+                OdooProd["odoo-web-prod<br/>Domain: yyy.on-cloud.io<br/>Host Port: 127.0.0.1:8079<br/>Volume: odoo_odoo-web-prod-data<br/>Config: odoo.prod.conf"]
             end
         end
     end
 
-    UserProd(["👥 Production Users"]) -->|HTTPS:443 (yyy.on-cloud.io)| Proxy
-    UserStage(["🧪 Testers / Staging"]) -->|HTTPS:443 (yyy-staging.on-cloud.io)| Proxy
+    UserProd["Production Users"] -->|"HTTPS 443 - yyy.on-cloud.io"| Proxy
+    UserStage["Testers / Staging"] -->|"HTTPS 443 - yyy-staging.on-cloud.io"| Proxy
 
-    Proxy -->|internal:8069| OdooProd
-    Proxy -->|internal:8069| OdooStaging
+    Proxy -->|"internal:8069"| OdooProd
+    Proxy -->|"internal:8069"| OdooStaging
 
-    OdooProd == "UNIX Socket (/var/run/postgresql)" ==> PG
-    OdooStaging == "UNIX Socket (/var/run/postgresql)" ==> PG
+    OdooProd -->|"UNIX Socket: /var/run/postgresql"| PG
+    OdooStaging -->|"UNIX Socket: /var/run/postgresql"| PG
 ```
 
 ### Component Comparison Table
