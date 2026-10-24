@@ -78,3 +78,34 @@ Here is the high-level summary of the latest Odoo 12 Hybrid Architecture, server
 * **Schema Permission Patching:** Automatically executes `GRANT ALL ON SCHEMA public TO odoo;` to guarantee full PostgreSQL 16 compatibility.
 * **Filestore Synchronization:** Synchronizes filestores directly into the `odoo_odoo-web-data` volume using a lightweight busybox container.
 * **One-Click Re-Deployment:** Seamlessly calls `deploy.sh` upon completion.
+
+---
+
+### 9. Multi-Environment Setup: Staging vs. Production
+
+The server supports running **Staging** and **Production** simultaneously on the same Ubuntu 24.04 host without conflict:
+
+| Setting | Staging (`odoo-web`) | Production (`odoo-web-prod`) |
+| :--- | :--- | :--- |
+| **Domain Name** | `yyy-staging.on-cloud.io` | `yyy.on-cloud.io` |
+| **Container Name** | `odoo-web` | `odoo-web-prod` |
+| **Host Loopback Port**| `127.0.0.1:8069:8069` | `127.0.0.1:8079:8069` |
+| **Filestore Volume** | `odoo_odoo-web-data` | `odoo_odoo-web-prod-data` |
+| **Config File** | `odoo/config/odoo.conf` | `odoo/config/odoo.prod.conf` |
+| **Compose File** | `odoo/docker-compose.yml` | `odoo/docker-compose.prod.yml` |
+| **Database Filtering** | Relaxed / open | Strict: `db_name = yyy_prod`, `dbfilter = ^yyy_prod$`, `list_db = False` |
+| **Deployment Script** | `./deploy.sh` | `./deploy-prod.sh` |
+
+#### Initializing the Production Database on Host PostgreSQL:
+```bash
+sudo -u postgres createdb -O odoo yyy_prod
+sudo -u postgres psql -d yyy_prod -c "GRANT ALL ON SCHEMA public TO odoo;"
+```
+
+#### Deploying Production:
+```bash
+./deploy-prod.sh
+```
+* Deploying production restarts only `odoo-web-prod`; staging remains running uninterrupted.
+* Deploying staging (`./deploy.sh`) restarts only `odoo-web`; production remains running uninterrupted.
+
