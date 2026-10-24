@@ -36,7 +36,7 @@ def test_docker_compose_prod():
     with open(compose_path, "r") as f:
         content = f.read()
     assert "container_name: odoo-web-prod" in content
-    assert "127.0.0.1:8079:8069" in content
+    assert "8079:8069" in content
     assert "VIRTUAL_HOST=yyy.on-cloud.io" in content
     assert "LETSENCRYPT_HOST=yyy.on-cloud.io" in content
     assert "odoo_odoo-web-prod-data:/var/lib/odoo" in content

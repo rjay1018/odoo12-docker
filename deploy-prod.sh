@@ -52,7 +52,7 @@ docker rm -f odoo-web-prod 2>/dev/null || true
 docker run -d \
   --name odoo-web-prod \
   --network nginx-proxy-network \
-  -p 127.0.0.1:8079:8069 \
+  -p 8079:8069 \
   -e VIRTUAL_HOST=yyy.on-cloud.io \
   -e VIRTUAL_PORT=8069 \
   -e LETSENCRYPT_HOST=yyy.on-cloud.io \
