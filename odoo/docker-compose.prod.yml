@@ -1,0 +1,31 @@
+services:
+  web-prod:
+    build: .
+    image: odoo12-py37
+    container_name: odoo-web-prod
+    ports:
+      - "127.0.0.1:8079:8069"
+    environment:
+      - VIRTUAL_HOST=yyy.on-cloud.io
+      - VIRTUAL_PORT=8069
+      - LETSENCRYPT_HOST=yyy.on-cloud.io
+      - LETSENCRYPT_EMAIL=renato@cml-intl.com
+      - HOST=False
+      - USER=odoo
+      - PASSWORD=2bund2nc3+
+    volumes:
+      - odoo_odoo-web-prod-data:/var/lib/odoo
+      - ./config/odoo.prod.conf:/etc/odoo/odoo.conf
+      - ./addons:/opt/odoo12/custom
+      - /var/run/postgresql:/var/run/postgresql
+    networks:
+      - nginx-proxy-network
+    restart: always
+
+volumes:
+  odoo_odoo-web-prod-data:
+    external: true
+
+networks:
+  nginx-proxy-network:
+    external: true

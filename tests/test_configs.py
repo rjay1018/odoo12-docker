@@ -30,6 +30,21 @@ def test_nginx_prod_vhost():
     assert "proxy_read_timeout 600s;" in content
     print("PASS: proxy/vhost.d/yyy.on-cloud.io validation succeeded.")
 
+def test_docker_compose_prod():
+    compose_path = os.path.join(os.path.dirname(__file__), "..", "odoo", "docker-compose.prod.yml")
+    assert os.path.exists(compose_path), f"Compose file not found: {compose_path}"
+    with open(compose_path, "r") as f:
+        content = f.read()
+    assert "container_name: odoo-web-prod" in content
+    assert "127.0.0.1:8079:8069" in content
+    assert "VIRTUAL_HOST=yyy.on-cloud.io" in content
+    assert "LETSENCRYPT_HOST=yyy.on-cloud.io" in content
+    assert "odoo_odoo-web-prod-data:/var/lib/odoo" in content
+    assert "./config/odoo.prod.conf:/etc/odoo/odoo.conf" in content
+    assert "/var/run/postgresql:/var/run/postgresql" in content
+    print("PASS: docker-compose.prod.yml validation succeeded.")
+
 if __name__ == "__main__":
     test_odoo_prod_conf()
     test_nginx_prod_vhost()
+    test_docker_compose_prod()
