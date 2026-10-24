@@ -44,7 +44,22 @@ def test_docker_compose_prod():
     assert "/var/run/postgresql:/var/run/postgresql" in content
     print("PASS: docker-compose.prod.yml validation succeeded.")
 
+def test_deploy_prod_script():
+    script_path = os.path.join(os.path.dirname(__file__), "..", "deploy-prod.sh")
+    assert os.path.exists(script_path), f"Deployment script not found: {script_path}"
+    with open(script_path, "r") as f:
+        content = f.read()
+    assert "odoo-web-prod" in content
+    assert "yyy.on-cloud.io" in content
+    assert "odoo_odoo-web-prod-data" in content
+    assert "8079:8069" in content
+    assert "odoo.prod.conf" in content
+    # Ensure staging container is not killed
+    assert "docker rm -f odoo-web " not in content, "Script must not stop the staging container odoo-web"
+    print("PASS: deploy-prod.sh validation succeeded.")
+
 if __name__ == "__main__":
     test_odoo_prod_conf()
     test_nginx_prod_vhost()
     test_docker_compose_prod()
+    test_deploy_prod_script()
