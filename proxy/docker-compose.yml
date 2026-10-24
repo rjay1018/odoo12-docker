@@ -5,10 +5,14 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - DEFAULT_HOST=yyy.on-cloud.io
     volumes:
       - conf:/etc/nginx/conf.d
       - vhost:/etc/nginx/vhost.d
       - ./vhost.d/yyy-staging.on-cloud.io:/etc/nginx/vhost.d/yyy-staging.on-cloud.io:ro
+      - ./vhost.d/yyy.on-cloud.io:/etc/nginx/vhost.d/yyy.on-cloud.io:ro
+      - ./vhost.d/yyy.on-cloud.io:/etc/nginx/vhost.d/default:ro
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
