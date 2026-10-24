@@ -58,8 +58,21 @@ def test_deploy_prod_script():
     assert "docker rm -f odoo-web " not in content, "Script must not stop the staging container odoo-web"
     print("PASS: deploy-prod.sh validation succeeded.")
 
+def test_restore_prod_script():
+    script_path = os.path.join(os.path.dirname(__file__), "..", "restore-prod.sh")
+    assert os.path.exists(script_path), f"Restore script not found: {script_path}"
+    with open(script_path, "r") as f:
+        content = f.read()
+    assert "odoo-web-prod" in content
+    assert "yyy_prod" in content
+    assert "odoo_odoo-web-prod-data" in content
+    assert "./deploy-prod.sh" in content
+    assert "docker rm -f odoo-web " not in content, "Restore script must not stop staging container odoo-web"
+    print("PASS: restore-prod.sh validation succeeded.")
+
 if __name__ == "__main__":
     test_odoo_prod_conf()
     test_nginx_prod_vhost()
     test_docker_compose_prod()
     test_deploy_prod_script()
+    test_restore_prod_script()
