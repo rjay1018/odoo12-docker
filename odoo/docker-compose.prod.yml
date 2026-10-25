@@ -11,7 +11,7 @@ services:
       - LETSENCRYPT_HOST=yyy.on-cloud.io
       - LETSENCRYPT_EMAIL=renato@cml-intl.com
       - HOST=False
-      - USER=odoo
+      - USER=yyy
       - PASSWORD=2bund2nc3+
     volumes:
       - odoo_odoo-web-prod-data:/var/lib/odoo

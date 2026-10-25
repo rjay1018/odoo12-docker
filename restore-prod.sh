@@ -87,14 +87,19 @@ docker rm -f odoo-web-prod 2>/dev/null || true
 echo "==> 🗑️ Dropping existing production database '$DB_NAME'..."
 sudo -u postgres dropdb --if-exists "$DB_NAME"
 
-echo "==> 🆕 Creating fresh production database '$DB_NAME'..."
-sudo -u postgres createdb -O odoo "$DB_NAME"
+echo "==> 🆕 Creating fresh production database '$DB_NAME' owned by 'yyy'..."
+sudo -u postgres createdb -O yyy "$DB_NAME"
 
 echo "==> ⏳ Restoring SQL dump into '$DB_NAME'..."
 sudo -u postgres psql -d "$DB_NAME" -q < "$SQL_FILE"
 
-echo "==> 🔑 Ensuring schema permissions on public..."
-sudo -u postgres psql -d "$DB_NAME" -c "GRANT ALL ON SCHEMA public TO odoo;" 2>/dev/null || true
+echo "==> 🔑 Ensuring schema permissions on public for 'yyy'..."
+sudo -u postgres psql -d "$DB_NAME" -c "GRANT ALL ON SCHEMA public TO yyy;" 2>/dev/null || true
+
+echo "==> 🔒 Isolating production database (preventing staging 'odoo' user access)..."
+sudo -u postgres psql -c "REVOKE ALL ON DATABASE \"$DB_NAME\" FROM odoo, PUBLIC;" 2>/dev/null || true
+sudo -u postgres psql -c "REVOKE CONNECT ON DATABASE \"$DB_NAME\" FROM odoo, PUBLIC;" 2>/dev/null || true
+sudo -u postgres psql -c "GRANT ALL ON DATABASE \"$DB_NAME\" TO yyy;" 2>/dev/null || true
 
 if [ -n "$FILESTORE_PATH" ]; then
     echo "==> 📂 Restoring filestore into Production Docker volume (odoo_odoo-web-prod-data)..."

@@ -93,13 +93,23 @@ The server supports running **Staging** and **Production** simultaneously on the
 | **Filestore Volume** | `odoo_odoo-web-data` | `odoo_odoo-web-prod-data` |
 | **Config File** | `odoo/config/odoo.conf` | `odoo/config/odoo.prod.conf` |
 | **Compose File** | `odoo/docker-compose.yml` | `odoo/docker-compose.prod.yml` |
+| **Database User** | `odoo` | `yyy` |
 | **Database Filtering** | Relaxed / open | Strict: `db_name = yyy_prod`, `dbfilter = ^yyy_prod$`, `list_db = False` |
 | **Deployment Script** | `./deploy.sh` | `./deploy-prod.sh` |
 
 #### Initializing the Production Database on Host PostgreSQL:
 ```bash
-sudo -u postgres createdb -O odoo yyy_prod
-sudo -u postgres psql -d yyy_prod -c "GRANT ALL ON SCHEMA public TO odoo;"
+# 1. Create yyy user if not created
+sudo -u postgres psql -c "CREATE USER yyy WITH PASSWORD '2bund2nc3+';"
+
+# 2. Create production database owned by yyy
+sudo -u postgres createdb -O yyy yyy_prod
+sudo -u postgres psql -d yyy_prod -c "GRANT ALL ON SCHEMA public TO yyy;"
+
+# 3. Prevent staging 'odoo' user from seeing or connecting to yyy_prod
+sudo -u postgres psql -c "REVOKE ALL ON DATABASE yyy_prod FROM odoo, PUBLIC;"
+sudo -u postgres psql -c "REVOKE CONNECT ON DATABASE yyy_prod FROM odoo, PUBLIC;"
+sudo -u postgres psql -c "GRANT ALL ON DATABASE yyy_prod TO yyy;"
 ```
 
 #### Deploying Production:

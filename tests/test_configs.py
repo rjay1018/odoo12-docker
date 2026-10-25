@@ -14,7 +14,7 @@ def test_odoo_prod_conf():
     assert options.get("list_db") == "False", "list_db must be False"
     assert options.get("db_host") == "False", "db_host must be False for UNIX socket"
     assert options.get("db_port") == "False", "db_port must be False"
-    assert options.get("db_user") == "odoo", "db_user must be odoo"
+    assert options.get("db_user") == "yyy", "db_user must be yyy"
     assert options.get("proxy_mode") == "True", "proxy_mode must be True"
     assert options.get("workers") == "5", "workers must be 5"
     assert options.get("limit_memory_soft") == "2684354560", "limit_memory_soft must be 2.5GB"
@@ -54,6 +54,7 @@ def test_deploy_prod_script():
     assert "odoo_odoo-web-prod-data" in content
     assert "8079:8069" in content
     assert "odoo.prod.conf" in content
+    assert "USER=yyy" in content
     # Ensure staging container is not killed
     assert "docker rm -f odoo-web " not in content, "Script must not stop the staging container odoo-web"
     print("PASS: deploy-prod.sh validation succeeded.")
@@ -66,6 +67,7 @@ def test_restore_prod_script():
     assert "odoo-web-prod" in content
     assert "yyy_prod" in content
     assert "odoo_odoo-web-prod-data" in content
+    assert "createdb -O yyy" in content
     assert "./deploy-prod.sh" in content
     assert "docker rm -f odoo-web " not in content, "Restore script must not stop staging container odoo-web"
     print("PASS: restore-prod.sh validation succeeded.")

@@ -58,7 +58,7 @@ docker run -d \
   -e LETSENCRYPT_HOST=yyy.on-cloud.io \
   -e LETSENCRYPT_EMAIL=renato@cml-intl.com \
   -e HOST=False \
-  -e USER=odoo \
+  -e USER=yyy \
   -e PASSWORD=2bund2nc3+ \
   -v odoo_odoo-web-prod-data:/var/lib/odoo \
   -v $(pwd)/odoo/config/odoo.prod.conf:/etc/odoo/odoo.conf \
