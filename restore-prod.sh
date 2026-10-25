@@ -61,10 +61,14 @@ if [ ! -f "$SQL_FILE" ]; then
     exit 1
 fi
 
-# 4. Target database name for production
-DB_NAME="yyy_prod"
-read -p "4. Confirm production database name [default: $DB_NAME]: " USER_DB
-DB_NAME="${USER_DB:-$DB_NAME}"
+# 4. Ask for the database name
+DEFAULT_DB="${FS_DIRNAME:-${SQL_FILENAME%.sql}}"
+if [ "$DEFAULT_DB" == "filestore" ]; then
+    DEFAULT_DB="${SQL_FILENAME%.sql}"
+fi
+
+read -p "4. Enter the production database name [default: $DEFAULT_DB]: " DB_NAME
+DB_NAME="${DB_NAME:-$DEFAULT_DB}"
 
 echo ""
 echo "⚠️  WARNING: You are about to restore to PRODUCTION:"

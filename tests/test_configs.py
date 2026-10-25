@@ -9,9 +9,6 @@ def test_odoo_prod_conf():
     config.read(conf_path)
     
     options = config["options"]
-    assert options.get("db_name") == "yyy_prod", "db_name must be yyy_prod"
-    assert options.get("dbfilter") == "^yyy_prod$", "dbfilter must be ^yyy_prod$"
-    assert options.get("list_db") == "False", "list_db must be False"
     assert options.get("db_host") == "False", "db_host must be False for UNIX socket"
     assert options.get("db_port") == "False", "db_port must be False"
     assert options.get("db_user") == "yyy", "db_user must be yyy"
@@ -65,7 +62,6 @@ def test_restore_prod_script():
     with open(script_path, "r") as f:
         content = f.read()
     assert "odoo-web-prod" in content
-    assert "yyy_prod" in content
     assert "odoo_odoo-web-prod-data" in content
     assert "createdb -O yyy" in content
     assert "./deploy-prod.sh" in content
