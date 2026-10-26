@@ -35,6 +35,7 @@ class CommissionSettlementExport(http.Controller):
         headers = [
             'Product item',
             'Invoice Number',
+            'Invoice Date',
             'Commission Type',
             'Based Amount of Commission',
             'Commission Total'
@@ -56,6 +57,8 @@ class CommissionSettlementExport(http.Controller):
             for a_line in s_line.agent_line:
                 product_name = a_line.object_id.product_id.name or ''
                 inv_number = a_line.object_id.invoice_id.number or ''
+                date_inv = a_line.object_id.invoice_id.date_invoice
+                inv_date = date_inv.strftime('%Y-%m-%d') if date_inv else ''
                 comm_type = a_line.commission.name or ''
 
                 subtotal = a_line.object_id.price_subtotal
@@ -71,6 +74,7 @@ class CommissionSettlementExport(http.Controller):
                 export_data.append({
                     'product': product_name,
                     'invoice': inv_number,
+                    'invoice_date': inv_date,
                     'type': comm_type,
                     'base': base_amount,
                     'total': comm_total
@@ -81,6 +85,8 @@ class CommissionSettlementExport(http.Controller):
             for a_line in c_line.agent_line_categ:
                 product_name = a_line.object_id.product_id.name or ''
                 inv_number = a_line.object_id.invoice_id.number or ''
+                date_inv = a_line.object_id.invoice_id.date_invoice
+                inv_date = date_inv.strftime('%Y-%m-%d') if date_inv else ''
                 comm_type = a_line.commission.name or ''
 
                 subtotal = a_line.object_id.price_subtotal
@@ -96,6 +102,7 @@ class CommissionSettlementExport(http.Controller):
                 export_data.append({
                     'product': product_name,
                     'invoice': inv_number,
+                    'invoice_date': inv_date,
                     'type': comm_type,
                     'base': base_amount,
                     'total': comm_total
@@ -108,15 +115,16 @@ class CommissionSettlementExport(http.Controller):
         for data in export_data:
             worksheet.write(row, 0, data['product'])
             worksheet.write(row, 1, data['invoice'])
-            worksheet.write(row, 2, data['type'])
-            worksheet.write(row, 3, data['base'], money_style)
-            worksheet.write(row, 4, data['total'], money_style)
+            worksheet.write(row, 2, data['invoice_date'])
+            worksheet.write(row, 3, data['type'])
+            worksheet.write(row, 4, data['base'], money_style)
+            worksheet.write(row, 5, data['total'], money_style)
             row += 1
 
         # Footer
         row += 1
-        worksheet.write(row, 3, 'Total Commission:', bold_style)
-        worksheet.write(row, 4, total_commission, money_style)
+        worksheet.write(row, 4, 'Total Commission:', bold_style)
+        worksheet.write(row, 5, total_commission, money_style)
 
         fp = io.BytesIO()
         workbook.save(fp)
