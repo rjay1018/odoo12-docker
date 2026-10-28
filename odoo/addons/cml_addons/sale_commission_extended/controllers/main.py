@@ -36,6 +36,9 @@ class CommissionSettlementExport(http.Controller):
             'Product item',
             'Invoice Number',
             'Invoice Date',
+            'UoM',
+            'Quantity',
+            'Unit Price',
             'Commission Type',
             'Based Amount of Commission',
             'Commission Total'
@@ -75,6 +78,9 @@ class CommissionSettlementExport(http.Controller):
                     'product': product_name,
                     'invoice': inv_number,
                     'invoice_date': inv_date,
+                    'uom': a_line.object_id.uom_id.name or '',
+                    'qty': a_line.object_id.quantity,
+                    'unit_price': a_line.object_id.price_unit,
                     'type': comm_type,
                     'base': base_amount,
                     'total': comm_total
@@ -103,28 +109,38 @@ class CommissionSettlementExport(http.Controller):
                     'product': product_name,
                     'invoice': inv_number,
                     'invoice_date': inv_date,
+                    'uom': a_line.object_id.uom_id.name or '',
+                    'qty': a_line.object_id.quantity,
+                    'unit_price': a_line.object_id.price_unit,
                     'type': comm_type,
                     'base': base_amount,
                     'total': comm_total
                 })
 
-        # Sort the data by product name
-        export_data.sort(key=lambda x: x['product'].lower() if x['product'] else '')
+        # Sort by product, then invoice, then unit price (free lines first)
+        export_data.sort(key=lambda x: (
+            x['product'].lower() if x['product'] else '',
+            x['invoice'],
+            x['unit_price'],
+        ))
 
         # Write data to worksheet
         for data in export_data:
             worksheet.write(row, 0, data['product'])
             worksheet.write(row, 1, data['invoice'])
             worksheet.write(row, 2, data['invoice_date'])
-            worksheet.write(row, 3, data['type'])
-            worksheet.write(row, 4, data['base'], money_style)
-            worksheet.write(row, 5, data['total'], money_style)
+            worksheet.write(row, 3, data['uom'])
+            worksheet.write(row, 4, data['qty'], money_style)
+            worksheet.write(row, 5, data['unit_price'], money_style)
+            worksheet.write(row, 6, data['type'])
+            worksheet.write(row, 7, data['base'], money_style)
+            worksheet.write(row, 8, data['total'], money_style)
             row += 1
 
         # Footer
         row += 1
-        worksheet.write(row, 4, 'Total Commission:', bold_style)
-        worksheet.write(row, 5, total_commission, money_style)
+        worksheet.write(row, 7, 'Total Commission:', bold_style)
+        worksheet.write(row, 8, total_commission, money_style)
 
         fp = io.BytesIO()
         workbook.save(fp)
