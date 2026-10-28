@@ -64,12 +64,7 @@ class CommissionSettlementExport(http.Controller):
                 inv_date = date_inv.strftime('%Y-%m-%d') if date_inv else ''
                 comm_type = a_line.commission.name or ''
 
-                subtotal = a_line.object_id.price_subtotal
-                if a_line.commission.amount_base_type == 'net_amount':
-                    cost = a_line.object_id.product_id.standard_price * a_line.object_id.quantity
-                    base_amount = max(0, subtotal - cost)
-                else:
-                    base_amount = subtotal
+                base_amount = a_line.object_id.price_subtotal
 
                 comm_total = a_line.amount
                 total_commission += comm_total
@@ -95,12 +90,7 @@ class CommissionSettlementExport(http.Controller):
                 inv_date = date_inv.strftime('%Y-%m-%d') if date_inv else ''
                 comm_type = a_line.commission.name or ''
 
-                subtotal = a_line.object_id.price_subtotal
-                if a_line.commission.amount_base_type == 'net_amount':
-                    cost = a_line.object_id.product_id.standard_price * a_line.qty
-                    base_amount = max(0, subtotal - cost)
-                else:
-                    base_amount = subtotal
+                base_amount = a_line.object_id.price_subtotal
 
                 comm_total = a_line.amount
                 total_commission += comm_total
