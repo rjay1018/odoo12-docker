@@ -29,6 +29,11 @@ class SettlementSummaryPartnerProductReport(models.AbstractModel):
                 elif hasattr(line, 'agent_line_categ') and line.agent_line_categ:
                     inv_line = line.agent_line_categ[:1].object_id
 
+            # Only report real sale lines: must have a commission amount and a unit price
+            # (free / sample lines have price_unit = 0 and no commission).
+            if not line.settled_amount or not (inv_line and inv_line.price_unit):
+                continue
+
             invoice = line.invoice or (inv_line.invoice_id if inv_line else False)
             partner = invoice.partner_id if invoice else False
             product = inv_line.product_id if inv_line else False

@@ -1,6 +1,6 @@
 {
     'name': 'Sales Commissions - Extended',
-    'version': '12.0.17',
+    'version': '12.0.18',
     'author': 'Allan J. Manuel, Rjay Lopez',
     'category': 'Sales Management',
     'license': 'AGPL-3',
