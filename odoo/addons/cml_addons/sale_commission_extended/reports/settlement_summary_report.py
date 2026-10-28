@@ -21,9 +21,16 @@ class SettlementSummaryReport(models.AbstractModel):
             all_lines += list(settlement.categ_lines)
             
         for line in all_lines:
-            analytic_account = line.invoice_line.account_analytic_id
+            inv_line = line.invoice_line
+            if not inv_line:
+                if hasattr(line, 'agent_line') and line.agent_line:
+                    inv_line = line.agent_line[:1].object_id
+                elif hasattr(line, 'agent_line_categ') and line.agent_line_categ:
+                    inv_line = line.agent_line_categ[:1].object_id
+
+            analytic_account = inv_line.account_analytic_id if inv_line else False
             commission = line.commission
-            inv_line_id = line.invoice_line.id
+            inv_line_id = inv_line.id if inv_line else False
             
             key = (analytic_account.id if analytic_account else False, commission.id if commission else False)
             if key not in grouped:
@@ -36,8 +43,9 @@ class SettlementSummaryReport(models.AbstractModel):
                 }
             
             if inv_line_id not in grouped[key]['_processed_inv_lines']:
-                grouped[key]['price_subtotal'] += line.invoice_line.price_subtotal
-                grouped[key]['_processed_inv_lines'].add(inv_line_id)
+                grouped[key]['price_subtotal'] += inv_line.price_subtotal if inv_line else 0.0
+                if inv_line_id:
+                    grouped[key]['_processed_inv_lines'].add(inv_line_id)
                 
             grouped[key]['amount_subtotal'] += line.settled_amount
             

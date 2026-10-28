@@ -21,11 +21,19 @@ class SettlementSummaryPartnerProductReport(models.AbstractModel):
             all_lines += list(settlement.categ_lines)
 
         for line in all_lines:
-            analytic = line.invoice_line.account_analytic_id
-            partner = line.invoice.partner_id
-            product = line.invoice_line.product_id
-            invoice = line.invoice
-            inv_line_id = line.invoice_line.id
+            # Resolve actual invoice line (fallback to agent_line / agent_line_categ if line.invoice_line is empty)
+            inv_line = line.invoice_line
+            if not inv_line:
+                if hasattr(line, 'agent_line') and line.agent_line:
+                    inv_line = line.agent_line[:1].object_id
+                elif hasattr(line, 'agent_line_categ') and line.agent_line_categ:
+                    inv_line = line.agent_line_categ[:1].object_id
+
+            invoice = line.invoice or (inv_line.invoice_id if inv_line else False)
+            partner = invoice.partner_id if invoice else False
+            product = inv_line.product_id if inv_line else False
+            analytic = inv_line.account_analytic_id if inv_line else False
+            inv_line_id = inv_line.id if inv_line else False
 
             # First level: Analytic Account
             a_key = analytic.id if analytic else False
@@ -60,7 +68,6 @@ class SettlementSummaryPartnerProductReport(models.AbstractModel):
                     inv_name = invoice.number or invoice.name or 'No Invoice'
                 else:
                     inv_name = 'No Invoice'
-                inv_line = line.invoice_line
                 p_dict['lines_dict'][l_key] = {
                     'invoice': inv_name,
                     'product': product.name if product else 'No Product',
@@ -75,11 +82,12 @@ class SettlementSummaryPartnerProductReport(models.AbstractModel):
             l_dict = p_dict['lines_dict'][l_key]
 
             if inv_line_id not in l_dict['_processed_inv_lines']:
-                price = line.invoice_line.price_subtotal
+                price = inv_line.price_subtotal if inv_line else 0.0
                 l_dict['price_subtotal'] += price
                 p_dict['total_price'] += price
                 a_dict['total_price'] += price
-                l_dict['_processed_inv_lines'].add(inv_line_id)
+                if inv_line_id:
+                    l_dict['_processed_inv_lines'].add(inv_line_id)
 
             amount = line.settled_amount
             l_dict['amount_subtotal'] += amount
