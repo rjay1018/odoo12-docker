@@ -1,0 +1,13 @@
+{
+    'name': 'Simplified Vouching Report',
+    'version': '12.0.1.0.0',
+    'category': 'Warehouse',
+    'license': 'AGPL-3',
+    'depends': ['stock', 'sale_stock'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/params.xml',
+        'views/simplified_vouching.xml',
+    ],
+    'installable': True,
+}

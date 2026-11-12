@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_simplified_vouching_tree" model="ir.ui.view">
+        <field name="name">simplified.vouching.tree</field>
+        <field name="model">simplified.vouching</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false" delete="false">
+                <field name="scheduled_date"/>
+                <field name="name"/>
+                <field name="partner_name"/>
+                <field name="so_name"/>
+                <field name="remarks"/>
+                <field name="amount" sum="Total"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_simplified_vouching_search" model="ir.ui.view">
+        <field name="name">simplified.vouching.search</field>
+        <field name="model">simplified.vouching</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_name"/>
+                <field name="so_name"/>
+                <field name="remarks"/>
+                <field name="scheduled_date"/>
+                <filter name="latest_year" string="Latest Year" domain="[('is_latest_year', '=', True)]"/>
+                <separator/>
+                <filter name="f_unpaid" string="Unpaid" domain="[('remarks', '=', 'Unpaid')]"/>
+                <filter name="f_paid" string="Paid" domain="[('remarks', '=', 'Paid')]"/>
+                <filter name="f_consignment" string="Consignment" domain="[('remarks', '=', 'Consignment')]"/>
+                <filter name="f_missing" string="MISSING" domain="[('remarks', '=', 'MISSING')]"/>
+                <filter name="f_cancelled" string="CANCELLED" domain="[('remarks', '=', 'CANCELLED')]"/>
+                <filter name="f_draft" string="DRAFT" domain="[('remarks', '=', 'DRAFT')]"/>
+                <filter name="f_oem" string="OEM" domain="[('remarks', '=', 'OEM')]"/>
+                <filter name="f_event" string="Event" domain="[('remarks', '=', 'Event')]"/>
+                <filter name="f_noso" string="NO SO - CHECK" domain="[('remarks', '=', 'NO SO - CHECK')]"/>
+                <group expand="0" string="Group By">
+                    <filter name="g_partner" string="Customer" context="{'group_by': 'partner_id'}"/>
+                    <filter name="g_date" string="Scheduled Date" context="{'group_by': 'scheduled_date'}"/>
+                    <filter name="g_remarks" string="Remarks" context="{'group_by': 'remarks'}"/>
+                    <filter name="g_type" string="Picking Type" context="{'group_by': 'picking_type_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_simplified_vouching" model="ir.actions.act_window">
+        <field name="name">Simplified Vouching</field>
+        <field name="res_model">simplified.vouching</field>
+        <field name="view_mode">tree</field>
+        <field name="context">{'search_default_latest_year': 1}</field>
+    </record>
+
+    <menuitem id="menu_simplified_vouching" name="Simplified Vouching"
+              parent="stock.menu_warehouse_report" action="action_simplified_vouching" sequence="90"/>
+</odoo>
+

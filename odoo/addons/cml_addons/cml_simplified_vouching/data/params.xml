@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="start_no" model="ir.config_parameter">
+        <field name="key">delivery_monitoring.start_no</field>
+        <field name="value">48402</field>
+    </record>
+</odoo>
