@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <template id="assets_backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/cml_simplified_vouching/static/src/js/refresh_button.js"/>
+        </xpath>
+    </template>
+
     <record id="view_simplified_vouching_tree" model="ir.ui.view">
         <field name="name">simplified.vouching.tree</field>
         <field name="model">simplified.vouching</field>
         <field name="arch" type="xml">
-            <tree create="false" edit="false" delete="false">
+            <tree js_class="simplified_vouching_list" create="false" edit="false" delete="false">
                 <field name="scheduled_date"/>
                 <field name="name"/>
                 <field name="partner_name"/>

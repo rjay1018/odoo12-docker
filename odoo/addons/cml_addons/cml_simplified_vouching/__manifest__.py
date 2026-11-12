@@ -10,5 +10,6 @@
         'data/cron.xml',
         'views/simplified_vouching.xml',
     ],
+    'qweb': ['static/src/xml/buttons.xml'],
     'installable': True,
 }
