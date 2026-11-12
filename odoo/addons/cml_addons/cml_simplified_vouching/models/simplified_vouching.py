@@ -117,8 +117,11 @@ class SimplifiedVouching(models.Model):
     @api.model_cr
     def init(self):
         cr = self.env.cr
-        cr.execute('DROP VIEW IF EXISTS simplified_vouching CASCADE')
-        cr.execute('DROP MATERIALIZED VIEW IF EXISTS simplified_vouching CASCADE')
+        cr.execute("SELECT relkind FROM pg_class WHERE relname = 'simplified_vouching'")
+        row = cr.fetchone()
+        if row:
+            kind = 'MATERIALIZED VIEW' if row[0] == 'm' else 'VIEW'
+            cr.execute('DROP %s simplified_vouching CASCADE' % kind)
         cr.execute(SQL)
         cr.execute('CREATE UNIQUE INDEX simplified_vouching_id_idx ON simplified_vouching (id)')
 
