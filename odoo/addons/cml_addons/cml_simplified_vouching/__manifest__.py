@@ -7,6 +7,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/params.xml',
+        'data/cron.xml',
         'views/simplified_vouching.xml',
     ],
     'installable': True,

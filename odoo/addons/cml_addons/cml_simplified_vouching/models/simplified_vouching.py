@@ -1,4 +1,4 @@
-from odoo import api, fields, models, tools
+from odoo import api, fields, models
 
 REMARKS = [
     ('Unpaid', 'Unpaid'), ('Paid', 'Paid'), ('Consignment', 'Consignment'),
@@ -10,7 +10,7 @@ REMARKS = [
 # step if the client needs cent-exact reconciliation.
 # ponytail: Paid/Unpaid is per Sales Order (all its qualifying invoices), not per delivery.
 SQL = """
-CREATE OR REPLACE VIEW simplified_vouching AS (
+CREATE MATERIALIZED VIEW simplified_vouching AS (
 WITH cfg AS (
     SELECT COALESCE((SELECT value::bigint FROM ir_config_parameter
                      WHERE key = 'delivery_monitoring.start_no'), 48402) AS start_no
@@ -94,7 +94,7 @@ FROM cfg, ly,
      generate_series(cfg.start_no, (SELECT max(num) FROM pk)) g
 LEFT JOIN LATERAL (SELECT d FROM pk WHERE num < g ORDER BY num DESC LIMIT 1) prev ON TRUE
 WHERE NOT EXISTS (SELECT 1 FROM pk WHERE pk.num = g)
-)
+) WITH DATA
 """
 
 
@@ -116,5 +116,13 @@ class SimplifiedVouching(models.Model):
 
     @api.model_cr
     def init(self):
-        tools.drop_view_if_exists(self.env.cr, self._table)
-        self.env.cr.execute(SQL)
+        cr = self.env.cr
+        cr.execute('DROP VIEW IF EXISTS simplified_vouching CASCADE')
+        cr.execute('DROP MATERIALIZED VIEW IF EXISTS simplified_vouching CASCADE')
+        cr.execute(SQL)
+        cr.execute('CREATE UNIQUE INDEX simplified_vouching_id_idx ON simplified_vouching (id)')
+
+    @api.model
+    def refresh(self):
+        # ponytail: snapshot refreshed by cron; data is at most 10 min old
+        self.env.cr.execute('REFRESH MATERIALIZED VIEW CONCURRENTLY simplified_vouching')
