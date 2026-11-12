@@ -55,9 +55,10 @@ WITH cfg AS (
     LEFT JOIN res_partner pp ON pp.id = p.parent_id
     LEFT JOIN stock_picking_type pt ON pt.id = pk.picking_type_id
 ), dm AS (
-    SELECT m.picking_id, m.sale_line_id, SUM(m.quantity_done) AS q,
-           SUM(SUM(m.quantity_done)) OVER (PARTITION BY m.sale_line_id) AS tq
+    SELECT m.picking_id, m.sale_line_id, SUM(ml.qty_done) AS q,
+           SUM(SUM(ml.qty_done)) OVER (PARTITION BY m.sale_line_id) AS tq
     FROM stock_move m
+    JOIN stock_move_line ml ON ml.move_id = m.id
     JOIN stock_picking_type t ON t.id = m.picking_type_id AND t.code = 'outgoing'
     WHERE m.state = 'done' AND m.sale_line_id IS NOT NULL
     GROUP BY m.picking_id, m.sale_line_id
