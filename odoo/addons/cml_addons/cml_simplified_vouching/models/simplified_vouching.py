@@ -6,8 +6,6 @@ REMARKS = [
     ('OEM', 'OEM'), ('Event', 'Event'), ('NO SO - CHECK', 'NO SO - CHECK'),
 ]
 
-# ponytail: allocation is not rounded per delivery; add a remainder-to-last-delivery
-# step if the client needs cent-exact reconciliation.
 # ponytail: Paid/Unpaid is per Sales Order (all its qualifying invoices), not per delivery.
 SQL = """
 CREATE MATERIALIZED VIEW simplified_vouching AS (
@@ -39,7 +37,7 @@ WITH cfg AS (
             WHEN EXISTS (SELECT 1 FROM res_partner_res_partner_category_rel r
                          JOIN res_partner_category c ON c.id = r.category_id
                          WHERE c.name ILIKE 'OEM' AND r.partner_id IN (p.id, p.parent_id)) THEN 'OEM'
-            WHEN pt.name ILIKE '%marketing event%' THEN 'Event'
+            WHEN p.name ILIKE 'Marketing Event' OR pp.name ILIKE 'Marketing Event' THEN 'Event'
             WHEN EXISTS (SELECT 1 FROM res_partner_res_partner_category_rel r
                          JOIN res_partner_category c ON c.id = r.category_id
                          WHERE c.name ILIKE 'Supermarket' AND r.partner_id IN (p.id, p.parent_id)) THEN 'Consignment'
@@ -53,40 +51,47 @@ WITH cfg AS (
     LEFT JOIN so_pay sp2 ON sp2.order_id = so.id
     LEFT JOIN res_partner p ON p.id = pk.partner_id
     LEFT JOIN res_partner pp ON pp.id = p.parent_id
-    LEFT JOIN stock_picking_type pt ON pt.id = pk.picking_type_id
-), dm AS (
-    SELECT m.picking_id, m.sale_line_id, SUM(ml.qty_done) AS q,
-           SUM(SUM(ml.qty_done)) OVER (PARTITION BY m.sale_line_id) AS tq
+), mv AS (
+    SELECT m.picking_id, m.sale_line_id, (ld.usage = 'customer') AS to_cust,
+           SUM(CASE WHEN m.state = 'done' THEN COALESCE(dq.q, 0) ELSE m.product_uom_qty END) AS q
     FROM stock_move m
-    JOIN stock_move_line ml ON ml.move_id = m.id
-    JOIN stock_picking_type t ON t.id = m.picking_type_id AND t.code = 'outgoing'
-    WHERE m.state = 'done' AND m.sale_line_id IS NOT NULL
-    GROUP BY m.picking_id, m.sale_line_id
+    JOIN stock_location ld ON ld.id = m.location_dest_id
+    LEFT JOIN (SELECT move_id, SUM(qty_done) AS q FROM stock_move_line GROUP BY move_id) dq
+           ON dq.move_id = m.id
+    WHERE m.state NOT IN ('draft', 'cancel') AND m.sale_line_id IS NOT NULL
+    GROUP BY m.picking_id, m.sale_line_id, (ld.usage = 'customer')
+), dm AS (
+    SELECT picking_id, sale_line_id, q, SUM(q) OVER (PARTITION BY sale_line_id) AS tq
+    FROM mv WHERE to_cust
 ), inv AS (
     SELECT r.order_line_id AS sale_line_id,
            SUM(ail.price_subtotal * CASE WHEN ai.type = 'out_refund' THEN -1 ELSE 1 END) AS val
     FROM sale_order_line_invoice_rel r
     JOIN account_invoice_line ail ON ail.id = r.invoice_line_id
     JOIN account_invoice ai ON ai.id = ail.invoice_id
-    WHERE ai.state IN ('open', 'paid')
+    WHERE ai.state IN ('draft', 'open', 'paid')
     GROUP BY r.order_line_id
 ), amt AS (
-    SELECT dm.picking_id,
-           SUM(COALESCE(inv.val, CASE WHEN rem.remarks IN ('Event', 'Consignment')
-                                      THEN sol.price_subtotal END)
-               * dm.q / NULLIF(dm.tq, 0)) AS amount
-    FROM dm
-    JOIN rem ON rem.id = dm.picking_id
-    JOIN sale_order_line sol ON sol.id = dm.sale_line_id
-    LEFT JOIN inv ON inv.sale_line_id = dm.sale_line_id
-    GROUP BY dm.picking_id
+    SELECT picking_id, SUM(alloc) AS amount FROM (
+        SELECT dm.picking_id,
+               ROUND(inv.val * SUM(dm.q) OVER w / NULLIF(dm.tq, 0), 2)
+             - ROUND(inv.val * (SUM(dm.q) OVER w - dm.q) / NULLIF(dm.tq, 0), 2) AS alloc
+        FROM dm JOIN inv ON inv.sale_line_id = dm.sale_line_id
+        WINDOW w AS (PARTITION BY dm.sale_line_id ORDER BY dm.picking_id)
+    ) a GROUP BY picking_id
+), amt_so AS (
+    SELECT mv.picking_id,
+           SUM(mv.q * sol.price_subtotal / NULLIF(sol.product_uom_qty, 0)) AS amount
+    FROM mv JOIN sale_order_line sol ON sol.id = mv.sale_line_id
+    GROUP BY mv.picking_id
 )
 SELECT rem.id AS id, rem.d AS scheduled_date, rem.name AS name, rem.partner_id,
        rem.partner_name, rem.so_name, rem.remarks, rem.picking_type_id,
-       CASE WHEN rem.remarks IN ('Paid', 'Unpaid', 'Event', 'Consignment')
-            THEN amt.amount END AS amount,
+       CASE WHEN rem.remarks IN ('Event', 'Consignment') THEN amt_so.amount
+            WHEN rem.remarks IN ('Paid', 'Unpaid') THEN amt.amount END AS amount,
        (extract(year FROM rem.d)::int = ly.y) AS is_latest_year
-FROM rem LEFT JOIN amt ON amt.picking_id = rem.id, ly
+FROM rem LEFT JOIN amt ON amt.picking_id = rem.id
+         LEFT JOIN amt_so ON amt_so.picking_id = rem.id, ly
 UNION ALL
 SELECT 1000000000 + g, prev.d, 'WH/OUT/' || g, NULL, NULL, NULL, 'MISSING', NULL, NULL,
        (extract(year FROM prev.d)::int = ly.y)
