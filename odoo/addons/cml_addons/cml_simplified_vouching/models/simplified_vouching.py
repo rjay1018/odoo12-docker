@@ -66,7 +66,7 @@ WITH cfg AS (
     FROM mv WHERE to_cust
 ), inv AS (
     SELECT r.order_line_id AS sale_line_id,
-           SUM(ail.price_subtotal * CASE WHEN ai.type = 'out_refund' THEN -1 ELSE 1 END) AS val
+           SUM(ail.price_total * CASE WHEN ai.type = 'out_refund' THEN -1 ELSE 1 END) AS val
     FROM sale_order_line_invoice_rel r
     JOIN account_invoice_line ail ON ail.id = r.invoice_line_id
     JOIN account_invoice ai ON ai.id = ail.invoice_id
@@ -74,7 +74,7 @@ WITH cfg AS (
     GROUP BY r.order_line_id
 ), inv_cons AS (
     SELECT ir.stock_consigments_id AS sc_id, ail.product_id,
-           SUM(ail.price_subtotal * CASE WHEN ai.type = 'out_refund' THEN -1 ELSE 1 END) AS val
+           SUM(ail.price_total * CASE WHEN ai.type = 'out_refund' THEN -1 ELSE 1 END) AS val
     FROM account_invoice_stock_consigments_rel ir
     JOIN account_invoice ai ON ai.id = ir.account_invoice_id
     JOIN account_invoice_line ail ON ail.invoice_id = ai.id
@@ -106,7 +106,7 @@ WITH cfg AS (
     ) a GROUP BY picking_id
 ), amt_so AS (
     SELECT mv.picking_id,
-           SUM(mv.q * sol.price_subtotal / NULLIF(sol.product_uom_qty, 0)) AS amount
+           SUM(mv.q * sol.price_total / NULLIF(sol.product_uom_qty, 0)) AS amount
     FROM mv
     JOIN rem ON rem.id = mv.picking_id
     JOIN sale_order_line sol ON sol.id = mv.sale_line_id
