@@ -55,6 +55,7 @@ WITH cfg AS (
     SELECT m.picking_id, m.sale_line_id, (ld.usage = 'customer') AS to_cust,
            SUM(CASE WHEN m.state = 'done' THEN COALESCE(dq.q, 0) ELSE m.product_uom_qty END) AS q
     FROM stock_move m
+    JOIN pk ON pk.id = m.picking_id
     JOIN stock_location ld ON ld.id = m.location_dest_id
     LEFT JOIN (SELECT move_id, SUM(qty_done) AS q FROM stock_move_line GROUP BY move_id) dq
            ON dq.move_id = m.id
@@ -71,6 +72,24 @@ WITH cfg AS (
     JOIN account_invoice ai ON ai.id = ail.invoice_id
     WHERE ai.state IN ('draft', 'open', 'paid')
     GROUP BY r.order_line_id
+), inv_cons AS (
+    SELECT ir.stock_consigments_id AS sc_id, ail.product_id,
+           SUM(ail.price_subtotal * CASE WHEN ai.type = 'out_refund' THEN -1 ELSE 1 END) AS val
+    FROM account_invoice_stock_consigments_rel ir
+    JOIN account_invoice ai ON ai.id = ir.account_invoice_id
+    JOIN account_invoice_line ail ON ail.invoice_id = ai.id
+    WHERE ai.state IN ('draft', 'open', 'paid')
+      AND NOT EXISTS (SELECT 1 FROM sale_order_line_invoice_rel r WHERE r.invoice_line_id = ail.id)
+    GROUP BY ir.stock_consigments_id, ail.product_id
+), cdm AS (
+    SELECT sc_id, product_id, picking_id, sale_line_id, q,
+           SUM(q) OVER (PARTITION BY sc_id, product_id) AS tq
+    FROM (
+        SELECT DISTINCT scl.consignments_id AS sc_id, scl.product_id, dm.picking_id, dm.sale_line_id, dm.q
+        FROM stock_consigments_lines scl
+        JOIN sale_order_line_stock_consigments_lines_rel r ON r.stock_consigments_lines_id = scl.id
+        JOIN dm ON dm.sale_line_id = r.sale_order_line_id
+    ) x
 ), amt AS (
     SELECT picking_id, SUM(alloc) AS amount FROM (
         SELECT dm.picking_id,
@@ -78,16 +97,25 @@ WITH cfg AS (
              - ROUND(inv.val * (SUM(dm.q) OVER w - dm.q) / NULLIF(dm.tq, 0), 2) AS alloc
         FROM dm JOIN inv ON inv.sale_line_id = dm.sale_line_id
         WINDOW w AS (PARTITION BY dm.sale_line_id ORDER BY dm.picking_id)
+        UNION ALL
+        SELECT cdm.picking_id,
+               ROUND(ic.val * SUM(cdm.q) OVER w / NULLIF(cdm.tq, 0), 2)
+             - ROUND(ic.val * (SUM(cdm.q) OVER w - cdm.q) / NULLIF(cdm.tq, 0), 2) AS alloc
+        FROM cdm JOIN inv_cons ic ON ic.sc_id = cdm.sc_id AND ic.product_id = cdm.product_id
+        WINDOW w AS (PARTITION BY ic.sc_id, ic.product_id ORDER BY cdm.picking_id, cdm.sale_line_id)
     ) a GROUP BY picking_id
 ), amt_so AS (
     SELECT mv.picking_id,
            SUM(mv.q * sol.price_subtotal / NULLIF(sol.product_uom_qty, 0)) AS amount
-    FROM mv JOIN sale_order_line sol ON sol.id = mv.sale_line_id
+    FROM mv
+    JOIN rem ON rem.id = mv.picking_id
+    JOIN sale_order_line sol ON sol.id = mv.sale_line_id
+    WHERE mv.to_cust OR rem.remarks = 'Event'
     GROUP BY mv.picking_id
 )
 SELECT rem.id AS id, rem.d AS scheduled_date, rem.name AS name, rem.partner_id,
        rem.partner_name, rem.so_name, rem.remarks, rem.picking_type_id,
-       CASE WHEN rem.remarks IN ('Event', 'Consignment') THEN amt_so.amount
+       CASE WHEN rem.remarks IN ('Event', 'Consignment') THEN COALESCE(amt.amount, amt_so.amount)
             WHEN rem.remarks IN ('Paid', 'Unpaid') THEN amt.amount END AS amount,
        (extract(year FROM rem.d)::int = ly.y) AS is_latest_year
 FROM rem LEFT JOIN amt ON amt.picking_id = rem.id
