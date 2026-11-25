@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_commission_by_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="row mt32 mb16">
+                            <div class="col-6" t-if="o.agent">
+                                <strong>Sales Agent:</strong>
+                                <p t-field="o.agent"/>
+                            </div>
+                            <div class="col-6" t-if="o.date_from and o.date_to">
+                                <strong>Period:</strong>
+                                <p><span t-field="o.date_from"/> to <span t-field="o.date_to"/></p>
+                            </div>
+                        </div>
+
+                        <h3>Commission Report by Invoice</h3>
+
+                        <t t-set="report_data" t-value="get_by_invoice_data(o)"/>
+
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th class="text-right">Qty</th>
+                                    <th class="text-right">Price</th>
+                                    <th class="text-right">Total</th>
+                                    <th class="text-right">Comm. Rate</th>
+                                    <th class="text-right">Comm. Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="report_data['invoices']" t-as="inv">
+                                    <tr class="bg-light">
+                                        <td colspan="6">
+                                            <strong>Invoice:</strong> <span t-esc="inv['invoice']"/>
+                                            &#160;|&#160;
+                                            <strong>Customer:</strong> <span t-esc="inv['partner']"/>
+                                            &#160;|&#160;
+                                            <strong>Date:</strong> <span t-esc="inv['invoice_date']"/>
+                                            &#160;|&#160;
+                                            <strong>Sales Agent:</strong> <span t-esc="inv['agent']"/>
+                                        </td>
+                                    </tr>
+                                    <tr t-foreach="inv['lines']" t-as="l">
+                                        <td><span t-esc="l['product']"/></td>
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(l['quantity'])"/></td>
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(l['unit_price'])"/></td>
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(l['price_subtotal'])"/></td>
+                                        <td class="text-right"><span t-esc="l['commission_rate']"/></td>
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(l['commission_amount'])"/></td>
+                                    </tr>
+                                    <tr class="font-weight-bold">
+                                        <td colspan="3" class="text-right">Invoice Subtotal:</td>
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(inv['total_sales'])"/></td>
+                                        <td/>
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(inv['total_commission'])"/></td>
+                                    </tr>
+                                </t>
+
+                                <tr class="font-weight-bold table-active">
+                                    <td colspan="3" class="text-right">Grand Total:</td>
+                                    <td class="text-right"><span t-esc="'{:,.2f}'.format(report_data['grand_total_sales'])"/></td>
+                                    <td/>
+                                    <td class="text-right"><span t-esc="'{:,.2f}'.format(report_data['grand_total_commission'])"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_commission_by_invoice"
+        model="sale.commission.settlement"
+        string="Commission Report by Invoice"
+        report_type="qweb-pdf"
+        name="sale_commission_extended.report_commission_by_invoice"
+        file="sale_commission_extended.report_commission_by_invoice"/>
+
+</odoo>

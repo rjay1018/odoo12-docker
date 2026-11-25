@@ -115,6 +115,24 @@ class Settlement(models.Model):
         }
 
     @api.multi
+    def action_export_excel_by_customer(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/sale_commission_extended/export_by_customer/%s' % self.id,
+            'target': 'self',
+        }
+
+    @api.multi
+    def action_export_excel_by_invoice(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_url',
+            'url': '/sale_commission_extended/export_by_invoice/%s' % self.id,
+            'target': 'self',
+        }
+
+    @api.multi
     def action_cancel(self):
         """Override to reset settled=False on both commission line types.
         OCA base resets account.invoice.line.agent but NOT our custom

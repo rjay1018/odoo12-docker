@@ -18,7 +18,9 @@
         'reports/commission_analysis.xml',
         'reports/settlement_report.xml',
         'reports/settlement_summary_report_template.xml',
-        'reports/settlement_summary_partner_product_report_template.xml'
+        'reports/settlement_summary_partner_product_report_template.xml',
+        'reports/commission_by_customer_template.xml',
+        'reports/commission_by_invoice_template.xml',
     ],
     'installable': True
 }

@@ -2,6 +2,10 @@ import io
 import xlwt
 from odoo import http
 from odoo.http import request
+from ..reports.commission_report_data import (
+    get_by_customer_data,
+    get_by_invoice_data,
+)
 
 
 class CommissionSettlementExport(http.Controller):
@@ -144,3 +148,130 @@ class CommissionSettlementExport(http.Controller):
             ('Content-Type', 'application/vnd.ms-excel'),
             ('Content-Disposition', 'attachment; filename="%s"' % filename)
         ])
+
+    def _xls_styles(self):
+        return {
+            'header': xlwt.easyxf('font: bold on; align: horiz center; pattern: pattern solid, fore_colour gray25;'),
+            'group': xlwt.easyxf('font: bold on; pattern: pattern solid, fore_colour ice_blue;'),
+            'bold': xlwt.easyxf('font: bold on;'),
+            'bold_right': xlwt.easyxf('font: bold on; align: horiz right;'),
+            'money': xlwt.easyxf(num_format_str='#,##0.00'),
+            'bold_money': xlwt.easyxf('font: bold on;', num_format_str='#,##0.00'),
+            'right': xlwt.easyxf('align: horiz right;'),
+        }
+
+    def _write_settlement_header(self, ws, settlement, title, styles):
+        ws.write(0, 0, title, styles['bold'])
+        ws.write(1, 0, 'Sales Agent:', styles['bold'])
+        ws.write(1, 1, settlement.agent.name or '')
+        ws.write(2, 0, 'Period:', styles['bold'])
+        date_range = '%s to %s' % (
+            settlement.date_from.strftime('%Y-%m-%d') if settlement.date_from else '',
+            settlement.date_to.strftime('%Y-%m-%d') if settlement.date_to else '',
+        )
+        ws.write(2, 1, date_range)
+
+    def _workbook_to_response(self, workbook, filename):
+        fp = io.BytesIO()
+        workbook.save(fp)
+        fp.seek(0)
+        return request.make_response(fp.read(), headers=[
+            ('Content-Type', 'application/vnd.ms-excel'),
+            ('Content-Disposition', 'attachment; filename="%s"' % filename),
+        ])
+
+    @http.route('/sale_commission_extended/export_by_customer/<int:settlement_id>', type='http', auth='user')
+    def export_excel_by_customer(self, settlement_id, **kw):
+        settlement = request.env['sale.commission.settlement'].browse(settlement_id)
+        if not settlement.exists():
+            return request.not_found()
+
+        workbook = xlwt.Workbook(encoding='utf-8')
+        ws = workbook.add_sheet('Commission By Customer')
+        styles = self._xls_styles()
+        self._write_settlement_header(ws, settlement, 'Commission Report by Customer', styles)
+
+        headers = [
+            'Invoice #', 'Date', 'Product', 'Qty',
+            'Price', 'Total', 'Comm. Rate', 'Comm. Amount',
+        ]
+        widths = [5000, 3500, 9000, 3200, 3800, 4500, 3800, 4500]
+        row = 4
+        for col, (h, w) in enumerate(zip(headers, widths)):
+            ws.write(row, col, h, styles['header'])
+            ws.col(col).width = w
+
+        data = get_by_customer_data(settlement)
+        row += 1
+        for cust in data['customers']:
+            ws.write_merge(row, row, 0, 7, cust['partner'], styles['group'])
+            row += 1
+            for l in cust['lines']:
+                ws.write(row, 0, l['invoice'])
+                ws.write(row, 1, l['invoice_date'])
+                ws.write(row, 2, l['product'])
+                ws.write(row, 3, l['quantity'], styles['money'])
+                ws.write(row, 4, l['unit_price'], styles['money'])
+                ws.write(row, 5, l['price_subtotal'], styles['money'])
+                ws.write(row, 6, l['commission_rate'], styles['right'])
+                ws.write(row, 7, l['commission_amount'], styles['money'])
+                row += 1
+            ws.write_merge(row, row, 0, 4, 'Customer Subtotal:', styles['bold_right'])
+            ws.write(row, 5, cust['total_sales'], styles['bold_money'])
+            ws.write(row, 7, cust['total_commission'], styles['bold_money'])
+            row += 1
+
+        row += 1
+        ws.write_merge(row, row, 0, 4, 'Grand Total:', styles['bold_right'])
+        ws.write(row, 5, data['grand_total_sales'], styles['bold_money'])
+        ws.write(row, 7, data['grand_total_commission'], styles['bold_money'])
+
+        agent_safe = (settlement.agent.name or 'Agent').replace(' ', '_')
+        return self._workbook_to_response(workbook, 'Commission_By_Customer_%s.xls' % agent_safe)
+
+    @http.route('/sale_commission_extended/export_by_invoice/<int:settlement_id>', type='http', auth='user')
+    def export_excel_by_invoice(self, settlement_id, **kw):
+        settlement = request.env['sale.commission.settlement'].browse(settlement_id)
+        if not settlement.exists():
+            return request.not_found()
+
+        workbook = xlwt.Workbook(encoding='utf-8')
+        ws = workbook.add_sheet('Commission By Invoice')
+        styles = self._xls_styles()
+        self._write_settlement_header(ws, settlement, 'Commission Report by Invoice', styles)
+
+        headers = ['Product', 'Qty', 'Price', 'Total', 'Comm. Rate', 'Comm. Amount']
+        widths = [10000, 3200, 3800, 4500, 3800, 4500]
+        row = 4
+        for col, (h, w) in enumerate(zip(headers, widths)):
+            ws.write(row, col, h, styles['header'])
+            ws.col(col).width = w
+
+        data = get_by_invoice_data(settlement)
+        row += 1
+        for inv in data['invoices']:
+            banner = 'Invoice: %s | Customer: %s | Date: %s | Agent: %s' % (
+                inv['invoice'], inv['partner'], inv['invoice_date'], inv['agent']
+            )
+            ws.write_merge(row, row, 0, 5, banner, styles['group'])
+            row += 1
+            for l in inv['lines']:
+                ws.write(row, 0, l['product'])
+                ws.write(row, 1, l['quantity'], styles['money'])
+                ws.write(row, 2, l['unit_price'], styles['money'])
+                ws.write(row, 3, l['price_subtotal'], styles['money'])
+                ws.write(row, 4, l['commission_rate'], styles['right'])
+                ws.write(row, 5, l['commission_amount'], styles['money'])
+                row += 1
+            ws.write_merge(row, row, 0, 2, 'Invoice Subtotal:', styles['bold_right'])
+            ws.write(row, 3, inv['total_sales'], styles['bold_money'])
+            ws.write(row, 5, inv['total_commission'], styles['bold_money'])
+            row += 1
+
+        row += 1
+        ws.write_merge(row, row, 0, 2, 'Grand Total:', styles['bold_right'])
+        ws.write(row, 3, data['grand_total_sales'], styles['bold_money'])
+        ws.write(row, 5, data['grand_total_commission'], styles['bold_money'])
+
+        agent_safe = (settlement.agent.name or 'Agent').replace(' ', '_')
+        return self._workbook_to_response(workbook, 'Commission_By_Invoice_%s.xls' % agent_safe)
