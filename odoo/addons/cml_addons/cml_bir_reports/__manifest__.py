@@ -4,7 +4,7 @@
     'name': "BIR Reports",
     'summary': """BIR Reports""",
     'description': """BIR Reports""",
-    'version': "0.5",
+    'version': "0.6",
     'category': "CRM",
     'author': "CML",
     'website': "www.cml-intl.com",

@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 import os
+import zipfile
 import openpyxl
 from io import BytesIO
 import base64
@@ -32,7 +33,8 @@ class BirReportWizard(models.TransientModel):
         if not active_id:
             raise ValueError("No active invoice found!")
 
-        wb = openpyxl.load_workbook(filename=BytesIO(base64.b64decode(self.template_id.file)))
+        template_bytes = base64.b64decode(self.template_id.file)
+        wb = openpyxl.load_workbook(filename=BytesIO(template_bytes))
         ws = wb.active
         invoice = self.env['account.invoice'].browse(active_id)
 
@@ -133,9 +135,20 @@ class BirReportWizard(models.TransientModel):
         # Save output
         output = BytesIO()
         wb.save(output)
-        output.seek(0)
 
-        file_data = base64.b64encode(output.getvalue())
+        # ponytail: openpyxl drops drawing shapes/textboxes on save; copy xl/drawings & xl/media back from template
+        final = BytesIO()
+        with zipfile.ZipFile(BytesIO(template_bytes)) as tz, \
+             zipfile.ZipFile(BytesIO(output.getvalue())) as oz, \
+             zipfile.ZipFile(final, 'w', zipfile.ZIP_DEFLATED) as nz:
+            keep = [n for n in tz.namelist() if n.startswith(('xl/drawings/', 'xl/media/'))]
+            for item in oz.infolist():
+                if not (keep and item.filename.startswith(('xl/drawings/', 'xl/media/'))):
+                    nz.writestr(item, oz.read(item.filename))
+            for name in keep:
+                nz.writestr(name, tz.read(name))
+
+        file_data = base64.b64encode(final.getvalue())
 
         attachment = self.env['ir.attachment'].create({
             'name': f'{invoice.number}.xlsx',
