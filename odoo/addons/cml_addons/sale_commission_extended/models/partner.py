@@ -14,7 +14,10 @@ class Partner(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         partners = super(Partner, self).create(vals_list)
-        if not self.env.context.get('install_mode'):
+        if not (
+            self.env.context.get('install_mode')
+            or self.env.context.get('skip_customer_commission_check')
+        ):
             for partner in partners:
                 if partner.customer and not partner.agent and not partner.parent_id:
                     has_valid_comm = any(
@@ -27,6 +30,14 @@ class Partner(models.Model):
                             "Please add at least one line under the 'Sales Commission' tab."
                         ))
         return partners
+
+
+class Users(models.Model):
+    _inherit = "res.users"
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        return super(Users, self.with_context(skip_customer_commission_check=True)).create(vals_list)
 
 
 class PartnerCategoryCommission(models.Model):

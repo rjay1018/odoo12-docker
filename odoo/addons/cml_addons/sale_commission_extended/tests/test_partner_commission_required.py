@@ -79,3 +79,40 @@ class TestPartnerCommissionRequired(TransactionCase):
             'customer': True,
         })
         self.assertTrue(partner.exists())
+
+    def test_write_existing_customer_without_commission_succeeds(self):
+        partner = self.Partner.with_context(install_mode=True).create({
+            'name': 'Existing Customer',
+            'customer': True,
+        })
+        partner.write({'name': 'Existing Customer Updated'})
+        self.assertEqual(partner.name, 'Existing Customer Updated')
+
+    def test_new_user_creation_succeeds(self):
+        user = self.env['res.users'].create({
+            'name': 'New Internal User',
+            'login': 'new_internal_user_test',
+        })
+        self.assertTrue(user.exists())
+        self.assertTrue(user.partner_id.exists())
+
+    def test_non_sales_user_can_create_customer_with_commission(self):
+        base_user_group = self.env.ref('base.group_user')
+        user = self.env['res.users'].create({
+            'name': 'Non Sales User',
+            'login': 'non_sales_user_test',
+            'groups_id': [(6, 0, [base_user_group.id])],
+        })
+        view = self.Partner.sudo(user.id).fields_view_get(view_type='form')
+        self.assertIn('arch', view)
+        customer = self.Partner.sudo(user.id).create({
+            'name': 'Customer Created By Non Sales User',
+            'customer': True,
+            'agent': False,
+            'partner_categ_comm_ids': [(0, 0, {
+                'agent_id': self.agent.id,
+                'commission_id': self.commission.id,
+            })],
+        })
+        self.assertEqual(len(customer.partner_categ_comm_ids), 1)
+
