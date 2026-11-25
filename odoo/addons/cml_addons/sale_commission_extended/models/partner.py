@@ -11,6 +11,34 @@ class Partner(models.Model):
     agent_product_categ_ids = fields.One2many('product.category.commission', 'agent_id')
     commission_type = fields.Selection(related='commission.commission_type', store=True)
 
+    @api.model_create_multi
+    def create(self, vals_list):
+        partners = super(Partner, self).create(vals_list)
+        if not (
+            self.env.context.get('install_mode')
+            or self.env.context.get('skip_customer_commission_check')
+        ):
+            for partner in partners:
+                if partner.customer and not partner.agent and not partner.parent_id:
+                    has_valid_comm = any(
+                        line.agent_id and line.commission_id
+                        for line in partner.partner_categ_comm_ids
+                    )
+                    if not has_valid_comm:
+                        raise ValidationError(_(
+                            "Sales Agent and Commission Type are required when creating a new customer. "
+                            "Please add at least one line under the 'Sales Commission' tab."
+                        ))
+        return partners
+
+
+class Users(models.Model):
+    _inherit = "res.users"
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        return super(Users, self.with_context(skip_customer_commission_check=True)).create(vals_list)
+
 
 class PartnerCategoryCommission(models.Model):
     _name = 'partner.category.commission'
