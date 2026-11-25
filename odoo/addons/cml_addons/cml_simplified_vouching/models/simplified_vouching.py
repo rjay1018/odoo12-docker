@@ -30,7 +30,9 @@ WITH cfg AS (
     WHERE ai.state IN ('open', 'paid') AND ai.type = 'out_invoice'
     GROUP BY sol.order_id
 ), rem AS (
-    SELECT pk.*, so.id AS so_id, so.name AS so_name,
+    SELECT pk.id, pk.name, pk.state, pk.origin, pk.picking_type_id, pk.d, pk.num,
+           COALESCE(pk.partner_id, so.partner_shipping_id, so.partner_id) AS partner_id,
+           so.id AS so_id, so.name AS so_name,
         CASE
             WHEN pk.state = 'cancel' THEN 'CANCELLED'
             WHEN pk.state = 'draft' THEN 'DRAFT'
@@ -45,11 +47,11 @@ WITH cfg AS (
             WHEN sp2.order_id IS NOT NULL AND NOT sp2.has_open THEN 'Paid'
             ELSE 'Unpaid'
         END AS remarks,
-        CASE WHEN pp.id IS NOT NULL THEN pp.name || ', ' || p.name ELSE p.name END AS partner_name
+        NULLIF(CONCAT_WS(', ', NULLIF(pp.name, ''), NULLIF(p.name, '')), '') AS partner_name
     FROM pk
     LEFT JOIN sale_order so ON so.name = pk.origin
     LEFT JOIN so_pay sp2 ON sp2.order_id = so.id
-    LEFT JOIN res_partner p ON p.id = pk.partner_id
+    LEFT JOIN res_partner p ON p.id = COALESCE(pk.partner_id, so.partner_shipping_id, so.partner_id)
     LEFT JOIN res_partner pp ON pp.id = p.parent_id
 ), mv AS (
     SELECT m.picking_id, m.sale_line_id, (ld.usage = 'customer') AS to_cust,
