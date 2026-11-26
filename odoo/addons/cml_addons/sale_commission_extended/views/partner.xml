@@ -56,6 +56,14 @@
                             </tree>
                         </field>
                     </page>
+                    <page string="Quotas">
+                        <field name="quota_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="product_id"/>
+                                <field name="quota_qty"/>
+                            </tree>
+                        </field>
+                    </page>
                 </notebook>
             </xpath>
             <xpath expr="//page[@name='agent_information']/group/group[3]" position="replace"/>

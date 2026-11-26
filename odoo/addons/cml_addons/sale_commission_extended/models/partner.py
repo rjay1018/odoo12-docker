@@ -9,6 +9,7 @@ class Partner(models.Model):
     product_categ_comm_ids = fields.One2many('product.category.commission', 'partner_id')
     agent_partner_categ_ids = fields.One2many('partner.category.commission', 'agent_id')
     agent_product_categ_ids = fields.One2many('product.category.commission', 'agent_id')
+    quota_ids = fields.One2many('sale.commission.agent.quota', 'agent_id', string='Product Quotas')
     commission_type = fields.Selection(related='commission.commission_type', store=True)
 
     @api.model_create_multi
@@ -38,6 +39,28 @@ class Users(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         return super(Users, self.with_context(skip_customer_commission_check=True)).create(vals_list)
+
+
+class SaleCommissionAgentQuota(models.Model):
+    _name = 'sale.commission.agent.quota'
+    _description = 'Sales Agent Product Quota'
+    _order = 'product_id'
+
+    agent_id = fields.Many2one('res.partner', 'Sales Agent', required=True, ondelete='cascade')
+    product_id = fields.Many2one('product.product', 'Product', required=True)
+    quota_qty = fields.Float('Quota Qty', required=True)
+
+    @api.multi
+    @api.constrains('agent_id', 'product_id')
+    def _check_duplicate_product(self):
+        for rec in self:
+            domain = [
+                ('agent_id', '=', rec.agent_id.id),
+                ('product_id', '=', rec.product_id.id),
+            ]
+            if self.search_count(domain) > 1:
+                raise ValidationError(_('Duplicate product quota exists for this sales agent.'))
+
 
 
 class PartnerCategoryCommission(models.Model):

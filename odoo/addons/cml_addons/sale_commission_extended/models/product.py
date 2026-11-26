@@ -15,3 +15,14 @@ class ProductCategory(models.Model):
                 p.commission_free = False
             else:
                 p.commission_free = True
+
+
+class ProductPricelist(models.Model):
+    _inherit = 'product.pricelist'
+
+    is_wholesale_pricelist = fields.Boolean(
+        string='Is Wholesale Pricelist',
+        default=False,
+        help='Mark this pricelist as the Wholesale Price List used in Sales Performance Reports.',
+    )
+

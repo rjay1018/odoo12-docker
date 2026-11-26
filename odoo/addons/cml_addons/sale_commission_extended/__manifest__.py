@@ -21,6 +21,8 @@
         'reports/settlement_summary_partner_product_report_template.xml',
         'reports/commission_by_customer_template.xml',
         'reports/commission_by_invoice_template.xml',
+        'reports/sales_performance_template.xml',
+        'wizard/sales_performance_wizard_view.xml',
     ],
     'installable': True
 }

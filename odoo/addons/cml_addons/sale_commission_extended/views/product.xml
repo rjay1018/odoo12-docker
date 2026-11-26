@@ -29,4 +29,15 @@
         </field>
     </record>
 
+    <record id="product_pricelist_inherit_wholesale_form" model="ir.ui.view">
+        <field name="name">product.pricelist.inherit.wholesale.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="is_wholesale_pricelist"/>
+            </xpath>
+        </field>
+    </record>
+
 </odoo>

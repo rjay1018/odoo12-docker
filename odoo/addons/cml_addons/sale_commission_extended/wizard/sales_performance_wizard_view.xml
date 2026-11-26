@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sales_performance_wizard_form" model="ir.ui.view">
+        <field name="name">sale.commission.sales.performance.wizard.form</field>
+        <field name="model">sale.commission.sales.performance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sales Performance Report">
+                <group>
+                    <group>
+                        <field name="agent_id"/>
+                        <field name="pricelist_id"/>
+                    </group>
+                    <group>
+                        <field name="period_type"/>
+                        <field name="year"/>
+                        <field name="quarter"
+                               attrs="{'invisible': [('period_type', '!=', 'quarter')], 'required': [('period_type', '=', 'quarter')]}"/>
+                        <field name="month"
+                               attrs="{'invisible': [('period_type', '!=', 'month')], 'required': [('period_type', '=', 'month')]}"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_export_excel" type="object" string="Export Excel" class="btn-primary"/>
+                    <button name="action_print_pdf" type="object" string="Print PDF" class="btn-secondary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sales_performance_wizard" model="ir.actions.act_window">
+        <field name="name">Sales Performance Report</field>
+        <field name="res_model">sale.commission.sales.performance.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_sales_performance_report"
+              name="Sales Performance Report"
+              parent="sale_commission.menu_sale_commissions_management"
+              action="action_sales_performance_wizard"
+              sequence="30"/>
+
+</odoo>

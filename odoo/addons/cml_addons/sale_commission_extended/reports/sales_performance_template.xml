@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_sales_performance">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <t t-set="rdata" t-value="o.get_report_data()"/>
+                        <t t-set="s" t-value="rdata['summary']"/>
+
+                        <h3>Sales Performance Report vs. Wholesale Price</h3>
+
+                        <!-- Summary Block -->
+                        <div class="row mt16 mb16">
+                            <div class="col-6">
+                                <table class="table table-sm table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Agent</strong></td>
+                                            <td><span t-esc="s['agent']"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Period</strong></td>
+                                            <td><span t-esc="s['period']"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Total Amount</strong></td>
+                                            <td class="text-right"><strong><span t-esc="'{:,.2f}'.format(s['total_amount'])"/></strong></td>
+                                        </tr>
+                                        <tr t-foreach="s['category_totals']" t-as="cat">
+                                            <td>&#160;&#160;<span t-esc="cat['category']"/></td>
+                                            <td class="text-right"><span t-esc="'{:,.2f}'.format(cat['amount'])"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Commission Total</strong></td>
+                                            <td class="text-right"><strong><span t-esc="'{:,.2f}'.format(s['commission_total'])"/></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Commission Paid</strong></td>
+                                            <td class="text-right"><span t-esc="'{:,.2f}'.format(s['commission_paid'])"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Commission Unpaid</strong></td>
+                                            <td class="text-right"><span t-esc="'{:,.2f}'.format(s['commission_unpaid'])"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Above BM / Below BM / No Sale</strong></td>
+                                            <td class="text-right">
+                                                <span t-esc="s['above_bm_count']"/> /
+                                                <span t-esc="s['below_bm_count']"/> /
+                                                <span t-esc="s['no_sale_count']"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Above BM Rate</strong></td>
+                                            <td class="text-right"><span t-esc="'{:.2f}%'.format(s['above_bm_rate'])"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Quota Pass / Fail / N/A</strong></td>
+                                            <td class="text-right">
+                                                <span t-esc="s['quota_pass_count']"/> /
+                                                <span t-esc="s['quota_fail_count']"/> /
+                                                <span t-esc="s['quota_na_count']"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Item Table -->
+                        <table class="table table-sm table-bordered" style="font-size: 11px;">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>UoM</th>
+                                    <th class="text-right">Total Qty</th>
+                                    <t t-foreach="rdata['month_columns']" t-as="mc">
+                                        <th class="text-right"><span t-esc="mc[1]"/></th>
+                                    </t>
+                                    <th class="text-right">Sub Total</th>
+                                    <th class="text-right">Commi %</th>
+                                    <th class="text-right">Comm. Amt</th>
+                                    <th class="text-right">ASP</th>
+                                    <th class="text-right">Wholesale</th>
+                                    <th>Evaluation</th>
+                                    <th class="text-right">Quota</th>
+                                    <th class="text-right">Realization</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="rdata['rows']" t-as="r">
+                                    <td><span t-esc="r['item']"/></td>
+                                    <td><span t-esc="r['uom']"/></td>
+                                    <td class="text-right"><span t-esc="'{:,.2f}'.format(r['total_qty'])"/></td>
+                                    <t t-foreach="r['month_qtys']" t-as="mq">
+                                        <td class="text-right"><span t-esc="'{:,.2f}'.format(mq)"/></td>
+                                    </t>
+                                    <td class="text-right"><span t-esc="'{:,.2f}'.format(r['subtotal_amount'])"/></td>
+                                    <td class="text-right"><span t-esc="r['comm_rate']"/></td>
+                                    <td class="text-right"><span t-esc="'{:,.2f}'.format(r['commission_amount'])"/></td>
+                                    <td class="text-right"><span t-esc="'{:,.2f}'.format(r['avg_selling_price'])"/></td>
+                                    <td class="text-right">
+                                        <span t-esc="'{:,.2f}'.format(r['wholesale_price'])"/>
+                                        <t t-if="r['missing_wholesale_price']"> *</t>
+                                    </td>
+                                    <td><span t-esc="r['evaluation']"/></td>
+                                    <td class="text-right">
+                                        <span t-if="r['quota'] is not None" t-esc="'{:,.2f}'.format(r['quota'])"/>
+                                        <span t-else="">N/A</span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="r['realization'] is not None" t-esc="'{:.2f}%'.format(r['realization'])"/>
+                                        <span t-else="">N/A</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="small text-muted">* Missing from Wholesale Price List (shown as 0.00).</p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report id="action_report_sales_performance"
+        model="sale.commission.sales.performance.wizard"
+        string="Sales Performance Report"
+        report_type="qweb-pdf"
+        name="sale_commission_extended.report_sales_performance"
+        file="sale_commission_extended.report_sales_performance"/>
+
+</odoo>

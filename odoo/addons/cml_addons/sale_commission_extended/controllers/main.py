@@ -275,3 +275,102 @@ class CommissionSettlementExport(http.Controller):
 
         agent_safe = (settlement.agent.name or 'Agent').replace(' ', '_')
         return self._workbook_to_response(workbook, 'Commission_By_Invoice_%s.xls' % agent_safe)
+
+    @http.route('/sale_commission_extended/export_sales_performance/<int:wizard_id>', type='http', auth='user')
+    def export_sales_performance(self, wizard_id, **kw):
+        wizard = request.env['sale.commission.sales.performance.wizard'].browse(wizard_id)
+        if not wizard.exists():
+            return request.not_found()
+
+        rdata = wizard.get_report_data()
+        s = rdata['summary']
+        month_cols = rdata['month_columns']
+
+        workbook = xlwt.Workbook(encoding='utf-8')
+        ws = workbook.add_sheet('Sales Performance')
+        styles = self._xls_styles()
+        pct_style = xlwt.easyxf(num_format_str='0.00"%"')
+        warn_money = xlwt.easyxf(
+            'pattern: pattern solid, fore_colour light_yellow;',
+            num_format_str='#,##0.00',
+        )
+
+        # Top Summary Block
+        ws.write(0, 0, 'Sales Performance Report vs. Wholesale Price', styles['bold'])
+        ws.write(1, 0, 'Agent:', styles['bold'])
+        ws.write(1, 1, s['agent'])
+        ws.write(1, 3, 'Commission Total:', styles['bold'])
+        ws.write(1, 4, s['commission_total'], styles['bold_money'])
+
+        ws.write(2, 0, 'Period:', styles['bold'])
+        ws.write(2, 1, s['period'])
+        ws.write(2, 3, 'Commission Paid:', styles['bold'])
+        ws.write(2, 4, s['commission_paid'], styles['money'])
+
+        ws.write(3, 0, 'Total Amount:', styles['bold'])
+        ws.write(3, 1, s['total_amount'], styles['bold_money'])
+        ws.write(3, 3, 'Commission Unpaid:', styles['bold'])
+        ws.write(3, 4, s['commission_unpaid'], styles['money'])
+
+        ws.write(4, 3, 'Above BM / Below BM / No Sale:', styles['bold'])
+        ws.write(4, 4, '%d / %d / %d' % (s['above_bm_count'], s['below_bm_count'], s['no_sale_count']))
+
+        ws.write(5, 3, 'Above BM Rate:', styles['bold'])
+        ws.write(5, 4, s['above_bm_rate'], pct_style)
+
+        ws.write(6, 3, 'Quota Pass / Fail / N/A:', styles['bold'])
+        ws.write(6, 4, '%d / %d / %d' % (s['quota_pass_count'], s['quota_fail_count'], s['quota_na_count']))
+
+        # Dynamic Product Category Totals (left column)
+        cat_row = 4
+        for cat in s['category_totals']:
+            ws.write(cat_row, 0, cat['category'])
+            ws.write(cat_row, 1, cat['amount'], styles['money'])
+            cat_row += 1
+
+        # Item Table Header
+        row = max(cat_row, 7) + 1
+        headers = ['Item', 'UoM', 'Total Qty']
+        headers.extend([label for _, label in month_cols])
+        headers.extend([
+            'Sub Total Amount', 'Commi %', 'Commission Amount',
+            'Avg Selling Price', 'Whole Sale Price', 'Evaluation',
+            'Quota', 'Realization',
+        ])
+        for col, h in enumerate(headers):
+            ws.write(row, col, h, styles['header'])
+            ws.col(col).width = 10000 if col == 0 else 4000
+
+        # Item Rows
+        row += 1
+        for r in rdata['rows']:
+            col = 0
+            ws.write(row, col, r['item']); col += 1
+            ws.write(row, col, r['uom']); col += 1
+            ws.write(row, col, r['total_qty'], styles['money']); col += 1
+            for mq in r['month_qtys']:
+                ws.write(row, col, mq, styles['money']); col += 1
+            ws.write(row, col, r['subtotal_amount'], styles['money']); col += 1
+            ws.write(row, col, r['comm_rate'], styles['right']); col += 1
+            ws.write(row, col, r['commission_amount'], styles['money']); col += 1
+            ws.write(row, col, r['avg_selling_price'], styles['money']); col += 1
+            ws.write(
+                row, col, r['wholesale_price'],
+                warn_money if r['missing_wholesale_price'] else styles['money'],
+            ); col += 1
+            ws.write(row, col, r['evaluation']); col += 1
+            if r['quota'] is not None:
+                ws.write(row, col, r['quota'], styles['money'])
+            else:
+                ws.write(row, col, 'N/A', styles['right'])
+            col += 1
+            if r['realization'] is not None:
+                ws.write(row, col, r['realization'], pct_style)
+            else:
+                ws.write(row, col, 'N/A', styles['right'])
+            row += 1
+
+        agent_safe = (s['agent'] or 'Agent').replace(' ', '_')
+        period_safe = (s['period'] or 'Period').replace(' ', '_')
+        filename = 'Sales_Performance_%s_%s.xls' % (agent_safe, period_safe)
+        return self._workbook_to_response(workbook, filename)
